@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Kimberly!</title>
+    <link rel="icon" type="image/x-icon" href="https://media.istockphoto.com/id/1222712476/es/vector/logotipo-de-la-letra-k-en-un-c%C3%ADrculo-estilo-de-l%C3%ADnea-imposible.jpg?s=170667a&w=0&k=20&c=s_1Ov5r-GM8KUNsJXwB3Owi33Sy2mxWpPsZUsejlfic=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .logo-k {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4a90e2, #1e90ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-k:before {
+            content: "K";
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-k:after {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+
+        .name {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4a90e2, #1e90ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .gift-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.2);
+            padding: 50px;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #f0f8ff;
+        }
+
+        .gift-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a90e2, #1e90ff);
+        }
+
+        .gift-message {
+            font-size: 1.8rem;
+            color: #4a90e2;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .gift-btn {
+            background: linear-gradient(135deg, #4a90e2, #1e90ff);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .gift-btn:hover:before {
+            left: 100%;
+        }
+
+        .gift-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(74, 144, 226, 0.5);
+        }
+
+        .letter-container {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(74, 144, 226, 0.2);
+            padding: 50px;
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #f0f8ff;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .letter-container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a90e2, #1e90ff);
+        }
+
+        .letter-content {
+            text-align: left;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #444;
+            position: relative;
+            padding: 20px;
+        }
+
+        .letter-content p {
+            margin-bottom: 25px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 40px;
+            color: #4a90e2;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .decoration-1 {
+            top: -50px;
+            right: -50px;
+        }
+
+        .decoration-2 {
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background-color: #4a90e2;
+            opacity: 0;
+            z-index: 1000;
+            border-radius: 50%;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #4a90e2;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 3rem;
+            }
+            
+            .gift-card, .letter-container {
+                padding: 30px 20px;
+            }
+            
+            .gift-message {
+                font-size: 1.5rem;
+            }
+            
+            .gift-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .letter-content {
+                font-size: 1.1rem;
+            }
+            
+            .logo-k {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-k:before {
+                font-size: 3.5rem;
+            }
+            
+            .logo-k:after {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            
+            <h1 class="name">Kimberly</h1>
+            <p class="subtitle">¡Tu día especial está aquí!</p>
+        </div>
+        
+        <div class="gift-card" id="giftCard">
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+            <p class="gift-message">Tengo algo especial para ti en este día tan importante</p>
+            <button class="gift-btn" id="giftButton">
+                <i class="fas fa-gift"></i> ¿Aceptas mi regalo?
+            </button>
+        </div>
+        
+        <div class="letter-container" id="letterContainer">
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+            <div class="letter-content">
+                <p>¡Feliz cumpleaños, Kimberly! 🥳</p>
+                
+                <p>De verdad espero que hoy tengas un día increíble, rodeada de gente que te quiera y te haga sonreír. Te mereces lo mejor del mundo y que todos tus sueños poco a poco se vayan cumpliendo.</p>
+                
+                <p>Gracias por ser una persona tan especial, con una energía tan linda. Disfruta mucho tu día, ríe, celebra y no dejes nunca de brillar. <span class="heart">💖</span></p>
+                
+                <p class="signature">Con todo mi cariño</p>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const giftButton = document.getElementById('giftButton');
+            const giftCard = document.getElementById('giftCard');
+            const letterContainer = document.getElementById('letterContainer');
+            
+            // Abrir carta
+            giftButton.addEventListener('click', function() {
+                // Crear confeti
+                createConfetti();
+                
+                // Ocultar tarjeta de regalo y mostrar carta después de un breve retraso
+                giftCard.style.opacity = '0';
+                giftCard.style.transform = 'translateY(-20px)';
+                
+                setTimeout(function() {
+                    giftCard.style.display = 'none';
+                    letterContainer.style.display = 'block';
+                }, 500);
+            });
+            
+            // Función para crear confeti
+            function createConfetti() {
+                const colors = ['#4a90e2', '#1e90ff', '#87ceeb', '#00bfff', '#4682b4', '#5d8aa8'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.opacity = '0.8';
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    document.body.appendChild(confetti);
+                    
+                    // Animación del confeti
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                    ], {
+                        duration: 2000 + Math.random() * 3000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                    });
+                    
+                    // Eliminar confeti después de la animación
+                    animation.onfinish = () => {
+                        confetti.remove();
+                    };
+                }
+            }
+        });
+    </script>
+</body>
+</html>
