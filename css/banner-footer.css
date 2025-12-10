@@ -1,0 +1,328 @@
+
+/* VARIABLES Y CONFIGURACIÓN BASE */
+:root {
+  --color-primary: #2c3e50;
+  --color-secondary: #e74c3c;
+  --color-accent: #3498db;
+  --color-light: #ecf0f1;
+  --color-yellow: #f1c40f;
+  --color-green: #2ecc71;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.site-header {
+  background: linear-gradient(90deg, #1a2a40, #2c3e50, #2980b9);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  padding: 18px 0;
+  min-height: 70px;  
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGO CON IMAGEN PEQUEÑA - TAMAÑO CORREGIDO */
+.logo img {
+  width: 50px; /* Tamaño adecuado */
+  height: 50px; /* Tamaño adecuado */
+  object-fit: contain; /* Mantiene la proporción */
+  border-radius: 6px; /* Esquinas ligeramente redondeadas */
+  transition: transform 0.3s ease; /* Animación suave */
+  
+}
+
+/* Icono de respaldo si no hay imagen */
+.logo .logo-fallback {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-yellow);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.logo:hover img {
+  transform: scale(1.05); /* Efecto sutil al pasar el cursor */
+}
+
+.logo-text h1 {
+  font-size: 1.4rem;
+  margin-bottom: 3px;
+  font-weight: 700;
+  line-height: 1.2; /* Mejor espaciado */
+}
+
+.logo-text p {
+  font-size: 0.9rem;
+  color: #ecf0f1;
+  opacity: 0.9;
+}
+
+/* NAV BAR */
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  align-items: center;  
+  height: 100%;  
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Indicador activo para el menú */
+.navbar a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.navbar a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-yellow);
+  border-radius: 50%;
+}
+
+.nav-btn {
+  background-color: var(--color-yellow);
+  color: var(--color-primary);
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn:hover {
+  background-color: #f1c40f;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* BOTÓN MENÚ MÓVIL */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE HEADER */
+@media (max-width: 850px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    background-color: rgba(28, 44, 64, 0.95);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border-bottom: 2px solid var(--color-accent);
+  }
+
+  .navbar.open {
+    max-height: 400px;
+    padding: 15px 0;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .navbar a {
+    width: 90%;
+    justify-content: center;
+  }
+
+  /* Para el menú móvil */
+  .navbar a.active::after {
+    bottom: 5px;
+    left: 20px;
+  }
+
+  .nav-btn {
+    width: 80%;
+    text-align: center;
+  }
+
+  /* Ajustes responsivos para el logo */
+  .logo img {
+    width: 45px; /* Un poco más pequeño en móviles */
+    height: 45px;
+  }
+  
+  .logo .logo-fallback {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  
+  .logo-text h1 {
+    font-size: 1.2rem; /* Texto más compacto en móviles */
+  }
+}
+
+/* FOOTER */
+footer {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-column h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-links a:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-3px);
+}

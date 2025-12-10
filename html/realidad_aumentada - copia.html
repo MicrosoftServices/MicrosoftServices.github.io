@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realidad Aumentada - Liceo Técnico Manuel Del Cabral</title>
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #2c3e50;
+            --color-secondary: #3498db;
+            --color-accent: #e74c3c;
+            --color-green: #2ecc71;
+            --color-text: #333;
+            --color-light: #f8f9fa;
+            --color-white: #fff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+        
+        /* Sección QR */
+        .qr-section {
+            background-color: var(--color-light);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .qr-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--color-white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .qr-title {
+            color: var(--color-primary);
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .qr-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .qr-image-container {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+        
+        .qr-image {
+            width: 100%;
+            border: 2px solid var(--color-secondary);
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .qr-instructions {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        
+        .qr-instructions h3 {
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .qr-steps {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--color-secondary);
+        }
+        
+        .qr-steps ol {
+            padding-left: 20px;
+        }
+        
+        .qr-steps li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--color-text);
+        }
+        
+        .qr-steps strong {
+            color: var(--color-primary);
+        }
+        
+        /* Secciones generales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+        
+        /* Sección Realidad Aumentada */
+        .ar-demo {
+            margin-top: 0;
+        }
+        
+        .ar-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .ar-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .ar-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ar-item-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .ar-item-content {
+            padding: 15px;
+        }
+        
+        .ar-item h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+        
+        .ar-item p {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background-color: var(--color-accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .ar-badge {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        
+        .ar-features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .ar-feature {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            margin: 10px;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+        }
+        
+        .ar-feature i {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+        
+        .ar-instructions {
+            background-color: var(--color-white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+        
+        .ar-instructions h3 {
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+        
+        .ar-instructions ol {
+            padding-left: 20px;
+        }
+        
+        .ar-instructions li {
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 850px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-white);
+                box-shadow: var(--shadow);
+                display: none;
+            }
+            
+            .navbar.open {
+                display: block;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+            }
+            
+            .navbar li {
+                margin: 0;
+            }
+            
+            .navbar a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .ar-features {
+                flex-direction: column;
+            }
+            
+            .ar-feature {
+                min-width: 100%;
+            }
+            
+            .qr-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .qr-instructions {
+                text-align: center;
+            }
+            
+            .qr-steps {
+                text-align: left;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+   
+    <!-- Sección QR -->
+    <section class="qr-section" id="qr">
+        <div class="container">
+            <div class="qr-container">
+                <h2 class="qr-title">Realidad Aumentada</h2>
+                <div class="qr-content">
+                    <div class="qr-image-container">
+                        <img src="../img/qr.jpg" alt="Código QR para Realidad Aumentada" class="qr-image">
+                    </div>
+                    <div class="qr-instructions">
+                        <h3>Instrucciones</h3>
+                        <div class="qr-steps">
+                            <ol>
+                                <li><strong>Escanea el código QR</strong> con la cámara de tu dispositivo móvil</li>
+                                <li><strong>Espere a que cargue</strong> y haga click en "Ver"</li>
+                                <li><strong>Apunta la cámara</strong> a la foto y mira la realidad aumentada</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Realidad Aumentada -->
+    <section class="ar-demo" id="ar">
+        <div class="container">
+            <div class="section-title">
+                <h2 >Explora Nuestros Proyectos</h2 >
+                <p>Vive una experiencia inmersiva con nuestros proyectos estudiantiles mediante tecnología de realidad aumentada.</p>
+            </div>
+
+            <div class="ar-gallery">
+                <!-- Elemento RA 1 -->
+                <div class="ar-item">
+                    <img src="../img/R.A_Chica.jpg" alt="Escultura 3D" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Escultura 3D Interactiva</h3>
+                        <p>Visualiza la obra "Formas en Movimiento" en 3D y explora todos sus ángulos en tu espacio real.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 2 -->
+                <div class="ar-item">
+                    <img src="../img/R.A_toro.jpg" alt="Anatomía Humana" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Modelo de Anatomía</h3>
+                        <p>Explora un modelo detallado del cuerpo humano creado por estudiantes de Ciencias de la Salud.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 3 -->
+                <div class="ar-item">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Estructura Molecular" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Estructuras Moleculares</h3>
+                        <p>Visualiza moléculas complejas en 3D para comprender mejor la química orgánica.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 4 -->
+                <div class="ar-item">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Arquitectura" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Maqueta Arquitectónica</h3>
+                        <p>Coloca una maqueta virtual en tu espacio y explora el diseño arquitectónico estudiantil.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 5 -->
+                <div class="ar-item">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Robótica" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Robot Educativo</h3>
+                        <p>Interactúa con un modelo 3D de robot creado por estudiantes de mecatrónica.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 6 -->
+                <div class="ar-item">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ecosistema" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Ecosistema Virtual</h3>
+                        <p>Explora un ecosistema animado con flora y fauna creado por estudiantes de biología.</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+           
+
+    <script>
+    // Smooth scrolling para enlaces de anclaje
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Funcionalidad de Realidad Aumentada
+    document.querySelectorAll('.ar-item .btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const itemTitle = this.closest('.ar-item').querySelector('h3').textContent;
+            const itemDescription = this.closest('.ar-item').querySelector('p').textContent;
+            
+            // Simulación de activación de RA
+            alert(`Activando Realidad Aumentada para: ${itemTitle}\n\n${itemDescription}\n\nEn una implementación completa, aquí se activaría la cámara y se cargaría el modelo 3D correspondiente.`);
+            
+            // En una implementación real, aquí iría el código para:
+            // 1. Inicializar la cámara
+            // 2. Cargar el modelo 3D específico
+            // 3. Mostrar la interfaz de RA
+        });
+    });
+    </script>
+
+   
+ <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
+                
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+            <h3>Liceo Técnico Manuel Del Cabral</h3>
+            <p>Fe y Alegría - Santo Domingo Este</p>
+            <p>Calle Miguel Díaz del Almirante</p>
+            
+            <p>Teléfono: (809) 695-1417</p>
+            <p>Email: feyalegriamdelcabral@gmail.com</p>
+            <div class="social-links">
+            <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+            </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
+                    <i class="fas fa-rocket"></i> Innovación Educativa
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+</script>
+</body>
+</html>

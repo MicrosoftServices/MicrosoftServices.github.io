@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tributaria - Liceo Técnico Manuel Del Cabral</title>
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        /* --- HÉROE --- */
+        .hero {
+            background: linear-gradient(rgba(8,56,109,0.8), rgba(8,56,109,0.85)),
+            url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: auto;
+        }
+        /* --- TÍTULOS DE LAS SECCIONES --- */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 30px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: #444;
+            max-width: 700px;
+            margin: auto;
+        }
+        /* --- ESPECIALIDADES --- */
+        .specialties {
+            background: #fff;
+            border-radius: var(--radio);
+            box-shadow: var(--shadow);
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .specialty-card {
+            background-color: var(--color-bg);
+            padding: 25px;
+            border-radius: var(--radio);
+            border-left: 5px solid var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+        .specialty-card:hover {
+            transform: translateY(-5px);
+        }
+        .specialty-card h3 {
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .specialty-card i {
+            color: var(--color-accent);
+        }
+        .specialty-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        /* --- OPORTUNIDADES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .service-card {
+            background-color: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: var(--radio);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        .service-card h3 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .specialties, .service-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- HÉROE -->
+    <section class="hero">
+        <div class="container">
+            <h2>Técnico en Tributaria</h2>
+            <p>Formamos profesionales especializados en legislación fiscal, gestión tributaria y asesoría contable, preparados para los desafíos del sistema impositivo dominicano e internacional.</p>
+        </div>
+    </section>
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>Especialidades Técnicas</h2>
+                <p>Brindamos formación integral en las principales áreas de la gestión tributaria y fiscal.</p>
+            </div>
+            <div class="specialties">
+                <div class="specialty-grid">
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-balance-scale"></i> Legislación Tributaria</h3>
+                        <p>Estudio de leyes fiscales, normativas DGII y marco legal del sistema tributario dominicano.</p>
+                    </div>
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-calculator"></i> Cálculo de Impuestos</h3>
+                        <p>Determinación de obligaciones fiscales: ITBIS, ISR, impuestos selectivos y municipales.</p>
+                    </div>
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-file-invoice-dollar"></i> Declaraciones Fiscales</h3>
+                        <p>Preparación y presentación de formularios fiscales, planes de pago y compensaciones.</p>
+                    </div>
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-search-dollar"></i> Auditoría Tributaria</h3>
+                        <p>Técnicas de revisión fiscal, procedimientos de fiscalización y defensa ante la DGII.</p>
+                    </div>
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-hand-holding-usd"></i> Planificación Fiscal</h3>
+                        <p>Estrategias legales para optimización de cargas tributarias y cumplimiento responsable.</p>
+                    </div>
+                    <div class="specialty-card">
+                        <h3><i class="fas fa-book"></i> Contabilidad Tributaria</h3>
+                        <p>Registro contable de operaciones con impacto fiscal y conciliaciones tributarias.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- OPORTUNIDADES -->
+    <section id="oportunidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>Oportunidades Laborales</h2>
+                <p>Los egresados están capacitados para trabajar en distintas áreas del sector fiscal y contable.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Asesor Tributario</h3>
+                    <p>Asesoría fiscal a empresas y personas en cumplimiento de obligaciones con la DGII.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Declarador Fiscal</h3>
+                    <p>Elaboración y presentación de declaraciones juradas y otros formularios tributarios.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>Auxiliar Contable</h3>
+                    <p>Gestión de registros contables con enfoque en el cumplimiento de normativas fiscales.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Asistente de Auditoría</h3>
+                    <p>Apoyo en procesos de revisión fiscal y preparación de documentación para auditorías.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  <br><br><br>
+   
+  
+ <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
+                
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+     <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+            <h3>Liceo Técnico Manuel Del Cabral</h3>
+            <p>Fe y Alegría - Santo Domingo Este</p>
+            <p>Calle Miguel Díaz del Almirante</p>
+            
+            <p>Teléfono: (809) 695-1417</p>
+            <p>Email: feyalegriamdelcabral@gmail.com</p>
+            <div class="social-links">
+            <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+            </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
+                    <i class="fas fa-rocket"></i> Innovación Educativa
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Liceo Técnico Manuel Del Cabral</title>
+    <link rel="icon" href="../img/logo.png">
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .library-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 250px 0;
+            text-align: center;
+        }
+        
+        .search-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .search-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        /* Panel de Administración */
+        .admin-panel {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .admin-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .image-upload-container {
+            border: 2px dashed #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .image-upload-container:hover {
+            border-color: #2980b9;
+            background-color: #e8f4fc;
+        }
+        
+        .image-preview {
+            margin-top: 15px;
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .book-cover {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .book-info {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .book-author {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        
+        .book-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .status-available {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .status-borrowed {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .status-reserved {
+            background-color: #f1c40f;
+            color: #2c3e50;
+        }
+        
+        .book-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .book-card:hover .book-actions {
+            opacity: 1;
+        }
+        
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: #2c3e50;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-accent {
+            background-color: #e74c3c;
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background-color: #219653;
+        }
+        
+        .btn-secondary {
+            background-color: #f1c40f;
+            color: #2c3e50;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f39c12;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .notification.error {
+            background-color: #e74c3c;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .library-hero {
+                padding: 100px 0;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-actions {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="library-hero">
+        <div class="container">
+            <h1>Biblioteca Virtual</h1>
+            <p>Accede a miles de recursos educativos, libros digitales y materiales de estudio</p>
+        </div>
+    </section>
+
+    <!-- Panel de Administración -->
+    <section id="admin" style="padding: 40px 0;">
+        <div class="container">
+            <div class="admin-panel">
+                <h3><i class="fas fa-book"></i> Administrar Libros</h3>
+                <form id="bookForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="bookTitle">Título del Libro</label>
+                            <input type="text" id="bookTitle" placeholder="Ej: Cien Años de Soledad" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookAuthor">Autor</label>
+                            <input type="text" id="bookAuthor" placeholder="Ej: Gabriel García Márquez" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookCategory">Categoría</label>
+                            <select id="bookCategory" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="literatura">Literatura</option>
+                                <option value="ciencias">Ciencias</option>
+                                <option value="matematicas">Matemáticas</option>
+                                <option value="historia">Historia</option>
+                                <option value="arte">Arte</option>
+                                <option value="tecnologia">Tecnología</option>
+                                <option value="filosofia">Filosofía</option>
+                                <option value="idiomas">Idiomas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookType">Tipo</label>
+                            <select id="bookType" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="PDF">PDF</option>
+                                <option value="eBook">eBook</option>
+                                <option value="fisico">Físico</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookStatus">Estado</label>
+                            <select id="bookStatus" required>
+                                <option value="available">Disponible</option>
+                                <option value="borrowed">Prestado</option>
+                                <option value="reserved">Reservado</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label>Portada del Libro</label>
+                            <div class="image-upload-container" id="imageUploadContainer">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #3498db; margin-bottom: 10px;"></i>
+                                <p style="color: #2c3e50; font-weight: 600; margin-bottom: 5px;">Haz clic o arrastra una imagen aquí</p>
+                                <p style="color: #666; font-size: 0.9rem;">Formatos: JPG, PNG, GIF (Máx. 5MB)</p>
+                                <input type="file" id="bookCover" accept="image/*" style="display: none;">
+                            </div>
+                            <img id="imagePreview" class="image-preview" alt="Vista previa de la portada">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Agregar Libro
+                        </button>
+                        <button type="button" id="cancelEdit" class="btn btn-secondary" style="display: none;">
+                            <i class="fas fa-times"></i> Cancelar Edición
+                        </button>
+                        <button type="button" id="toggleAdmin" class="btn">
+                            <i class="fas fa-eye"></i> Mostrar/Ocultar Panel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Búsqueda y Catálogo -->
+    <section id="busqueda" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Catálogo Digital</h2>
+                <p>Explora nuestra colección de libros y recursos educativos</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar libros, autores, temas...">
+                    <button class="btn btn-accent" id="searchBtn">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+                
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Categoría</label>
+                        <select id="categoryFilter" class="form-control">
+                            <option value="all">Todas las categorías</option>
+                            <option value="literatura">Literatura</option>
+                            <option value="ciencias">Ciencias</option>
+                            <option value="matematicas">Matemáticas</option>
+                            <option value="historia">Historia</option>
+                            <option value="arte">Arte</option>
+                            <option value="tecnologia">Tecnología</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="typeFilter">Tipo</label>
+                        <select id="typeFilter" class="form-control">
+                            <option value="all">Todos los tipos</option>
+                            <option value="PDF">PDF</option>
+                            <option value="eBook">eBook</option>
+                            <option value="fisico">Físico</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="availabilityFilter">Disponibilidad</label>
+                        <select id="availabilityFilter" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="available">Disponible</option>
+                            <option value="borrowed">Prestado</option>
+                            <option value="reserved">Reservado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="books-grid" id="booksContainer">
+                <!-- Los libros se cargarán aquí dinámicamente -->
+            </div>
+            
+            <div style="text-align: center;">
+                <button id="loadMoreBtn" class="btn btn-accent">
+                    Ver más libros <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmar Eliminación</h3>
+                <button class="close-modal" id="closeConfirmModal">&times;</button>
+            </div>
+            <p style="margin-bottom: 20px;">¿Estás seguro de que quieres eliminar este libro?</p>
+            <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                <button class="btn" id="cancelDelete">Cancelar</button>
+                <button class="btn btn-accent" id="confirmDelete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Operación realizada con éxito</span>
+    </div>
+
+    <script>
+        // Variables globales
+        let books = [];
+        let isEditing = false;
+        let currentEditId = null;
+        let bookToDelete = null;
+        let currentImageBase64 = null;
+        let currentDisplayedBooks = 6;
+
+        // Cargar libros desde localStorage o usar datos iniciales
+        function loadBooks() {
+            const savedBooks = localStorage.getItem('libraryBooks');
+            
+            if (savedBooks) {
+                books = JSON.parse(savedBooks);
+            } else {
+                // Datos iniciales
+                books = [
+                    {
+                        id: 1,
+                        title: "Cien Años de Soledad",
+                        author: "Gabriel García Márquez",
+                        category: "literatura",
+                        type: "PDF",
+                        status: "available",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiM0Nzc3Q0IiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNpZW4gQSVDMyVCMG9zIGRlIFNvbGVkYWQ8L3RleHQ+PC9zdmc+"
+                    },
+                    {
+                        id: 2,
+                        title: "Física Conceptual",
+                        author: "Paul G. Hewitt",
+                        category: "ciencias",
+                        type: "eBook",
+                        status: "borrowed",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMyN0FFNjAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkYlQzMlQUFzaWNhIENvbmNlcHR1YWw8L3RleHQ+PC9zdmc+"
+                    },
+                    {
+                        id: 3,
+                        title: "Algebra Lineal",
+                        author: "Stanley I. Grossman",
+                        category: "matematicas",
+                        type: "PDF",
+                        status: "available",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFNzRDM0MiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkFsZ2VicmEgTGluZWFsPC90ZXh0Pjwvc3ZnPg=="
+                    },
+                    {
+                        id: 4,
+                        title: "Historia Dominicana",
+                        author: "Frank Moya Pons",
+                        category: "historia",
+                        type: "eBook",
+                        status: "reserved",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNGMUM0MEYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMkMzRTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SGlzdG9yaWEgRG9taW5pY2FuYTwvdGV4dD48L3N2Zz4="
+                    },
+                    {
+                        id: 5,
+                        title: "Introducción a la Programación",
+                        author: "Luis Joyanes Aguilar",
+                        category: "tecnologia",
+                        type: "PDF",
+                        status: "available",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMzNDk4REIiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlByb2dyYW1hY2kmQzMlQjNuPC90ZXh0Pjwvc3ZnPg=="
+                    },
+                    {
+                        id: 6,
+                        title: "Arte y Percepción Visual",
+                        author: "Rudolf Arnheim",
+                        category: "arte",
+                        type: "eBook",
+                        status: "available",
+                        cover: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNCODAwRkYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkFydGUgeSBQZXJjZXBjJUMzJUFDbjwvdGV4dD48L3N2Zz4="
+                    }
+                ];
+                saveBooksToStorage();
+            }
+        }
+
+        // Guardar libros en localStorage
+        function saveBooksToStorage() {
+            localStorage.setItem('libraryBooks', JSON.stringify(books));
+        }
+
+        // Mostrar notificación
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.classList.add('error');
+                notification.querySelector('i').className = 'fas fa-exclamation-circle';
+            } else {
+                notification.querySelector('i').className = 'fas fa-check-circle';
+            }
+            
+            notification.style.display = 'flex';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Convertir imagen a Base64
+        function convertImageToBase64(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                
+                // Verificar tamaño (5MB máximo)
+                if (file.size > 5 * 1024 * 1024) {
+                    reject(new Error('La imagen es demasiado grande. Máximo 5MB.'));
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (error) => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Crear tarjeta de libro
+        function createBookCard(book) {
+            const bookCard = document.createElement('div');
+            bookCard.className = 'book-card';
+            bookCard.setAttribute('data-category', book.category);
+            bookCard.setAttribute('data-type', book.type);
+            bookCard.setAttribute('data-status', book.status);
+            bookCard.setAttribute('data-id', book.id);
+            
+            const statusText = {
+                'available': 'Disponible',
+                'borrowed': 'Prestado',
+                'reserved': 'Reservado'
+            };
+            
+            const statusClass = {
+                'available': 'status-available',
+                'borrowed': 'status-borrowed',
+                'reserved': 'status-reserved'
+            };
+            
+            const categoryText = {
+                'literatura': 'Literatura',
+                'ciencias': 'Ciencias',
+                'matematicas': 'Matemáticas',
+                'historia': 'Historia',
+                'arte': 'Arte',
+                'tecnologia': 'Tecnología',
+                'filosofia': 'Filosofía',
+                'idiomas': 'Idiomas'
+            };
+            
+            bookCard.innerHTML = `
+                <div class="book-actions">
+                    <button class="action-btn edit-btn" title="Editar libro">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" title="Eliminar libro">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <img src="${book.cover}" alt="${book.title}" class="book-cover">
+                <div class="book-info">
+                    <h3 class="book-title">${book.title}</h3>
+                    <p class="book-author">${book.author}</p>
+                    <div class="book-meta">
+                        <span>${categoryText[book.category] || book.category}</span>
+                        <span>${book.type}</span>
+                    </div>
+                    <span class="book-status ${statusClass[book.status]}">${statusText[book.status]}</span>
+                </div>
+            `;
+            
+            return bookCard;
+        }
+
+        // Renderizar libros
+        function renderBooks(filteredBooks = books) {
+            const booksContainer = document.getElementById('booksContainer');
+            booksContainer.innerHTML = '';
+            
+            const booksToShow = filteredBooks.slice(0, currentDisplayedBooks);
+            
+            booksToShow.forEach(book => {
+                const bookCard = createBookCard(book);
+                booksContainer.appendChild(bookCard);
+            });
+            
+            // Agregar event listeners a los botones
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.book-card');
+                    const id = parseInt(card.getAttribute('data-id'));
+                    editBook(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.book-card');
+                    const id = parseInt(card.getAttribute('data-id'));
+                    showDeleteModal(id);
+                });
+            });
+            
+            // Mostrar/ocultar botón "Ver más"
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (filteredBooks.length > currentDisplayedBooks) {
+                loadMoreBtn.style.display = 'inline-block';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        // Filtrar libros
+        function filterBooks() {
+            const category = document.getElementById('categoryFilter').value;
+            const type = document.getElementById('typeFilter').value;
+            const status = document.getElementById('availabilityFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filtered = books;
+            
+            // Filtrar por categoría
+            if (category !== 'all') {
+                filtered = filtered.filter(book => book.category === category);
+            }
+            
+            // Filtrar por tipo
+            if (type !== 'all') {
+                filtered = filtered.filter(book => book.type === type);
+            }
+            
+            // Filtrar por estado
+            if (status !== 'all') {
+                filtered = filtered.filter(book => book.status === status);
+            }
+            
+            // Filtrar por término de búsqueda
+            if (searchTerm) {
+                filtered = filtered.filter(book => 
+                    book.title.toLowerCase().includes(searchTerm) || 
+                    book.author.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderBooks(filtered);
+        }
+
+        // Agregar nuevo libro
+        async function addBook(bookData, coverBase64) {
+            const newId = books.length > 0 ? Math.max(...books.map(b => b.id)) + 1 : 1;
+            const newBook = {
+                id: newId,
+                cover: coverBase64 || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TklOR1VOQSBQT1JUREE8L3RleHQ+PC9zdmc+',
+                ...bookData
+            };
+            
+            books.unshift(newBook);
+            saveBooksToStorage();
+            renderBooks();
+            filterBooks();
+            showNotification('Libro agregado exitosamente');
+        }
+
+        // Editar libro existente
+        async function editBook(id) {
+            const book = books.find(item => item.id === id);
+            if (!book) return;
+            
+            // Rellenar formulario con datos del libro
+            document.getElementById('bookTitle').value = book.title;
+            document.getElementById('bookAuthor').value = book.author;
+            document.getElementById('bookCategory').value = book.category;
+            document.getElementById('bookType').value = book.type;
+            document.getElementById('bookStatus').value = book.status;
+            
+            // Mostrar portada actual
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.src = book.cover;
+            imagePreview.style.display = 'block';
+            currentImageBase64 = book.cover;
+            
+            // Cambiar a modo edición
+            isEditing = true;
+            currentEditId = id;
+            
+            // Cambiar botón
+            const submitBtn = document.querySelector('#bookForm button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+            submitBtn.classList.remove('btn-success');
+            submitBtn.classList.add('btn');
+            
+            // Mostrar botón cancelar
+            document.getElementById('cancelEdit').style.display = 'inline-block';
+            
+            // Scroll al formulario
+            document.getElementById('admin').scrollIntoView({ behavior: 'smooth' });
+            
+            showNotification('Modo edición activado. Puedes modificar el libro.');
+        }
+
+        // Actualizar libro
+        async function updateBook(id, bookData, coverBase64) {
+            const index = books.findIndex(item => item.id === id);
+            if (index === -1) return;
+            
+            // Mantener portada actual si no se subió una nueva
+            const coverToUse = coverBase64 || currentImageBase64 || books[index].cover;
+            
+            books[index] = {
+                id: id,
+                cover: coverToUse,
+                ...bookData
+            };
+            
+            saveBooksToStorage();
+            renderBooks();
+            filterBooks();
+            showNotification('Libro actualizado exitosamente');
+        }
+
+        // Eliminar libro
+        function deleteBook(id) {
+            books = books.filter(item => item.id !== id);
+            saveBooksToStorage();
+            renderBooks();
+            filterBooks();
+            showNotification('Libro eliminado exitosamente');
+        }
+
+        // Mostrar modal de confirmación para eliminar
+        function showDeleteModal(id) {
+            bookToDelete = id;
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        // Manejar envío del formulario
+        document.getElementById('bookForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Obtener archivo de imagen
+            const fileInput = document.getElementById('bookCover');
+            let imageBase64 = null;
+            
+            try {
+                if (fileInput.files.length > 0) {
+                    imageBase64 = await convertImageToBase64(fileInput.files[0]);
+                } else if (!isEditing && fileInput.files.length === 0) {
+                    showNotification('Por favor, selecciona una imagen para la portada', 'error');
+                    return;
+                }
+            } catch (error) {
+                showNotification(error.message, 'error');
+                return;
+            }
+            
+            const bookData = {
+                title: document.getElementById('bookTitle').value,
+                author: document.getElementById('bookAuthor').value,
+                category: document.getElementById('bookCategory').value,
+                type: document.getElementById('bookType').value,
+                status: document.getElementById('bookStatus').value
+            };
+            
+            if (isEditing) {
+                await updateBook(currentEditId, bookData, imageBase64);
+                cancelEdit();
+            } else {
+                await addBook(bookData, imageBase64);
+                // Limpiar formulario
+                this.reset();
+                document.getElementById('imagePreview').style.display = 'none';
+                currentImageBase64 = null;
+            }
+        });
+
+        // Cancelar edición
+        function cancelEdit() {
+            isEditing = false;
+            currentEditId = null;
+            currentImageBase64 = null;
+            
+            const submitBtn = document.querySelector('#bookForm button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar Libro';
+            submitBtn.classList.remove('btn');
+            submitBtn.classList.add('btn-success');
+            
+            document.getElementById('cancelEdit').style.display = 'none';
+            document.getElementById('bookForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+        }
+
+        // Mostrar/ocultar panel de administración
+        function toggleAdminPanel() {
+            const adminPanel = document.getElementById('admin');
+            const toggleBtn = document.getElementById('toggleAdmin');
+            
+            if (adminPanel.style.display === 'none') {
+                adminPanel.style.display = 'block';
+                toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Ocultar Panel';
+            } else {
+                adminPanel.style.display = 'none';
+                toggleBtn.innerHTML = '<i class="fas fa-eye"></i> Mostrar Panel';
+            }
+        }
+
+        // Cargar más libros
+        function loadMoreBooks() {
+            currentDisplayedBooks += 6;
+            filterBooks();
+        }
+
+        // Inicializar event listeners
+        function initEventListeners() {
+            // Cancelar edición
+            document.getElementById('cancelEdit').addEventListener('click', cancelEdit);
+            
+            // Mostrar/ocultar panel
+            document.getElementById('toggleAdmin').addEventListener('click', toggleAdminPanel);
+            
+            // Filtros
+            document.getElementById('categoryFilter').addEventListener('change', filterBooks);
+            document.getElementById('typeFilter').addEventListener('change', filterBooks);
+            document.getElementById('availabilityFilter').addEventListener('change', filterBooks);
+            
+            // Búsqueda
+            document.getElementById('searchBtn').addEventListener('click', filterBooks);
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') filterBooks();
+            });
+            
+            // Cargar más libros
+            document.getElementById('loadMoreBtn').addEventListener('click', loadMoreBooks);
+            
+            // Subida de imágenes
+            document.getElementById('imageUploadContainer').addEventListener('click', function() {
+                document.getElementById('bookCover').click();
+            });
+            
+            document.getElementById('bookCover').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                convertImageToBase64(file)
+                    .then(base64 => {
+                        const imagePreview = document.getElementById('imagePreview');
+                        imagePreview.src = base64;
+                        imagePreview.style.display = 'block';
+                        currentImageBase64 = base64;
+                    })
+                    .catch(error => {
+                        showNotification(error.message, 'error');
+                    });
+            });
+            
+            // Arrastrar y soltar imágenes
+            const uploadContainer = document.getElementById('imageUploadContainer');
+            uploadContainer.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#2980b9';
+                this.style.backgroundColor = '#e8f4fc';
+            });
+            
+            uploadContainer.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#3498db';
+                this.style.backgroundColor = '#f8f9fa';
+            });
+            
+            uploadContainer.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#3498db';
+                this.style.backgroundColor = '#f8f9fa';
+                
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    document.getElementById('bookCover').files = e.dataTransfer.files;
+                    
+                    convertImageToBase64(file)
+                        .then(base64 => {
+                            const imagePreview = document.getElementById('imagePreview');
+                            imagePreview.src = base64;
+                            imagePreview.style.display = 'block';
+                            currentImageBase64 = base64;
+                        })
+                        .catch(error => {
+                            showNotification(error.message, 'error');
+                        });
+                } else {
+                    showNotification('Por favor, suelta solo archivos de imagen', 'error');
+                }
+            });
+            
+            // Modal de confirmación
+            document.getElementById('closeConfirmModal').addEventListener('click', function() {
+                document.getElementById('confirmModal').style.display = 'none';
+                bookToDelete = null;
+            });
+            
+            document.getElementById('cancelDelete').addEventListener('click', function() {
+                document.getElementById('confirmModal').style.display = 'none';
+                bookToDelete = null;
+            });
+            
+            document.getElementById('confirmDelete').addEventListener('click', function() {
+                if (bookToDelete) {
+                    deleteBook(bookToDelete);
+                    document.getElementById('confirmModal').style.display = 'none';
+                    bookToDelete = null;
+                }
+            });
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBooks();
+            renderBooks();
+            initEventListeners();
+        });
+
+        // Inclusión del banner y footer
+        function loadBannerFooter() {
+            const bannerContainer = document.createElement('div');
+            bannerContainer.id = 'banner-container';
+            document.body.insertBefore(bannerContainer, document.body.firstChild);
+            
+            const footerContainer = document.createElement('div');
+            footerContainer.id = 'footer-container';
+            document.body.appendChild(footerContainer);
+            
+            fetch('include/banner-footer.html')
+                .then(response => response.ok ? response.text() : Promise.reject())
+                .then(data => {
+                    const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                    if (headerMatch) bannerContainer.innerHTML = headerMatch[0];
+                    
+                    const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                    if (footerMatch) footerContainer.innerHTML = footerMatch[0];
+                    
+                    const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                    if (scriptMatch) eval(scriptMatch[0].replace(/<script>|<\/script>/g, ''));
+                })
+                .catch(() => {
+                    bannerContainer.innerHTML = `
+                        <header class="site-header">
+                            <div class="container header-inner">
+                                <div class="logo">
+                                    <img src="../img/logo.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-fallback" style="display: none;"><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="logo-text">
+                                        <h1>Liceo Técnico Manuel Del Cabral</h1>
+                                    </div>
+                                </div>
+                                <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                                <nav class="navbar" id="navbar">
+                                    <ul>
+                                        <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                                        <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                                        <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                                        <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                                        <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </header>`;
+                    
+                    footerContainer.innerHTML = `
+                        <footer>
+     <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+            <h3>Liceo Técnico Manuel Del Cabral</h3>
+            <p>Fe y Alegría - Santo Domingo Este</p>
+            <p>Calle Miguel Díaz del Almirante</p>
+            
+            <p>Teléfono: (809) 695-1417</p>
+            <p>Email: feyalegriamdelcabral@gmail.com</p>
+            <div class="social-links">
+            <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+            </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
+                    <i class="fas fa-rocket"></i> Innovación Educativa
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>`;
+                    
+                    // Inicializar componentes
+                    const menuToggle = document.getElementById('menu-toggle');
+                    const navbar = document.getElementById('navbar');
+                    
+                    if (menuToggle && navbar) {
+                        menuToggle.addEventListener('click', () => {
+                            navbar.classList.toggle('open');
+                            const icon = menuToggle.querySelector('i');
+                            icon.classList.toggle('fa-bars');
+                            icon.classList.toggle('fa-times');
+                        });
+                    }
+                });
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadBannerFooter);
+        } else {
+            loadBannerFooter();
+        }
+    </script>
+</body>
+</html>
