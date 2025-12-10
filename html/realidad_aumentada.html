@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realidad Aumentada - Liceo Técnico Manuel Del Cabral</title>
+        <link rel="icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/banner-footer.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -141,7 +142,6 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
-            position: relative;
         }
         
         .ar-item:hover {
@@ -156,48 +156,17 @@
         
         .ar-item-content {
             padding: 15px;
-            position: relative;
         }
         
         .ar-item h3 {
             margin-top: 0;
             color: var(--color-primary);
-            margin-right: 40px; /* Espacio para el botón circular */
-            font-size: 1.3rem;
-            margin-bottom: 10px;
         }
         
         .ar-item p {
             color: var(--color-text);
-            font-size: 0.95rem;
-            margin-bottom: 0;
-            line-height: 1.5;
-        }
-        
-        /* Botón circular de eliminar */
-        .delete-btn-circular {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: var(--color-accent);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .delete-btn-circular:hover {
-            background-color: #c0392b;
-            transform: scale(1.1);
+            margin-bottom: 15px;
         }
         
         .btn {
@@ -224,16 +193,6 @@
         
         .btn-accent:hover {
             background-color: #c0392b;
-        }
-        
-        .btn-add {
-            background-color: var(--color-green);
-            margin: 20px auto;
-            display: block;
-        }
-        
-        .btn-add:hover {
-            background-color: #27ae60;
         }
         
         .ar-badge {
@@ -291,163 +250,6 @@
             color: var(--color-primary);
         }
         
-        /* Modal para agregar imágenes */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            background-color: var(--color-white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-        
-        .modal-header h3 {
-            color: var(--color-primary);
-            margin: 0;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--color-accent);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 30px;
-        }
-        
-        /* Vista previa de imagen */
-        .image-preview {
-            margin-top: 15px;
-            display: none;
-            text-align: center;
-        }
-        
-        .image-preview img {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 8px;
-            border: 2px solid #ddd;
-        }
-        
-        .preview-label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-        
-        /* Opciones de fuente de imagen */
-        .image-source-options {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .source-option {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .source-option.active {
-            border-color: var(--color-secondary);
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-        
-        .source-option i {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            display: block;
-            color: var(--color-primary);
-        }
-        
-        /* Estilo para campos deshabilitados */
-        .form-group.disabled {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        
-        /* Vista previa especial para PDF */
-        .pdf-preview {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px dashed #ddd;
-            text-align: center;
-        }
-        
-        .pdf-preview i {
-            font-size: 3rem;
-            color: #e74c3c;
-            margin-bottom: 10px;
-        }
-        
-        .pdf-preview span {
-            display: block;
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-        
         /* Responsive */
         @media (max-width: 850px) {
             .menu-toggle {
@@ -502,17 +304,9 @@
             .qr-steps {
                 text-align: left;
             }
-            
-            .image-source-options {
-                flex-direction: column;
-            }
-            
-            .delete-btn-circular {
-                width: 30px;
-                height: 30px;
-                font-size: 0.8rem;
-            }
         }
+
+        
     </style>
 </head>
 <body>
@@ -545,501 +339,352 @@
     <section class="ar-demo" id="ar">
         <div class="container">
             <div class="section-title">
-                <h2>Explora Nuestros Proyectos</h2>
+                <h2 >Explora Nuestros Proyectos</h2 >
                 <p>Vive una experiencia inmersiva con nuestros proyectos estudiantiles mediante tecnología de realidad aumentada.</p>
             </div>
-            
-            <!-- Botón para agregar nueva imagen -->
-            <button class="btn btn-add" id="addImageBtn">
-                <i class="fas fa-plus-circle"></i> Agregar Nueva Imagen
-            </button>
 
-            <div class="ar-gallery" id="arGallery">
-                <!-- Elementos de RA se cargarán aquí dinámicamente -->
-            </div>
-        </div>
-    </section>
+            <div class="ar-gallery">
+                <!-- Elemento RA 1 -->
+                <div class="ar-item">
+                    <img src="../img/R.A_Chica.jpg" alt="Reflejo de la Llama" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Reflejo de la Llama</h3>
+                        <p>Un retrato clásico pintado al óleo de una mujer en penumbra, cuya expresión es iluminada dramáticamente por la luz cálida y goteante de una vela.</p>
+                        
+                    </div>
+                </div>
 
-    <!-- Modal para agregar imágenes -->
-    <div class="modal-overlay" id="imageModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Agregar Nueva Imagen de Realidad Aumentada</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
+                <!-- Elemento RA 2 -->
+                <div class="ar-item">
+                    <img src="../img/toro ra .jpeg" alt="El Salto de la Bestia" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>El Salto de la Bestia</h3>
+                        <p>Un dramático dibujo a grafito en blanco y negro que captura el momento intenso en que un toro salta sobre un jinete caído en el suelo del ruedo.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 3 -->
+                <div class="ar-item">
+                    <img src="../img/pez ra.jpeg" alt="El Pez Mosaico" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>El Pez Mosaico</h3>
+                        <p>Un pez tropical abstracto, vibrante y geométrico, pintado con un patrón de bloques de color que evoca el arte cubista.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 4 -->
+                <div class="ar-item">
+                    <img src="../img/ojo de ra.jpeg" alt="La Mirada del Detalle" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>La Mirada del Detalle</h3>
+                        <p>Un dibujo a lápiz hiperrealista de un ojo con pestañas detalladas y un brillo en la pupila que refleja intensidad y emoción.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 5 -->
+                <div class="ar-item">
+                    <img src="../img/jesus ra.jpeg" alt="Te entrego mi corazón" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Te entrego mi corazón</h3>
+                        <p>Una figura espiritual ofrece su corazón con gesto de amor y entrega, mostrando paz, compasión y luz divina.</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Elemento RA 6 -->
+                <div class="ar-item">
+                    <img src="../img/perro ra.jpeg" alt="Felicidad en Tono Dorado" class="ar-item-img">
+                    <div class="ar-item-content">
+                        <h3>Felicidad en Tono Dorado</h3>
+                        <p>Un Golden Retriever sonriente corre a través de un vibrante campo de flores amarillas bajo un cálido atardecer de tonos rojizos y anaranjados.</p>
+                    
+                    </div>
+                </div>
             </div>
-            <form id="imageForm">
-                <div class="form-group">
-                    <label for="imageTitle">Título del Proyecto</label>
-                    <input type="text" id="imageTitle" required placeholder="Ej: Escultura 3D Interactiva">
-                </div>
-                
-                <div class="form-group">
-                    <label for="imageDescription">Descripción</label>
-                    <textarea id="imageDescription" required placeholder="Describe el proyecto o modelo 3D..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Fuente de la Imagen</label>
-                    <div class="image-source-options">
-                        <div class="source-option active" data-source="upload" id="sourceUpload">
-                            <i class="fas fa-upload"></i>
-                            <span>Subir desde dispositivo</span>
-                        </div>
-                        <div class="source-option" data-source="url" id="sourceUrl">
-                            <i class="fas fa-link"></i>
-                            <span>Usar URL</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Opción para subir desde dispositivo -->
-                <div class="form-group" id="uploadGroup">
-                    <label for="imageFile">Seleccionar imagen</label>
-                    <input type="file" id="imageFile" accept="image/*,.pdf,.svg,.webp,.bmp,.tiff,.tif,.ico,.avif,.heic,.heif" required>
-                    <small>Formatos aceptados: JPG, PNG, GIF, WebP, SVG, BMP, TIFF, ICO, PDF, AVIF, HEIC, HEIF. Tamaño máximo: 10MB</small>
-                    <div class="image-preview" id="uploadPreview">
-                        <span class="preview-label">Vista previa:</span>
-                        <div id="pdfPreviewContainer" class="pdf-preview" style="display: none;">
-                            <i class="fas fa-file-pdf"></i>
-                            <span>Documento PDF</span>
-                        </div>
-                        <img id="uploadPreviewImage" src="" alt="Vista previa" style="display: none;">
-                    </div>
-                </div>
-                
-                <!-- Opción para usar URL -->
-                <div class="form-group disabled" id="urlGroup">
-                    <label for="imageUrl">URL de la Imagen</label>
-                    <input type="url" id="imageUrl" placeholder="https://ejemplo.com/imagen.jpg" disabled>
-                    <small>Ingresa la URL de una imagen en internet (formatos: JPG, PNG, GIF, WebP, SVG, BMP, TIFF, ICO, PDF, AVIF, HEIC, HEIF)</small>
-                    <div class="image-preview" id="urlPreview">
-                        <span class="preview-label">Vista previa:</span>
-                        <div id="urlPdfPreviewContainer" class="pdf-preview" style="display: none;">
-                            <i class="fas fa-file-pdf"></i>
-                            <span>Documento PDF</span>
-                        </div>
-                        <img id="urlPreviewImage" src="" alt="Vista previa" style="display: none;">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="imageAlt">Texto Alternativo (Alt)</label>
-                    <input type="text" id="imageAlt" required placeholder="Descripción breve para accesibilidad">
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn btn-accent" id="cancelBtn">Cancelar</button>
-                    <button type="submit" class="btn">Agregar Imagen</button>
-                </div>
-            </form>
-        </div>
-    </div>
+
+           
 
     <script>
-        // Datos iniciales de la galería (con descripciones como en la imagen)
-        const initialGalleryItems = [
-            {
-                id: 1,
-                title: "Escultura 3D Interactiva",
-                description: "Visualiza la obra 'Formas en Movimiento' en 3D y explora todos sus ángulos en tu espacio real.",
-                imageUrl: "../img/R.A_Chica.jpg",
-                alt: "Escultura 3D",
-                type: "url"
-            },
-            {
-                id: 2,
-                title: "Modelo de Anatomía",
-                description: "Explora un modelo detallado del cuerpo humano<br>creado por estudiantes de Ciencias de la Salud.",
-                imageUrl: "../img/R.A_toro.jpg",
-                alt: "Anatomía Humana",
-                type: "url"
-            },
-            {
-                id: 3,
-                title: "Estructuras Moleculares",
-                description: "Visualiza moléculas complejas en 3D para comprender mejor la química orgánica.",
-                imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                alt: "Estructura Molecular",
-                type: "url"
-            },
-            {
-                id: 4,
-                title: "Maqueta Arquitectónica",
-                description: "Coloca una maqueta virtual en tu espacio y explora el diseño arquitectónico estudiantil.",
-                imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                alt: "Arquitectura",
-                type: "url"
-            },
-            {
-                id: 5,
-                title: "Robot Educativo",
-                description: "Interactúa con un modelo 3D de robot creado por estudiantes de mecatrónica.",
-                imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                alt: "Robótica",
-                type: "url"
-            },
-            {
-                id: 6,
-                title: "Ecosistema Virtual",
-                description: "Explora un ecosistema animado con flora y fauna creado por estudiantes de biología.",
-                imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                alt: "Ecosistema",
-                type: "url"
-            }
-        ];
-
-        // Cargar galería desde localStorage o usar datos iniciales
-        let galleryItems = JSON.parse(localStorage.getItem('arGallery')) || initialGalleryItems;
-
-        // Función para guardar galería en localStorage
-        function saveGallery() {
-            localStorage.setItem('arGallery', JSON.stringify(galleryItems));
-        }
-
-        // Función para renderizar la galería
-        function renderGallery() {
-            const galleryContainer = document.getElementById('arGallery');
-            galleryContainer.innerHTML = '';
-            
-            galleryItems.forEach(item => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'ar-item';
-                galleryItem.dataset.id = item.id;
-                
-                // Determinar si es un PDF para mostrar icono especial
-                const isPDF = item.imageUrl.toLowerCase().endsWith('.pdf') || item.type === 'pdf';
-                
-                // Usar innerHTML para mantener los saltos de línea en la descripción
-                galleryItem.innerHTML = `
-                    ${isPDF ? 
-                        `<div class="ar-item-img" style="background-color: #f8f9fa; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <i class="fas fa-file-pdf" style="font-size: 4rem; color: #e74c3c;"></i>
-                            <span style="margin-top: 10px; color: #333; font-weight: 600;">Documento PDF</span>
-                        </div>` : 
-                        `<img src="${item.imageUrl}" alt="${item.alt}" class="ar-item-img">`
-                    }
-                    <div class="ar-item-content">
-                        <button class="delete-btn-circular" onclick="deleteItem(${item.id})" title="Eliminar">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
-                    </div>
-                `;
-                
-                galleryContainer.appendChild(galleryItem);
-            });
-        }
-
-        // Función para eliminar un elemento
-        function deleteItem(id) {
-            if (confirm('¿Estás seguro de que quieres eliminar este elemento?')) {
-                galleryItems = galleryItems.filter(item => item.id !== id);
-                saveGallery();
-                renderGallery();
-            }
-        }
-
-        // Funcionalidad del modal
-        const modal = document.getElementById('imageModal');
-        const addImageBtn = document.getElementById('addImageBtn');
-        const closeModal = document.getElementById('closeModal');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const imageForm = document.getElementById('imageForm');
-        const imageFile = document.getElementById('imageFile');
-        const imageUrl = document.getElementById('imageUrl');
-        const uploadPreview = document.getElementById('uploadPreview');
-        const uploadPreviewImage = document.getElementById('uploadPreviewImage');
-        const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
-        const urlPreview = document.getElementById('urlPreview');
-        const urlPreviewImage = document.getElementById('urlPreviewImage');
-        const urlPdfPreviewContainer = document.getElementById('urlPdfPreviewContainer');
-        const uploadGroup = document.getElementById('uploadGroup');
-        const urlGroup = document.getElementById('urlGroup');
-        const sourceUpload = document.getElementById('sourceUpload');
-        const sourceUrl = document.getElementById('sourceUrl');
-
-        // Variables para manejar la imagen seleccionada
-        let selectedImageData = null;
-        let imageSource = 'upload'; // 'upload' o 'url'
-
-        // Cambiar entre fuentes de imagen
-        sourceUpload.addEventListener('click', () => {
-            setImageSource('upload');
-        });
-
-        sourceUrl.addEventListener('click', () => {
-            setImageSource('url');
-        });
-
-        function setImageSource(source) {
-            imageSource = source;
-            
-            // Actualizar UI de opciones
-            sourceUpload.classList.toggle('active', source === 'upload');
-            sourceUrl.classList.toggle('active', source === 'url');
-            
-            // Habilitar/deshabilitar grupos
-            if (source === 'upload') {
-                uploadGroup.classList.remove('disabled');
-                urlGroup.classList.add('disabled');
-                imageFile.required = true;
-                imageFile.disabled = false;
-                imageUrl.required = false;
-                imageUrl.disabled = true;
-                imageUrl.value = '';
-                urlPreview.style.display = 'none';
-            } else {
-                uploadGroup.classList.add('disabled');
-                urlGroup.classList.remove('disabled');
-                imageFile.required = false;
-                imageFile.disabled = true;
-                imageFile.value = '';
-                imageUrl.required = true;
-                imageUrl.disabled = false;
-                uploadPreview.style.display = 'none';
-            }
-        }
-
-        // Vista previa al seleccionar archivo
-        imageFile.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            // Validar tamaño (10MB máximo)
-            if (file.size > 10 * 1024 * 1024) {
-                alert('El archivo es demasiado grande. El tamaño máximo es 10MB.');
-                this.value = '';
-                uploadPreview.style.display = 'none';
-                return;
-            }
-            
-            // Validar tipo de archivo
-            const validTypes = [
-                'image/jpeg', 
-                'image/jpg', 
-                'image/png', 
-                'image/gif',
-                'image/webp',
-                'image/svg+xml',
-                'image/bmp',
-                'image/tiff',
-                'image/tif',
-                'image/x-icon',
-                'application/pdf',
-                'image/avif',
-                'image/heic',
-                'image/heif'
-            ];
-            
-            // También verificar por extensión para mayor compatibilidad
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            const validExtensions = ['jpeg', 'jpg', 'png', 'gif', 'webp', 'svg', 'bmp', 'tiff', 'tif', 'ico', 'pdf', 'avif', 'heic', 'heif'];
-            
-            if (!validTypes.includes(file.type) && !validExtensions.includes(fileExtension)) {
-                alert('Formato de archivo no válido. Formatos aceptados: JPG, PNG, GIF, WebP, SVG, BMP, TIFF, ICO, PDF, AVIF, HEIC, HEIF.');
-                this.value = '';
-                uploadPreview.style.display = 'none';
-                return;
-            }
-            
-            // Crear objeto FileReader para leer el archivo
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                selectedImageData = e.target.result;
-                
-                // Verificar si es un PDF
-                if (file.type === 'application/pdf' || fileExtension === 'pdf') {
-                    uploadPreviewImage.style.display = 'none';
-                    pdfPreviewContainer.style.display = 'block';
-                } else {
-                    pdfPreviewContainer.style.display = 'none';
-                    uploadPreviewImage.src = selectedImageData;
-                    uploadPreviewImage.style.display = 'block';
-                }
-                
-                uploadPreview.style.display = 'block';
-            };
-            
-            reader.readAsDataURL(file);
-        });
-
-        // Vista previa al cambiar URL
-        imageUrl.addEventListener('input', function() {
-            const url = this.value;
-            if (url && isValidUrl(url)) {
-                // Verificar si es un PDF por la extensión
-                const urlLower = url.toLowerCase();
-                const isPDF = urlLower.endsWith('.pdf');
-                
-                if (isPDF) {
-                    urlPreviewImage.style.display = 'none';
-                    urlPdfPreviewContainer.style.display = 'block';
-                } else {
-                    urlPdfPreviewContainer.style.display = 'none';
-                    urlPreviewImage.src = url;
-                    urlPreviewImage.style.display = 'block';
-                }
-                
-                urlPreview.style.display = 'block';
-            } else {
-                urlPreview.style.display = 'none';
-            }
-        });
-
-        // Validar URL
-        function isValidUrl(string) {
-            try {
-                new URL(string);
-                return true;
-            } catch (_) {
-                return false;
-            }
-        }
-
-        // Abrir modal
-        addImageBtn.addEventListener('click', () => {
-            modal.style.display = 'flex';
-            document.getElementById('imageTitle').focus();
-            // Resetear formulario
-            imageForm.reset();
-            selectedImageData = null;
-            uploadPreview.style.display = 'none';
-            pdfPreviewContainer.style.display = 'none';
-            uploadPreviewImage.style.display = 'none';
-            urlPreview.style.display = 'none';
-            urlPdfPreviewContainer.style.display = 'none';
-            setImageSource('upload');
-        });
-
-        // Cerrar modal
-        function closeImageModal() {
-            modal.style.display = 'none';
-            imageForm.reset();
-            selectedImageData = null;
-            uploadPreview.style.display = 'none';
-            pdfPreviewContainer.style.display = 'none';
-            uploadPreviewImage.style.display = 'none';
-            urlPreview.style.display = 'none';
-            urlPdfPreviewContainer.style.display = 'none';
-        }
-
-        closeModal.addEventListener('click', closeImageModal);
-        cancelBtn.addEventListener('click', closeImageModal);
-
-        // Cerrar modal haciendo clic fuera del contenido
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeImageModal();
-            }
-        });
-
-        // Manejar envío del formulario
-        imageForm.addEventListener('submit', async (e) => {
+    // Smooth scrolling para enlaces de anclaje
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             
-            const title = document.getElementById('imageTitle').value;
-            let description = document.getElementById('imageDescription').value;
-            const alt = document.getElementById('imageAlt').value;
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            // Reemplazar saltos de línea por <br> para mantener el formato
-            description = description.replace(/\n/g, '<br>');
-            
-            if (imageSource === 'upload') {
-                // Validar que se haya seleccionado un archivo
-                if (!imageFile.files[0]) {
-                    alert('Por favor, selecciona una imagen desde tu dispositivo.');
-                    return;
-                }
-                
-                if (!selectedImageData) {
-                    alert('Error al procesar el archivo. Intenta nuevamente.');
-                    return;
-                }
-                
-                // Obtener el archivo
-                const file = imageFile.files[0];
-                const fileExtension = file.name.split('.').pop().toLowerCase();
-                
-                // Agregar a la galería
-                const newItem = {
-                    id: Date.now(),
-                    title: title,
-                    description: description,
-                    imageUrl: selectedImageData, // Base64 data URL
-                    alt: alt,
-                    type: fileExtension === 'pdf' ? 'pdf' : 'upload'
-                };
-                
-                galleryItems.push(newItem);
-                
-            } else {
-                // Validar URL
-                const url = document.getElementById('imageUrl').value;
-                if (!url || !isValidUrl(url)) {
-                    alert('Por favor, ingresa una URL válida.');
-                    return;
-                }
-                
-                // Verificar si el archivo existe
-                try {
-                    const response = await fetch(url, { method: 'HEAD' });
-                    const contentType = response.headers.get('content-type');
-                    if (!response.ok || !contentType) {
-                        alert('La URL no apunta a un recurso válido.');
-                        return;
-                    }
-                    
-                    // Verificar si es una imagen o PDF
-                    const isImage = contentType.startsWith('image/');
-                    const isPDF = contentType === 'application/pdf';
-                    
-                    if (!isImage && !isPDF) {
-                        alert('La URL debe apuntar a una imagen (JPG, PNG, GIF, etc.) o un PDF.');
-                        return;
-                    }
-                } catch (error) {
-                    alert('No se pudo verificar el archivo en la URL proporcionada. Verifica que la URL sea accesible.');
-                    return;
-                }
-                
-                // Determinar tipo por extensión
-                const urlLower = url.toLowerCase();
-                const isPDF = urlLower.endsWith('.pdf');
-                
-                // Agregar a la galería
-                const newItem = {
-                    id: Date.now(),
-                    title: title,
-                    description: description,
-                    imageUrl: url,
-                    alt: alt,
-                    type: isPDF ? 'pdf' : 'url'
-                };
-                
-                galleryItems.push(newItem);
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             }
-            
-            // Guardar y renderizar
-            saveGallery();
-            renderGallery();
-            
-            // Cerrar modal y mostrar confirmación
-            closeImageModal();
-            alert('¡Archivo agregado exitosamente a la galería!');
         });
+    });
 
-        // Inicializar galería al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
+    // Funcionalidad de Realidad Aumentada
+    document.querySelectorAll('.ar-item .btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const itemTitle = this.closest('.ar-item').querySelector('h3').textContent;
+            const itemDescription = this.closest('.ar-item').querySelector('p').textContent;
+            
+            // Simulación de activación de RA
+            alert(`Activando Realidad Aumentada para: ${itemTitle}\n\n${itemDescription}\n\nEn una implementación completa, aquí se activaría la cámara y se cargaría el modelo 3D correspondiente.`);
+            
+            // En una implementación real, aquí iría el código para:
+            // 1. Inicializar la cámara
+            // 2. Cargar el modelo 3D específico
+            // 3. Mostrar la interfaz de RA
         });
+    });
+    </script>
 
-        // Smooth scrolling para enlaces de anclaje
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+   
+ <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
                 
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Liceo Técnico Manuel Del Cabral</h3>
+                <p>Fe y Alegría - Santo Domingo Este</p>
+                <p>Calle Miguel Díaz del Almirante</p>
+                <p>Teléfono: (809) 555-1234</p>
+                <p>Email: info@liceomanueldelcabral.edu.do</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
+                    <i class="fas fa-rocket"></i> Innovación Educativa
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 
@@ -1052,278 +697,37 @@
                 }
             });
         });
-    </script>
-
-    <!-- Script para cargar banner y footer (existente) -->
-    <script>
-        // Función para cargar el banner y footer
-        function loadBannerFooter() {
-            // Crear contenedores
-            const bannerContainer = document.createElement('div');
-            bannerContainer.id = 'banner-container';
-            document.body.insertBefore(bannerContainer, document.body.firstChild);
-            
-            const footerContainer = document.createElement('div');
-            footerContainer.id = 'footer-container';
-            document.body.appendChild(footerContainer);
-            
-            // Cargar el archivo
-            fetch('include/banner-footer.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar el archivo');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // Insertar banner
-                    const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
-                    if (headerMatch) {
-                        bannerContainer.innerHTML = headerMatch[0];
-                    }
-                    
-                    // Insertar footer
-                    const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
-                    if (footerMatch) {
-                        footerContainer.innerHTML = footerMatch[0];
-                    }
-                    
-                    // Extraer y ejecutar scripts
-                    const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
-                    if (scriptMatch) {
-                        const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
-                        eval(scriptContent);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al cargar banner y footer:', error);
-                    // Cargar contenido de respaldo si falla
-                    loadFallbackBannerFooter();
-                });
-        }
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
         
-        // Contenido de respaldo en caso de error
-        function loadFallbackBannerFooter() {
-            const bannerContainer = document.getElementById('banner-container');
-            const footerContainer = document.getElementById('footer-container');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
             
-            if (bannerContainer) {
-                bannerContainer.innerHTML = `
-                    <header class="site-header">
-                        <div class="container header-inner">
-                            <div class="logo">
-                                <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
-                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="logo-fallback" style="display: none;">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="logo-text">
-                                    <h1>Liceo Técnico Manuel Del Cabral</h1>
-                                </div>
-                            </div>
-
-                            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-                                <i class="fas fa-bars"></i>
-                            </button>
-
-                            <nav class="navbar" id="navbar">
-                                <ul>
-                                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
-                                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
-                                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
-                                    <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </header>
-                `;
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
             }
-            
-            if (footerContainer) {
-                footerContainer.innerHTML = `
-                    <footer>
-                        <div class="container">
-                            <div class="footer-content">
-                                <div class="footer-column">
-                                    <h3>Liceo Técnico Manuel Del Cabral</h3>
-                                    <p>Fe y Alegría - Santo Domingo Este</p>
-                                    <p>Calle Miguel Díaz del Almirante</p>
-                                    <p>Teléfono: (809) 695-1417</p>
-                                    <p>Email: feyalegriamdelcabral@gmail.com</p>
-                                    <div class="social-links">
-                                        <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="footer-column">
-                                    <h3>Enlaces Rápidos</h3>
-                                    <ul class="footer-links">
-                                        <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                                        <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
-                                        <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
-                                        <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="footer-column">
-                                    <h3>Recursos</h3>
-                                    <ul class="footer-links">
-                                        <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
-                                        <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
-                                        <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="footer-column">
-                                    <h3>Proyecto Educativo 2025</h3>
-                                    <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
-                                    <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
-                                        <i class="fas fa-rocket"></i> Innovación Educativa
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="copyright">
-                                <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
-                            </div>
-                        </div>
-                    </footer>
-                `;
-            }
-            
-            // Inicializar componentes después de cargar el contenido de respaldo
-            initComponents();
-            
-            // Manejar imágenes que no cargan
-            handleMissingImages();
-        }
-        
-        // Función para manejar imágenes faltantes
-        function handleMissingImages() {
-            const logoImg = document.querySelector('.logo img');
-            const logoFallback = document.querySelector('.logo-fallback');
-            
-            if (logoImg && logoFallback) {
-                logoImg.onerror = function() {
-                    this.style.display = 'none';
-                    logoFallback.style.display = 'flex';
-                };
-                
-                logoImg.onload = function() {
-                    logoFallback.style.display = 'none';
-                };
-            }
-        }
-        
-        // Función para inicializar componentes (menú móvil, etc.)
-        function initComponents() {
-            // Menú móvil
-            const menuToggle = document.getElementById('menu-toggle');
-            const navbar = document.getElementById('navbar');
-            
-            if (menuToggle && navbar) {
-                menuToggle.addEventListener('click', function() {
-                    navbar.classList.toggle('open');
-                    const icon = this.querySelector('i');
-                    if (icon.classList.contains('fa-bars')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-            }
-            
-            // Cerrar menú al hacer clic en enlace (móvil)
-            document.querySelectorAll('.navbar a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 850 && navbar) {
-                        navbar.classList.remove('open');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            });
-            
-            // Marcar enlace activo basado en la página actual
-            function setActiveNavLink() {
-                const currentPage = window.location.pathname;
-                const navLinks = document.querySelectorAll('.navbar a');
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                navLinks.forEach(link => {
-                    const linkHref = link.getAttribute('href');
-                    
-                    if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
-                        if (linkHref.includes('index.html')) {
-                            link.classList.add('active');
-                        }
-                    }
-                    else if (currentPage.includes(linkHref)) {
-                        link.classList.add('active');
-                    }
-                });
-                
-                const activeLinks = document.querySelectorAll('.navbar a.active');
-                if (activeLinks.length === 0 && navLinks.length > 0) {
-                    navLinks[0].classList.add('active');
-                }
-            }
-            
-            setActiveNavLink();
-            
-            // Smooth scrolling para enlaces internos
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-        
-        // Función para actualizar el estado activo del menú
-        function updateActiveMenu() {
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.navbar a');
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkPage = link.getAttribute('href').split('/').pop();
-                
-                if (currentPage === linkPage || 
-                    (currentPage === '' && linkPage === 'index.html') ||
-                    (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Llamar a la función cuando se carga la página
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(updateActiveMenu, 100);
         });
-        
-        // Cargar cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadBannerFooter);
-        } else {
-            loadBannerFooter();
-        }
-    </script>
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+</script>
 </body>
 </html>
