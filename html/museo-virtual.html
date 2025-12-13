@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museo Virtual - Liceo Técnico Manuel Del Cabral</title>
-        <link rel="icon" href="../img/logo.png">
+    <link rel="icon" href="../img/logo.png">
     <link rel="stylesheet" href="../css/banner-footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -15,7 +15,7 @@
             --color-light: #f8f9fa;
             --color-green: #27ae60;
             --color-yellow: #f1c40f;
-            --color-blue: #2980b9;  /* Cambiado de purple a blue */
+            --color-blue: #2980b9;
             --border-radius: 8px;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
@@ -44,7 +44,7 @@
         .exhibition-hero {
             background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('https://images.unsplash.com/photo-1578301978018-3005759f48f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             color: white;
-            padding: 250px 0;
+            padding: 150px 0;
             text-align: center;
         }
         
@@ -78,7 +78,7 @@
             margin: 0 auto;
         }
         
-        /* Gallery Styles */
+        /* Gallery Styles - MEJORADO */
         .gallery-filters {
             display: flex;
             flex-wrap: wrap;
@@ -122,14 +122,69 @@
         }
         
         .artwork-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
+        }
+        
+        /* Contenedor de imagen mejorado */
+        .artwork-img-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            cursor: pointer;
         }
         
         .artwork-img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            background-color: white;
+        }
+        
+        .artwork-card:hover .artwork-img {
+            transform: scale(1.05);
+        }
+        
+        /* Overlay para ver imagen completa */
+        .img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .artwork-img-container:hover .img-overlay {
+            opacity: 1;
+        }
+        
+        .view-full-btn {
+            background-color: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .view-full-btn:hover {
+            background-color: var(--color-blue);
         }
         
         .artwork-info {
@@ -167,6 +222,18 @@
             align-items: center;
         }
         
+        .artwork-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--color-primary);
+        }
+        
+        /* Botones generales */
         .btn {
             display: inline-block;
             padding: 12px 25px;
@@ -262,7 +329,6 @@
             color: #666;
         }
         
-        
         .artist-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
@@ -307,7 +373,7 @@
             opacity: 0.9;
         }
         
-        /* 3D Models Section - MODIFICADO: 2 modelos por fila */
+        /* 3D Models Section */
         .models-section {
             padding: 60px 0;
             background-color: var(--color-light);
@@ -315,7 +381,7 @@
         
         .models-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 modelos por fila */
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -338,7 +404,7 @@
         .model-header {
             padding: 20px;
             text-align: center;
-            background-color: var(--color-blue); /* Cambiado a azul */
+            background-color: var(--color-blue);
             color: white;
         }
         
@@ -371,7 +437,7 @@
         }
         
         .model-btn:hover {
-            background-color: var(--color-blue); /* Cambiado a azul */
+            background-color: var(--color-blue);
         }
         
         .model-btn-ar {
@@ -390,13 +456,141 @@
             border-top: 1px solid #eee;
         }
         
+        /* Modal para imagen completa */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            z-index: 2001;
+        }
+        
+        .close-modal:hover {
+            color: var(--color-secondary);
+        }
+        
+        .modal-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            max-width: 700px;
+            background-color: rgba(44, 62, 80, 0.8);
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+        
+        .modal-caption h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .modal-caption p {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Controles del modal */
+        .modal-controls {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .modal-control-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .modal-control-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* Manejo de imágenes que no cargan */
+        .artwork-img-container:has(.artwork-img:not([src]))::before,
+        .artwork-img-container:has(.artwork-img[src=""])::before {
+            content: "Imagen no disponible";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #999;
+            font-size: 1rem;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        
+        /* Accesibilidad */
+        .artwork-img-container:focus {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 1024px) {
             .models-grid {
-                grid-template-columns: 1fr; /* En tablet, 1 por fila */
+                grid-template-columns: 1fr;
                 max-width: 600px;
                 margin-left: auto;
                 margin-right: auto;
+            }
+            
+            .exhibition-hero {
+                padding: 120px 0;
             }
         }
         
@@ -415,12 +609,47 @@
                 font-size: 2.2rem;
             }
             
-            .artists-container {
-                justify-content: center;
+            .exhibition-hero {
+                padding: 100px 0;
             }
             
-            .model-iframe {
-                height: 350px;
+            .artwork-img-container {
+                height: 220px;
+            }
+            
+            .modal-content {
+                max-height: 70%;
+            }
+            
+            .close-modal {
+                top: 15px;
+                right: 20px;
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 95%;
+                max-height: 65%;
+            }
+            
+            .modal-caption {
+                padding: 15px;
+                max-width: 90%;
+            }
+            
+            .modal-caption h3 {
+                font-size: 1.5rem;
+            }
+            
+            .modal-controls {
+                bottom: 20px;
+            }
+            
+            .modal-control-btn {
+                width: 45px;
+                height: 45px;
             }
         }
         
@@ -437,12 +666,35 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .artwork-img-container {
+                height: 200px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .exhibition-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .exhibition-hero p {
+                font-size: 1rem;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section class="exhibition-hero">
         <div class="container">
             <h1>Galería Cabral - Museo Virtual</h1>
@@ -450,7 +702,7 @@
         </div>
     </section>
     
-<!-- Modelos 3D Interactivos -->
+    <!-- Modelos 3D Interactivos -->
     <section id="modelos-3d" class="models-section">
         <div class="container">
             <div class="section-title">
@@ -483,7 +735,6 @@
                         <button class="model-btn" onclick="zoomOutModel('model-1')">
                             <i class="fas fa-search-minus"></i> Alejar
                         </button>
-                        
                     </div>
                     <div class="model-info">
                         <p><i class="fas fa-info-circle"></i> Usa el mouse para rotar, la rueda para zoom. En móvil, usa dos dedos.</p>
@@ -514,7 +765,6 @@
                         <button class="model-btn" onclick="zoomOutModel('model-2')">
                             <i class="fas fa-search-minus"></i> Alejar
                         </button>
-                       
                     </div>
                     <div class="model-info">
                         <p><i class="fas fa-info-circle"></i> Usa el mouse para rotar, la rueda para zoom. En móvil, usa dos dedos.</p>
@@ -545,7 +795,6 @@
                         <button class="model-btn" onclick="zoomOutModel('model-3')">
                             <i class="fas fa-search-minus"></i> Alejar
                         </button>
-                        
                     </div>
                     <div class="model-info">
                         <p><i class="fas fa-info-circle"></i> Usa el mouse para rotar, la rueda para zoom. En móvil, usa dos dedos.</p>
@@ -576,7 +825,6 @@
                         <button class="model-btn" onclick="zoomOutModel('model-4')">
                             <i class="fas fa-search-minus"></i> Alejar
                         </button>
-                        
                     </div>
                     <div class="model-info">
                         <p><i class="fas fa-info-circle"></i> Usa el mouse para rotar, la rueda para zoom. En móvil, usa dos dedos.</p>
@@ -585,8 +833,6 @@
             </div>
         </div>
     </section>
-
-   
 
     <!-- Galería de Obras -->
     <section id="galeria" style="padding: 60px 0; background-color: var(--color-light);">
@@ -600,13 +846,11 @@
                 <button class="filter-btn active" data-filter="all">Todas las Obras</button>
                 <button class="filter-btn" data-filter="pintura">Pintura</button>
                 <button class="filter-btn" data-filter="escultura">Escultura</button>
-                <button class="filter-btn" data-filter="digital">Arte Digital</button>
-                <button class="filter-btn" data-filter="fotografia">Fotografía</button>
-                <button class="filter-btn" data-filter="3d">Modelos 3D</button>
+                <button class="filter-btn" data-filter="visuteria">Visutería</button>
             </div>
             
             <div class="gallery-grid" id="gallery-container">
-                <!-- Las primeras 6 obras se cargan aquí -->
+                <!-- Las obras se cargarán aquí mediante JavaScript -->
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
@@ -615,211 +859,158 @@
         </div>
     </section>
 
-    
-    
-
     <script>
-        // Datos de obras de arte - 12 iniciales (6 originales + 6 nuevas)
+        // Datos de obras de arte
         const initialArtworks = [
+            // Esculturas
             {
-                category: "pintura",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Armonía Cromática",
-                artist: "María Rodríguez",
-                grade: "4to A",
-                description: "Exploración de colores complementarios en acrílico sobre lienzo."
+                category: "escultura",
+                image: "../img/la dama del mirador.jpeg",
+                title: "La Dama del Mirador",
+                artist: "--",
+                grade: "--",
+                description: "Escultura de una mujer de cerámica en vestido blanco y sombrero rojo de ala ancha, con base texturizada en tonos azules."
+            }, 
+            {
+                category: "escultura",
+                image: "../img/El Guardián de Terracota.jpeg",
+                title: "El Guardián de Terracota",
+                artist: "--",
+                grade: "--",
+                description: "Máscara de terracota sin esmaltar con grandes cuencas oculares y un patrón grabado de triángulos concéntricos en la frente."
+            }, 
+            {
+                category: "escultura",
+                image: "../img/El Ojo Ancestral.jpeg",
+                title: "El Ojo Ancestral",
+                artist: "--",
+                grade: "--",
+                description: "Escultura de barro sin esmaltar con grandes cuencas oculares vacías y un diseño grabado de triángulos concéntricos en la frente."
             },
             {
                 category: "escultura",
-                image: "https://images.unsplash.com/photo-1597043720665-81f0edb5b1e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Formas en Movimiento",
-                artist: "Carlos Méndez",
-                grade: "5to B",
-                description: "Escultura en arcilla que captura la energía de la juventud."
+                image: "../img/El Centinela Tribal.jpeg",
+                title: "El Centinela Tribal",
+                artist: "--",
+                grade: "--",
+                description: "Escultura de barro sin esmaltar con grandes cuencas oculares vacías y un diseño grabado de triángulos concéntricos en la frente."
             },
+            // Pinturas
             {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Futuro Conectado",
-                artist: "Ana Santos",
-                grade: "6to C",
-                description: "Ilustración digital sobre tecnología y humanidad."
+                category: "pintura",
+                image: "../img/poder creativo.jpeg",
+                title: "Poder Creativo",
+                artist: "--",
+                grade: "--",
+                description: "Ilustración gráfica y vibrante que muestra una mano sujetando firmemente herramientas de arte (pinceles y lápices), con el fondo amarillo y detalles en azul petróleo, negro y blanco."
             },
             {
                 category: "pintura",
-                image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Expresión Abstracta",
-                artist: "José Pérez",
-                grade: "4to A",
-                description: "Pintura abstracta que explora emociones y sentimientos."
-            },
-            {
-                category: "fotografia",
-                image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Retrato Urbano",
-                artist: "Laura González",
-                grade: "5to A",
-                description: "Fotografía en blanco y negro que captura la esencia de la ciudad."
-            },
-            {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Realidad Virtual",
-                artist: "Miguel Ángel Torres",
-                grade: "6to B",
-                description: "Creación digital para entornos de realidad virtual."
-            },
-            // 6 NUEVAS OBRAS
-            {
-                category: "pintura",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Paisaje Onírico",
-                artist: "Isabel Ramírez",
-                grade: "5to C",
-                description: "Pintura al óleo que representa un paisaje surrealista inspirado en sueños."
-            },
-            {
-                category: "escultura",
-                image: "https://images.unsplash.com/photo-1597043720665-81f0edb5b1e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Equilibrio Perfecto",
-                artist: "Roberto Sánchez",
-                grade: "6to A",
-                description: "Escultura en madera que explora conceptos de balance y simetría."
-            },
-            {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Conexiones Digitales",
-                artist: "Sofía López",
-                grade: "4to B",
-                description: "Arte digital que representa las interconexiones en la era de internet."
-            },
-            {
-                category: "fotografia",
-                image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Miradas Urbanas",
-                artist: "Daniel Castro",
-                grade: "5to A",
-                description: "Serie fotográfica que captura la diversidad de expresiones en la ciudad."
+                image: "../img/El Vigilante Tropical.jpeg",
+                title: "El Vigilante Tropical",
+                artist: "--",
+                grade: "--",
+                description: "Ilustración de estilo gráfico de la cabeza de un pájaro vibrante (posiblemente un pinzón o tangara) con colores saturados (rojo, verde, morado) y fondo amarillo intenso."
             },
             {
                 category: "pintura",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Colores del Caribe",
-                artist: "Carmen Reyes",
-                grade: "4to C",
-                description: "Pintura acrílica inspirada en los vibrantes colores del Caribe dominicano."
+                image: "../img/El Guasón Geométrico.jpeg",
+                title: "El Guasón Geométrico",
+                artist: "--",
+                grade: "--",
+                description: "Retrato del personaje Joker realizado en estilo cubista o poligonal, utilizando parches de colores brillantes y contrastantes (rojo, verde, azul, amarillo) para formar la figura."
             },
             {
-                category: "3d",
-                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Realidad Aumentada",
-                artist: "Pablo Martínez",
-                grade: "6to B",
-                description: "Creación digital diseñada específicamente para experiencias de RA."
-            }
+                category: "pintura",
+                image: "../img/Serenidad Flotante.jpeg",
+                title: "Serenidad Flotante",
+                artist: "--",
+                grade: "--",
+                description: "Pintura en acuarela de un cisne blanco y beige flotando en el agua, rodeado de juncos y vegetación oscura, con su reflejo visible en el estanque."
+            },
         ];
 
-        // 12 obras adicionales (6 originales + 6 nuevas)
+        // Obras adicionales
         const additionalArtworks = [
+            // Visutería
+            {
+                category: "visuteria",
+                image: "../img/Reina del Mar de Estrellas.jpeg",
+                title: "Reina del Mar de Estrellas",
+                artist: "--",
+                grade: "--",
+                description: "Retrato de mujer en resina y mosaico de colores sobre una bandeja negra y dorada."
+            },
+            {
+                category: "visuteria",
+                image: "../img/Aros de la Sirena.jpeg",
+                title: "Aros de la Sirena",
+                artist: "--",
+                grade: "--",
+                description: "Par de pendientes de aro hechos con técnica de tejido de cuentas en tonos verde menta, azul turquesa y oro, con una base superior circular grabada."
+            },
+            {
+                category: "visuteria",
+                image: "../img/Flor y Botón.jpeg",
+                title: "Flor y Botón",
+                artist: "--",
+                grade: "--",
+                description: "Par de pendientes con diseños diferentes de cuentas: un botón floral negro y un colgante de flor multicolor."
+            },
+            {
+                category: "visuteria",
+                image: "../img/Corona de Zafiro.jpeg",
+                title: "Corona de Zafiro",
+                artist: "--",
+                grade: "--",
+                description: "Collar de cuentas blancas con un colgante central grande de cuentas púrpuras y una piedra azul."
+            },
+            // Pinturas adicionales
             {
                 category: "pintura",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Paisaje Onírico",
-                artist: "Isabel Ramírez",
-                grade: "5to C",
-                description: "Pintura al óleo que representa un paisaje surrealista inspirado en sueños."
-            },
-            {
-                category: "escultura",
-                image: "https://images.unsplash.com/photo-1597043720665-81f0edb5b1e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Equilibrio Perfecto",
-                artist: "Roberto Sánchez",
-                grade: "6to A",
-                description: "Escultura en madera que explora conceptos de balance y simetría."
-            },
-            {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Conexiones Digitales",
-                artist: "Sofía López",
-                grade: "4to B",
-                description: "Arte digital que representa las interconexiones en la era de internet."
-            },
-            {
-                category: "fotografia",
-                image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Miradas Urbanas",
-                artist: "Daniel Castro",
-                grade: "5to A",
-                description: "Serie fotográfica que captura la diversidad de expresiones en la ciudad."
-            },
-            {
-                category: "pintura",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Colores del Caribe",
-                artist: "Carmen Reyes",
-                grade: "4to C",
-                description: "Pintura acrílica inspirada en los vibrantes colores del Caribe dominicano."
-            },
-            {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Realidad Aumentada",
-                artist: "Pablo Martínez",
-                grade: "6to B",
-                description: "Creación digital diseñada específicamente para experiencias de RA."
-            },
-            // 6 NUEVAS OBRAS ADICIONALES
-            {
-                category: "pintura",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Sueños Acuáticos",
-                artist: "Valeria Mendoza",
-                grade: "5to B",
-                description: "Pintura en acuarela que explora el mundo submarino y sus misterios."
-            },
-            {
-                category: "escultura",
-                image: "https://images.unsplash.com/photo-1597043720665-81f0edb5b1e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Geometría Viva",
-                artist: "Andrés Castillo",
-                grade: "6to C",
-                description: "Escultura metálica que combina formas geométricas con elementos orgánicos."
-            },
-            {
-                category: "digital",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Neón Urbano",
-                artist: "Camila Ruiz",
-                grade: "4to A",
-                description: "Arte digital inspirado en la estética neón de las ciudades modernas."
-            },
-            {
-                category: "fotografia",
-                image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Reflejos Urbanos",
-                artist: "Diego Herrera",
-                grade: "5to C",
-                description: "Fotografía que captura los reflejos y simetrías en la arquitectura urbana."
+                image: "../img/Geometría Onírica.jpeg",
+                title: "Geometría Onírica",
+                artist: "--",
+                grade: "--",
+                description: "Pintura en técnica mixta (posiblemente acuarela) de formas geométricas tridimensionales."
             },
             {
                 category: "pintura",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Atardecer Tropical",
-                artist: "Gabriela Silva",
-                grade: "4to B",
-                description: "Pintura al óleo que captura los colores vibrantes del atardecer caribeño."
+                image: "../img/Madre Tierra en Oración.jpeg",
+                title: "Madre Tierra en Oración",
+                artist: "--",
+                grade: "--",
+                description: "Dibujo a lápiz de color de la Pachamama (Madre Tierra), cuya figura es un paisaje con colinas, árboles, cascadas, y un rostro en actitud de oración."
             },
             {
-                category: "3d",
-                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                title: "Escultura Digital",
-                artist: "Ricardo Peña",
-                grade: "6to A",
-                description: "Modelo 3D interactivo creado con software de diseño tridimensional."
-            }
+                category: "pintura",
+                image: "../img/Mictlantecuhtli Colorido.jpeg",
+                title: "Mictlantecuhtli Colorido",
+                artist: "--",
+                grade: "--",
+                description: "Ilustración vibrante de la deidad azteca Mictlantecuhtli (Señor del Inframundo) con un rostro de calavera, vestido ceremonial y sosteniendo una calavera y un bastón curvo."
+            },
+            {
+                category: "pintura",
+                image: "../img/El Brindis Picante.jpeg",
+                title: "El Brindis Picante",
+                artist: "--",
+                grade: "--",
+                description: "Ilustración estilo tiza sobre fondo negro de un pimiento rojo dentro de una copa de vino, destacada con contornos de neón y efectos de brillo blanco."
+            },
         ];
+
+        // Función para obtener etiqueta de categoría
+        function getCategoryLabel(category) {
+            const labels = {
+                'pintura': '<i class="fas fa-paint-brush"></i> Pintura',
+                'escultura': '<i class="fas fa-mountain"></i> Escultura',
+                'visuteria': '<i class="fas fa-gem"></i> Visutería',
+                'fotografia': '<i class="fas fa-camera"></i> Fotografía',
+                'digital': '<i class="fas fa-laptop-code"></i> Arte Digital'
+            };
+            return labels[category] || '<i class="fas fa-palette"></i> Arte';
+        }
 
         // Función para crear una tarjeta de obra
         function createArtworkCard(artwork) {
@@ -827,30 +1018,47 @@
             artworkCard.className = 'artwork-card';
             artworkCard.setAttribute('data-category', artwork.category);
             
-            // Si es una obra 3D, mostramos un ícono especial
-            const categoryIcon = artwork.category === "3d" ? '<i class="fas fa-cube" style="color: var(--color-blue); margin-right: 5px;"></i>' : '';
+            // Escapar comillas simples para evitar problemas en el onclick
+            const safeTitle = artwork.title.replace(/'/g, "\\'");
+            const safeDescription = artwork.description.replace(/'/g, "\\'");
             
             artworkCard.innerHTML = `
-                <img src="${artwork.image}" alt="${artwork.title}" class="artwork-img">
+                <div class="artwork-img-container" tabindex="0">
+                    <img src="${artwork.image}" alt="${artwork.title}" class="artwork-img" loading="lazy" 
+                         onerror="this.style.display='none'; this.parentElement.classList.add('image-error');">
+                    <div class="img-overlay">
+                        <p>Haz clic para ver la imagen completa</p>
+                        <button class="view-full-btn" 
+                                onclick="openImageModal('${artwork.image}', '${safeTitle}', '${safeDescription}')">
+                            <i class="fas fa-expand"></i> Ver completa
+                        </button>
+                    </div>
+                </div>
                 <div class="artwork-info">
-                    <h3>${categoryIcon}${artwork.title}</h3>
+                    <h3>${artwork.title}</h3>
                     <div class="artwork-meta">
                         <span>${artwork.artist}</span>
                         <span>${artwork.grade}</span>
                     </div>
                     <p class="artwork-description">${artwork.description}</p>
                     <div class="artwork-footer">
-                        ${artwork.category === "3d" ? 
-                            '<span style="color: var(--color-blue); font-weight: bold;"><i class="fas fa-vr-cardboard"></i> Interactivo 3D</span>' : 
-                            ''}
+                        <span class="artwork-category">${getCategoryLabel(artwork.category)}</span>
                     </div>
                 </div>
             `;
             
+            // Agregar evento de clic en toda la tarjeta para abrir modal
+            artworkCard.addEventListener('click', function(e) {
+                // Solo abrir modal si no se hizo clic en un botón o enlace
+                if (!e.target.closest('button') && !e.target.closest('a')) {
+                    openImageModal(artwork.image, artwork.title, artwork.description);
+                }
+            });
+            
             return artworkCard;
         }
 
-        // Cargar obras iniciales (12)
+        // Cargar obras iniciales
         function loadInitialArtworks() {
             const galleryContainer = document.getElementById('gallery-container');
             
@@ -862,9 +1070,9 @@
 
         // Variable para controlar cuántas obras adicionales se han cargado
         let loadedAdditionalCount = 0;
-        const loadStep = 6; // Cargar de 6 en 6
+        const loadStep = 8; // Cargar de 8 en 8
 
-        // Función para cargar más obras (6 adicionales por clic)
+        // Función para cargar más obras
         document.getElementById('load-more-btn').addEventListener('click', function() {
             const galleryContainer = document.getElementById('gallery-container');
             
@@ -872,7 +1080,7 @@
             const startIndex = loadedAdditionalCount;
             const endIndex = Math.min(startIndex + loadStep, additionalArtworks.length);
             
-            // Cargar las siguientes 6 obras (o las que queden)
+            // Cargar las siguientes obras
             for (let i = startIndex; i < endIndex; i++) {
                 const artwork = additionalArtworks[i];
                 const artworkCard = createArtworkCard(artwork);
@@ -918,10 +1126,156 @@
             });
         });
 
+        // Modal para imágenes completas
+        let currentImageIndex = 0;
+        let currentImageSet = [];
+        
+        function openImageModal(imageSrc, title, description) {
+            // Crear modal si no existe
+            let modal = document.getElementById('image-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'image-modal';
+                modal.className = 'image-modal';
+                modal.innerHTML = `
+                    <button class="close-modal" onclick="closeImageModal()">&times;</button>
+                    <div class="modal-content">
+                        <img class="modal-img" src="" alt="">
+                    </div>
+                    <div class="modal-caption">
+                        <h3></h3>
+                        <p></p>
+                    </div>
+                    <div class="modal-controls">
+                        <button class="modal-control-btn" onclick="prevImage()" title="Imagen anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="modal-control-btn" onclick="downloadImage()" title="Descargar imagen">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="modal-control-btn" onclick="nextImage()" title="Siguiente imagen">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Cerrar modal al hacer clic fuera de la imagen
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeImageModal();
+                    }
+                });
+                
+                // Cerrar con tecla ESC
+                document.addEventListener('keydown', handleModalKeydown);
+            }
+            
+            // Obtener todas las imágenes visibles en la galería
+            const visibleCards = Array.from(document.querySelectorAll('.artwork-card[style*="display: flex"], .artwork-card:not([style*="display: none"])'));
+            currentImageSet = visibleCards.map(card => {
+                const img = card.querySelector('.artwork-img');
+                const title = card.querySelector('h3').textContent;
+                const desc = card.querySelector('.artwork-description').textContent;
+                return {
+                    src: img ? img.src : '',
+                    title: title,
+                    description: desc
+                };
+            });
+            
+            // Encontrar el índice de la imagen actual
+            currentImageIndex = currentImageSet.findIndex(img => img.src === imageSrc || img.title === title);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+            
+            // Configurar contenido del modal
+            const modalImg = modal.querySelector('.modal-img');
+            const modalTitle = modal.querySelector('.modal-caption h3');
+            const modalDesc = modal.querySelector('.modal-caption p');
+            
+            modalImg.src = imageSrc;
+            modalImg.alt = title;
+            modalTitle.textContent = title;
+            modalDesc.textContent = description;
+            
+            // Mostrar modal
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Preload de imagen
+            const img = new Image();
+            img.src = imageSrc;
+        }
+        
+        function handleModalKeydown(e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        }
+        
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.removeEventListener('keydown', handleModalKeydown);
+            }
+        }
+        
+        function prevImage() {
+            if (currentImageSet.length === 0) return;
+            
+            currentImageIndex = (currentImageIndex - 1 + currentImageSet.length) % currentImageSet.length;
+            updateModalImage();
+        }
+        
+        function nextImage() {
+            if (currentImageSet.length === 0) return;
+            
+            currentImageIndex = (currentImageIndex + 1) % currentImageSet.length;
+            updateModalImage();
+        }
+        
+        function updateModalImage() {
+            const modal = document.getElementById('image-modal');
+            if (!modal || currentImageSet.length === 0) return;
+            
+            const image = currentImageSet[currentImageIndex];
+            const modalImg = modal.querySelector('.modal-img');
+            const modalTitle = modal.querySelector('.modal-caption h3');
+            const modalDesc = modal.querySelector('.modal-caption p');
+            
+            modalImg.src = image.src;
+            modalImg.alt = image.title;
+            modalTitle.textContent = image.title;
+            modalDesc.textContent = image.description;
+            
+            // Preload de imagen
+            const img = new Image();
+            img.src = image.src;
+        }
+        
+        function downloadImage() {
+            const modalImg = document.querySelector('#image-modal .modal-img');
+            if (!modalImg || !modalImg.src) return;
+            
+            const link = document.createElement('a');
+            link.href = modalImg.src;
+            link.download = `obra-${currentImageIndex + 1}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('Descargando imagen...');
+        }
+
         // Funciones para interactuar con modelos 3D
         function rotateModel(modelId) {
             const iframe = document.getElementById(modelId);
-            // Enviar mensaje al iframe para rotar el modelo
             iframe.contentWindow.postMessage({action: 'rotate'}, '*');
             showNotification('Rotando modelo...');
         }
@@ -938,20 +1292,6 @@
             showNotification('Alejando...');
         }
         
-        function toggleAR(modelId) {
-            const iframe = document.getElementById(modelId);
-            const currentSrc = iframe.src;
-            
-            // Alternar modo AR
-            if (currentSrc.includes('ar=1')) {
-                iframe.src = currentSrc.replace('ar=1', 'ar=0');
-                showNotification('Modo AR desactivado');
-            } else {
-                iframe.src = currentSrc.replace('ar=0', 'ar=1');
-                showNotification('Modo AR activado - Escanea con tu dispositivo');
-            }
-        }
-        
         function showNotification(message) {
             // Crear notificación
             const notification = document.createElement('div');
@@ -959,7 +1299,7 @@
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background-color: var(--color-blue); /* Cambiado a azul */
+                background-color: var(--color-blue);
                 color: white;
                 padding: 15px 20px;
                 border-radius: 5px;
@@ -992,7 +1332,7 @@
         // Animación de contadores
         function animateCounter(element, target, duration) {
             let start = 0;
-            const increment = target / (duration / 16); // 60fps
+            const increment = target / (duration / 16);
             
             const updateCounter = () => {
                 start += increment;
@@ -1014,15 +1354,25 @@
             const exposCount = document.getElementById('expos-count');
             const visitasCount = document.getElementById('visitas-count');
             
-            const totalArtworks = document.querySelectorAll('.artwork-card').length + 4; // +4 por los modelos 3D
-            const totalArtists = 35; // Número de artistas únicos
-            const totalExpos = 5; // Número de exposiciones
-            const totalVisits = 1247 + Math.floor(totalArtworks * 1.5); // Aumentar visitas con más obras
-            
-            animateCounter(obrasCount, totalArtworks, 1000);
-            animateCounter(artistasCount, totalArtists, 1000);
-            animateCounter(exposCount, totalExpos, 1000);
-            animateCounter(visitasCount, totalVisits, 1000);
+            if (obrasCount && artistasCount && exposCount && visitasCount) {
+                const totalArtworks = document.querySelectorAll('.artwork-card').length + 4;
+                const totalArtists = 35;
+                const totalExpos = 5;
+                const totalVisits = 1247 + Math.floor(totalArtworks * 1.5);
+                
+                animateCounter(obrasCount, totalArtworks, 1000);
+                animateCounter(artistasCount, totalArtists, 1000);
+                animateCounter(exposCount, totalExpos, 1000);
+                animateCounter(visitasCount, totalVisits, 1000);
+            }
+        }
+
+        // Preload de imágenes para mejor experiencia
+        function preloadImages(imageUrls) {
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
         }
 
         // Smooth scrolling para enlaces de anclaje
@@ -1046,309 +1396,247 @@
             loadInitialArtworks();
             updateStats();
             
-            // Agregar filtro para modelos 3D
-            const galleryFilters = document.querySelector('.gallery-filters');
-            const filter3dBtn = document.querySelector('[data-filter="3d"]');
+            // Preload de imágenes iniciales
+            const initialImageUrls = initialArtworks.map(artwork => artwork.image);
+            preloadImages(initialImageUrls);
             
-            if (filter3dBtn) {
-                filter3dBtn.addEventListener('click', function() {
-                    // Solo mostrar obras 3D
-                    document.querySelectorAll('.artwork-card').forEach(card => {
-                        if (card.getAttribute('data-category') === '3d') {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            }
+            // También preload de las adicionales (primeras 8)
+            const additionalImageUrls = additionalArtworks.slice(0, 8).map(artwork => artwork.image);
+            preloadImages(additionalImageUrls);
         });
     </script>
 
     <!-- Inclusión del banner y footer -->
-<script>
-    // Función para cargar el banner y footer
-    function loadBannerFooter() {
-        // Crear contenedores
-        const bannerContainer = document.createElement('div');
-        bannerContainer.id = 'banner-container';
-        document.body.insertBefore(bannerContainer, document.body.firstChild);
-        
-        const footerContainer = document.createElement('div');
-        footerContainer.id = 'footer-container';
-        document.body.appendChild(footerContainer);
-        
-        // Cargar el archivo
-        fetch('include/banner-footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar el archivo');
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Insertar banner
-                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
-                if (headerMatch) {
-                    bannerContainer.innerHTML = headerMatch[0];
-                }
-                
-                // Insertar footer
-                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
-                if (footerMatch) {
-                    footerContainer.innerHTML = footerMatch[0];
-                }
-                
-                // Extraer y ejecutar scripts
-                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
-                if (scriptMatch) {
-                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
-                    eval(scriptContent);
-                }
-            })
-            .catch(error => {
-                console.error('Error al cargar banner y footer:', error);
-                // Cargar contenido de respaldo si falla
-                loadFallbackBannerFooter();
-            });
-    }
-    
-    // Contenido de respaldo en caso de error
-    function loadFallbackBannerFooter() {
-        const bannerContainer = document.getElementById('banner-container');
-        const footerContainer = document.getElementById('footer-container');
-        
-        if (bannerContainer) {
-            bannerContainer.innerHTML = `
-                <header class="site-header">
-    <div class="container header-inner">
-        <div class="logo">
-            <!-- Intentar cargar imagen, si falla mostrar ícono -->
-            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="logo-fallback" style="display: none;">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="logo-text">
-                <h1>Liceo Técnico Manuel Del Cabral</h1>
-             
-            </div>
-        </div>
-
-        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <nav class="navbar" id="navbar">
-            <ul>
-                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
-                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
-                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
-                <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-            `;
-        }
-        
-        if (footerContainer) {
-            footerContainer.innerHTML = `
-               <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Liceo Técnico Manuel Del Cabral</h3>
-                <p>Fe y Alegría - Santo Domingo Este</p>
-                <p>Calle Miguel Díaz del Almirante</p>
-                <p>Teléfono: (809) 555-1234</p>
-                <p>Email: info@liceomanueldelcabral.edu.do</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-column">
-                <h3>Enlaces Rápidos</h3>
-                <ul class="footer-links">
-                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
-                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
-                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
-                    <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h3>Recursos</h3>
-                <ul class="footer-links">
-                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
-                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
-                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h3>Proyecto Educativo 2025</h3>
-                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
-                <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
-                    <i class="fas fa-rocket"></i> Innovación Educativa
-                </div>
-            </div>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
-        </div>
-    </div>
-</footer>
-            `;
-        }
-        
-        // Inicializar componentes después de cargar el contenido de respaldo
-        initComponents();
-        
-        // Manejar imágenes que no cargan
-        handleMissingImages();
-    }
-    
-    // Función para manejar imágenes faltantes
-    function handleMissingImages() {
-        const logoImg = document.querySelector('.logo img');
-        const logoFallback = document.querySelector('.logo-fallback');
-        
-        if (logoImg && logoFallback) {
-            // Verificar si la imagen cargó correctamente
-            logoImg.onerror = function() {
-                this.style.display = 'none';
-                logoFallback.style.display = 'flex';
-            };
+    <script>
+        // Función para cargar el banner y footer
+        function loadBannerFooter() {
+            // Crear contenedores
+            const bannerContainer = document.createElement('div');
+            bannerContainer.id = 'banner-container';
+            document.body.insertBefore(bannerContainer, document.body.firstChild);
             
-            // Si la imagen existe, ocultar el fallback
-            logoImg.onload = function() {
-                logoFallback.style.display = 'none';
-            };
-        }
-    }
-    
-    // Función para inicializar componentes (menú móvil, etc.)
-    function initComponents() {
-        // Menú móvil
-        const menuToggle = document.getElementById('menu-toggle');
-        const navbar = document.getElementById('navbar');
-        
-        if (menuToggle && navbar) {
-            menuToggle.addEventListener('click', function() {
-                navbar.classList.toggle('open');
-                const icon = this.querySelector('i');
-                if (icon.classList.contains('fa-bars')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        }
-        
-        // Cerrar menú al hacer clic en enlace (móvil)
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 850 && navbar) {
-                    navbar.classList.remove('open');
-                    menuToggle.querySelector('i').classList.remove('fa-times');
-                    menuToggle.querySelector('i').classList.add('fa-bars');
-                }
-            });
-        });
-        
-        // Marcar enlace activo basado en la página actual
-        function setActiveNavLink() {
-            const currentPage = window.location.pathname;
-            const navLinks = document.querySelectorAll('.navbar a');
+            const footerContainer = document.createElement('div');
+            footerContainer.id = 'footer-container';
+            document.body.appendChild(footerContainer);
             
-            // Remover clase active de todos los enlaces primero
-            navLinks.forEach(link => {
-                link.classList.remove('active');
+            // Cargar el archivo
+            fetch('include/banner-footer.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Insertar banner
+                    const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                    if (headerMatch) {
+                        bannerContainer.innerHTML = headerMatch[0];
+                    }
+                    
+                    // Insertar footer
+                    const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                    if (footerMatch) {
+                        footerContainer.innerHTML = footerMatch[0];
+                    }
+                    
+                    // Extraer y ejecutar scripts
+                    const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                    if (scriptMatch) {
+                        const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                        eval(scriptContent);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar banner y footer:', error);
+                    loadFallbackBannerFooter();
+                });
+        }
+        
+        // Contenido de respaldo en caso de error
+        function loadFallbackBannerFooter() {
+            const bannerContainer = document.getElementById('banner-container');
+            const footerContainer = document.getElementById('footer-container');
+            
+            if (bannerContainer) {
+                bannerContainer.innerHTML = `
+                    <header class="site-header">
+                        <div class="container header-inner">
+                            <div class="logo">
+                                <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="logo-fallback" style="display: none;">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="logo-text">
+                                    <h1>Liceo Técnico Manuel Del Cabral</h1>
+                                </div>
+                            </div>
+                            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <nav class="navbar" id="navbar">
+                                <ul>
+                                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                                    <li><a href="../html/inscripciones.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                `;
+            }
+            
+            if (footerContainer) {
+                footerContainer.innerHTML = `
+                    <footer>
+                        <div class="container">
+                            <div class="footer-content">
+                                <div class="footer-column">
+                                    <h3>Liceo Técnico Manuel Del Cabral</h3>
+                                    <p>Fe y Alegría - Santo Domingo Este</p>
+                                    <p>Calle Miguel Díaz del Almirante</p>
+                                    <p>Teléfono: (809) 555-1234</p>
+                                    <p>Email: info@liceomanueldelcabral.edu.do</p>
+                                    <div class="social-links">
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </div>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Enlaces Rápidos</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                                        <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                                        <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                                        <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                                        <li><a href="../html/inscripciones.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Recursos</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                                        <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                                        <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Proyecto Educativo 2025</h3>
+                                    <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                                    <div class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center;">
+                                        <i class="fas fa-rocket"></i> Innovación Educativa
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="copyright">
+                                <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                    </footer>
+                `;
+            }
+            
+            // Inicializar componentes después de cargar el contenido de respaldo
+            initComponents();
+        }
+        
+        // Función para inicializar componentes (menú móvil, etc.)
+        function initComponents() {
+            // Menú móvil
+            const menuToggle = document.getElementById('menu-toggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', function() {
+                    navbar.classList.toggle('open');
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-bars')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // Cerrar menú al hacer clic en enlace (móvil)
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 850 && navbar) {
+                        navbar.classList.remove('open');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
             });
             
-            // Buscar y marcar el enlace correspondiente a la página actual
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
+            // Marcar enlace activo basado en la página actual
+            function setActiveNavLink() {
+                const currentPage = window.location.pathname;
+                const navLinks = document.querySelectorAll('.navbar a');
                 
-                // Caso especial para index.html
-                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
-                    if (linkHref.includes('index.html')) {
+                // Remover clase active de todos los enlaces primero
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Buscar y marcar el enlace correspondiente a la página actual
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    
+                    // Caso especial para index.html
+                    if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                        if (linkHref.includes('index.html')) {
+                            link.classList.add('active');
+                        }
+                    }
+                    // Para otras páginas
+                    else if (currentPage.includes(linkHref)) {
                         link.classList.add('active');
                     }
+                });
+                
+                // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+                const activeLinks = document.querySelectorAll('.navbar a.active');
+                if (activeLinks.length === 0 && navLinks.length > 0) {
+                    navLinks[0].classList.add('active');
                 }
-                // Para otras páginas
-                else if (currentPage.includes(linkHref)) {
+            }
+            
+            // Ejecutar la función cuando se carga la página
+            setActiveNavLink();
+        }
+        
+        // Función para actualizar el estado activo del menú
+        function updateActiveMenu() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkPage = link.getAttribute('href').split('/').pop();
+                
+                // Comparar las páginas
+                if (currentPage === linkPage || 
+                    (currentPage === '' && linkPage === 'index.html') ||
+                    (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
                     link.classList.add('active');
                 }
             });
-            
-            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
-            const activeLinks = document.querySelectorAll('.navbar a.active');
-            if (activeLinks.length === 0 && navLinks.length > 0) {
-                navLinks[0].classList.add('active');
-            }
         }
-        
-        // Ejecutar la función cuando se carga la página
-        setActiveNavLink();
-        
-        // Smooth scrolling para enlaces internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }
-    
-    // Función para actualizar el estado activo del menú
-    function updateActiveMenu() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.navbar a');
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const linkPage = link.getAttribute('href').split('/').pop();
-            
-            // Comparar las páginas
-            if (currentPage === linkPage || 
-                (currentPage === '' && linkPage === 'index.html') ||
-                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
-                link.classList.add('active');
-            }
-        });
-    }
 
-    // Llamar a la función cuando se carga la página
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(updateActiveMenu, 100);
-    });
-    
-    // Cargar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadBannerFooter);
-    } else {
-        loadBannerFooter();
-    }
-</script>
+        // Cargar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadBannerFooter);
+        } else {
+            loadBannerFooter();
+        }
+    </script>
 </body>
 </html>
