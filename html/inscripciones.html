@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reinscripción Escolar</title>
+    <link rel="icon" href="../img/logo.png">
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* --- Estilos Generales y Fuentes --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap');
+
+        /* RESET COMPLETO - No interfiere con el banner/footer */
+        .inscripciones-form-wrapper {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #1a3a5f;
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c6ca8 100%);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Contenedor Principal del Formulario --- */
+        .inscripciones-form-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(26, 58, 95, 0.12);
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .inscripciones-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a3a5f, #3498db);
+        }
+
+        .inscripciones-title {
+            text-align: center;
+            color: #1a3a5f;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .inscripciones-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #2c6ca8;
+        }
+
+        .inscripciones-header-logo {
+            text-align: center;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4e9ff 100%);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #b8d4ed;
+        }
+
+        .inscripciones-logo-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #2c6ca8;
+            box-shadow: 0 3px 6px rgba(26, 58, 95, 0.1);
+            background: white;
+        }
+
+        .inscripciones-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+
+        .inscripciones-logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c6ca8, #1a3a5f);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        .inscripciones-header-text {
+            text-align: center;
+            width: 100%;
+        }
+
+        .inscripciones-school-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a3a5f;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .inscripciones-school-quote {
+            font-style: italic;
+            color: #5a7a9d;
+            font-size: 12px;
+            margin-bottom: 6px;
+            border-left: 2px solid #2c6ca8;
+            padding-left: 8px;
+            line-height: 1.3;
+        }
+
+        .inscripciones-form-year {
+            font-weight: 600;
+            color: #3498db;
+            font-size: 13px;
+            margin-top: 6px;
+            padding: 4px 12px;
+            background: #e8f4fd;
+            border-radius: 15px;
+            display: inline-block;
+            border: 1px solid #b8d4ed;
+        }
+
+        /* --- Barra de Progreso --- */
+        .inscripciones-progress-bar-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            position: relative;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .inscripciones-progress-bar-container::before {
+            content: '';
+            position: absolute;
+            top: 17px;
+            left: 0;
+            height: 3px;
+            background: #e8f4fd;
+            z-index: 1;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .inscripciones-progress-bar-container.progress-1::before { width: 0%; }
+        .inscripciones-progress-bar-container.progress-2::before { width: 20%; }
+        .inscripciones-progress-bar-container.progress-3::before { width: 40%; }
+        .inscripciones-progress-bar-container.progress-4::before { width: 60%; }
+        .inscripciones-progress-bar-container.progress-5::before { width: 80%; }
+        .inscripciones-progress-bar-container.progress-6::before { width: 100%; }
+
+        .inscripciones-progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 50px;
+        }
+
+        .inscripciones-progress-step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e8f4fd;
+            border: 2px solid #e8f4fd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: #5a7a9d;
+            transition: all 0.4s ease;
+            font-size: 12px;
+        }
+
+        .inscripciones-progress-step.active .inscripciones-progress-step-circle {
+            background: #2c6ca8;
+            border-color: #2c6ca8;
+            color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(44, 108, 168, 0.2);
+        }
+
+        .inscripciones-progress-step.completed .inscripciones-progress-step-circle {
+            background: #3498db;
+            border-color: #3498db;
+            color: #ffffff;
+        }
+        .inscripciones-progress-step.completed .inscripciones-progress-step-circle i.fa-check { display: block; }
+        .inscripciones-progress-step-circle i.fa-check { display: none; }
+
+        .inscripciones-progress-step-label {
+            margin-top: 6px;
+            font-size: 10px;
+            color: #5a7a9d;
+            text-align: center;
+            transition: color 0.4s ease;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .inscripciones-progress-step.active .inscripciones-progress-step-label, 
+        .inscripciones-progress-step.completed .inscripciones-progress-step-label { color: #1a3a5f; }
+
+        /* --- Contenido de los Pasos --- */
+        .inscripciones-step-content { 
+            display: none; 
+            animation: slideIn 0.3s ease-out; 
+        }
+        .inscripciones-step-content.active { display: block; }
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .inscripciones-form-section {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2c6ca8;
+        }
+
+        .inscripciones-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a3a5f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .inscripciones-section-title i {
+            color: #2c6ca8;
+            font-size: 18px;
+        }
+
+        .inscripciones-form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .inscripciones-form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .inscripciones-form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .inscripciones-form-group {
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        .inscripciones-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #1a3a5f;
+            font-size: 13px;
+        }
+
+        .inscripciones-label i {
+            margin-right: 6px;
+            color: #2c6ca8;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .inscripciones-input,
+        .inscripciones-select,
+        .inscripciones-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #b8d4ed;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            background-color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .inscripciones-input:focus,
+        .inscripciones-select:focus,
+        .inscripciones-textarea:focus {
+            outline: none;
+            border-color: #2c6ca8;
+            box-shadow: 0 0 0 3px rgba(44, 108, 168, 0.1);
+        }
+
+        .inscripciones-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a3a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 35px;
+        }
+
+        .inscripciones-textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        /* Campos full width cuando son importantes */
+        .inscripciones-full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Estilos para validación */
+        .inscripciones-form-group.has-error .inscripciones-input,
+        .inscripciones-form-group.has-error .inscripciones-select,
+        .inscripciones-form-group.has-error .inscripciones-textarea {
+            border-color: #e74c3c;
+        }
+
+        .inscripciones-form-group.has-success .inscripciones-input,
+        .inscripciones-form-group.has-success .inscripciones-select,
+        .inscripciones-form-group.has-success .inscripciones-textarea {
+            border-color: #27ae60;
+        }
+
+        .inscripciones-error-message {
+            color: #e74c3c;
+            font-size: 11px;
+            margin-top: 3px;
+            display: none;
+        }
+
+        .inscripciones-form-group.has-error .inscripciones-error-message {
+            display: block;
+        }
+
+        .inscripciones-validation-icon {
+            position: absolute;
+            right: 10px;
+            top: 33px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .inscripciones-form-group.has-success .inscripciones-validation-icon {
+            display: block;
+            color: #27ae60;
+        }
+
+        .inscripciones-form-group.has-error .inscripciones-validation-icon {
+            display: block;
+            color: #e74c3c;
+        }
+
+        /* Estilos para radio buttons */
+        .inscripciones-radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .inscripciones-radio-group .inscripciones-label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .inscripciones-radio-group input[type="radio"] {
+            margin-right: 5px;
+            width: auto;
+        }
+
+        /* Checkbox styling */
+        .inscripciones-checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .inscripciones-checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .inscripciones-checkbox-item input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        /* --- Botones de Navegación --- */
+        .inscripciones-form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .inscripciones-nav-button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        #prevBtn.inscripciones-nav-button {
+            background-color: #5a7a9d;
+            color: #ffffff;
+        }
+
+        #prevBtn.inscripciones-nav-button:hover {
+            background-color: #4a688c;
+            transform: translateY(-1px);
+        }
+
+        #nextBtn.inscripciones-nav-button {
+            background-color: #2c6ca8;
+            color: #ffffff;
+        }
+
+        #nextBtn.inscripciones-nav-button:hover {
+            background-color: #1a3a5f;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(44, 108, 168, 0.2);
+        }
+
+        #submitBtn.inscripciones-nav-button {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+            color: #ffffff;
+            display: none;
+        }
+
+        #submitBtn.inscripciones-nav-button:hover {
+            background: linear-gradient(135deg, #219653 0%, #1e8449 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(39, 174, 96, 0.2);
+        }
+
+        .inscripciones-nav-button:disabled {
+            background-color: #c1d5eb;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* --- Estilos del Resumen --- */
+        #summary-content {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #b8d4ed;
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .inscripciones-summary-section {
+            margin-bottom: 20px;
+        }
+
+        .inscripciones-summary-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .inscripciones-summary-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #1a3a5f;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #e8f4fd, transparent);
+            border-bottom: 1px solid #2c6ca8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .inscripciones-summary-title i {
+            font-size: 14px;
+            color: #2c6ca8;
+        }
+
+        /* Tablas compactas para el resumen */
+        .inscripciones-summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .inscripciones-summary-table th {
+            background-color: #e8f4fd;
+            border: 1px solid #b8d4ed;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #1a3a5f;
+            width: 40%;
+            vertical-align: top;
+        }
+
+        .inscripciones-summary-table td {
+            border: 1px solid #b8d4ed;
+            padding: 6px 8px;
+            vertical-align: top;
+            width: 60%;
+        }
+
+        .inscripciones-summary-table tr:nth-child(even) {
+            background-color: #f5faff;
+        }
+
+        /* Tablas de dos columnas */
+        .inscripciones-double-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .inscripciones-double-table th {
+            background-color: #e8f4fd;
+            border: 1px solid #b8d4ed;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #1a3a5f;
+            width: 25%;
+        }
+
+        .inscripciones-double-table td {
+            border: 1px solid #b8d4ed;
+            padding: 6px 8px;
+            width: 25%;
+        }
+
+        /* Fechas compactas */
+        .inscripciones-date-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .inscripciones-date-box {
+            width: 22px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #b8d4ed;
+            background: white;
+            font-weight: 600;
+            font-size: 10px;
+            border-radius: 2px;
+        }
+
+        /* Checkboxes en resumen */
+        .inscripciones-checkbox-summary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .inscripciones-checkbox-item-summary {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .inscripciones-checkbox-box {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #b8d4ed;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .inscripciones-checkbox-box.checked {
+            background: #2c6ca8;
+            border-color: #2c6ca8;
+        }
+
+        .inscripciones-checkbox-box.checked::after {
+            content: "✓";
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        /* Sección de fotos */
+        .inscripciones-photos-summary {
+            text-align: center;
+            padding: 8px;
+            background: #e8f4fd;
+            border: 1px dashed #b8d4ed;
+            border-radius: 4px;
+            margin: 8px 0;
+            font-weight: 600;
+            color: #1a3a5f;
+            font-size: 12px;
+        }
+
+        /* Firmas */
+        .inscripciones-signature-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #b8d4ed;
+        }
+
+        .inscripciones-signature-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .inscripciones-signature-row {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .inscripciones-signature-box {
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .inscripciones-signature-box {
+                width: 30%;
+            }
+        }
+
+        .inscripciones-signature-line {
+            width: 100%;
+            height: 1px;
+            background: #1a3a5f;
+            margin-bottom: 3px;
+            margin-top: 15px;
+        }
+
+        .inscripciones-signature-label {
+            font-size: 10px;
+            color: #5a7a9d;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .inscripciones-form-container {
+                padding: 20px 15px;
+            }
+
+            .inscripciones-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .inscripciones-header-logo {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .inscripciones-logo-container {
+                width: 70px;
+                height: 70px;
+            }
+
+            .inscripciones-section-title {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .inscripciones-nav-button {
+                min-width: 100px;
+                padding: 10px 15px;
+            }
+            
+            .inscripciones-form-navigation {
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .inscripciones-form-wrapper {
+                padding: 10px;
+            }
+
+            .inscripciones-form-container {
+                padding: 15px 10px;
+            }
+
+            .inscripciones-header-logo {
+                padding: 10px;
+            }
+
+            .inscripciones-school-name {
+                font-size: 14px;
+            }
+
+            .inscripciones-school-quote {
+                font-size: 11px;
+            }
+
+            .inscripciones-form-year {
+                font-size: 12px;
+            }
+
+            .inscripciones-form-row {
+                gap: 10px;
+            }
+
+            .inscripciones-nav-button {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
+        /* Scroll personalizado */
+        #summary-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #summary-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        #summary-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        #summary-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="inscripciones-body">
+
+<div class="inscripciones-form-wrapper">
+    <div class="inscripciones-form-container">
+        <!-- Encabezado con logo -->
+        <div class="inscripciones-header-logo">
+            <div class="inscripciones-logo-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPRNBgpi4HYv0nOXj1h5cLaMmvRH9FSvQtMw&s" alt="Logo Liceo Técnico Manuel del Cabral">
+            </div>
+            <div class="inscripciones-header-text">
+                <div class="inscripciones-school-name">Liceo Técnico Manuel del Cabral</div>
+                <div class="inscripciones-school-quote">"Un joven que se educa, es una generación que se salva" (Luis Amigó)</div>
+                <div class="inscripciones-form-year">FORMULARIO DE INSCRIPCIÓN Y REINSCRIPCIÓN - AÑO ESCOLAR 2025-2026</div>
+            </div>
+        </div>
+
+        <!-- Barra de Progreso -->
+        <div class="inscripciones-progress-bar-container progress-1" id="progressBarContainer">
+            <div class="inscripciones-progress-step active" data-step="1"><div class="inscripciones-progress-step-circle"><i class="fas fa-user-edit"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Solicitante</span></div>
+            <div class="inscripciones-progress-step" data-step="2"><div class="inscripciones-progress-step-circle"><i class="fas fa-user-graduate"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Alumno</span></div>
+            <div class="inscripciones-progress-step" data-step="3"><div class="inscripciones-progress-step-circle"><i class="fas fa-female"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Madre</span></div>
+            <div class="inscripciones-progress-step" data-step="4"><div class="inscripciones-progress-step-circle"><i class="fas fa-male"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Padre</span></div>
+            <div class="inscripciones-progress-step" data-step="5"><div class="inscripciones-progress-step-circle"><i class="fas fa-info-circle"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Adicional</span></div>
+            <div class="inscripciones-progress-step" data-step="6"><div class="inscripciones-progress-step-circle"><i class="fas fa-clipboard-check"></i><i class="fas fa-check"></i></div><span class="inscripciones-progress-step-label">Resumen</span></div>
+        </div>
+
+        <form id="reinscriptionForm" action="../php/procesar_inscripcion.php" method="POST">
+            
+            <!-- Paso 1: Datos del Solicitante -->
+            <div class="inscripciones-step-content active" id="step1">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-user-edit"></i> Datos del Solicitante</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="nombre_solicitante"><i class="fas fa-signature"></i> Nombre Completo *</label>
+                            <input class="inscripciones-input" type="text" id="nombre_solicitante" name="nombre_solicitante" required>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="email_solicitante"><i class="fas fa-envelope"></i> Correo Electrónico *</label>
+                            <input class="inscripciones-input" type="email" id="email_solicitante" name="email_solicitante" required>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_solicitante"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_solicitante" name="telefono_solicitante">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="relacion_estudiante"><i class="fas fa-link"></i> Relación *</label>
+                            <select class="inscripciones-select" id="relacion_estudiante" name="relacion_estudiante" required>
+                                <option value="">Seleccione</option>
+                                <option value="padre">Padre</option>
+                                <option value="madre">Madre</option>
+                                <option value="tutor">Tutor</option>
+                                <option value="estudiante">Estudiante</option>
+                            </select>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Seleccione una opción</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 2: Datos del Alumno -->
+            <div class="inscripciones-step-content" id="step2">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-user-graduate"></i> Datos del Alumno</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="nombres_estudiante"><i class="fas fa-signature"></i> Nombres *</label>
+                            <input class="inscripciones-input" type="text" id="nombres_estudiante" name="nombres_estudiante" required>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="apellidos_estudiante"><i class="fas fa-signature"></i> Apellidos *</label>
+                            <input class="inscripciones-input" type="text" id="apellidos_estudiante" name="apellidos_estudiante" required>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="fecha_nacimiento"><i class="fas fa-calendar-alt"></i> Fecha Nac. *</label>
+                            <input class="inscripciones-input" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="genero"><i class="fas fa-venus-mars"></i> Género *</label>
+                            <select class="inscripciones-select" id="genero" name="genero" required>
+                                <option value="">Seleccionar</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="grado_solicitado"><i class="fas fa-sort-numeric-up"></i> Grado *</label>
+                            <select class="inscripciones-select" id="grado_solicitado" name="grado_solicitado" required>
+                                <option value="">Seleccione</option>
+                                <option value="1ro">1ro</option>
+                                <option value="2do">2do</option>
+                                <option value="3ro">3ro</option>
+                                <option value="4to">4to</option>
+                                <option value="5to">5to</option>
+                                <option value="6to">6to</option>
+                            </select>
+                            <span class="inscripciones-validation-icon"></span>
+                            <div class="inscripciones-error-message">Campo obligatorio</div>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="escuela_procedencia"><i class="fas fa-school"></i> Escuela Procedencia</label>
+                            <input class="inscripciones-input" type="text" id="escuela_procedencia" name="escuela_procedencia">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_estudiante"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_estudiante" name="telefono_estudiante">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="celular_estudiante"><i class="fas fa-mobile-alt"></i> Celular</label>
+                            <input class="inscripciones-input" type="tel" id="celular_estudiante" name="celular_estudiante">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="whatsapp_estudiante"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                            <input class="inscripciones-input" type="tel" id="whatsapp_estudiante" name="whatsapp_estudiante">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="email_estudiante"><i class="fas fa-envelope"></i> Email</label>
+                            <input class="inscripciones-input" type="email" id="email_estudiante" name="email_estudiante">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="numero_hermanos"><i class="fas fa-users"></i> N° Hermanos</label>
+                            <input class="inscripciones-input" type="number" id="numero_hermanos" name="numero_hermanos" min="0" value="0">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="hermanos_centro"><i class="fas fa-user-friends"></i> Hermanos en Centro</label>
+                            <input class="inscripciones-input" type="number" id="hermanos_centro" name="hermanos_centro" min="0" value="0">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="direccion_estudiante"><i class="fas fa-home"></i> Dirección</label>
+                            <input class="inscripciones-input" type="text" id="direccion_estudiante" name="direccion_estudiante">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="numero_direccion"><i class="fas fa-hashtag"></i> Número</label>
+                            <input class="inscripciones-input" type="text" id="numero_direccion" name="numero_direccion">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="sector_estudiante"><i class="fas fa-map-marker-alt"></i> Sector</label>
+                            <input class="inscripciones-input" type="text" id="sector_estudiante" name="sector_estudiante">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="tipo_vivienda"><i class="fas fa-home"></i> Tipo Vivienda</label>
+                            <select class="inscripciones-select" id="tipo_vivienda" name="tipo_vivienda">
+                                <option value="">Seleccione</option>
+                                <option value="Propia">Propia</option>
+                                <option value="Alquilada">Alquilada</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="tipo_construccion"><i class="fas fa-building"></i> Tipo Construcción</label>
+                            <select class="inscripciones-select" id="tipo_construccion" name="tipo_construccion">
+                                <option value="">Seleccione</option>
+                                <option value="Block">Block</option>
+                                <option value="Madera">Madera</option>
+                                <option value="Mejora">Mejora</option>
+                            </select>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="especialidad_interes"><i class="fas fa-star"></i> Especialidad Interés</label>
+                            <input class="inscripciones-input" type="text" id="especialidad_interes" name="especialidad_interes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 3: Datos de la Madre -->
+            <div class="inscripciones-step-content" id="step3">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-female"></i> Datos de la Madre</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="nombres_madre"><i class="fas fa-signature"></i> Nombres</label>
+                            <input class="inscripciones-input" type="text" id="nombres_madre" name="nombres_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="apellidos_madre"><i class="fas fa-signature"></i> Apellidos</label>
+                            <input class="inscripciones-input" type="text" id="apellidos_madre" name="apellidos_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="cedula_madre"><i class="fas fa-id-card"></i> Cédula</label>
+                            <input class="inscripciones-input" type="text" id="cedula_madre" name="cedula_madre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="escolaridad_madre"><i class="fas fa-graduation-cap"></i> Escolaridad</label>
+                            <select class="inscripciones-select" id="escolaridad_madre" name="escolaridad_madre">
+                                <option value="">Seleccione</option>
+                                <option value="Primaria">Primaria</option>
+                                <option value="Secundaria">Secundaria</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Universitario">Universitario</option>
+                                <option value="Postgrado">Postgrado</option>
+                            </select>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="ocupacion_madre"><i class="fas fa-briefcase"></i> Ocupación</label>
+                            <input class="inscripciones-input" type="text" id="ocupacion_madre" name="ocupacion_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="trabajo_madre"><i class="fas fa-building"></i> Lugar Trabajo</label>
+                            <input class="inscripciones-input" type="text" id="trabajo_madre" name="trabajo_madre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_madre"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_madre" name="telefono_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="celular_madre"><i class="fas fa-mobile-alt"></i> Celular</label>
+                            <input class="inscripciones-input" type="tel" id="celular_madre" name="celular_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_trabajo_madre"><i class="fas fa-phone-alt"></i> Tel. Trabajo</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_trabajo_madre" name="telefono_trabajo_madre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width">
+                            <label class="inscripciones-label" for="direccion_madre"><i class="fas fa-home"></i> Dirección</label>
+                            <textarea class="inscripciones-textarea" id="direccion_madre" name="direccion_madre" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="sector_madre"><i class="fas fa-map-marker-alt"></i> Sector</label>
+                            <input class="inscripciones-input" type="text" id="sector_madre" name="sector_madre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="email_madre"><i class="fas fa-envelope"></i> Email</label>
+                            <input class="inscripciones-input" type="email" id="email_madre" name="email_madre">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 4: Datos del Padre -->
+            <div class="inscripciones-step-content" id="step4">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-male"></i> Datos del Padre</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="nombres_padre"><i class="fas fa-signature"></i> Nombres</label>
+                            <input class="inscripciones-input" type="text" id="nombres_padre" name="nombres_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="apellidos_padre"><i class="fas fa-signature"></i> Apellidos</label>
+                            <input class="inscripciones-input" type="text" id="apellidos_padre" name="apellidos_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="cedula_padre"><i class="fas fa-id-card"></i> Cédula</label>
+                            <input class="inscripciones-input" type="text" id="cedula_padre" name="cedula_padre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="escolaridad_padre"><i class="fas fa-graduation-cap"></i> Escolaridad</label>
+                            <select class="inscripciones-select" id="escolaridad_padre" name="escolaridad_padre">
+                                <option value="">Seleccione</option>
+                                <option value="Primaria">Primaria</option>
+                                <option value="Secundaria">Secundaria</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Universitario">Universitario</option>
+                                <option value="Postgrado">Postgrado</option>
+                            </select>
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="ocupacion_padre"><i class="fas fa-briefcase"></i> Ocupación</label>
+                            <input class="inscripciones-input" type="text" id="ocupacion_padre" name="ocupacion_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="trabajo_padre"><i class="fas fa-building"></i> Lugar Trabajo</label>
+                            <input class="inscripciones-input" type="text" id="trabajo_padre" name="trabajo_padre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_padre"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_padre" name="telefono_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="celular_padre"><i class="fas fa-mobile-alt"></i> Celular</label>
+                            <input class="inscripciones-input" type="tel" id="celular_padre" name="celular_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_trabajo_padre"><i class="fas fa-phone-alt"></i> Tel. Trabajo</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_trabajo_padre" name="telefono_trabajo_padre">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width">
+                            <label class="inscripciones-label" for="direccion_padre"><i class="fas fa-home"></i> Dirección</label>
+                            <textarea class="inscripciones-textarea" id="direccion_padre" name="direccion_padre" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="sector_padre"><i class="fas fa-map-marker-alt"></i> Sector</label>
+                            <input class="inscripciones-input" type="text" id="sector_padre" name="sector_padre">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="email_padre"><i class="fas fa-envelope"></i> Email</label>
+                            <input class="inscripciones-input" type="email" id="email_padre" name="email_padre">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 5: Información Adicional -->
+            <div class="inscripciones-step-content" id="step5">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-info-circle"></i> Información Adicional</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width">
+                            <label class="inscripciones-label" for="vive_con"><i class="fas fa-users"></i> ¿Con quién vive el/la estudiante?</label>
+                            <textarea class="inscripciones-textarea" id="vive_con" name="vive_con" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="nombre_responsable"><i class="fas fa-user-shield"></i> Nombre Responsable</label>
+                            <input class="inscripciones-input" type="text" id="nombre_responsable" name="nombre_responsable">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_responsable"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_responsable" name="telefono_responsable">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="celular_responsable"><i class="fas fa-mobile-alt"></i> Celular</label>
+                            <input class="inscripciones-input" type="tel" id="celular_responsable" name="celular_responsable">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width">
+                            <label class="inscripciones-label" for="direccion_responsable"><i class="fas fa-home"></i> Dirección Responsable</label>
+                            <textarea class="inscripciones-textarea" id="direccion_responsable" name="direccion_responsable" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="email_responsable"><i class="fas fa-envelope"></i> Email Responsable</label>
+                            <input class="inscripciones-input" type="email" id="email_responsable" name="email_responsable">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-heartbeat"></i> Información de Salud</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label">¿Padece alguna enfermedad?</label>
+                            <div class="inscripciones-radio-group">
+                                <label class="inscripciones-label"><input type="radio" name="padece_enfermedad" value="no" checked> No</label>
+                                <label class="inscripciones-label"><input type="radio" name="padece_enfermedad" value="si"> Sí</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width" id="tipo_enfermedad_group" style="display:none;">
+                            <label class="inscripciones-label" for="tipo_enfermedad"><i class="fas fa-notes-medical"></i> Tipo de Enfermedad</label>
+                            <textarea class="inscripciones-textarea" id="tipo_enfermedad" name="tipo_enfermedad" rows="2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group inscripciones-full-width">
+                            <label class="inscripciones-label" for="medicamento"><i class="fas fa-pills"></i> Medicamentos</label>
+                            <textarea class="inscripciones-textarea" id="medicamento" name="medicamento" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-phone-alt"></i> Contacto de Emergencia</div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="contacto_emergencia">Nombre</label>
+                            <input class="inscripciones-input" type="text" id="contacto_emergencia" name="contacto_emergencia">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_emergencia">Teléfono</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_emergencia" name="telefono_emergencia">
+                        </div>
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="celular_emergencia">Celular</label>
+                            <input class="inscripciones-input" type="tel" id="celular_emergencia" name="celular_emergencia">
+                        </div>
+                    </div>
+                    
+                    <div class="inscripciones-form-row">
+                        <div class="inscripciones-form-group">
+                            <label class="inscripciones-label" for="telefono_trabajo_emergencia">Tel. Trabajo</label>
+                            <input class="inscripciones-input" type="tel" id="telefono_trabajo_emergencia" name="telefono_trabajo_emergencia">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 6: Resumen -->
+            <div class="inscripciones-step-content" id="step6">
+                <div class="inscripciones-form-section">
+                    <div class="inscripciones-section-title"><i class="fas fa-clipboard-check"></i> Resumen de la Inscripción</div>
+                    <p style="font-size: 13px; margin-bottom: 15px; color: #5a7a9d;">Por favor, revisa cuidadosamente toda la información antes de enviar el formulario.</p>
+                    <div id="summary-content"></div>
+                </div>
+            </div>
+
+            <!-- Botones de Navegación -->
+            <div class="inscripciones-form-navigation">
+                <button type="button" class="inscripciones-nav-button" id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Anterior</button>
+                <button type="button" class="inscripciones-nav-button" id="nextBtn">Siguiente <i class="fas fa-arrow-right"></i></button>
+                <button type="submit" class="inscripciones-nav-button" id="submitBtn">Confirmar y Enviar <i class="fas fa-check"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Variables globales
+    const form = document.getElementById('reinscriptionForm');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const steps = document.querySelectorAll('.inscripciones-step-content');
+    const progressSteps = document.querySelectorAll('.inscripciones-progress-step');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    
+    // Lógica para mostrar/ocultar campo de enfermedad
+    const enfermedadRadios = document.querySelectorAll('input[name="padece_enfermedad"]');
+    const enfermedadDetalleGroup = document.getElementById('tipo_enfermedad_group');
+    
+    enfermedadRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            enfermedadDetalleGroup.style.display = radio.value === 'si' ? 'block' : 'none';
+        });
+    });
+    
+    let currentStep = 1;
+    
+    // Mostrar paso actual
+    function showStep(step) {
+        steps.forEach(s => s.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+        updateProgressBar(step);
+        prevBtn.disabled = step === 1;
+        
+        // Ocultar/mostrar botones según el paso
+        if (step === steps.length) {
+            // Paso 6: Resumen - mostrar botón de enviar, ocultar siguiente
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'flex';
+            populateSummary();
+        } else {
+            // Pasos 1-5: mostrar botón siguiente, ocultar botón de enviar
+            nextBtn.style.display = 'flex';
+            submitBtn.style.display = 'none';
+            nextBtn.innerHTML = `Siguiente <i class="fas fa-arrow-right"></i>`;
+        }
+    }
+    
+    // Actualizar barra de progreso
+    function updateProgressBar(step) {
+        progressBarContainer.className = `inscripciones-progress-bar-container progress-${step}`;
+        progressSteps.forEach((ps, index) => {
+            if (index < step - 1) {
+                ps.classList.add('completed');
+                ps.classList.remove('active');
+            } else if (index === step - 1) {
+                ps.classList.add('active');
+                ps.classList.remove('completed');
+            } else {
+                ps.classList.remove('active', 'completed');
+            }
+        });
+    }
+    
+    // Validar paso actual
+    function validateCurrentStep() {
+        const currentStepElement = document.getElementById(`step${currentStep}`);
+        const inputs = currentStepElement.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            const formGroup = input.closest('.inscripciones-form-group');
+            const validationIcon = formGroup.querySelector('.inscripciones-validation-icon');
+            
+            formGroup.classList.remove('has-error', 'has-success');
+            if (validationIcon) validationIcon.textContent = '';
+            
+            if (!input.value.trim()) {
+                isValid = false;
+                formGroup.classList.add('has-error');
+                if (validationIcon) validationIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+            } else {
+                formGroup.classList.add('has-success');
+                if (validationIcon) validationIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Funciones para el resumen
+    function getFormattedDate(dateString) {
+        if (!dateString) return {day: '', month: '', year: ''};
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return {day, month, year};
+    }
+    
+    function createCheckboxHtml(value, options) {
+        let html = '<div class="inscripciones-checkbox-summary">';
+        options.forEach(option => {
+            const isChecked = value === option.value;
+            html += `
+                <div class="inscripciones-checkbox-item-summary">
+                    <div class="inscripciones-checkbox-box ${isChecked ? 'checked' : ''}"></div>
+                    <span>${option.label}</span>
+                </div>
+            `;
+        });
+        html += '</div>';
+        return html;
+    }
+    
+    // Función principal para generar el resumen
+    function populateSummary() {
+        const summaryContent = document.getElementById('summary-content');
+        
+        // Obtener todos los valores
+        const data = {
+            // Datos solicitante
+            nombre_solicitante: document.getElementById('nombre_solicitante').value || '',
+            email_solicitante: document.getElementById('email_solicitante').value || '',
+            telefono_solicitante: document.getElementById('telefono_solicitante').value || '',
+            relacion_estudiante: document.getElementById('relacion_estudiante').value || '',
+            
+            // Datos alumno
+            nombres_estudiante: document.getElementById('nombres_estudiante').value || '',
+            apellidos_estudiante: document.getElementById('apellidos_estudiante').value || '',
+            fecha_nacimiento: document.getElementById('fecha_nacimiento').value || '',
+            genero: document.getElementById('genero').value || '',
+            grado_solicitado: document.getElementById('grado_solicitado').value || '',
+            escuela_procedencia: document.getElementById('escuela_procedencia').value || '',
+            telefono_estudiante: document.getElementById('telefono_estudiante').value || '',
+            celular_estudiante: document.getElementById('celular_estudiante').value || '',
+            whatsapp_estudiante: document.getElementById('whatsapp_estudiante').value || '',
+            email_estudiante: document.getElementById('email_estudiante').value || '',
+            numero_hermanos: document.getElementById('numero_hermanos').value || '0',
+            hermanos_centro: document.getElementById('hermanos_centro').value || '0',
+            direccion_estudiante: document.getElementById('direccion_estudiante').value || '',
+            numero_direccion: document.getElementById('numero_direccion').value || '',
+            sector_estudiante: document.getElementById('sector_estudiante').value || '',
+            tipo_vivienda: document.getElementById('tipo_vivienda').value || '',
+            tipo_construccion: document.getElementById('tipo_construccion').value || '',
+            especialidad_interes: document.getElementById('especialidad_interes').value || '',
+            
+            // Datos madre
+            nombres_madre: document.getElementById('nombres_madre').value || '',
+            apellidos_madre: document.getElementById('apellidos_madre').value || '',
+            cedula_madre: document.getElementById('cedula_madre').value || '',
+            escolaridad_madre: document.getElementById('escolaridad_madre').value || '',
+            ocupacion_madre: document.getElementById('ocupacion_madre').value || '',
+            trabajo_madre: document.getElementById('trabajo_madre').value || '',
+            telefono_madre: document.getElementById('telefono_madre').value || '',
+            celular_madre: document.getElementById('celular_madre').value || '',
+            telefono_trabajo_madre: document.getElementById('telefono_trabajo_madre').value || '',
+            direccion_madre: document.getElementById('direccion_madre').value || '',
+            sector_madre: document.getElementById('sector_madre').value || '',
+            email_madre: document.getElementById('email_madre').value || '',
+            
+            // Datos padre
+            nombres_padre: document.getElementById('nombres_padre').value || '',
+            apellidos_padre: document.getElementById('apellidos_padre').value || '',
+            cedula_padre: document.getElementById('cedula_padre').value || '',
+            escolaridad_padre: document.getElementById('escolaridad_padre').value || '',
+            ocupacion_padre: document.getElementById('ocupacion_padre').value || '',
+            trabajo_padre: document.getElementById('trabajo_padre').value || '',
+            telefono_padre: document.getElementById('telefono_padre').value || '',
+            celular_padre: document.getElementById('celular_padre').value || '',
+            telefono_trabajo_padre: document.getElementById('telefono_trabajo_padre').value || '',
+            direccion_padre: document.getElementById('direccion_padre').value || '',
+            sector_padre: document.getElementById('sector_padre').value || '',
+            email_padre: document.getElementById('email_padre').value || '',
+            
+            // Información adicional
+            vive_con: document.getElementById('vive_con').value || '',
+            nombre_responsable: document.getElementById('nombre_responsable').value || '',
+            telefono_responsable: document.getElementById('telefono_responsable').value || '',
+            celular_responsable: document.getElementById('celular_responsable').value || '',
+            direccion_responsable: document.getElementById('direccion_responsable').value || '',
+            email_responsable: document.getElementById('email_responsable').value || '',
+            
+            // Salud
+            padece_enfermedad: document.querySelector('input[name="padece_enfermedad"]:checked').value || 'no',
+            tipo_enfermedad: document.getElementById('tipo_enfermedad').value || '',
+            medicamento: document.getElementById('medicamento').value || '',
+            
+            // Emergencia
+            contacto_emergencia: document.getElementById('contacto_emergencia').value || '',
+            telefono_emergencia: document.getElementById('telefono_emergencia').value || '',
+            celular_emergencia: document.getElementById('celular_emergencia').value || '',
+            telefono_trabajo_emergencia: document.getElementById('telefono_trabajo_emergencia').value || ''
+        };
+        
+        // Formatear fecha
+        const fecha = getFormattedDate(data.fecha_nacimiento);
+        
+        // Generar HTML del resumen
+        const summaryHTML = `
+            <div class="inscripciones-summary-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-person-badge"></i> DATOS DEL ALUMNO
+                </div>
+                
+                <div class="inscripciones-photos-summary">
+                    <i class="bi bi-camera"></i> 4 FOTOS DEL ALUMNO (Tamaño Carnet)
+                </div>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Nombre/s:</th><td>${data.nombres_estudiante}</td></tr>
+                    <tr><th>Apellido/s:</th><td>${data.apellidos_estudiante}</td></tr>
+                    <tr><th>Grado que Ingresa:</th><td>${data.grado_solicitado}</td></tr>
+                    <tr><th>Escuela de Procedencia:</th><td>${data.escuela_procedencia}</td></tr>
+                </table>
+                
+                <table class="inscripciones-double-table">
+                    <tr>
+                        <th>Número de hermanos:</th>
+                        <td>${data.numero_hermanos}</td>
+                        <th>Hermanos en el centro:</th>
+                        <td>${data.hermanos_centro}</td>
+                    </tr>
+                </table>
+                
+                <table class="inscripciones-summary-table">
+                    <tr>
+                        <th>Fecha de Nacimiento:</th>
+                        <td>
+                            <div class="inscripciones-date-display">
+                                Día: <div class="inscripciones-date-box">${fecha.day}</div>
+                                Mes: <div class="inscripciones-date-box">${fecha.month}</div>
+                                Año: <div class="inscripciones-date-box">${fecha.year}</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><th>Teléfono:</th><td>${data.telefono_estudiante}</td></tr>
+                    <tr><th>Celular:</th><td>${data.celular_estudiante}</td></tr>
+                    <tr><th>WhatsApp:</th><td>${data.whatsapp_estudiante}</td></tr>
+                    <tr><th>Dirección:</th><td>${data.direccion_estudiante}</td></tr>
+                    <tr><th>Número:</th><td>${data.numero_direccion}</td></tr>
+                    <tr><th>Sector:</th><td>${data.sector_estudiante}</td></tr>
+                    <tr><th>Correo electrónico:</th><td>${data.email_estudiante}</td></tr>
+                    <tr>
+                        <th>Tipo de Vivienda:</th>
+                        <td>${createCheckboxHtml(data.tipo_vivienda, [
+                            {value: 'Propia', label: 'Propia'},
+                            {value: 'Alquilada', label: 'Alquilada'},
+                            {value: 'Otro', label: 'Otro'}
+                        ])}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de Construcción:</th>
+                        <td>${createCheckboxHtml(data.tipo_construccion, [
+                            {value: 'Block', label: 'Block'},
+                            {value: 'Madera', label: 'Madera'},
+                            {value: 'Mejora', label: 'Mejora'}
+                        ])}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="inscripciones-summary-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-person-heart"></i> DATOS DE LA MADRE
+                </div>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Nombre/s:</th><td>${data.nombres_madre}</td></tr>
+                    <tr><th>Apellido/s:</th><td>${data.apellidos_madre}</td></tr>
+                    <tr><th>Cédula:</th><td>${data.cedula_madre}</td></tr>
+                </table>
+                
+                <table class="inscripciones-double-table">
+                    <tr>
+                        <th>Nivel de Escolaridad:</th>
+                        <td>${data.escolaridad_madre}</td>
+                        <th>Ocupación:</th>
+                        <td>${data.ocupacion_madre}</td>
+                    </tr>
+                </table>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Lugar de Trabajo:</th><td>${data.trabajo_madre}</td></tr>
+                    <tr><th>Teléfono:</th><td>${data.telefono_madre}</td></tr>
+                    <tr><th>Celular:</th><td>${data.celular_madre}</td></tr>
+                    <tr><th>Tel. del trabajo:</th><td>${data.telefono_trabajo_madre}</td></tr>
+                    <tr><th>Dirección:</th><td>${data.direccion_madre}</td></tr>
+                    <tr><th>Sector:</th><td>${data.sector_madre}</td></tr>
+                    <tr><th>Correo electrónico:</th><td>${data.email_madre}</td></tr>
+                </table>
+            </div>
+            
+            <div class="inscripciones-summary-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-person-standing"></i> DATOS DEL PADRE
+                </div>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Nombre/s:</th><td>${data.nombres_padre}</td></tr>
+                    <tr><th>Apellido/s:</th><td>${data.apellidos_padre}</td></tr>
+                    <tr><th>Cédula:</th><td>${data.cedula_padre}</td></tr>
+                </table>
+                
+                <table class="inscripciones-double-table">
+                    <tr>
+                        <th>Nivel de Escolaridad:</th>
+                        <td>${data.escolaridad_padre}</td>
+                        <th>Ocupación:</th>
+                        <td>${data.ocupacion_padre}</td>
+                    </tr>
+                </table>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Lugar de Trabajo:</th><td>${data.trabajo_padre}</td></tr>
+                    <tr><th>Teléfono:</th><td>${data.telefono_padre}</td></tr>
+                    <tr><th>Celular:</th><td>${data.celular_padre}</td></tr>
+                    <tr><th>Tel. del trabajo:</th><td>${data.telefono_trabajo_padre}</td></tr>
+                    <tr><th>Dirección:</th><td>${data.direccion_padre}</td></tr>
+                    <tr><th>Sector:</th><td>${data.sector_padre}</td></tr>
+                    <tr><th>Correo electrónico:</th><td>${data.email_padre}</td></tr>
+                </table>
+            </div>
+            
+            <div class="inscripciones-summary-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-info-circle"></i> INFORMACIÓN ADICIONAL
+                </div>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>¿Con quién vive el/la estudiante?:</th><td>${data.vive_con}</td></tr>
+                    <tr><th>Nombre del/la responsable:</th><td>${data.nombre_responsable}</td></tr>
+                </table>
+                
+                <table class="inscripciones-double-table">
+                    <tr>
+                        <th>Teléfono:</th>
+                        <td>${data.telefono_responsable}</td>
+                        <th>Celular:</th>
+                        <td>${data.celular_responsable}</td>
+                    </tr>
+                </table>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>Dirección:</th><td>${data.direccion_responsable}</td></tr>
+                    <tr><th>Correo electrónico:</th><td>${data.email_responsable}</td></tr>
+                </table>
+            </div>
+            
+            <div class="inscripciones-summary-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-heart-pulse"></i> INFORMACIÓN MÉDICA Y EMERGENCIAS
+                </div>
+                
+                <table class="inscripciones-summary-table">
+                    <tr><th>¿Padece alguna enfermedad?:</th><td>${data.padece_enfermedad === 'si' ? 'Sí' : 'No'}</td></tr>
+                    ${data.padece_enfermedad === 'si' ? `<tr><th>Tipo de enfermedad:</th><td>${data.tipo_enfermedad}</td></tr>` : ''}
+                    <tr><th>Nombre del medicamento:</th><td>${data.medicamento}</td></tr>
+                    <tr><th>Contacto de emergencia:</th><td>${data.contacto_emergencia}</td></tr>
+                </table>
+                
+                <table class="inscripciones-double-table">
+                    <tr>
+                        <th>Teléfono:</th>
+                        <td>${data.telefono_emergencia}</td>
+                        <th>Celular:</th>
+                        <td>${data.celular_emergencia}</td>
+                    </tr>
+                    <tr><th>Tel. Trabajo:</th><td colspan="3">${data.telefono_trabajo_emergencia}</td></tr>
+                </table>
+            </div>
+            
+            <div class="inscripciones-signature-section">
+                <div class="inscripciones-summary-title">
+                    <i class="bi bi-pen"></i> FIRMAS
+                </div>
+                
+                <div class="inscripciones-signature-row">
+                    <div class="inscripciones-signature-box">
+                        <div class="inscripciones-signature-line"></div>
+                        <div class="inscripciones-signature-label">Firma del Padre o Madre</div>
+                    </div>
+                    <div class="inscripciones-signature-box">
+                        <div class="inscripciones-signature-line"></div>
+                        <div class="inscripciones-signature-label">Firma del/la Estudiante</div>
+                    </div>
+                    <div class="inscripciones-signature-box">
+                        <div class="inscripciones-signature-line"></div>
+                        <div class="inscripciones-signature-label">Firma del receptor</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        summaryContent.innerHTML = summaryHTML;
+    }
+    
+    // Event Listeners
+    nextBtn.addEventListener('click', () => {
+        if (validateCurrentStep() && currentStep < steps.length) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+    
+    // Función para validar todos los campos obligatorios
+    function validarTodosLosCampos() {
+        let todosValidos = true;
+        const requiredInputs = form.querySelectorAll('[required]');
+        
+        // Limpiar errores anteriores
+        requiredInputs.forEach(input => {
+            const formGroup = input.closest('.inscripciones-form-group');
+            if (formGroup) {
+                formGroup.classList.remove('has-error');
+            }
+        });
+        
+        // Validar cada campo
+        requiredInputs.forEach(input => {
+            if (!input.value.trim()) {
+                todosValidos = false;
+                const formGroup = input.closest('.inscripciones-form-group');
+                if (formGroup) {
+                    formGroup.classList.add('has-error');
+                }
+            }
+        });
+        
+        return todosValidos;
+    }
+    
+    // Función SIMPLIFICADA para enviar el formulario
+    function enviarFormulario() {
+        console.log("Iniciando envío del formulario...");
+        
+        // Validar todos los campos
+        if (!validarTodosLosCampos()) {
+            alert('Por favor, completa todos los campos obligatorios marcados con *.');
+            // Ir al primer paso para mostrar errores
+            currentStep = 1;
+            showStep(currentStep);
+            return;
+        }
+        
+        // Confirmar envío
+        if (!confirm('¿Estás seguro de que deseas enviar el formulario? Revisa que todos los datos sean correctos.')) {
+            return;
+        }
+        
+        // Mostrar estado de carga
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitBtn.disabled = true;
+        
+        // SOLUCIÓN: Usar submit() tradicional en lugar de fetch
+        // Esto evita problemas de CORS, redirección y validación
+        console.log("Enviando formulario a:", form.action);
+        
+        // Forzar el envío del formulario
+        form.submit();
+        
+        // Si después de 5 segundos no se redirige, restaurar botón
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            console.log("Tiempo de espera agotado, restaurando botón...");
+        }, 5000);
+    }
+    
+    // Agregar evento al botón de enviar
+    submitBtn.addEventListener('click', function(e) {
+        console.log("Botón de enviar clickeado");
+        // IMPORTANTE: Prevenir el comportamiento por defecto
+        e.preventDefault();
+        enviarFormulario();
+    });
+    
+    // También manejar el evento submit del formulario
+    form.addEventListener('submit', function(e) {
+        console.log("Evento submit del formulario disparado");
+        // IMPORTANTE: Prevenir el envío automático
+        e.preventDefault();
+        // Usar nuestra función personalizada
+        enviarFormulario();
+    });
+    
+    // Inicializar
+    showStep(currentStep);
+    
+    // DEBUG: Verificar que todo esté configurado
+    console.log("Formulario cargado correctamente");
+    console.log("Action del formulario:", form.action);
+    console.log("Método del formulario:", form.method);
+</script>
+
+
+           
+ <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
+                
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                <li><a href="../Login/Ingresar_for.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Liceo Técnico Manuel Del Cabral</h3>
+                <p>Fe y Alegría - Santo Domingo Este</p>
+                <p>Calle Miguel Díaz del Almirante</p>
+                <p>Teléfono: (809) 555-1234</p>
+                <p>Email: info@liceomanueldelcabral.edu.do</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+                    
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../Login/Ingresar_for.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <a href="../html/innovacion.html" class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center; text-decoration: none; color: inherit; display: block;">
+    <i class="fas fa-rocket"></i> Innovación Educativa
+</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+</script>
+
+</body>
+</html>

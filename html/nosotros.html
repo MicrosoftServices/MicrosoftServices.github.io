@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información Institucional - Liceo Técnico Manuel Del Cabral</title>
+     <link rel="stylesheet" href="../css/banner-footer.css">
+     <link rel="icon" href="../img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+
+/* SECTION STYLES */
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--color-secondary);
+  border-radius: 2px;
+}
+
+.section-title p {
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+        .institution-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('https://www.diariodigital.com.do/wp-content/uploads/2017/06/FGM_0303.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 350px 0;
+            text-align: center;
+        }
+        
+        .history-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--color-accent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding: 0 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-right: 10px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -30px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -30px;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .mission-card, .vision-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .mission-card {
+            border-top: 4px solid var(--color-accent);
+        }
+        
+        .vision-card {
+            border-top: 4px solid var(--color-green);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .value-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+        
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .staff-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .staff-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .staff-info {
+            padding: 20px;
+        }
+        
+        .staff-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-primary);
+        }
+        
+        .staff-position {
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .facility-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .facility-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .facility-info {
+            padding: 20px;
+        }
+        
+        .location-map {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .map-placeholder {
+            height: 400px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .mapa iframe {
+            width: 100%;
+            max-width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+            margin: 3rem auto;
+            display: block;
+    }
+
+
+        .timeline-item {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+
+    .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .timeline-year {
+        transition: all 0.6s ease;
+        transform: scale(0.8);
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    .timeline-item.visible .timeline-year {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
+    }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Hero Section -->
+    <section class="institution-hero">
+        <div class="container">
+            <h1>Información Institucional</h1>
+            <p>Conoce nuestra historia, misión, visión y los valores que nos definen</p>
+        </div>
+    </section>
+
+    <!-- Historia -->
+<section id="historia" style="padding: 80px 0;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nuestra Historia</h2>
+            <p>Más de 40 años formando técnicos profesionales al servicio de la sociedad</p>
+        </div>
+        
+        <div class="history-timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1982</div>
+                <div class="timeline-content">
+                    <h3>Fundación</h3>
+                    <p>El Liceo Técnico Manuel Del Cabral fue fundado como parte del movimiento Fe y Alegría, con el objetivo de ofrecer educación técnica de calidad a jóvenes de escasos recursos.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">1990</div>
+                <div class="timeline-content">
+                    <h3>Primera Expansión</h3>
+                    <p>Se inauguraron los talleres de mecánica y electricidad, ampliando la oferta educativa técnica del liceo.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2005</div>
+                <div class="timeline-content">
+                    <h3>Incorporación de Informática</h3>
+                    <p>Se creó la especialidad de Informática, respondiendo a las demandas del mercado laboral en el área tecnológica.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <h3>Certificación de Calidad</h3>
+                    <p>El liceo obtuvo la certificación de calidad educativa del Ministerio de Educación, reconociendo la excelencia de nuestros programas.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <h3>Transformación Digital</h3>
+                    <p>Implementamos nuestra plataforma digital y comenzamos el proyecto de innovación tecnológica que incluye el museo virtual y realidad aumentada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Misión y Visión -->
+    <section id="mision-vision" style="padding: 60px 0; background-color: var(--color-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Misión y Visión</h2>
+                <p>Los principios que guían nuestra labor educativa</p>
+            </div>
+            
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye" style="font-size: 3rem; color: var(--color-accent); margin-bottom: 20px;"></i>
+                    <h3>Misión</h3>
+                    <p>Formar técnicos profesionales con excelencia académica, valores éticos y responsabilidad social, capaces de insertarse exitosamente en el mercado laboral o continuar estudios superiores, contribuyendo al desarrollo sostenible de la sociedad.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <i class="fas fa-eye" style="font-size: 3rem; color: var(--color-green); margin-bottom: 20px;"></i>
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos como el liceo técnico líder en innovación educativa y formación integral, que transforma vidas a través de una educación técnica de calidad, inclusiva y pertinente, formando ciudadanos comprometidos con el bien común.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section id="valores" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Valores</h2>
+                <p>Los principios que orientan nuestra comunidad educativa</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Responsabilidad</h3>
+                    <p>Asumimos con compromiso nuestras obligaciones y deberes, actuando con integridad en todo momento.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Respeto</h3>
+                    <p>Valoramos la dignidad de cada persona, aceptando y apreciando las diferencias individuales.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Solidaridad</h3>
+                    <p>Practicamos la ayuda mutua y el apoyo desinteresado hacia quienes más lo necesitan.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excelencia</h3>
+                    <p>Buscamos la mejora continua en todos nuestros procesos educativos y formativos.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovación</h3>
+                    <p>Fomentamos la creatividad y el pensamiento crítico para resolver problemas de manera original.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Ética</h3>
+                    <p>Actuamos con honestidad, transparencia y coherencia en todas nuestras acciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Instalaciones -->
+    <section id="instalaciones" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Instalaciones</h2>
+                <p>Espacios diseñados para el aprendizaje y desarrollo integral</p>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <img src="../img/lab_informatica.jpeg" alt="Talleres" class="facility-img">
+                    <div class="facility-info">
+                        <h3>Laboratorio de Informatica</h3>
+                        <p>Entorno para el desarrollo de la estética de diseño y la lógica de sistemas. Modelado de datos y creación de páginas web atractivas e intuitivas.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <img src="../img/biblioteca.jpeg" alt="Biblioteca" class="facility-img">
+                    <div class="facility-info">
+                        <h3>Biblioteca</h3>
+                        <p>Amplio espacio con  volúmenes y recursos digitales para investigación y estudio.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <img src="../img/lab_ciencias.jpeg" alt="Laboratorios" class="facility-img">
+                    <div class="facility-info">
+                        <h3>Laboratorios de Ciencias</h3>
+                        <p>Equipados para experimentación en física, química y biología con todas las medidas de seguridad.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <img src="../img/cancha.jpeg" alt="Canchas" class="facility-img">
+                    <div class="facility-info">
+                        <h3>Áreas Deportivas</h3>
+                        <p>Canchas multiusos para baloncesto, y fútbol, promoviendo el desarrollo físico y la recreación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación y Contacto -->
+    <section id="ubicacion" style="padding: 60px 0; background-color: var(--color-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ubicación y Contacto</h2>
+                <p>Visítanos o contáctanos para más información</p>
+            </div>
+
+            <div class="mapa">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.096844596469!2d-69.81676262671898!3d18.524525269057175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf866225cd89cb%3A0xd145dfb7e4b1c76c!2sLiceo%20T%C3%A9cnico%20Manuel%20Del%20Cabral!5e0!3m2!1ses-419!2sdo!4v1750298784309!5m2!1ses-419!2sdo" loading="lazy" ></iframe>
+  </div>
+            
+            
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>(809) 695-1417</p>
+                    
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Correo Electrónico</h3>
+                    <p>feyalegriamdelcabral@gmail.com</p>
+                    
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Viernes </p>
+                    <p>7:00 AM - 4:00 PM </p>
+            
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>Transporte</h3>
+                    
+                    <p>Parada: Frente al liceo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+  <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
+                
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                <li><a href="../Login/Ingresar_for.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+            <h3>Liceo Técnico Manuel Del Cabral</h3>
+            <p>Fe y Alegría - Santo Domingo Este</p>
+            <p>Calle Miguel Díaz del Almirante</p>
+            
+            <p>Teléfono: (809) 695-1417</p>
+            <p>Email: feyalegriamdelcabral@gmail.com</p>
+            <div class="social-links">
+            <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+            </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                   
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../Login/Ingresar_for.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <a href="../html/innovacion.html" class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center; text-decoration: none; color: inherit; display: block;">
+    <i class="fas fa-rocket"></i> Innovación Educativa
+</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+
+        // Animación de aparición con Intersection Observer
+    const items = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    items.forEach(item => observer.observe(item));
+</script>
+</body>
+</html>

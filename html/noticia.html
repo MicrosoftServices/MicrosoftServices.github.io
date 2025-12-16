@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela News - Portal de Noticias Escolares</title>
+    <link rel="icon" href="../img/logo.png">
+        <link rel="stylesheet" href="../css/banner-footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        
+        .main-container-school {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .main-panel-school {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .main-panel-school {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .editor-panel-school {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #1e3a8a;
+        }
+        
+        .panel-header-school {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e0f2fe;
+        }
+        
+        .panel-header-school i {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            background-color: #e0f2fe;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        .panel-title-school {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+        
+        .form-group-school {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-label-school {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a5f;
+            font-size: 0.95rem;
+        }
+        
+        .form-input-school, 
+        .form-select-school, 
+        .form-textarea-school {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #bfdbfe;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+        }
+        
+        .form-input-school:focus, 
+        .form-select-school:focus, 
+        .form-textarea-school:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-textarea-school {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .image-panel-school {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            border-top: 6px solid #3b82f6;
+        }
+        
+        .image-upload-container-school {
+            border: 3px dashed #93c5fd;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f0f9ff;
+            margin-bottom: 1.5rem;
+        }
+        
+        .image-upload-container-school:hover {
+            border-color: #2563eb;
+            background-color: #e0f2fe;
+        }
+        
+        .upload-icon-school {
+            font-size: 3rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-text-school {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+        
+        .upload-subtext-school {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .file-input-school {
+            display: none;
+        }
+        
+        .image-preview-container-school {
+            display: none;
+            margin-top: 1.5rem;
+        }
+        
+        .image-preview-school {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e0f2fe;
+        }
+        
+        .image-tools-school {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .image-tool-btn-school {
+            padding: 0.75rem 1.25rem;
+            background-color: #e0f2fe;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #1e3a5f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .image-tool-btn-school:hover {
+            background-color: #bfdbfe;
+        }
+        
+        .image-tool-btn-school.primary {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+        
+        .image-tool-btn-school.primary:hover {
+            background-color: #1e3a8a;
+        }
+        
+        .preview-panel-school {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            border-top: 6px solid #60a5fa;
+        }
+        
+        .preview-header-school {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .preview-badge-school {
+            background-color: #60a5fa;
+            color: #1e3a5f;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .preview-card-school {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e0f2fe;
+        }
+        
+        .preview-image-school {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #f0f9ff;
+        }
+        
+        .preview-content-school {
+            padding: 1.5rem;
+        }
+        
+        .preview-topic-school {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #1e3a8a;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .preview-title-school {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e3a5f;
+            line-height: 1.3;
+        }
+        
+        .preview-description-school {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .preview-footer-school {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .preview-date-school {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .news-panel-school {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid #1e3a8a;
+        }
+        
+        .news-header-school {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .section-title-school {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e3a5f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title-school i {
+            color: #1e3a8a;
+        }
+        
+        .news-controls-school {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .filter-select-school {
+            padding: 0.75rem 1rem;
+            border: 2px solid #bfdbfe;
+            border-radius: 8px;
+            font-weight: 500;
+            background-color: #ffffff;
+            cursor: pointer;
+            color: #1e3a5f;
+        }
+        
+        .news-grid-school {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .news-card-school {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e0f2fe;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+        }
+        
+        .news-card-school:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-image-school {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .news-content-school {
+            padding: 1.25rem;
+        }
+        
+        .news-topic-school {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #1e3a8a;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .news-title-school {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #1e3a5f;
+            line-height: 1.3;
+        }
+        
+        .news-description-school {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .news-footer-school {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .news-actions-school {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .news-action-btn-school {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .news-action-btn-school:hover {
+            color: #1e3a8a;
+            background-color: #e0f2fe;
+        }
+        
+        .empty-state-school {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #6b7280;
+            grid-column: 1 / -1;
+        }
+        
+        .empty-icon-school {
+            font-size: 4rem;
+            color: #bfdbfe;
+            margin-bottom: 1.5rem;
+        }
+        
+        .empty-title-school {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+        }
+        
+        .btn-school {
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary-school {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+        
+        .btn-primary-school:hover {
+            background-color: #1e3a8a;
+        }
+        
+        .btn-secondary-school {
+            background-color: #e0f2fe;
+            color: #1e3a5f;
+        }
+        
+        .btn-secondary-school:hover {
+            background-color: #bfdbfe;
+        }
+        
+        .btn-accent-school {
+            background-color: #60a5fa;
+            color: #1e3a5f;
+        }
+        
+        .btn-accent-school:hover {
+            background-color: #3b82f6;
+        }
+        
+        .btn-block-school {
+            width: 100%;
+        }
+        
+        .button-group-school {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .modal-school {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content-school {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header-school {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title-school {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+        
+        .close-modal-school {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .image-editor-school {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .editor-preview-school {
+            text-align: center;
+        }
+        
+        .editor-preview-img-school {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e0f2fe;
+        }
+        
+        .editor-controls-school {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .editor-slider-school {
+            flex-grow: 1;
+            min-width: 200px;
+        }
+        
+        .editor-slider-school label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        
+        .slider-container-school {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .slider-value-school {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        input[type="range"].slider-school {
+            flex-grow: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #bfdbfe;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        input[type="range"].slider-school::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+        }
+        
+        .notification-school {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #10b981;
+            color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .notification-school.error {
+            background-color: #ef4444;
+        }
+        
+        .notification-school.warning {
+            background-color: #f59e0b;
+            color: #1e3a5f;
+        }
+    </style>
+</head>
+<body>
+    <main class="main-container-school">
+        <div class="main-panel-school">
+            <div class="editor-panel-school">
+                <div class="panel-header-school">
+                    <i class="fas fa-pencil-alt"></i>
+                    <h2 class="panel-title-school">Crear Noticia Escolar</h2>
+                </div>
+                
+                <form id="newsForm">
+                    <div class="form-group-school">
+                        <label for="newsTopic" class="form-label-school">Área / Asignatura</label>
+                        <select id="newsTopic" class="form-select-school" required>
+                            <option value="">Selecciona un área</option>
+                            <option value="Académico">Académico</option>
+                            <option value="Deportes">Deportes</option>
+                            <option value="Arte y Cultura">Arte y Cultura</option>
+                            <option value="Actividades">Actividades</option>
+                            <option value="Anuncios">Anuncios</option>
+                            <option value="Logros">Logros</option>
+                            <option value="Proyectos">Proyectos</option>
+                            <option value="Eventos">Eventos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group-school">
+                        <label for="newsTitle" class="form-label-school">Título de la Noticia</label>
+                        <input type="text" id="newsTitle" class="form-input-school" placeholder="Ej: Equipo de fútbol gana el torneo intercolegial" required>
+                    </div>
+                    
+                    <div class="form-group-school">
+                        <label for="newsDescription" class="form-label-school">Contenido</label>
+                        <textarea id="newsDescription" class="form-textarea-school" placeholder="Describe la noticia escolar con detalle..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group-school">
+                        <label for="newsAuthor" class="form-label-school">Autor (opcional)</label>
+                        <input type="text" id="newsAuthor" class="form-input-school" placeholder="Estudiante, profesor o departamento">
+                    </div>
+                    
+                    <div class="button-group-school">
+                        <button type="submit" class="btn-school btn-primary-school btn-block-school">
+                            <i class="fas fa-paper-plane"></i>
+                            Publicar Noticia
+                        </button>
+                        <button type="button" id="clearForm" class="btn-school btn-secondary-school btn-block-school">
+                            <i class="fas fa-eraser"></i>
+                            Limpiar Formulario
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="preview-panel-school">
+                <div class="preview-header-school">
+                    <h3 class="panel-title-school">Vista Previa</h3>
+                    <div class="preview-badge-school">Vista previa en vivo</div>
+                </div>
+                
+                <div class="preview-card-school">
+                    <img id="previewImage" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vista previa" class="preview-image-school">
+                    <div class="preview-content-school">
+                        <div id="previewTopic" class="preview-topic-school">Área / Asignatura</div>
+                        <h3 id="previewTitle" class="preview-title-school">Título de la noticia escolar</h3>
+                        <p id="previewDescription" class="preview-description-school">Contenido de la noticia aparecerá aquí. Esta es una vista previa de cómo se verá tu noticia cuando sea publicada.</p>
+                        <div class="preview-footer-school">
+                            <div class="preview-date-school">
+                                <i class="far fa-calendar"></i>
+                                <span id="previewDate">Hoy</span>
+                            </div>
+                            <div class="preview-source-school">
+                                <i class="fas fa-user"></i>
+                                <span id="previewAuthor">Por: Autor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-panel-school">
+            <div class="panel-header-school">
+                <i class="fas fa-camera"></i>
+                <h2 class="panel-title-school">Agregar Imagen</h2>
+            </div>
+            
+            <div class="image-upload-container-school" id="uploadContainer">
+                <div class="upload-icon-school">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p class="upload-text-school">Arrastra y suelta una imagen escolar aquí</p>
+                <p class="upload-subtext-school">o haz clic para seleccionar un archivo (JPEG, PNG)</p>
+                <input type="file" id="imageInput" class="file-input-school" accept="image/*">
+            </div>
+            
+            <div class="image-preview-container-school" id="previewContainer">
+                <div class="image-tools-school">
+                    <button class="image-tool-btn-school" id="editImageBtn">
+                        <i class="fas fa-edit"></i>
+                        Editar Imagen
+                    </button>
+                    <button class="image-tool-btn-school primary" id="useImageBtn">
+                        <i class="fas fa-check"></i>
+                        Usar esta Imagen
+                    </button>
+                    <button class="image-tool-btn-school" id="removeImageBtn">
+                        <i class="fas fa-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="news-panel-school">
+            <div class="news-header-school">
+                <h2 class="section-title-school">
+                    <i class="fas fa-bullhorn"></i>
+                    Noticias Escolares
+                </h2>
+                
+                <div class="news-controls-school">
+                    <select class="filter-select-school" id="filterTopic">
+                        <option value="all">Todas las áreas</option>
+                        <option value="Académico">Académico</option>
+                        <option value="Deportes">Deportes</option>
+                        <option value="Arte y Cultura">Arte y Cultura</option>
+                        <option value="Actividades">Actividades</option>
+                        <option value="Anuncios">Anuncios</option>
+                        <option value="Logros">Logros</option>
+                        <option value="Proyectos">Proyectos</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
+                    
+                    <button class="btn-school btn-accent-school" id="refreshNews">
+                        <i class="fas fa-sync-alt"></i>
+                        Actualizar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="news-grid-school" id="newsGrid">
+                
+            </div>
+        </div>
+    </main>
+    
+    <div class="modal-school" id="imageEditorModal">
+        <div class="modal-content-school">
+            <div class="modal-header-school">
+                <h3 class="modal-title-school">Editor de Imágenes</h3>
+                <button class="close-modal-school" id="closeModalBtn">&times;</button>
+            </div>
+            
+            <div class="image-editor-school">
+                <div class="editor-preview-school">
+                    <img id="editorImage" src="" alt="Imagen a editar" class="editor-preview-img-school">
+                </div>
+                
+                <div class="editor-controls-school">
+                    <div class="editor-slider-school">
+                        <label for="brightnessSlider">Brillo</label>
+                        <div class="slider-container-school">
+                            <input type="range" id="brightnessSlider" class="slider-school" min="0" max="200" value="100">
+                            <span class="slider-value-school" id="brightnessValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-slider-school">
+                        <label for="contrastSlider">Contraste</label>
+                        <div class="slider-container-school">
+                            <input type="range" id="contrastSlider" class="slider-school" min="0" max="200" value="100">
+                            <span class="slider-value-school" id="contrastValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-slider-school">
+                        <label for="saturationSlider">Saturación</label>
+                        <div class="slider-container-school">
+                            <input type="range" id="saturationSlider" class="slider-school" min="0" max="200" value="100">
+                            <span class="slider-value-school" id="saturationValue">100%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button-group-school">
+                    <button class="btn-school btn-primary-school" id="applyImageBtn">
+                        <i class="fas fa-check"></i>
+                        Aplicar Cambios
+                    </button>
+                    <button class="btn-school btn-secondary-school" id="resetImageBtn">
+                        <i class="fas fa-undo"></i>
+                        Restaurar Original
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification-school" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Noticia publicada exitosamente</span>
+    </div>
+    
+    <script>
+        let newsItems = [];
+        let currentImage = null;
+        let originalImage = null;
+        let imageFilters = {
+            brightness: 100,
+            contrast: 100,
+            saturation: 100
+        };
+        
+        const newsForm = document.getElementById('newsForm');
+        const imageInput = document.getElementById('imageInput');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const editorImage = document.getElementById('editorImage');
+        const newsGrid = document.getElementById('newsGrid');
+        const filterTopic = document.getElementById('filterTopic');
+        const imageEditorModal = document.getElementById('imageEditorModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const applyImageBtn = document.getElementById('applyImageBtn');
+        const resetImageBtn = document.getElementById('resetImageBtn');
+        const editImageBtn = document.getElementById('editImageBtn');
+        const useImageBtn = document.getElementById('useImageBtn');
+        const removeImageBtn = document.getElementById('removeImageBtn');
+        const refreshNewsBtn = document.getElementById('refreshNews');
+        const clearFormBtn = document.getElementById('clearForm');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        
+        const previewTitle = document.getElementById('previewTitle');
+        const previewDescription = document.getElementById('previewDescription');
+        const previewTopic = document.getElementById('previewTopic');
+        const previewDate = document.getElementById('previewDate');
+        const previewAuthor = document.getElementById('previewAuthor');
+        
+        const brightnessSlider = document.getElementById('brightnessSlider');
+        const contrastSlider = document.getElementById('contrastSlider');
+        const saturationSlider = document.getElementById('saturationSlider');
+        const brightnessValue = document.getElementById('brightnessValue');
+        const contrastValue = document.getElementById('contrastValue');
+        const saturationValue = document.getElementById('saturationValue');
+        
+        function initApp() {
+            loadNewsFromStorage();
+            setupEventListeners();
+            updatePreview();
+            renderNews();
+            updateDateTime();
+            
+            setInterval(updateDateTime, 60000);
+        }
+        
+        function updateDateTime() {
+            const now = new Date();
+            
+            previewDate.textContent = now.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        function setupEventListeners() {
+            newsForm.addEventListener('submit', handleSubmitForm);
+            clearFormBtn.addEventListener('click', clearForm);
+            
+            document.getElementById('newsTitle').addEventListener('input', updatePreview);
+            document.getElementById('newsDescription').addEventListener('input', updatePreview);
+            document.getElementById('newsTopic').addEventListener('change', updatePreview);
+            document.getElementById('newsAuthor').addEventListener('input', updatePreview);
+            
+            imageInput.addEventListener('change', handleImageUpload);
+            uploadContainer.addEventListener('click', () => imageInput.click());
+            uploadContainer.addEventListener('dragover', handleDragOver);
+            uploadContainer.addEventListener('drop', handleDrop);
+            
+            editImageBtn.addEventListener('click', openImageEditor);
+            useImageBtn.addEventListener('click', useImageForNews);
+            removeImageBtn.addEventListener('click', removeImage);
+            
+            closeModalBtn.addEventListener('click', closeImageEditor);
+            applyImageBtn.addEventListener('click', applyImageFilters);
+            resetImageBtn.addEventListener('click', resetImageFilters);
+            
+            brightnessSlider.addEventListener('input', updateImageFilters);
+            contrastSlider.addEventListener('input', updateImageFilters);
+            saturationSlider.addEventListener('input', updateImageFilters);
+            
+            filterTopic.addEventListener('change', renderNews);
+            refreshNewsBtn.addEventListener('click', renderNews);
+        }
+        
+        function handleSubmitForm(e) {
+            e.preventDefault();
+            
+            const topic = document.getElementById('newsTopic').value;
+            const title = document.getElementById('newsTitle').value;
+            const description = document.getElementById('newsDescription').value;
+            const author = document.getElementById('newsAuthor').value || "Comunidad Escolar";
+            
+            if (!topic || !title || !description) {
+                showNotification('Por favor, completa todos los campos requeridos', 'error');
+                return;
+            }
+            
+            const newsItem = {
+                id: Date.now(),
+                topic: topic,
+                title: title,
+                description: description,
+                author: author,
+                date: new Date().toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }),
+                imageUrl: currentImage || 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+            };
+            
+            newsItems.unshift(newsItem);
+            
+            saveNewsToStorage();
+            
+            renderNews();
+            
+            showNotification('¡Noticia escolar publicada exitosamente!', 'success');
+            
+            clearForm();
+        }
+        
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            processImageFile(file);
+        }
+        
+        function processImageFile(file) {
+            if (!file.type.match('image.*')) {
+                showNotification('Por favor, selecciona un archivo de imagen válido', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalImage = e.target.result;
+                currentImage = originalImage;
+                
+                previewContainer.style.display = 'block';
+                document.getElementById('previewImage').src = currentImage;
+                
+                resetImageFilters();
+                
+                updatePreview();
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadContainer.style.borderColor = '#2563eb';
+            uploadContainer.style.backgroundColor = '#e0f2fe';
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadContainer.style.borderColor = '#93c5fd';
+            uploadContainer.style.backgroundColor = '#f0f9ff';
+            
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                processImageFile(file);
+            }
+        }
+        
+        function openImageEditor() {
+            if (!currentImage) return;
+            
+            editorImage.src = currentImage;
+            imageEditorModal.style.display = 'flex';
+        }
+        
+        function closeImageEditor() {
+            imageEditorModal.style.display = 'none';
+        }
+        
+        function updateImageFilters() {
+            imageFilters.brightness = parseInt(brightnessSlider.value);
+            imageFilters.contrast = parseInt(contrastSlider.value);
+            imageFilters.saturation = parseInt(saturationSlider.value);
+            
+            brightnessValue.textContent = `${imageFilters.brightness}%`;
+            contrastValue.textContent = `${imageFilters.contrast}%`;
+            saturationValue.textContent = `${imageFilters.saturation}%`;
+            
+            applyFiltersToImage(editorImage);
+        }
+        
+        function applyFiltersToImage(imgElement) {
+            const filter = `
+                brightness(${imageFilters.brightness}%)
+                contrast(${imageFilters.contrast}%)
+                saturate(${imageFilters.saturation}%)
+            `;
+            imgElement.style.filter = filter;
+        }
+        
+        function applyImageFilters() {
+            if (!currentImage) return;
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                ctx.filter = `
+                    brightness(${imageFilters.brightness}%)
+                    contrast(${imageFilters.contrast}%)
+                    saturate(${imageFilters.saturation}%)
+                `;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                currentImage = canvas.toDataURL('image/jpeg');
+                
+                document.getElementById('previewImage').src = currentImage;
+                previewImage.src = currentImage;
+                
+                closeImageEditor();
+                
+                showNotification('Filtros aplicados correctamente', 'success');
+            };
+            
+            img.src = originalImage;
+        }
+        
+        function resetImageFilters() {
+            imageFilters = {
+                brightness: 100,
+                contrast: 100,
+                saturation: 100
+            };
+            
+            brightnessSlider.value = imageFilters.brightness;
+            contrastSlider.value = imageFilters.contrast;
+            saturationSlider.value = imageFilters.saturation;
+            
+            brightnessValue.textContent = `${imageFilters.brightness}%`;
+            contrastValue.textContent = `${imageFilters.contrast}%`;
+            saturationValue.textContent = `${imageFilters.saturation}%`;
+            
+            if (editorImage.src) {
+                editorImage.style.filter = 'none';
+            }
+        }
+        
+        function useImageForNews() {
+            if (!currentImage) return;
+            
+            previewImage.src = currentImage;
+            showNotification('Imagen asignada a la noticia escolar', 'success');
+        }
+        
+        function removeImage() {
+            currentImage = null;
+            originalImage = null;
+            previewContainer.style.display = 'none';
+            
+            previewImage.src = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+        }
+        
+        function updatePreview() {
+            const topic = document.getElementById('newsTopic').value || 'Área / Asignatura';
+            const title = document.getElementById('newsTitle').value || 'Título de la noticia escolar';
+            const description = document.getElementById('newsDescription').value || 'Contenido de la noticia aparecerá aquí. Esta es una vista previa de cómo se verá tu noticia cuando sea publicada.';
+            const author = document.getElementById('newsAuthor').value || 'Autor';
+            
+            previewTopic.textContent = topic;
+            previewTitle.textContent = title;
+            previewDescription.textContent = description;
+            previewAuthor.textContent = `Por: ${author || 'Comunidad Escolar'}`;
+        }
+        
+        function clearForm() {
+            newsForm.reset();
+            updatePreview();
+            removeImage();
+        }
+        
+        function loadNewsFromStorage() {
+            const storedNews = localStorage.getItem('schoolNewsItems');
+            if (storedNews) {
+                newsItems = JSON.parse(storedNews);
+            } else {
+                newsItems = [
+                    {
+                        id: 1,
+                        topic: "Deportes",
+                        title: "Equipo de fútbol gana el torneo intercolegial",
+                        description: "Nuestro equipo de fútbol masculino obtuvo el primer lugar en el torneo intercolegial regional tras una emocionante final que terminó 3-2 a nuestro favor.",
+                        author: "Departamento de Educación Física",
+                        date: "15 de noviembre de 2023",
+                        imageUrl: "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        id: 2,
+                        topic: "Académico",
+                        title: "Estudiantes destacados en Olimpiada de Matemáticas",
+                        description: "Tres estudiantes de nuestro colegio obtuvieron medallas en la Olimpiada Nacional de Matemáticas, demostrando excelencia académica y dedicación.",
+                        author: "Departamento de Matemáticas",
+                        date: "12 de noviembre de 2023",
+                        imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        id: 3,
+                        topic: "Arte y Cultura",
+                        title: "Presentación de la obra de teatro 'El Principito'",
+                        description: "El grupo de teatro escolar presentará una adaptación de 'El Principito' el próximo viernes en el auditorio principal. ¡No se lo pierdan!",
+                        author: "Grupo de Teatro Escolar",
+                        date: "10 de noviembre de 2023",
+                        imageUrl: "https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                    },
+                    {
+                        id: 4,
+                        topic: "Eventos",
+                        title: "Feria científica anual: 'Innovando para el futuro'",
+                        description: "Este viernes se llevará a cabo nuestra feria científica anual donde los estudiantes presentarán proyectos innovadores relacionados con tecnología y sostenibilidad.",
+                        author: "Comité de Ciencias",
+                        date: "8 de noviembre de 2023",
+                        imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                    }
+                ];
+                saveNewsToStorage();
+            }
+        }
+        
+        function saveNewsToStorage() {
+            localStorage.setItem('schoolNewsItems', JSON.stringify(newsItems));
+        }
+        
+        function renderNews() {
+            const filter = filterTopic.value;
+            
+            let filteredNews = newsItems;
+            if (filter !== 'all') {
+                filteredNews = newsItems.filter(item => item.topic === filter);
+            }
+            
+            if (filteredNews.length === 0) {
+                newsGrid.innerHTML = `
+                    <div class="empty-state-school">
+                        <div class="empty-icon-school">
+                            <i class="far fa-newspaper"></i>
+                        </div>
+                        <h3 class="empty-title-school">No hay noticias para mostrar</h3>
+                        <p>${filter !== 'all' ? `No hay noticias en el área de "${filter}".` : 'Crea tu primera noticia escolar usando el formulario superior.'}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let newsHTML = '';
+            
+            filteredNews.forEach(item => {
+                newsHTML += `
+                    <article class="news-card-school" data-id="${item.id}">
+                        <img src="${item.imageUrl}" alt="${item.title}" class="news-image-school">
+                        <div class="news-content-school">
+                            <span class="news-topic-school">${item.topic}</span>
+                            <h3 class="news-title-school">${item.title}</h3>
+                            <p class="news-description-school">${item.description}</p>
+                            <div class="news-footer-school">
+                                <div class="news-date-school">
+                                    <i class="far fa-calendar"></i>
+                                    <span>${item.date}</span>
+                                </div>
+                                <div class="news-actions-school">
+                                    <button class="news-action-btn-school" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="news-action-btn-school" title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            });
+            
+            newsGrid.innerHTML = newsHTML;
+            
+            document.querySelectorAll('.news-action-btn-school').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.news-card-school');
+                    const id = parseInt(card.dataset.id);
+                    const action = this.querySelector('i').className.includes('trash') ? 'delete' : 'edit';
+                    
+                    if (action === 'delete') {
+                        deleteNewsItem(id);
+                    } else {
+                        editNewsItem(id);
+                    }
+                });
+            });
+        }
+        
+        function deleteNewsItem(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta noticia escolar?')) {
+                newsItems = newsItems.filter(item => item.id !== id);
+                saveNewsToStorage();
+                renderNews();
+                showNotification('Noticia eliminada correctamente', 'success');
+            }
+        }
+        
+        function editNewsItem(id) {
+            const newsItem = newsItems.find(item => item.id === id);
+            if (!newsItem) return;
+            
+            document.getElementById('newsTopic').value = newsItem.topic;
+            document.getElementById('newsTitle').value = newsItem.title;
+            document.getElementById('newsDescription').value = newsItem.description;
+            document.getElementById('newsAuthor').value = newsItem.author;
+            
+            if (newsItem.imageUrl && !newsItem.imageUrl.includes('unsplash.com')) {
+                currentImage = newsItem.imageUrl;
+                originalImage = newsItem.imageUrl;
+                previewContainer.style.display = 'block';
+                document.getElementById('previewImage').src = currentImage;
+                previewImage.src = currentImage;
+            }
+            
+            updatePreview();
+            
+            newsItems = newsItems.filter(item => item.id !== id);
+            
+            showNotification('Noticia cargada para edición', 'success');
+        }
+        
+        function showNotification(message, type = 'success') {
+            notificationText.textContent = message;
+            notification.className = 'notification-school';
+            
+            if (type === 'error') {
+                notification.classList.add('error');
+                notification.querySelector('i').className = 'fas fa-exclamation-circle';
+            } else if (type === 'warning') {
+                notification.classList.add('warning');
+                notification.querySelector('i').className = 'fas fa-exclamation-triangle';
+            } else {
+                notification.querySelector('i').className = 'fas fa-check-circle';
+            }
+            
+            notification.style.display = 'flex';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 4000);
+        }
+        
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+
+
+
+ <!-- Inclusión del banner y footer -->
+<script>
+    // Función para cargar el banner y footer
+    function loadBannerFooter() {
+        // Crear contenedores
+        const bannerContainer = document.createElement('div');
+        bannerContainer.id = 'banner-container';
+        document.body.insertBefore(bannerContainer, document.body.firstChild);
+        
+        const footerContainer = document.createElement('div');
+        footerContainer.id = 'footer-container';
+        document.body.appendChild(footerContainer);
+        
+        // Cargar el archivo
+        fetch('include/banner-footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el archivo');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Insertar banner
+                const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                if (headerMatch) {
+                    bannerContainer.innerHTML = headerMatch[0];
+                }
+                
+                // Insertar footer
+                const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                if (footerMatch) {
+                    footerContainer.innerHTML = footerMatch[0];
+                }
+                
+                // Extraer y ejecutar scripts
+                const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                if (scriptMatch) {
+                    const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                    eval(scriptContent);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar banner y footer:', error);
+                // Cargar contenido de respaldo si falla
+                loadFallbackBannerFooter();
+            });
+    }
+    
+    // Contenido de respaldo en caso de error
+    function loadFallbackBannerFooter() {
+        const bannerContainer = document.getElementById('banner-container');
+        const footerContainer = document.getElementById('footer-container');
+        
+        if (bannerContainer) {
+            bannerContainer.innerHTML = `
+                <header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <!-- Intentar cargar imagen, si falla mostrar ícono -->
+            <img src="../img/logo.png" alt="Logo Liceo Técnico Manuel Del Cabral" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Liceo Técnico Manuel Del Cabral</h1>
+             
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                
+                <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../Login/Ingresar_for.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+            `;
+        }
+        
+        if (footerContainer) {
+            footerContainer.innerHTML = `
+               <footer>
+     <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+            <h3>Liceo Técnico Manuel Del Cabral</h3>
+            <p>Fe y Alegría - Santo Domingo Este</p>
+            <p>Calle Miguel Díaz del Almirante</p>
+            
+            <p>Teléfono: (809) 695-1417</p>
+            <p>Email: feyalegriamdelcabral@gmail.com</p>
+            <div class="social-links">
+            <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+            </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                   
+                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                    <li><a href="../Login/Ingresar_for.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                    <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                    <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Proyecto Educativo 2025</h3>
+                <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                <a href="../html/innovacion.html" class="ar-badge" style="margin-top: 15px; background-color: var(--color-green); padding: 10px; border-radius: 5px; text-align: center; text-decoration: none; color: inherit; display: block;">
+    <i class="fas fa-rocket"></i> Innovación Educativa
+</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+            `;
+        }
+        
+        // Inicializar componentes después de cargar el contenido de respaldo
+        initComponents();
+        
+        // Manejar imágenes que no cargan
+        handleMissingImages();
+    }
+    
+    // Función para manejar imágenes faltantes
+    function handleMissingImages() {
+        const logoImg = document.querySelector('.logo img');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoImg && logoFallback) {
+            // Verificar si la imagen cargó correctamente
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.style.display = 'flex';
+            };
+            
+            // Si la imagen existe, ocultar el fallback
+            logoImg.onload = function() {
+                logoFallback.style.display = 'none';
+            };
+        }
+    }
+    
+    // Función para inicializar componentes (menú móvil, etc.)
+    function initComponents() {
+        // Menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        
+        if (menuToggle && navbar) {
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
+        // Cerrar menú al hacer clic en enlace (móvil)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 850 && navbar) {
+                    navbar.classList.remove('open');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        // Marcar enlace activo basado en la página actual
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar a');
+            
+            // Remover clase active de todos los enlaces primero
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Buscar y marcar el enlace correspondiente a la página actual
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                
+                // Caso especial para index.html
+                if (currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '') {
+                    if (linkHref.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                }
+                // Para otras páginas
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Si no se encontró ningún enlace activo, marcar el primero (Inicio)
+            const activeLinks = document.querySelectorAll('.navbar a.active');
+            if (activeLinks.length === 0 && navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+        
+        // Ejecutar la función cuando se carga la página
+        setActiveNavLink();
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Función para actualizar el estado activo del menú
+    function updateActiveMenu() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.navbar a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkPage = link.getAttribute('href').split('/').pop();
+            
+            // Comparar las páginas
+            if (currentPage === linkPage || 
+                (currentPage === '' && linkPage === 'index.html') ||
+                (currentPage.includes(linkPage.replace('.html', '')) && linkPage !== 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llamar a la función cuando se carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(updateActiveMenu, 100);
+    });
+    
+    // Cargar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadBannerFooter);
+    } else {
+        loadBannerFooter();
+    }
+</script>
+</body>
+</html>
