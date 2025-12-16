@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Experiencia en el Proyecto UAFAM</title>
+    <link rel="icon" href="../img/logo.png">
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .pagina-uafam {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        
+        
+        .titulo_nombres{
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+
+        .titulo-principal {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem; /* Aumentado */
+            font-weight: 700; /* Más negrita */
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #3498db; /* Más gruesa */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Sombra sutil */
+        }
+
+        .subtitulo-uafam {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem; /* Aumentado */
+            text-align: center;
+            color: #5d6d7e;
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .contenedor-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Columnas más anchas */
+            gap: 40px; /* Más espacio entre videos */
+            margin-top: 40px;
+        }
+
+        /* Estilos para todas las tarjetas de video */
+        .video-introduccion {
+            background: white;
+            border-radius: 20px; /* Bordes más redondeados */
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 6px solid #3498db; /* Borde superior más grueso */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Efecto hover mejorado */
+        .video-introduccion:hover {
+            transform: translateY(-10px) scale(1.02); /* Efecto más pronunciado */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contenedor de video - MUY IMPORTANTE: Aumentado significativamente */
+        .contenedor-video-uafam {
+            width: 100%;
+            height: 400px; /* ALTURA AUMENTADA para mejor visualización */
+            background-color: #1a2530; /* Fondo más oscuro para mejor contraste */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Video real - Ocupa todo el contenedor */
+        .video-real {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Muestra el video completo sin recortes */
+            display: block;
+            background-color: #000; /* Fondo negro para videos */
+        }
+
+        /* Placeholder cuando no hay video */
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px;
+            color: white;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+        }
+
+        .video-placeholder i {
+            font-size: 4rem; /* Más grande */
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .badge-video {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Contenido del video */
+        .contenido-video-uafam {
+            padding: 30px; /* Más padding */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .titulo-video-uafam {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem; /* Más grande */
+            font-weight: 700; /* Más negrita */
+            margin-bottom: 15px;
+            color: #2c3e50;
+            line-height: 1.4;
+        }
+
+        .descripcion-video-uafam {
+            color: #555;
+            font-size: 1.1rem; /* Más grande */
+            margin-bottom: 25px;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .duracion-video-uafam {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f1f8ff 0%, #e3f2fd 100%);
+            color: #3498db;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #bbdefb;
+        }
+
+        .duracion-video-uafam i {
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        /* Controles de video personalizados */
+        .contenedor-video-uafam video::-webkit-media-controls-panel {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .contenedor-video-uafam video::-webkit-media-controls-play-button {
+            background-color: #3498db;
+            border-radius: 50%;
+        }
+
+        /* Botón para cargar video */
+        .btn-cargar-video {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-cargar-video:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f639e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Instrucciones */
+        .instrucciones-videos {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 3px dashed #ff9800;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .instrucciones-videos h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .instrucciones-videos code {
+            background-color: #f5f5f5;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #d63384;
+            font-size: 1.1rem;
+        }
+
+        /* Sección de encabezado mejorada */
+        .encabezado-uafam {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .contenedor-videos {
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+                gap: 30px;
+            }
+            
+            .contenedor-video-uafam {
+                height: 350px; /* Altura ajustada para tablets grandes */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .contenedor-videos {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .titulo-principal {
+                font-size: 2.4rem;
+            }
+            
+            .subtitulo-uafam {
+                font-size: 1.3rem;
+            }
+            
+            .contenedor-video-uafam {
+                height: 400px; /* Mantenemos buena altura en tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .titulo-principal {
+                font-size: 2.2rem;
+            }
+            
+            .subtitulo-uafam {
+                font-size: 1.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .contenedor-video-uafam {
+                height: 350px; /* Altura para tablets pequeñas */
+            }
+            
+            .contenido-video-uafam {
+                padding: 25px;
+            }
+            
+            .titulo-video-uafam {
+                font-size: 1.5rem;
+            }
+            
+            .contenedor-videos {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .titulo-principal {
+                font-size: 1.9rem;
+            }
+            
+            .subtitulo-uafam {
+                font-size: 1.1rem;
+            }
+            
+            .contenedor-video-uafam {
+                height: 280px; /* Altura para móviles */
+            }
+            
+            .contenido-video-uafam {
+                padding: 20px;
+            }
+            
+            .titulo-video-uafam {
+                font-size: 1.4rem;
+            }
+            
+            .titulo_nombres {
+                font-size: 1.3rem;
+            }
+            
+            .badge-video {
+                top: 15px;
+                right: 15px;
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .contenedor-video-uafam {
+                height: 250px; /* Altura para móviles muy pequeños */
+            }
+            
+            .titulo-principal {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* Efectos de animación al cargar */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-introduccion {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Retrasos para animación escalonada */
+        .video-introduccion:nth-child(1) { animation-delay: 0.1s; }
+        .video-introduccion:nth-child(2) { animation-delay: 0.2s; }
+        .video-introduccion:nth-child(3) { animation-delay: 0.3s; }
+        .video-introduccion:nth-child(4) { animation-delay: 0.4s; }
+        .video-introduccion:nth-child(5) { animation-delay: 0.5s; }
+        .video-introduccion:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="pagina-uafam">
+        <div class="encabezado-uafam">
+            <h1 class="titulo-principal">Nuestra Experiencia en el Proyecto UAFAM</h1>
+            <p class="subtitulo-uafam">
+                Un recorrido visual a través de los testimonios y aprendizajes de cada integrante del equipo. 
+                Descubre cómo abordamos los desafíos, implementamos soluciones innovadoras y creamos experiencias 
+                educativas transformadoras.
+            </p>
+        </div>
+        
+        <div class="contenedor-videos">
+            <!-- Video 1: Introducción -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail1.jpg">
+                        <source src="../video/Ironny_Diaz.mp4" type="video/mp4">
+                        <source src="../videos/introduccion-uafam.webm" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 1</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Ironny Montero</h3>
+                    <h3 class="titulo-video-uafam">La Importancia y de qué trata el proyecto</h3>
+                    <p class="descripcion-video-uafam">
+                        En este video, Ironny nos presenta una visión general del proyecto UAFAM, 
+                        explicando su importancia educativa y los objetivos principales que guiaron 
+                        nuestro trabajo colaborativo.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 2:45 min
+                    </div>
+                </div>
+            </div>
+            
+             <!-- Video 2: Soluciones -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail3.jpg">
+                        <source src="../video/Juan_David.mp4" type="video/mp4">
+                        <source src="../video/Juan_David.mp4" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 2</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Juan David Segura Carbonel</h3>
+                    <h3 class="titulo-video-uafam">Figura 3D</h3>
+                    <p class="descripcion-video-uafam">
+                        Juan David nos muestra el proceso de creación de figuras 3D para el proyecto, 
+                        detallando las herramientas utilizadas y los desafíos superados en el 
+                        modelado tridimensional.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 3:20 min
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3: Desafíos -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail2.jpg">
+                        <source src="../video/Luisa_Jimenez.mp4" type="video/mp4">
+                        <source src="../videos/desafios-uafam.webm" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 3</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Luisa Jiménez</h3>
+                    <h3 class="titulo-video-uafam">Herramientas que utilizamos</h3>
+                    <p class="descripcion-video-uafam">
+                        Luisa comparte un análisis detallado de las herramientas tecnológicas 
+                        implementadas en el proyecto, explicando cómo cada una contribuyó al 
+                        éxito de nuestra iniciativa.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 2:55 min
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 4: Colaboración -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail4.jpg">
+                        <source src="../video/Carolin_Montero.mp4" type="video/mp4">
+                        <source src="../videos/colaboracion-uafam.webm" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 4</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Carolin Montero</h3>
+                    <h3 class="titulo-video-uafam">Línea gráfica</h3>
+                    <p class="descripcion-video-uafam">
+                        Carolin presenta el desarrollo de la línea gráfica del proyecto, 
+                        destacando las decisiones de diseño, paleta de colores y elementos 
+                        visuales que dan identidad a UAFAM.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 3:10 min
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 5: Resultados -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail5.jpg">
+                        <source src="../video/Andry_Tejada.mp4" type="video/mp4">
+                        <source src="../videos/resultados-uafam.webm" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 5</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Andry Tejada Feliz</h3>
+                    <h3 class="titulo-video-uafam">Realidad Aumentada</h3>
+                    <p class="descripcion-video-uafam">
+                        Andry explica la implementación de realidad aumentada en el proyecto, 
+                        demostrando cómo esta tecnología innovadora enriquece la experiencia 
+                        educativa de los usuarios.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 4:05 min
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video 6: Reflexión -->
+            <div class="video-introduccion">
+                <div class="contenedor-video-uafam">
+                    <video class="video-real" controls poster="../img/video-thumbnail6.jpg">
+                        <source src="../video/Lizmairy_montaño.mp4" type="video/mp4">
+                        <source src="../videos/reflexion-uafam.webm" type="video/webm">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                    <span class="badge-video">Video 6</span>
+                </div>
+                <div class="contenido-video-uafam">
+                    <h3 class="titulo_nombres">Lizmairy Montaño</h3>
+                    <h3 class="titulo-video-uafam">Reflexiones y aprendizajes</h3>
+                    <p class="descripcion-video-uafam">
+                        Lizmairy comparte una reflexión final sobre el proyecto, destacando 
+                        los aprendizajes más valiosos, desafíos superados y la importancia 
+                        del trabajo en equipo en iniciativas educativas innovadoras.
+                    </p>
+                    <div class="duracion-video-uafam">
+                        <i class="far fa-clock"></i> Duración: 3:30 min
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <br>
+
+    <script>
+        // Mantener el script original pero con mejoras para la nueva interfaz
+        // Función para cargar un video desde el PC
+        function cargarVideo(numeroVideo) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'video/*';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                // Validar tipo de archivo
+                const validTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Por favor, selecciona un archivo de video válido (MP4, WebM u OGG)');
+                    return;
+                }
+                
+                // Validar tamaño (máximo 500MB)
+                const maxSize = 500 * 1024 * 1024; // 500MB
+                if (file.size > maxSize) {
+                    alert('El archivo es demasiado grande. El tamaño máximo permitido es 500MB');
+                    return;
+                }
+                
+                // Crear URL temporal
+                const videoURL = URL.createObjectURL(file);
+                
+                // Obtener el contenedor de video correspondiente
+                const videoContainers = document.querySelectorAll('.contenedor-video-uafam');
+                if (videoContainers[numeroVideo - 1]) {
+                    // Crear nuevo elemento video
+                    const videoElement = document.createElement('video');
+                    videoElement.className = 'video-real';
+                    videoElement.controls = true;
+                    videoElement.preload = 'metadata';
+                    
+                    const sourceElement = document.createElement('source');
+                    sourceElement.src = videoURL;
+                    sourceElement.type = file.type;
+                    
+                    videoElement.appendChild(sourceElement);
+                    videoElement.innerHTML += 'Tu navegador no soporta la reproducción de video.';
+                    
+                    // Reemplazar el contenido del contenedor
+                    videoContainers[numeroVideo - 1].innerHTML = '';
+                    videoContainers[numeroVideo - 1].appendChild(videoElement);
+                    
+                    // Agregar el badge de nuevo
+                    const badge = document.createElement('span');
+                    badge.className = 'badge-video';
+                    badge.textContent = `Video ${numeroVideo}`;
+                    videoContainers[numeroVideo - 1].appendChild(badge);
+                    
+                    // Mostrar mensaje de éxito con más información
+                    const sizeMB = (file.size / (1024*1024)).toFixed(2);
+                    alert(`✅ Video ${numeroVideo} cargado correctamente:\n\n📁 Nombre: ${file.name}\n📊 Tamaño: ${sizeMB} MB\n🎬 Formato: ${file.type}\n\nEl video estará disponible mientras esta página esté abierta.`);
+                    
+                    // Calcular y mostrar duración
+                    videoElement.addEventListener('loadedmetadata', function() {
+                        actualizarDuracion(numeroVideo, videoElement.duration);
+                        
+                        // Actualizar información de resolución si está disponible
+                        const videoTrack = videoElement.videoWidth && videoElement.videoHeight ? 
+                            `${videoElement.videoWidth}×${videoElement.videoHeight}` : 'Desconocida';
+                        
+                        console.log(`Resolución del video ${numeroVideo}: ${videoTrack}`);
+                    });
+                    
+                    // Manejar errores
+                    videoElement.addEventListener('error', function() {
+                        mostrarPlaceholder(numeroVideo, 'Error al cargar el video');
+                    });
+                    
+                    // Mejorar experiencia de usuario
+                    videoElement.addEventListener('playing', function() {
+                        console.log(`Reproduciendo video ${numeroVideo}`);
+                    });
+                }
+            };
+            
+            input.click();
+        }
+        
+        // Función para actualizar la duración del video
+        function actualizarDuracion(numeroVideo, duracionSegundos) {
+            const minutos = Math.floor(duracionSegundos / 60);
+            const segundos = Math.floor(duracionSegundos % 60);
+            const duracionTexto = `${minutos}:${segundos < 10 ? '0' : ''}${segundos} min`;
+            
+            // Actualizar en la interfaz
+            const duracionElementos = document.querySelectorAll('.duracion-video-uafam');
+            if (duracionElementos[numeroVideo - 1]) {
+                duracionElementos[numeroVideo - 1].innerHTML = `<i class="far fa-clock"></i> Duración: ${duracionTexto}`;
+            }
+        }
+        
+        // Función para mostrar placeholder si el video falla
+        function mostrarPlaceholder(numeroVideo, mensaje) {
+            const videoContainers = document.querySelectorAll('.contenedor-video-uafam');
+            if (videoContainers[numeroVideo - 1]) {
+                videoContainers[numeroVideo - 1].innerHTML = `
+                    <div class="video-placeholder">
+                        <i class="fas fa-video-slash"></i>
+                        <p style="font-size: 1.2rem; margin-bottom: 10px;">${mensaje}</p>
+                        <p>Video ${numeroVideo} no disponible</p>
+                        <button class="btn-cargar-video" onclick="cargarVideo(${numeroVideo})" style="margin-top: 20px;">
+                            <i class="fas fa-upload"></i> Cargar Nuevo Video
+                        </button>
+                    </div>
+                    <span class="badge-video">Video ${numeroVideo}</span>
+                `;
+            }
+        }
+        
+        // Verificar videos al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de videos UAFAM cargada');
+            
+            // Verificar cada video
+            const videos = document.querySelectorAll('.video-real');
+            videos.forEach((video, index) => {
+                // Configurar eventos para cada video
+                video.addEventListener('error', function() {
+                    setTimeout(() => {
+                        if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE ||
+                            video.networkState === HTMLMediaElement.NETWORK_EMPTY) {
+                            mostrarPlaceholder(index + 1, 'Video no encontrado en la ruta especificada');
+                        }
+                    }, 2000);
+                });
+                
+                // Intentar cargar el video
+                video.load();
+                
+                // Obtener duración si está disponible
+                video.addEventListener('loadedmetadata', function() {
+                    actualizarDuracion(index + 1, video.duration);
+                    
+                    // Verificar si el video tiene dimensiones adecuadas
+                    if (video.videoWidth > 0 && video.videoHeight > 0) {
+                        console.log(`Video ${index + 1}: ${video.videoWidth}×${video.videoHeight}`);
+                    }
+                });
+                
+                // Mejorar controles de video
+                video.addEventListener('play', function() {
+                    // Pausar otros videos si se reproduce uno nuevo
+                    videos.forEach((otherVideo, otherIndex) => {
+                        if (otherIndex !== index && !otherVideo.paused) {
+                            otherVideo.pause();
+                        }
+                    });
+                });
+            });
+            
+            // Agregar eventos para mejor UX
+            const videoCards = document.querySelectorAll('.video-introduccion');
+            videoCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.cursor = 'pointer';
+                });
+                
+                // Hacer toda la tarjeta clickeable para enfocar el video
+                card.addEventListener('click', function(e) {
+                    // No hacer nada si se hace clic en un botón o enlace
+                    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+                        return;
+                    }
+                    
+                    // Enfocar el video dentro de esta tarjeta
+                    const video = this.querySelector('.video-real');
+                    if (video) {
+                        video.focus();
+                    }
+                });
+            });
+            
+            // Agregar soporte para teclado
+            document.addEventListener('keydown', function(e) {
+                // Espacio para pausar/reproducir video enfocado
+                if (e.code === 'Space') {
+                    const focusedVideo = document.activeElement;
+                    if (focusedVideo && focusedVideo.classList.contains('video-real')) {
+                        e.preventDefault();
+                        if (focusedVideo.paused) {
+                            focusedVideo.play();
+                        } else {
+                            focusedVideo.pause();
+                        }
+                    }
+                }
+                
+                // Flechas para navegar entre videos
+                if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') {
+                    const videos = document.querySelectorAll('.video-real');
+                    const focusedIndex = Array.from(videos).findIndex(v => v === document.activeElement);
+                    
+                    if (focusedIndex >= 0) {
+                        let nextIndex;
+                        if (e.code === 'ArrowRight') {
+                            nextIndex = (focusedIndex + 1) % videos.length;
+                        } else {
+                            nextIndex = (focusedIndex - 1 + videos.length) % videos.length;
+                        }
+                        
+                        videos[nextIndex].focus();
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+        
+        // Función para cambiar manualmente la ruta de un video
+        function cambiarRutaManual(numeroVideo) {
+            const nuevaRuta = prompt(`Ingresa la nueva ruta para el Video ${numeroVideo}:\n\nEjemplos:\n• ../videos/mi-video.mp4\n• https://ejemplo.com/video.mp4\n\nRuta actual:`, 
+                document.querySelector(`.video-introduccion:nth-child(${numeroVideo}) .video-real source`).src);
+            
+            if (nuevaRuta && nuevaRuta.trim() !== '') {
+                const videoContainers = document.querySelectorAll('.contenedor-video-uafam');
+                if (videoContainers[numeroVideo - 1]) {
+                    const videoElement = videoContainers[numeroVideo - 1].querySelector('.video-real');
+                    if (videoElement) {
+                        const sourceElement = videoElement.querySelector('source');
+                        if (sourceElement) {
+                            sourceElement.src = nuevaRuta;
+                            videoElement.load();
+                            alert(`✅ Ruta actualizada para Video ${numeroVideo}\n\nSe intentará cargar desde: ${nuevaRuta}`);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Script para banner y footer (sin cambios) -->
+    <script>
+        // Mantener el script original para banner y footer
+        function loadBannerFooter() {
+            // Crear contenedores
+            const bannerContainer = document.createElement('div');
+            bannerContainer.id = 'banner-container';
+            document.body.insertBefore(bannerContainer, document.body.firstChild);
+            
+            const footerContainer = document.createElement('div');
+            footerContainer.id = 'footer-container';
+            document.body.appendChild(footerContainer);
+            
+            // Cargar desde archivo externo
+            fetch('include/banner-footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error('No se pudo cargar banner y footer');
+                    return response.text();
+                })
+                .then(data => {
+                    // Extraer header
+                    const headerMatch = data.match(/<header[\s\S]*?<\/header>/);
+                    if (headerMatch) bannerContainer.innerHTML = headerMatch[0];
+                    
+                    // Extraer footer
+                    const footerMatch = data.match(/<footer[\s\S]*?<\/footer>/);
+                    if (footerMatch) footerContainer.innerHTML = footerMatch[0];
+                    
+                    // Ejecutar scripts internos
+                    const scriptMatch = data.match(/<script>[\s\S]*?<\/script>/);
+                    if (scriptMatch) {
+                        const scriptContent = scriptMatch[0].replace(/<script>|<\/script>/g, '');
+                        eval(scriptContent);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadFallbackBannerFooter();
+                });
+        }
+        
+        // Fallback si no se puede cargar el archivo externo
+        function loadFallbackBannerFooter() {
+            const bannerContainer = document.getElementById('banner-container');
+            const footerContainer = document.getElementById('footer-container');
+            
+            if (bannerContainer) {
+                bannerContainer.innerHTML = `
+                    <header class="site-header">
+                        <div class="container header-inner">
+                            <div class="logo">
+                                <img src="../img/logo.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="logo-fallback" style="display: none;"><i class="fas fa-graduation-cap"></i></div>
+                                <div class="logo-text"><h1>Liceo Técnico Manuel Del Cabral</h1></div>
+                            </div>
+                            <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                            <nav class="navbar" id="navbar">
+                                <ul>
+                                    <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                                    <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                                    <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                                    <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                                    <li><a href="../Login/Ingresar_for.html" class="nav-btn"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+                `;
+            }
+            
+            if (footerContainer) {
+                footerContainer.innerHTML = `
+                    <footer>
+                        <div class="container">
+                            <div class="footer-content">
+                                <div class="footer-column">
+                                    <h3>Liceo Técnico Manuel Del Cabral</h3>
+                                    <p>Fe y Alegría - Santo Domingo Este</p>
+                                    <p>Calle Miguel Díaz del Almirante</p>
+                                    <p>Teléfono: (809) 695-1417</p>
+                                    <p>Email: feyalegriamdelcabral@gmail.com</p>
+                                    <div class="social-links">
+                                        <a href="https://www.facebook.com/LiceoTecnicoManueldelCabralFeyAlegria?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="https://www.instagram.com/manueldelcabralfeyalegria"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Enlaces Rápidos</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="../html/index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                                        <li><a href="../html/museo-virtual.html"><i class="fas fa-palette"></i> Museo Virtual</a></li>
+                                        <li><a href="../html/gestion.html"><i class="fas fa-tasks"></i> Gestión</a></li>
+                                        <li><a href="../html/realidad_aumentada.html"><i class="fas fa-vr-cardboard"></i> Realidad Aumentada</a></li>
+                                        <li><a href="../Login/Ingresar_for.html"><i class="fas fa-edit"></i> Inscripciones</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Recursos</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="../html/calendario.html"><i class="fas fa-chevron-right"></i> Calendario Escolar</a></li>
+                                        <li><a href="../html/manual.html"><i class="fas fa-chevron-right"></i> Manual del Estudiante</a></li>
+                                        <li><a href="../html/biblioteca.html"><i class="fas fa-chevron-right"></i> Biblioteca Virtual</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Proyecto Educativo 2025</h3>
+                                    <p>Este portal web forma parte del proyecto de innovación tecnológica para resaltar la creatividad estudiantil y optimizar la gestión administrativa.</p>
+                                    <a href="../html/innovacion.html" class="ar-badge" style="margin-top: 15px; background-color: #10b981; padding: 10px; border-radius: 5px; text-align: center; text-decoration: none; color: inherit; display: block;">
+                                        <i class="fas fa-rocket"></i> Innovación Educativa
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="copyright">
+                                <p>&copy; 2025 Liceo Técnico Manuel Del Cabral Fe y Alegría. Todos los derechos reservados.</p>
+                            </div>
+                        </div>
+                    </footer>
+                `;
+            }
+            
+            initComponents();
+        }
+        
+        // Inicializar componentes
+        function initComponents() {
+            // Menú móvil
+            const menuToggle = document.getElementById('menu-toggle');
+            const navbar = document.getElementById('navbar');
+            
+            if (menuToggle && navbar) {
+                menuToggle.addEventListener('click', function() {
+                    navbar.classList.toggle('open');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+            
+            // Cerrar menú al hacer clic en enlace (móvil)
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 850 && navbar) {
+                        navbar.classList.remove('open');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+        
+        // Cargar cuando esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadBannerFooter);
+        } else {
+            loadBannerFooter();
+        }
+    </script>
+</body>
+</html>

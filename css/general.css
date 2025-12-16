@@ -265,17 +265,7 @@ body {
   margin-bottom: 15px;
 }
 
-.ar-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background-color: var(--color-accent);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
+
 
 /* GESTIÓN ADMINISTRATIVA */
 #gestion {
