@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚲 Carta para Cristofer · Bicycle love</title>
+  <!-- Font Awesome 6 (iconos de bicis) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #0b2f4e, #134b6b); /* fondo azul marino degradado */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ---------- FONDO DE BICICLETAS ANIMADAS (CAYENDO) ---------- */
+    .bici-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none; /* para que no interfiera con clics */
+      overflow: hidden;
+    }
+
+    .bici {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.6;
+      animation: caer linear infinite;
+      color: #fff; /* color base, luego cada una tiene su propio color */
+      text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    /* Diferentes colores, tamaños y velocidades */
+    @keyframes caer {
+      0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.2; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(120vh) rotate(20deg); opacity: 0.1; }
+    }
+
+    /* Generamos 20 bicicletas con posiciones, colores y retrasos distintos */
+    .bici:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; color: #FF5733; font-size: 2.2rem; }
+    .bici:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: 2s; color: #33FF57; font-size: 1.8rem; }
+    .bici:nth-child(3) { left: 25%; animation-duration: 14s; animation-delay: 1s; color: #3357FF; font-size: 2.5rem; }
+    .bici:nth-child(4) { left: 35%; animation-duration: 20s; animation-delay: 0.5s; color: #FF33F5; font-size: 2rem; }
+    .bici:nth-child(5) { left: 45%; animation-duration: 16s; animation-delay: 3s; color: #FFD733; font-size: 2.3rem; }
+    .bici:nth-child(6) { left: 55%; animation-duration: 22s; animation-delay: 1.2s; color: #33FFF5; font-size: 1.9rem; }
+    .bici:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 0.2s; color: #F533FF; font-size: 2.4rem; }
+    .bici:nth-child(8) { left: 75%; animation-duration: 19s; animation-delay: 2.5s; color: #FF8C33; font-size: 1.7rem; }
+    .bici:nth-child(9) { left: 85%; animation-duration: 17s; animation-delay: 0.8s; color: #8C33FF; font-size: 2.1rem; }
+    .bici:nth-child(10) { left: 95%; animation-duration: 15s; animation-delay: 1.8s; color: #33FF8C; font-size: 2.6rem; }
+    .bici:nth-child(11) { left: 10%; animation-duration: 21s; animation-delay: 4s; color: #FF336E; font-size: 1.8rem; }
+    .bici:nth-child(12) { left: 30%; animation-duration: 14s; animation-delay: 3.2s; color: #6E33FF; font-size: 2.2rem; }
+    .bici:nth-child(13) { left: 50%; animation-duration: 18s; animation-delay: 5s; color: #FFB533; font-size: 2rem; }
+    .bici:nth-child(14) { left: 70%; animation-duration: 16s; animation-delay: 2.2s; color: #33B5FF; font-size: 2.3rem; }
+    .bici:nth-child(15) { left: 90%; animation-duration: 23s; animation-delay: 0.3s; color: #B533FF; font-size: 1.9rem; }
+    .bici:nth-child(16) { left: 8%; animation-duration: 12s; animation-delay: 6s; color: #FF5733; font-size: 2.4rem; }
+    .bici:nth-child(17) { left: 22%; animation-duration: 19s; animation-delay: 1.5s; color: #33FFBD; font-size: 1.8rem; }
+    .bici:nth-child(18) { left: 42%; animation-duration: 20s; animation-delay: 4.5s; color: #FF33A8; font-size: 2.5rem; }
+    .bici:nth-child(19) { left: 62%; animation-duration: 15s; animation-delay: 0.7s; color: #A833FF; font-size: 2rem; }
+    .bici:nth-child(20) { left: 82%; animation-duration: 17s; animation-delay: 3.7s; color: #33FF88; font-size: 2.2rem; }
+
+    /* ---------- TARJETA PRINCIPAL (SOBRE EL FONDO) ---------- */
+    .container {
+      width: 100%;
+      max-width: 700px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      border-radius: 48px 48px 48px 48px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 30px 40px -10px rgba(0, 0, 0, 0.4);
+      border: 4px solid #1e88e5; /* detalle azul fuerte */
+      transition: 0.3s;
+    }
+
+    /* ESTILO INICIAL (BOTÓN) */
+    .inicio {
+      display: block;
+      text-align: center;
+    }
+
+    .inicio h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      color: #0d3c5e;
+      text-shadow: 2px 2px 0 #cfe7ff;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitulo {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #0d4670;
+      background: #bbdefb;
+      display: inline-block;
+      padding: 0.3rem 1.5rem;
+      border-radius: 60px;
+      margin-bottom: 1.2rem;
+      border: 2px solid #1565c0;
+    }
+
+    .subtitulo i {
+      margin-right: 0.4rem;
+      color: #0d3c5e;
+    }
+
+    .btn-bici {
+      background: #0d47a1; /* azul oscuro */
+      border: none;
+      border-bottom: 8px solid #002171;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      padding: 1.3rem 2.8rem;
+      border-radius: 80px;
+      margin: 1.8rem 0 1.2rem;
+      cursor: pointer;
+      transition: all 0.06s linear;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      box-shadow: 0 10px 20px rgba(13, 71, 161, 0.5);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-bici i {
+      font-size: 2.2rem;
+      color: #ffeb3b; /* amarillo contraste */
+    }
+
+    .btn-bici:hover {
+      background: #1565c0;
+      border-bottom-width: 4px;
+      transform: translateY(4px);
+      box-shadow: 0 15px 25px rgba(21, 101, 192, 0.6);
+    }
+
+    .btn-bici:active {
+      transform: translateY(8px);
+      border-bottom-width: 2px;
+    }
+
+    .click {
+      color: #1a4b6d;
+      font-size: 1.2rem;
+      font-weight: 500;
+      background: rgba(187, 222, 251, 0.7);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    /* ESTILO DE LA CARTA (OCULTA AL INICIO) */
+    .carta {
+      display: none;
+      animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .carta-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.6rem;
+      color: #0d47a1;
+      margin-bottom: 0.8rem;
+    }
+
+    .carta-header i {
+      background: #0d47a1;
+      color: white;
+      padding: 0.6rem;
+      border-radius: 50%;
+    }
+
+    .carta h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #003c8f;
+      margin-bottom: 0.2rem;
+      border-left: 12px solid #42a5f5;
+      padding-left: 1.2rem;
+    }
+
+    .mensaje {
+      background: #e3f2fd; /* azul clarito */
+      border-radius: 32px 8px 32px 8px;
+      padding: 2rem 2.2rem;
+      margin: 1.8rem 0;
+      border: 3px dashed #1e88e5;
+      box-shadow: inset 0 0 0 4px white, inset 0 0 0 6px #bbdefb;
+      line-height: 1.9;
+    }
+
+    .mensaje p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #002f4e;
+      margin-bottom: 1.2rem;
+    }
+
+    .firma-bici {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0d47a1;
+      border-top: 2px solid #90caf9;
+      padding-top: 1.2rem;
+    }
+
+    .firma-bici span {
+      font-family: 'Montserrat', sans-serif;
+      background: #0d47a1;
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 1.3rem;
+    }
+
+    .decoracion-final {
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+      color: #1565c0;
+      margin-top: 0.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 550px) {
+      .card { padding: 1.8rem 1.2rem; }
+      .inicio h1 { font-size: 2rem; }
+      .btn-bici { font-size: 1.5rem; padding: 1rem 1.8rem; }
+      .carta h2 { font-size: 1.8rem; }
+      .mensaje p { font-size: 1rem; }
+      .bici { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- FONDO DE BICICLETAS QUE BAJAN (VARIOS COLORES) -->
+  <div class="bici-bg">
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+    <div class="bici"><i class="fas fa-bicycle"></i></div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <!-- VISTA INICIAL: BOTÓN -->
+      <div id="inicio" class="inicio">
+        <h1>🚵 </h1>
+        <div class="subtitulo">
+          <i class="fas fa-bicycle"></i> para Cristofer
+        </div>
+        <button id="btnAbrir" class="btn-bici">
+          <i class="fas fa-envelope-open-text"></i> Descubre tu nueva ruta 
+        </button>
+        <p class="click">💙 Haz clic y descubre tu ruta ciclista 💙</p>
+      </div>
+
+      <!-- VISTA CARTA (dedicatoria) -->
+      <div id="carta" class="carta">
+        <div class="carta-header">
+          <i class="fas fa-bicycle"></i>
+          <span style="font-weight:600;">Ruta especial · Cristofer</span>
+        </div>
+        <h2>Querido Cristofer,</h2>
+        
+        <!--  AQUÍ TU DEDICATORIA PERSONALIZADA  -->
+        <div id="mensaje-texto" class="mensaje">
+          <p>🚴‍♂️Cristofer, en este día tan especial quiero decirte que sigas siendo ese ídolo y ejemplo que muchos admiramos. De verdad eres una buena persona, alguien que inspira sin darse cuenta y al que vale la pena seguir.</p>
+          <p>Que nunca se te olvide lo mucho que vales y todo lo bueno que transmites. Personas como tú no se encuentran todos los días.</p>
+          <p>Espero que hoy termine súper bien, lleno de alegría, bendiciones y rodeado de todas las personas que te aprecian de verdad.🚴‍♀️</p>
+        </div>
+        
+        <div class="firma-bici">
+          <i class="fas fa-bicycle" style="color:#0d47a1;"></i>
+          <span>Con cariño, Andry</span>
+          <i class="fas fa-bicycle" style="color:#0d47a1;"></i>
+        </div>
+        <div class="decoracion-final">
+          🚴‍♂️ 💨 🚴‍♀️  🚴‍♂️ 💨 🚴‍♀️  🚴‍♂️ 💨 🚴‍♀️
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const boton = document.getElementById('btnAbrir');
+      const inicio = document.getElementById('inicio');
+      const carta = document.getElementById('carta');
+
+      boton.addEventListener('click', function() {
+        inicio.style.display = 'none';
+        carta.style.display = 'block';
+      });
+    })();
+  </script>
+</body>
+</html>
