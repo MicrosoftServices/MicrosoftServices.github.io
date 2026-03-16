@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Objetivos – HIMANABI</title>
+<link rel="stylesheet" href="../css/banner-footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ═══════════════════════════════
+   BASE — warm browns palette
+   Main brown:  #7b4f1e
+   Mid brown:   #5c3610
+   Deep brown:  #3d2008
+   Gold:        #c8922a
+   Light gold:  #e8b84b
+   Cream text:  #f5e8cf
+═══════════════════════════════ */
+.hb-page{
+  font-family:'Lato',sans-serif;
+  background:#7b4f1e;
+  color:#f5e8cf;
+  overflow-x:hidden;
+}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hb-hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  background:#5c3610;
+}
+
+.hb-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:.5;
+  animation:hb-grain-shift 8s steps(2) infinite;
+}
+@keyframes hb-grain-shift{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-2%,-1%)}
+  50%{transform:translate(1%,2%)}
+  75%{transform:translate(-1%,1%)}
+}
+
+.hb-bloom{
+  position:absolute;
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,.3) 0%,transparent 68%);
+  top:50%;left:50%;transform:translate(-50%,-58%);
+  pointer-events:none;z-index:0;
+}
+
+.hb-bg-word{
+  position:absolute;
+  bottom:-50px;left:-15px;
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(10rem,22vw,20rem);
+  font-weight:700;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(245,232,207,.06);
+  line-height:1;user-select:none;pointer-events:none;
+  z-index:1;letter-spacing:-4px;
+}
+
+.hb-orb{
+  position:absolute;border-radius:50%;
+  pointer-events:none;z-index:0;
+}
+.hb-orb-1{
+  top:-80px;left:-80px;
+  width:380px;height:380px;
+  border:50px solid rgba(245,232,207,.05);
+}
+.hb-orb-2{
+  bottom:-100px;right:-100px;
+  width:480px;height:480px;
+  border:60px solid rgba(245,232,207,.04);
+}
+
+.hb-hero-split{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:52% 48%;
+  align-items:center;
+  gap:0;
+  padding:0 0 0 56px;
+  width:100%;
+  max-width:none;
+  margin:0;
+  flex:1;
+  min-height:0;
+}
+.hb-hero-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-left:0;
+}
+
+/* ── Hero image panel ── */
+.hb-hero-img-wrap{
+  display:flex;align-items:center;justify-content:center;
+  animation:hb-fade-up 1s .5s both;
+  width:100%;
+  height:100%;
+  padding:40px 32px 40px 20px;
+  position:relative;
+}
+.hb-hero-slider-wrap{
+  position:relative;
+  width:clamp(280px,38vw,480px);
+}
+.hb-hero-slider-wrap::before{
+  content:'';
+  position:absolute;
+  top:-12px;right:-12px;
+  width:55px;height:55px;
+  border-top:2px solid #e8b84b;
+  border-right:2px solid #e8b84b;
+  z-index:10;pointer-events:none;
+}
+.hb-hero-slider-wrap::after{
+  content:'';
+  position:absolute;
+  bottom:-12px;left:-12px;
+  width:55px;height:55px;
+  border-bottom:2px solid #c8922a;
+  border-left:2px solid #c8922a;
+  z-index:10;pointer-events:none;
+}
+.hb-hero-slider{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  border:3px solid rgba(232,184,74,.35);
+  box-shadow:
+    0 0 60px rgba(200,146,42,.25),
+    0 24px 64px rgba(0,0,0,.55);
+  background:#3d2008;
+}
+.hb-hero-slide{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  opacity:0;
+  transition:opacity .9s cubic-bezier(.4,0,.2,1),
+             transform 1.2s cubic-bezier(.4,0,.2,1);
+  transform:scale(1.04);
+  filter:brightness(.82) sepia(.12);
+}
+.hb-hero-slide.hb-hslide-active{
+  opacity:1;
+  transform:scale(1);
+}
+.hb-hero-slider::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:40%;
+  background:linear-gradient(to top,rgba(61,32,8,.6),transparent);
+  pointer-events:none;z-index:2;
+}
+.hb-hero-slider-dots{
+  display:flex;justify-content:center;gap:8px;
+  margin-top:14px;
+}
+.hb-hsdot{
+  width:24px;height:3px;
+  background:rgba(232,184,74,.25);
+  cursor:pointer;
+  transition:background .3s,width .3s;
+  border:none;padding:0;
+}
+.hb-hsdot.hb-hsdot-active{
+  background:#e8b84b;
+  width:40px;
+}
+
+.hb-tag{
+  font-family:'Cinzel',serif;
+  font-size:.65rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;margin-bottom:32px;
+  display:flex;align-items:center;gap:16px;
+}
+.hb-tag::before{
+  content:'';display:block;
+  width:40px;height:1px;background:#e8b84b;
+}
+
+.hb-hero-h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:700;line-height:1.1;letter-spacing:1px;
+  margin-bottom:36px;overflow:hidden;
+}
+.hb-hero-h1 .hb-line{
+  display:block;transform:translateY(100%);
+  animation:hb-line-up .9s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+.hb-hero-h1 .hb-line:nth-child(1){animation-delay:.2s;color:#f5e8cf}
+.hb-hero-h1 .hb-line:nth-child(2){animation-delay:.4s;color:#e8b84b}
+@keyframes hb-line-up{to{transform:translateY(0)}}
+
+.hb-hero-desc{
+  font-size:1rem;line-height:2;
+  color:rgba(245,232,207,.75);font-weight:300;
+  max-width:540px;animation:hb-fade-up .9s .7s both;
+}
+.hb-hero-desc strong{color:#fff;font-weight:700}
+
+/* scroll cue */
+.hb-scroll-cue{
+  position:absolute;bottom:90px;right:60px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  animation:hb-fade-up .8s 1.3s both;
+}
+.hb-scroll-line{
+  width:1px;height:70px;
+  background:linear-gradient(to bottom,#e8b84b,transparent);
+  animation:hb-scroll-anim 1.8s ease-in-out infinite;
+}
+@keyframes hb-scroll-anim{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.4);opacity:.4}}
+.hb-scroll-cue span{
+  font-family:'Cinzel',serif;font-size:.52rem;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(245,232,207,.45);
+  writing-mode:vertical-rl;
+}
+
+@keyframes hb-fade-up{
+  from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════
+   SECTION SHARED
+═══════════════════════════════ */
+.hb-section{
+  position:relative;
+  padding:120px 64px;
+  overflow:hidden;
+}
+.hb-section-eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:20px;
+}
+.hb-section-eyebrow::after{
+  content:'';flex:1;max-width:60px;height:1px;background:#e8b84b;
+}
+
+/* ═══════════════════════════════
+   QUIÉNES SERVIMOS
+═══════════════════════════════ */
+.hb-serve-section{background:#ffffff;}
+.hb-serve-section .hb-section-eyebrow{color:#c8922a;}
+.hb-serve-section .hb-section-eyebrow::after{background:#c8922a;}
+
+.hb-serve-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;max-width:1200px;margin:0 auto;align-items:center;
+}
+.hb-serve-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:700;line-height:1.15;color:#3d2008;
+  letter-spacing:1px;margin-bottom:32px;
+}
+.hb-serve-h2 em{font-style:normal;color:#c8922a}
+.hb-serve-body{
+  font-size:.97rem;line-height:2.1;
+  color:#5c3610;font-weight:300;
+  margin-bottom:32px;
+}
+
+.hb-serve-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.hb-serve-card{
+  background:#fff8f0;
+  border:1px solid rgba(92,54,16,.12);
+  padding:28px 24px;
+  position:relative;
+  transition:background .35s, box-shadow .35s;
+}
+.hb-serve-card:hover{background:#fff3e6;box-shadow:0 8px 24px rgba(92,54,16,.1)}
+.hb-serve-card::before{
+  content:'';position:absolute;
+  top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,transparent,#e8b84b 30%,#c8922a 70%,transparent);
+}
+.hb-serve-icon{
+  width:40px;height:40px;
+  background:rgba(200,146,42,.1);
+  border:1px solid rgba(200,146,42,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+  font-size:1rem;
+  color:#c8922a;
+}
+.hb-serve-card-title{
+  font-family:'Cinzel',serif;
+  font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
+  color:#3d2008;font-weight:700;margin-bottom:8px;
+}
+.hb-serve-card-body{
+  font-size:.85rem;line-height:1.8;
+  color:#5c3610;font-weight:300;
+}
+
+/* ═══════════════════════════════
+   RESULTADOS — dark section
+═══════════════════════════════ */
+.hb-results-section{
+  background:#3d2008;
+}
+
+.hb-results-inner{
+  max-width:1200px;margin:0 auto;
+}
+.hb-results-header{
+  margin-bottom:64px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;
+}
+.hb-results-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:700;color:#f5e8cf;letter-spacing:1px;
+}
+.hb-results-h2 em{font-style:normal;color:#e8b84b}
+.hb-results-badge{
+  font-family:'Cinzel',serif;
+  font-size:.65rem;letter-spacing:5px;text-transform:uppercase;
+  color:#e8b84b;
+  border:1px solid rgba(232,184,74,.3);
+  padding:10px 20px;
+  white-space:nowrap;
+}
+
+.hb-results-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:start;
+}
+
+/* stat block */
+.hb-stat-block{
+  display:flex;flex-direction:column;gap:32px;
+}
+.hb-stat-big{
+  display:flex;align-items:baseline;gap:8px;
+  margin-bottom:8px;
+}
+.hb-stat-num{
+  font-family:'Cinzel',serif;
+  font-size:clamp(4rem,9vw,7rem);
+  font-weight:700;
+  color:#e8b84b;
+  line-height:1;
+  letter-spacing:-2px;
+}
+.hb-stat-pct{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;
+  color:#c8922a;
+}
+.hb-stat-label{
+  font-size:.85rem;line-height:1.9;
+  color:rgba(245,232,207,.65);font-weight:300;
+  max-width:340px;
+}
+.hb-stat-label strong{color:#f5e8cf;font-weight:700;}
+
+/* divider line */
+.hb-results-divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(232,184,74,.4),transparent);
+  margin:8px 0;
+}
+
+/* testimonial */
+.hb-testimonial{
+  position:relative;
+  background:rgba(245,232,207,.05);
+  border:1px solid rgba(232,184,74,.18);
+  padding:48px 44px 40px;
+}
+.hb-testimonial::before{
+  content:'"';
+  position:absolute;
+  top:-20px;left:32px;
+  font-family:'Cinzel Decorative',serif;
+  font-size:5rem;
+  line-height:1;
+  color:#e8b84b;
+  opacity:.4;
+}
+.hb-testimonial-text{
+  font-family:'Cinzel',serif;
+  font-size:clamp(.88rem,1.5vw,1.05rem);
+  line-height:1.95;
+  color:rgba(245,232,207,.85);
+  font-weight:400;
+  letter-spacing:.2px;
+  margin-bottom:24px;
+  font-style:italic;
+}
+.hb-testimonial-author{
+  display:flex;align-items:center;gap:16px;
+}
+.hb-testimonial-dash{
+  width:28px;height:1px;background:#e8b84b;
+}
+.hb-testimonial-name{
+  font-family:'Cinzel',serif;
+  font-size:.68rem;letter-spacing:4px;text-transform:uppercase;
+  color:#e8b84b;
+}
+
+/* ═══════════════════════════════
+   ENFOQUE — ticket/ticker section
+═══════════════════════════════ */
+.hb-focus-section{background:#ffffff;}
+.hb-focus-section .hb-section-eyebrow{color:#c8922a;}
+.hb-focus-section .hb-section-eyebrow::after{background:#c8922a;}
+
+.hb-ticker-wrap{
+  overflow:hidden;
+  border-top:1px solid rgba(92,54,16,.2);
+  border-bottom:1px solid rgba(92,54,16,.2);
+  padding:18px 0;margin-bottom:80px;
+  background:#5c3610;
+}
+.hb-ticker{
+  display:flex;width:max-content;
+  animation:hb-ticker-move 22s linear infinite;
+}
+.hb-ticker-item{
+  font-family:'Cinzel',serif;
+  font-size:.72rem;letter-spacing:4px;text-transform:uppercase;
+  color:#ffffff;
+  padding:0 36px;white-space:nowrap;
+  display:flex;align-items:center;gap:20px;
+}
+.hb-ticker-item::after{content:'◆';font-size:.45rem;color:rgba(232,184,74,.7);}
+@keyframes hb-ticker-move{
+  from{transform:translateX(0)}to{transform:translateX(-50%)}
+}
+
+.hb-focus-inner{max-width:1200px;margin:0 auto;}
+
+.hb-focus-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+
+.hb-focus-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:700;line-height:1.2;color:#3d2008;
+  letter-spacing:1px;margin-bottom:28px;
+}
+.hb-focus-h2 em{font-style:normal;color:#c8922a}
+.hb-focus-body{
+  font-size:.97rem;line-height:2.1;
+  color:#5c3610;font-weight:300;
+  margin-bottom:28px;
+}
+.hb-focus-body strong{color:#3d2008;font-weight:700}
+
+/* ═══════════════════════════════
+   PHOTO SLIDER
+═══════════════════════════════ */
+.hb-slider-wrap{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+/* corner ornaments */
+.hb-slider-wrap::before{
+  content:'';
+  position:absolute;
+  top:-12px;left:-12px;
+  width:50px;height:50px;
+  border-top:2px solid #c8922a;
+  border-left:2px solid #c8922a;
+  z-index:10;pointer-events:none;
+}
+.hb-slider-wrap::after{
+  content:'';
+  position:absolute;
+  bottom:-12px;right:-12px;
+  width:50px;height:50px;
+  border-bottom:2px solid #e8b84b;
+  border-right:2px solid #e8b84b;
+  z-index:10;pointer-events:none;
+}
+
+.hb-slider{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  border:3px solid rgba(200,146,42,.35);
+  box-shadow:0 16px 48px rgba(61,32,8,.32);
+  background:#3d2008;
+}
+
+.hb-slide{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  opacity:0;
+  transition:opacity .9s cubic-bezier(.4,0,.2,1),
+             transform 1.2s cubic-bezier(.4,0,.2,1);
+  transform:scale(1.04);
+  filter:brightness(.88) sepia(.1);
+}
+.hb-slide.hb-slide-active{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* bottom gradient overlay */
+.hb-slider::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:40%;
+  background:linear-gradient(to top,rgba(61,32,8,.55),transparent);
+  pointer-events:none;
+  z-index:2;
+}
+
+/* dots */
+.hb-slider-dots{
+  display:flex;justify-content:center;gap:8px;
+  margin-top:16px;
+}
+.hb-sdot{
+  width:24px;height:3px;
+  background:rgba(200,146,42,.3);
+  cursor:pointer;
+  transition:background .3s,width .3s;
+  border:none;padding:0;
+}
+.hb-sdot.hb-sdot-active{
+  background:#e8b84b;
+  width:40px;
+}
+
+/* badge */
+.hb-slider-badge{
+  position:absolute;
+  bottom:16px;right:16px;
+  width:80px;height:80px;
+  background:#fff8f0;
+  border:1px solid rgba(92,54,16,.2);
+  box-shadow:0 4px 16px rgba(61,32,8,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:3px;
+  z-index:5;
+}
+.hb-slider-badge-num{
+  font-family:'Cinzel',serif;
+  font-size:1.4rem;font-weight:700;color:#c8922a;line-height:1;
+}
+.hb-slider-badge-txt{
+  font-family:'Cinzel',serif;
+  font-size:.42rem;letter-spacing:3px;text-transform:uppercase;
+  color:#5c3610;
+}
+
+/* ═══════════════════════════════
+   DIFERENCIADORES — dark
+═══════════════════════════════ */
+.hb-diff-section{background:#3d2008;}
+.hb-diff-inner{max-width:1200px;margin:0 auto;}
+.hb-diff-header{margin-bottom:64px;}
+.hb-diff-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:700;color:#f5e8cf;letter-spacing:1px;
+}
+.hb-diff-h2 em{font-style:normal;color:#e8b84b}
+.hb-diff-intro{
+  font-size:.97rem;line-height:2;
+  color:rgba(245,232,207,.65);font-weight:300;
+  max-width:600px;margin-top:20px;
+}
+
+.hb-diff-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(245,232,207,.08);
+  margin-bottom:64px;
+}
+.hb-diff-item{
+  background:#3d2008;
+  padding:52px 40px;
+  position:relative;overflow:hidden;
+  transition:background .35s;
+}
+.hb-diff-item:hover{background:#4a2810}
+.hb-diff-item::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:0;
+  background:linear-gradient(to top,rgba(200,146,42,.08),transparent);
+  transition:height .35s;
+}
+.hb-diff-item:hover::after{height:100%}
+.hb-diff-num{
+  font-family:'Cinzel',serif;
+  font-size:.55rem;letter-spacing:3px;
+  color:rgba(232,184,74,.4);
+  margin-bottom:20px;
+  display:block;
+}
+.hb-diff-icon{
+  width:48px;height:48px;
+  background:rgba(200,146,42,.1);
+  border:1px solid rgba(200,146,42,.25);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;
+  color:#e8b84b;font-size:1.1rem;
+  transition:background .35s,border-color .35s;
+}
+.hb-diff-item:hover .hb-diff-icon{
+  background:rgba(200,146,42,.2);
+  border-color:rgba(200,146,42,.5);
+}
+.hb-diff-title{
+  font-family:'Cinzel',serif;
+  font-size:.9rem;letter-spacing:3px;text-transform:uppercase;
+  color:#f5e8cf;font-weight:700;margin-bottom:16px;
+}
+.hb-diff-body{
+  font-size:.87rem;line-height:1.95;
+  color:rgba(245,232,207,.6);font-weight:300;
+}
+
+/* ═══════════════════════════════
+   CTA — white bottom (footer transition)
+═══════════════════════════════ */
+.hb-cta-section{
+  background:#ffffff;
+  position:relative;overflow:hidden;
+  border-top:1px solid rgba(92,54,16,.1);
+}
+.hb-cta-section::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(200,146,42,.07),transparent 65%);
+  pointer-events:none;
+}
+.hb-cta-inner{
+  max-width:900px;margin:0 auto;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.hb-cta-eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:7px;text-transform:uppercase;
+  color:#c8922a;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-bottom:28px;
+}
+.hb-cta-eyebrow::before,.hb-cta-eyebrow::after{
+  content:'';flex:1;max-width:60px;height:1px;background:#c8922a;
+}
+.hb-cta-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.8rem,4vw,3.2rem);
+  font-weight:700;color:#3d2008;letter-spacing:1px;
+  margin-bottom:28px;line-height:1.2;
+}
+.hb-cta-h2 em{font-style:normal;color:#c8922a}
+.hb-cta-body{
+  font-size:1rem;line-height:2;
+  color:#5c3610;font-weight:300;
+  margin-bottom:48px;max-width:640px;margin-left:auto;margin-right:auto;
+}
+.hb-cta-body strong{color:#3d2008;font-weight:700;}
+.hb-cta-btn{
+  display:inline-flex;
+  align-items:center;gap:14px;
+  font-family:'Cinzel',serif;
+  font-size:.72rem;letter-spacing:5px;text-transform:uppercase;
+  color:#ffffff;
+  background:linear-gradient(135deg,#7b4f1e,#5c3610);
+  padding:18px 44px;
+  text-decoration:none;
+  transition:transform .3s,box-shadow .3s;
+  font-weight:700;
+}
+.hb-cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 36px rgba(92,54,16,.3);
+}
+.hb-cta-btn svg{width:18px;height:18px;stroke:#ffffff;}
+
+/* ═══════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════ */
+.hb-reveal{
+  opacity:0;transform:translateY(36px);
+  transition:opacity .85s ease,transform .85s cubic-bezier(.23,1,.32,1);
+}
+.hb-reveal.hb-in{opacity:1;transform:translateY(0)}
+.hb-r1{transition-delay:.08s}.hb-r2{transition-delay:.2s}
+.hb-r3{transition-delay:.32s}.hb-r4{transition-delay:.44s}
+.hb-r5{transition-delay:.56s}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media(max-width:900px){
+  .hb-hero-split{grid-template-columns:1fr;padding:60px 24px 40px;text-align:center}
+  .hb-hero-img-wrap{order:-1}
+  .hb-hero-slider-wrap{width:100%;max-width:420px;margin:0 auto}
+  .hb-serve-grid,.hb-focus-grid,.hb-results-layout{grid-template-columns:1fr}
+  .hb-serve-cards{grid-template-columns:1fr 1fr}
+  .hb-diff-grid{grid-template-columns:1fr}
+  .hb-section{padding:80px 24px}
+  .hb-scroll-cue{display:none}
+  .hb-slider-wrap{max-width:100%}
+}
+@media(max-width:500px){
+  .hb-serve-cards{grid-template-columns:1fr}
+  .hb-hero-img-stack{width:260px;height:260px}
+
+}
+</style>
+</head>
+<body>
+  <div id="banner-container"></div>
+<div class="hb-page">
+
+<!-- ── HERO ─────────────────────────────── -->
+<section class="hb-hero" id="hb-hero">
+  <div class="hb-grain"></div>
+  <div class="hb-bloom"></div>
+  <div class="hb-orb hb-orb-1"></div>
+  <div class="hb-orb hb-orb-2"></div>
+  <div class="hb-bg-word">OBJETIVO</div>
+
+  <div class="hb-hero-split">
+    <div class="hb-hero-content">
+      <div class="hb-tag">Misión Educativa · Rep. Dom.</div>
+      <h1 class="hb-hero-h1">
+        <span class="hb-line">Nuestro</span>
+        <span class="hb-line">Objetivo</span>
+      </h1>
+      <p class="hb-hero-desc">
+        Diseñamos servicios para entidades y personas que deseen
+        <strong>establecer y mejorar programas educativos</strong>
+        en cualquier nivel académico — con el soporte que necesitas.
+      </p>
+    </div>
+
+    <div class="hb-hero-img-wrap">
+      <div class="hb-hero-slider-wrap">
+        <div class="hb-hero-slider" id="hbHeroSlider">
+          <img src="../img/graduacion-allstar.jpg"
+               class="hb-hero-slide hb-hslide-active"
+               alt="All-Star Graduation HIMANABI"
+               onerror="this.style.background='rgba(200,146,42,.15)';this.removeAttribute('src')">
+          <img src="../img/graduacion-congratulations.jpg"
+               class="hb-hero-slide"
+               alt="Ceremonia de Graduación"
+               onerror="this.style.background='rgba(92,54,16,.3)';this.removeAttribute('src')">
+        </div>
+        <div class="hb-hero-slider-dots">
+          <button class="hb-hsdot hb-hsdot-active" data-hidx="0" aria-label="Slide 1"></button>
+          <button class="hb-hsdot" data-hidx="1" aria-label="Slide 2"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hb-scroll-cue">
+    <div class="hb-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── QUIÉNES SERVIMOS ──────────────────── -->
+<section class="hb-section hb-serve-section" id="hb-serve">
+  <div class="hb-serve-grid">
+
+    <div class="hb-reveal">
+      <div class="hb-section-eyebrow"><h3>A Quiénes Servimos</h3></div>
+      <h2 class="hb-serve-h2">
+        Para<br>
+        <em>todos los niveles</em><br>
+        académicos
+      </h2>
+      <p class="hb-serve-body">
+        Nuestros servicios están diseñados para entidades y personas que deseen
+        establecer y mejorar programas educativos en cualquier nivel académico.
+        Ya sea una escuela, una universidad, una academia o un estudiante individual,
+        estamos aquí para brindarte el soporte que necesitas.
+      </p>
+    </div>
+
+    <div class="hb-reveal hb-r2">
+      <div class="hb-serve-cards">
+
+        <div class="hb-serve-card">
+          <div class="hb-serve-icon">
+            <i class="fas fa-school"></i>
+          </div>
+          <p class="hb-serve-card-title">Escuelas</p>
+          <p class="hb-serve-card-body">Programas diseñados para fortalecer el nivel académico desde la base.</p>
+        </div>
+
+        <div class="hb-serve-card">
+          <div class="hb-serve-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <p class="hb-serve-card-title">Universidades</p>
+          <p class="hb-serve-card-body">Soporte de alto nivel para instituciones de educación superior.</p>
+        </div>
+
+        <div class="hb-serve-card">
+          <div class="hb-serve-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <p class="hb-serve-card-title">Academias</p>
+          <p class="hb-serve-card-body">Colaboramos con academias para optimizar sus programas de formación.</p>
+        </div>
+
+        <div class="hb-serve-card">
+          <div class="hb-serve-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <p class="hb-serve-card-title">Estudiantes</p>
+          <p class="hb-serve-card-body">Acompañamiento individual con tutorías altamente personalizadas.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── RESULTADOS ────────────────────────── -->
+<section class="hb-section hb-results-section" id="hb-results">
+  <div class="hb-results-inner">
+
+    <div class="hb-results-header hb-reveal">
+      <div>
+        <div class="hb-section-eyebrow"><h3>Resultados Excepcionales</h3></div>
+        <h2 class="hb-results-h2">
+          Los números<br>
+          <em>hablan por sí solos</em>
+        </h2>
+      </div>
+      <div class="hb-results-badge">HIMANABI · Excelencia Educativa</div>
+    </div>
+
+    <div class="hb-results-layout">
+
+      <div class="hb-reveal hb-r1">
+        <div class="hb-stat-block">
+          <div>
+            <div class="hb-stat-big">
+              <span class="hb-stat-num" data-target="100">0</span>
+              <span class="hb-stat-pct">%</span>
+            </div>
+            <p class="hb-stat-label">
+              de nuestros estudiantes alcanza <strong>resultados excepcionales</strong>
+              cuando mantiene un enfoque constante en el programa diseñado.
+            </p>
+          </div>
+          <div class="hb-results-divider"></div>
+          <p class="hb-stat-label">
+            En <strong>HIMANABI</strong>, los resultados hablan por sí mismos.
+            Nuestros alumnos confían en la efectividad de nuestros
+            programas educativos. <strong>No solo lo decimos —
+            nuestros clientes satisfechos lo confirman.</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="hb-reveal hb-r2">
+        <div class="hb-testimonial">
+          <p class="hb-testimonial-text">
+            HIMANABI ha transformado mi forma de aprender. Gracias a su enfoque
+            personalizado y tutores altamente calificados, he logrado un éxito
+            académico que nunca antes imaginé. ¡Recomiendo sus servicios sin reservas!
+          </p>
+          <div class="hb-testimonial-author">
+            <div class="hb-testimonial-dash"></div>
+            <span class="hb-testimonial-name">Ana S. · Estudiante Satisfecha</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ENFOQUE PERSONALIZADO ─────────────── -->
+<section class="hb-section hb-focus-section" id="hb-focus">
+
+  <div class="hb-ticker-wrap">
+    <div class="hb-ticker">
+      <div class="hb-ticker-item">Enfoque Personalizado</div>
+      <div class="hb-ticker-item">Actualización Constante</div>
+      <div class="hb-ticker-item">Estrategias Únicas</div>
+      <div class="hb-ticker-item">Tu Éxito es Nuestro Compromiso</div>
+      <div class="hb-ticker-item">Tutores Calificados</div>
+      <div class="hb-ticker-item">Flexibilidad de Horarios</div>
+      <div class="hb-ticker-item">Alta Efectividad</div>
+      <div class="hb-ticker-item">Enfoque Personalizado</div>
+      <div class="hb-ticker-item">Actualización Constante</div>
+      <div class="hb-ticker-item">Estrategias Únicas</div>
+      <div class="hb-ticker-item">Tu Éxito es Nuestro Compromiso</div>
+      <div class="hb-ticker-item">Tutores Calificados</div>
+      <div class="hb-ticker-item">Flexibilidad de Horarios</div>
+      <div class="hb-ticker-item">Alta Efectividad</div>
+    </div>
+  </div>
+
+  <div class="hb-focus-inner">
+    <div class="hb-focus-grid">
+
+      <div class="hb-reveal">
+        <div class="hb-section-eyebrow"><h3>Enfoque Personalizado</h3></div>
+        <h2 class="hb-focus-h2">
+          Cada estudiante<br>
+          <em>es único</em>
+        </h2>
+        <p class="hb-focus-body">
+          Nuestros programas se mantienen actualizados y se adaptan
+          constantemente a las <strong>necesidades cambiantes</strong> de
+          nuestros alumnos y clientes. Entendemos que cada individuo
+          es único, y diseñamos estrategias de aprendizaje que se
+          ajustan a ti.
+        </p>
+        <p class="hb-focus-body">
+          <strong>Tu éxito es nuestro compromiso.</strong> Cada programa
+          es una hoja de ruta construida desde cero para alcanzar tus metas.
+        </p>
+      </div>
+
+      <div class="hb-reveal hb-r2">
+        <div class="hb-slider-wrap">
+          <div class="hb-slider" id="hbSlider">
+            <img src="../img/graduacion-allstar.jpg"
+                 class="hb-slide hb-slide-active"
+                 alt="All-Star Graduation HIMANABI"
+                 onerror="this.style.background='rgba(200,146,42,.15)';this.removeAttribute('src')">
+            <img src="../img/graduacion-congratulations.jpg"
+                 class="hb-slide"
+                 alt="Ceremonia de Graduación"
+                 onerror="this.style.background='rgba(92,54,16,.3)';this.removeAttribute('src')">
+            <div class="hb-slider-badge">
+              <span class="hb-slider-badge-num">100%</span>
+              <span class="hb-slider-badge-txt">Éxito</span>
+            </div>
+          </div>
+          <div class="hb-slider-dots">
+            <button class="hb-sdot hb-sdot-active" data-idx="0" aria-label="Slide 1"></button>
+            <button class="hb-sdot" data-idx="1" aria-label="Slide 2"></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── DIFERENCIADORES ───────────────────── -->
+<section class="hb-section hb-diff-section" id="hb-diff">
+  <div class="hb-diff-inner">
+
+    <div class="hb-diff-header hb-reveal">
+      <div class="hb-section-eyebrow"><h3>Lo que nos distingue</h3></div>
+      <h2 class="hb-diff-h2">
+        Nuestros<br>
+        <em>Diferenciadores</em>
+      </h2>
+      <p class="hb-diff-intro">
+        En HIMANABI nos destacamos en el mercado gracias a factores concretos
+        que garantizan resultados y nos posicionan por encima de alternativas similares.
+      </p>
+    </div>
+
+    <div class="hb-diff-grid">
+
+      <div class="hb-diff-item hb-reveal hb-r1">
+       
+        <div class="hb-diff-icon"><i class="fas fa-chart-line"></i></div>
+        <p class="hb-diff-title">Alta Efectividad</p>
+        <p class="hb-diff-body">
+          Nuestros programas educativos están probados con una tasa
+          de éxito del 100% en estudiantes con enfoque constante.
+          La efectividad no es una promesa, es un historial.
+        </p>
+      </div>
+
+      <div class="hb-diff-item hb-reveal hb-r2">
+       
+        <div class="hb-diff-icon"><i class="fas fa-laptop-code"></i></div>
+        <p class="hb-diff-title">Tutores Preparados</p>
+        <p class="hb-diff-body">
+          Contamos con tutores de alta preparación académica y tecnológica,
+          comprometidos en brindarte el apoyo que necesitas en cada etapa
+          de tu proceso educativo.
+        </p>
+      </div>
+
+      <div class="hb-diff-item hb-reveal hb-r3">
+       
+        <div class="hb-diff-icon"><i class="fas fa-clock"></i></div>
+        <p class="hb-diff-title">Flexibilidad de Horarios</p>
+        <p class="hb-diff-body">
+          Ofrecemos modalidades presencial, semipresencial y virtual
+          con horarios flexibles, adaptados a la realidad y ritmo de
+          vida de cada estudiante.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────── -->
+<section class="hb-section hb-cta-section" id="hb-cta">
+  <div class="hb-cta-inner hb-reveal">
+    <div class="hb-cta-eyebrow"><h3>Únete a Nosotros</h3></div>
+    <h2 class="hb-cta-h2">
+      Tu futuro brillante<br>
+      <em>comienza aquí</em>
+    </h2>
+    <p class="hb-cta-body">
+      Puedes solicitar una <strong>propuesta educativa diseñada
+      específicamente</strong> para tu programa o necesidad.
+      Únete a nosotros en tu viaje hacia el éxito educativo.
+      En HIMANABI, tu futuro brillante comienza aquí.
+    </p>
+    <a href="#" class="hb-cta-btn">
+      Solicitar Propuesta Educativa
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+</div>
+
+<div id="footer-container"></div>
+
+<!-- Script para cargar banner y footer desde un solo archivo -->
+<script src="../js/banner-footer.js"></script>
+
+<script>
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('hb-in') });
+}, {threshold:.12});
+document.querySelectorAll('.hb-reveal').forEach(el => obs.observe(el));
+
+/* HERO SLIDER */
+(function(){
+  const slides = document.querySelectorAll('.hb-hero-slide');
+  const dots   = document.querySelectorAll('.hb-hsdot');
+  let current  = 0;
+  let timer;
+
+  function goTo(idx){
+    slides[current].classList.remove('hb-hslide-active');
+    dots[current].classList.remove('hb-hsdot-active');
+    current = idx;
+    slides[current].classList.add('hb-hslide-active');
+    dots[current].classList.add('hb-hsdot-active');
+  }
+
+  function next(){ goTo((current + 1) % slides.length); }
+
+  function startAuto(){ timer = setInterval(next, 3800); }
+  function stopAuto() { clearInterval(timer); }
+
+  dots.forEach(d => {
+    d.addEventListener('click', () => {
+      stopAuto();
+      goTo(parseInt(d.dataset.hidx));
+      startAuto();
+    });
+  });
+
+  startAuto();
+})();
+
+/* SLIDER */
+(function(){
+  const slides = document.querySelectorAll('.hb-slide');
+  const dots   = document.querySelectorAll('.hb-sdot');
+  let current  = 0;
+  let timer;
+
+  function goTo(idx){
+    slides[current].classList.remove('hb-slide-active');
+    dots[current].classList.remove('hb-sdot-active');
+    current = idx;
+    slides[current].classList.add('hb-slide-active');
+    dots[current].classList.add('hb-sdot-active');
+  }
+
+  function next(){ goTo((current + 1) % slides.length); }
+
+  function startAuto(){ timer = setInterval(next, 3800); }
+  function stopAuto() { clearInterval(timer); }
+
+  dots.forEach(d => {
+    d.addEventListener('click', () => {
+      stopAuto();
+      goTo(parseInt(d.dataset.idx));
+      startAuto();
+    });
+  });
+
+  startAuto();
+})();
+
+/* COUNTERS */
+function animCount(el, target, duration=1800){
+  let start=null;
+  const step = ts => {
+    if(!start) start=ts;
+    const p = Math.min((ts-start)/duration,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target;
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target);
+      if(!isNaN(t)) animCount(e.target,t);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+</script>
+
+</body>
+</html>

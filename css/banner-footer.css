@@ -1,0 +1,736 @@
+/* ESTILOS EXCLUSIVOS PARA BANNER Y FOOTER - SIN VARIABLES GLOBALES */
+/* ============================================================
+   MEJORAS v2:
+   1. [BUGFIX] .bf-white-btn: background y color eran idénticos → texto invisible
+   2. [BUGFIX] .bf-nav-btn:hover color → contraste corregido
+   3. Animaciones escalonadas (staggered) en menú circular del footer
+   4. Focus-visible accesible en todos los elementos interactivos
+   5. Efecto hover con desplazamiento en enlaces del footer
+   6. Pulso sutil en botón central del menú circular (cuando cerrado)
+   7. Transición suave en logo al hacer hover
+   8. Hover animado con subrayado deslizante en nav links
+   9. Mejora visual en social icons del header (ripple-scale)
+   10. Imagen del footer con efecto glow al hover
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.bf-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========== HEADER BLANCO ========== */
+.bf-site-header {
+  background: #ffffff;
+  color: #333333;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #C49A6C;
+}
+
+.bf-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  min-height: 80px;
+}
+
+/* [MEJORA 7] Logo: hover con scale suave */
+.bf-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.bf-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 6px;
+  /* Transición ampliada para incluir filter */
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: brightness(1.05);
+}
+
+.bf-logo:hover img {
+  transform: scale(1.07) rotate(-2deg);
+  filter: brightness(1.15);
+}
+
+.bf-logo .bf-logo-fallback {
+  width: 80px;
+  height: 80px;
+  background-color: #E6B87E;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5D3A1A;
+  font-size: 1.5rem;
+  transition: transform 0.35s ease;
+}
+
+.bf-logo:hover .bf-logo-fallback {
+  transform: scale(1.07) rotate(-2deg);
+}
+
+.bf-logo-text h1 {
+  font-size: 1.5rem;
+  margin-bottom: 3px;
+  font-weight: 700;
+  color: #5D3A1A;
+  text-shadow: none;
+}
+
+.bf-logo-text p {
+  font-size: 0.9rem;
+  color: #8B5A2B;
+  opacity: 1;
+}
+
+/* NAV BAR */
+.bf-navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* [MEJORA 8] Nav links: subrayado deslizante al hover */
+.bf-navbar a {
+  color: #333333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea deslizante inferior en hover (solo links normales, no btn) */
+.bf-navbar a:not(.bf-nav-btn)::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #C49A6C;
+  border-radius: 2px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.bf-navbar a:not(.bf-nav-btn):hover::after {
+  width: 60%;
+  left: 20%;
+}
+
+.bf-navbar a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.bf-navbar a.active {
+  background-color: rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* El punto activo ya no choca con la línea hover */
+.bf-navbar a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #5D3A1A;
+  border-radius: 50%;
+}
+
+/* Botón destacado (nav-btn) */
+.bf-nav-btn {
+  background-color: #C49A6C;
+  color: #ffffff !important;
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* [BUGFIX 2] color corregido: texto legible sobre fondo oscuro */
+.bf-nav-btn:hover {
+  background-color: #8B5A2B;
+  color: #8B5A2B !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* [MEJORA 4] Focus-visible accesible */
+.bf-navbar a:focus-visible,
+.bf-nav-btn:focus-visible,
+.bf-white-btn:focus-visible,
+.bf-social-icons a:focus-visible,
+.bf-menu-toggle:focus-visible,
+.bf-circle-toggle:focus-visible,
+.bf-circle-icon:focus-visible {
+  outline: 3px solid #C49A6C;
+  outline-offset: 3px;
+}
+
+/* BARRA DE BOTONES BLANCOS Y REDES SOCIALES */
+.bf-header-social-bar {
+  background-color: #F5E6D3;
+  padding: 10px 0;
+  border-top: 2px solid #C49A6C;
+  border-bottom: 2px solid #C49A6C;
+}
+
+.bf-social-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.bf-white-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* [BUGFIX 1] background-color era igual al color del texto → invisible.
+   Corregido: fondo blanco, texto marrón. */
+.bf-white-btn {
+  background-color: #ffffff;
+  color: #5D3A1A;
+  padding: 8px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid #C49A6C;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bf-white-btn:hover {
+  background-color: #C49A6C;
+  color: #ffffff;
+  border-color: #8B5A2B;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* [MEJORA 9] Social icons header: efecto scale + ripple en hover */
+.bf-social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.bf-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border-radius: 50%;
+  color: #5D3A1A;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 1px solid #C49A6C;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.bf-social-icons a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #5D3A1A;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.bf-social-icons a i {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.bf-social-icons a:hover::before {
+  transform: scale(1);
+}
+
+.bf-social-icons a:hover i {
+  color: white;
+}
+
+.bf-social-icons a:hover {
+  border-color: #5D3A1A;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(93,58,26,0.3);
+}
+
+/* BOTÓN MENÚ MÓVIL */
+.bf-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #5D3A1A;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.bf-menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE HEADER */
+@media (max-width: 850px) {
+  .bf-menu-toggle {
+    display: block;
+  }
+
+  .bf-navbar {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border-bottom: 2px solid #C49A6C;
+  }
+
+  .bf-navbar.open {
+    max-height: 400px;
+    padding: 15px 0;
+  }
+
+  .bf-navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bf-navbar a {
+    width: 90%;
+    justify-content: center;
+    color: #5D3A1A;
+  }
+
+  /* Deshabilitar subrayado en móvil para evitar artefactos */
+  .bf-navbar a:not(.bf-nav-btn)::after {
+    display: none;
+  }
+
+  .bf-navbar a:hover {
+    background-color: #F5E6D3;
+  }
+
+  .bf-navbar a.active::after {
+    display: block;
+    bottom: 5px;
+    left: 20px;
+  }
+
+  .bf-nav-btn {
+    width: 80%;
+    text-align: center;
+    background-color: #C49A6C;
+    color: #ffffff !important;
+  }
+
+  .bf-logo img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .bf-logo .bf-logo-fallback {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .bf-logo-text h1 {
+    font-size: 1.2rem;
+  }
+
+  .bf-header-social-bar {
+    text-align: center;
+  }
+
+  .bf-social-bar-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bf-white-buttons {
+    justify-content: center;
+  }
+
+  .bf-social-icons {
+    justify-content: center;
+  }
+}
+
+
+/* ===== FOOTER MARRÓN ===== */
+.bf-site-footer {
+  background: linear-gradient(135deg, #5D3A1A 0%, #7B4F2E 100%);
+  color: #fff;
+  padding: 40px 0 20px;
+  border-top: 5px solid #C49A6C;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bf-footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.bf-footer-col {
+  flex: 1 1 200px;
+  min-width: 200px;
+  text-align: center;
+}
+
+.bf-footer-center {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.bf-footer-image {
+  line-height: 0;
+}
+
+/* [MEJORA 10] Imagen del footer: glow dorado al hover */
+.bf-footer-image img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  display: inline-block;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  
+}
+
+.bf-footer-image img:hover {
+  box-shadow: 0 0 0 5px #C49A6C, 0 0 25px rgba(230, 184, 126, 0.5);
+  transform: scale(1.04);
+}
+
+.bf-image-fallback {
+  width: 200px;
+  height: 200px;
+  background-color: #E6B87E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 5px;
+  color: #5D3A1A;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.bf-footer-lema {
+  font-size: 1rem;
+  color: #F5E6D3;
+  max-width: 280px;
+  margin: 0 auto;
+  line-height: 1.3;
+}
+
+.bf-footer-left h3,
+.bf-footer-right h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.bf-footer-left h3::after,
+.bf-footer-right h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background-color: #C49A6C;
+}
+
+.bf-footer-left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bf-footer-left ul li {
+  margin-bottom: 8px;
+}
+
+/* [MEJORA 5] Links del footer: desplazamiento y brillo del chevron al hover */
+.bf-footer-left ul li a {
+  color: #F5E6D3;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease, padding-left 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+
+.bf-footer-left ul li a:hover {
+  color: #E6B87E;
+  padding-left: 6px;
+}
+
+.bf-footer-left ul li a i {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 0.75rem;
+}
+
+.bf-footer-left ul li a:hover i {
+  transform: translateX(4px);
+  color: #C49A6C;
+}
+
+
+/* ===== COPYRIGHT ===== */
+.bf-footer-copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #F5E6D3;
+  font-size: 0.85rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .bf-footer-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .bf-footer-col {
+    width: 100%;
+  }
+  .bf-footer-left ul li a {
+    justify-content: center;
+  }
+  .bf-footer-image img,
+  .bf-image-fallback {
+    width: 160px;
+    height: 160px;
+  }
+  /* Centrado del logo en vista móvil */
+  .bf-footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .bf-footer-center .bf-footer-image {
+    display: flex;
+    justify-content: center;
+  }
+  .bf-footer-center .bf-logo {
+    justify-content: center;
+  }
+}
+
+
+/* ===== MENÚ CIRCULAR DEL FOOTER ===== */
+
+/* Contenedor del menú circular */
+.bf-footer-circle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
+}
+
+.bf-circle-menu {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* [MEJORA 6] Botón central: pulso sutil cuando el menú está cerrado */
+@keyframes bf-pulse {
+  0%   { box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,255,255,0.35); }
+  50%  { box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 6px rgba(196,154,108,0.35); }
+  100% { box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,255,255,0.35); }
+}
+
+.bf-circle-toggle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  animation: bf-pulse 2.5s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  border: 2px solid #C49A6C;
+}
+
+/* Detener pulso cuando está activo */
+.bf-circle-menu.active .bf-circle-toggle {
+  animation: none;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 4px rgba(255,255,255,0.5);
+}
+
+.bf-circle-toggle:hover {
+  transform: scale(1.08);
+}
+
+.bf-circle-toggle::before {
+  content: "\f1e0";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #E6B87E;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: transform 0.5s ease;
+}
+
+.bf-circle-menu.active .bf-circle-toggle::before {
+  content: "\f00d";
+  transform: rotate(180deg);
+  color: #ffffff;
+}
+
+/* Iconos sociales del menú circular */
+.bf-circle-icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  font-size: 1.3rem;
+  /* [MEJORA 3] Cada ícono tiene su propio delay → animación escalonada */
+  transition: opacity 0.4s ease, transform 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  border: 2px solid rgba(255,255,255,0.7);
+  color: white;
+}
+
+/* Delays escalonados (cerrado → todos instantáneos para colapsar rápido) */
+.bf-circle-icon:nth-child(2) { transition-delay: 0s; }
+.bf-circle-icon:nth-child(3) { transition-delay: 0s; }
+.bf-circle-icon:nth-child(4) { transition-delay: 0s; }
+.bf-circle-icon:nth-child(5) { transition-delay: 0s; }
+.bf-circle-icon:nth-child(6) { transition-delay: 0s; }
+
+/* Delays escalonados al ABRIR: cada ícono aparece 60ms después del anterior */
+.bf-circle-menu.active .bf-circle-icon:nth-child(2) { transition-delay: 0s;    }
+.bf-circle-menu.active .bf-circle-icon:nth-child(3) { transition-delay: 0.06s; }
+.bf-circle-menu.active .bf-circle-icon:nth-child(4) { transition-delay: 0.12s; }
+.bf-circle-menu.active .bf-circle-icon:nth-child(5) { transition-delay: 0.18s; }
+.bf-circle-menu.active .bf-circle-icon:nth-child(6) { transition-delay: 0.24s; }
+
+.bf-circle-menu.active .bf-circle-icon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hover sobre los iconos activos */
+.bf-circle-menu.active .bf-circle-icon:hover {
+  transform: scale(1.2) rotate(5deg) !important;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+/* Colores de cada red */
+.bf-circle-icon[aria-label="Facebook"]  { background: #1877f2; }
+.bf-circle-icon[aria-label="Instagram"] { background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5); }
+.bf-circle-icon[aria-label="Twitter"]   { background: #1da1f2; }
+.bf-circle-icon[aria-label="Correo"]    { background: #E6B87E; color: #5D3A1A !important; }
+.bf-circle-icon[aria-label="WhatsApp"]  { background: #25d366; }
+
+/* Posicionamiento circular (5 iconos, 72° c/u, radio 90px) */
+.bf-circle-menu.active .bf-circle-icon:nth-child(2) { transform: rotate(0deg)   translate(90px) rotate(0deg);    }
+.bf-circle-menu.active .bf-circle-icon:nth-child(3) { transform: rotate(72deg)  translate(90px) rotate(-72deg);  }
+.bf-circle-menu.active .bf-circle-icon:nth-child(4) { transform: rotate(144deg) translate(90px) rotate(-144deg); }
+.bf-circle-menu.active .bf-circle-icon:nth-child(5) { transform: rotate(216deg) translate(90px) rotate(-216deg); }
+.bf-circle-menu.active .bf-circle-icon:nth-child(6) { transform: rotate(288deg) translate(90px) rotate(-288deg); }
+
+/* Hint debajo del botón */
+.bf-circle-hint {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: rgba(245, 230, 211, 0.75);
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.bf-circle-menu.active .bf-circle-hint {
+  opacity: 0;
+}

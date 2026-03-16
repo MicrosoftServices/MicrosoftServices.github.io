@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosotros – HIMANABI</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- ========== ESTILOS DEL MENÚ CIRCULAR (footer) ========== -->
+  <link rel="stylesheet" href="../css/banner-footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .hmnb-page {
+      min-height: 100vh;
+      font-family: 'Lato', sans-serif;
+      background-color: #f9f3eb;
+      color: #2e1a08;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─────────────────────────────────── */
+    .hmnb-hero {
+      position: relative;
+      background-color: #5c3610;
+      overflow: hidden;
+      padding: 80px 40px 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hmnb-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 300px; height: 300px;
+      border: 40px solid rgba(200,140,40,0.18);
+      border-radius: 50%;
+    }
+    .hmnb-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border: 50px solid rgba(200,140,40,0.12);
+      border-radius: 50%;
+    }
+    .hmnb-hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 760px;
+    }
+    .hmnb-eyebrow {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8922a;
+      margin-bottom: 18px;
+    }
+    .hmnb-hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      color: #f5e8cf;
+      line-height: 1.25;
+      margin-bottom: 22px;
+      letter-spacing: 2px;
+    }
+    .hmnb-hero-title em {
+      font-style: normal;
+      color: #c8922a;
+    }
+    .hmnb-hero-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #c8922a, #e0b55a);
+      margin: 0 auto 28px;
+      border-radius: 2px;
+    }
+    .hmnb-hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #e8d5b0;
+      font-weight: 300;
+      max-width: 620px;
+      margin: 0 auto;
+      letter-spacing: .3px;
+    }
+
+    /* ─── SLASH ──────────────────────────────── */
+    .hmnb-slash {
+      width: 100%;
+      height: 60px;
+      background-color: #5c3610;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+      margin-bottom: -1px;
+    }
+
+    /* ─── MVV SECTION ────────────────────────── */
+    .hmnb-mvv-section {
+      background-color: #f9f3eb;
+      padding: 80px 40px 60px;
+    }
+    .hmnb-mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hmnb-card {
+      background: #fff;
+      border-radius: 4px;
+      padding: 44px 36px 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(92,54,16,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hmnb-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(92,54,16,0.15);
+    }
+    .hmnb-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #5c3610, #c8922a);
+    }
+    .hmnb-card-num {
+      position: absolute;
+      top: 12px; right: 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(200,146,42,0.08);
+      line-height: 1;
+      user-select: none;
+    }
+    .hmnb-card-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background-color: #fdf0d8;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .hmnb-card-icon svg { width: 24px; height: 24px; }
+    .hmnb-card-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #c8922a;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hmnb-card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #3d2008;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+    .hmnb-card-body {
+      font-size: 0.94rem;
+      line-height: 1.85;
+      color: #5a3d22;
+      font-weight: 300;
+    }
+
+    /* ─── VALORES ────────────────────────────── */
+    .hmnb-valores-section {
+      background-color: #3d2008;
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hmnb-valores-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(200,146,42,0.04) 0px,
+          rgba(200,146,42,0.04) 1px,
+          transparent 1px,
+          transparent 24px
+        );
+    }
+    .hmnb-valores-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hmnb-section-heading {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .hmnb-section-heading .hmnb-eyebrow { margin-bottom: 12px; display: block; }
+    .hmnb-section-heading h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: #f5e8cf;
+      line-height: 1.2;
+      letter-spacing: 2px;
+    }
+    .hmnb-section-heading .hmnb-hero-divider { margin-top: 18px; }
+
+    .hmnb-valores-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .hmnb-valor-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(200,146,42,0.25);
+      border-radius: 50px;
+      padding: 12px 24px;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      cursor: default;
+    }
+    .hmnb-valor-pill:hover {
+      background: rgba(200,146,42,0.18);
+      border-color: #c8922a;
+      transform: scale(1.04);
+    }
+    .hmnb-valor-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background-color: #c8922a;
+      flex-shrink: 0;
+    }
+    .hmnb-valor-text {
+      font-family: 'Cinzel', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #f0deb4;
+    }
+
+    /* ─── STATS ──────────────────────────────── */
+    .hmnb-stats-section {
+      background-color: #c8922a;
+      padding: 50px 40px;
+    }
+    .hmnb-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hmnb-stat-number {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .hmnb-stat-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      font-weight: 700;
+    }
+
+    /* ─── QUOTE ──────────────────────────────── */
+    .hmnb-quote-section {
+      background-color: #f9f3eb;
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .hmnb-quote-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hmnb-quote-mark {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: #c8922a;
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 18px;
+    }
+    .hmnb-quote-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      color: #3d2008;
+      line-height: 1.75;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+    .hmnb-quote-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8922a;
+      font-weight: 700;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────── */
+    @keyframes hmnb-fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hmnb-animate { opacity: 0; animation: hmnb-fade-up 0.7s ease forwards; }
+    .hmnb-d1 { animation-delay: 0.1s; }
+    .hmnb-d2 { animation-delay: 0.25s; }
+    .hmnb-d3 { animation-delay: 0.4s; }
+    .hmnb-d4 { animation-delay: 0.55s; }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 640px) {
+      .hmnb-hero { padding: 60px 24px 80px; }
+      .hmnb-mvv-section, .hmnb-valores-section, .hmnb-quote-section { padding: 56px 20px; }
+      .hmnb-stats-section { padding: 40px 20px; }
+      .hmnb-card { padding: 36px 24px 32px; }
+    }
+
+  </style>
+</head>
+<body>
+  
+  <!-- Contenedor para el banner -->
+ <div id="banner-container"></div>
+
+
+<div class="hmnb-page">
+
+  <!-- HERO -->
+  <section class="hmnb-hero">
+    <div class="hmnb-hero-inner">
+      <span class="hmnb-eyebrow hmnb-animate hmnb-d1">Soporte Educativo · Rep. Dom.</span>
+      <h1 class="hmnb-hero-title hmnb-animate hmnb-d2">
+        ¿Quiénes <em>Somos?</em>
+      </h1>
+      <div class="hmnb-hero-divider hmnb-animate hmnb-d3"></div>
+      <p class="hmnb-hero-sub hmnb-animate hmnb-d4">
+        Somos docentes calificados y capacitados con experiencia, que nos encargamos de brindar un soporte educativo profesional y práctico a nuestros alumnos, manteniendo un constante seguimiento y asesoramiento para lograr una correcta capacitación y entendimiento en nuestros estudiantes de manera 
+        <strong style="color:#f0deb4;font-weight:700;">presencial, semipresencial o virtual.</strong>
+      </p>
+    </div>
+  </section>
+  <div class="hmnb-slash"></div>
+
+  <!-- MISIÓN & VISIÓN -->
+  <section class="hmnb-mvv-section">
+    <div class="hmnb-mvv-grid">
+
+      <div class="hmnb-card">
+        <span class="hmnb-card-num">01</span>
+        <div class="hmnb-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <p class="hmnb-card-label">Nuestra</p>
+        <h2 class="hmnb-card-title">Misión</h2>
+        <p class="hmnb-card-body">
+          Brindar un soporte educativo altamente efectivo a nuestros educandos en las diferentes
+          ramas del saber, garantizando calidad, compromiso y resultados tangibles en cada etapa
+          del aprendizaje.
+        </p>
+      </div>
+
+      <div class="hmnb-card">
+        <span class="hmnb-card-num">02</span>
+        <div class="hmnb-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <p class="hmnb-card-label">Nuestra</p>
+        <h2 class="hmnb-card-title">Visión</h2>
+        <p class="hmnb-card-body">
+          Hacer que nuestros educandos desarrollen una mejor comprensión en los diferentes aspectos
+          educativos del saber, enfocados al sistema de competitividad actual que exige el mundo
+          moderno.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="hmnb-valores-section">
+    <div class="hmnb-valores-inner">
+      <div class="hmnb-section-heading">
+        <span class="hmnb-eyebrow">Lo que nos define</span>
+        <h2>Nuestros Valores</h2>
+        <div class="hmnb-hero-divider"></div>
+      </div>
+      <div class="hmnb-valores-wrap">
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Productividad</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Respeto</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Honestidad</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Liderazgo</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Transparencia</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Desarrollo Humano</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Competitividad</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Creatividad</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Esfuerzo</span></div>
+        <div class="hmnb-valor-pill"><span class="hmnb-valor-dot"></span><span class="hmnb-valor-text">Responsabilidad</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="hmnb-stats-section">
+    <div class="hmnb-stats-grid">
+      <div>
+        <div class="hmnb-stat-number">100%</div>
+        <div class="hmnb-stat-label">Compromiso</div>
+      </div>
+      <div>
+        <div class="hmnb-stat-number">3</div>
+        <div class="hmnb-stat-label">Modalidades</div>
+      </div>
+      <div>
+        <div class="hmnb-stat-number">10</div>
+        <div class="hmnb-stat-label">Valores Clave</div>
+      </div>
+      <div>
+        <div class="hmnb-stat-number">∞</div>
+        <div class="hmnb-stat-label">Posibilidades</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="hmnb-quote-section">
+    <div class="hmnb-quote-inner">
+      <span class="hmnb-quote-mark">"</span>
+      <p class="hmnb-quote-text">
+        Formando líderes con innovación para un mundo que exige excelencia y visión de futuro.
+      </p>
+      <span class="hmnb-quote-author">— HIMANABI · Soporte Educativo Rep. Dom.</span>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <!-- Script para cargar banner y footer desde un solo archivo -->
+  <script src="../js/banner-footer.js"></script>
+
+
+</div>
+
+</body>
+</html>

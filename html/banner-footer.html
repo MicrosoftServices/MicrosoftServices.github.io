@@ -1,0 +1,95 @@
+ <link rel="stylesheet" href="../css/banner-footer.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- ========== ESTILOS DEL MENÚ CIRCULAR (footer) ========== -->
+
+
+<!-- ========== BANNER (HEADER) ========== -->
+<header class="bf-site-header">
+  <div class="bf-container bf-header-inner">
+    <a class="bf-logo" href="../html/index.html">
+      <img src="../img/logo solo.png" alt="HIMANABI">
+      <div class="bf-logo-text">
+        <h1>HIMANABI</h1>
+        <p>SOPORTE EDUCATIVO REP. DOM.</p>
+      </div>
+    </a>
+    <button class="bf-menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="bf-navbar" id="navbar">
+      <ul>
+        <li><a href="../html/nosotros.html"><i class="fas fa-users"></i> Nosotros</a></li>
+        <li><a href="../html/objetivos.html"><i class="fas fa-bullseye"></i> Objetivos</a></li>
+        <li><a href="../html/nosotros2.html"><i class="fas fa-cogs"></i> Servicios</a></li>
+        <li><a href="../html/contacto.html" class="bf-nav-btn"><i class="fas fa-envelope"></i> Contactos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bf-site-footer">
+  <div class="bf-container">
+    <div class="bf-footer-main">
+      <div class="bf-footer-col bf-footer-left">
+        <h3>Enlaces Rápidos</h3>
+        <ul>
+          <li><a href="../html/nosotros.html"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+          <li><a href="../html/objetivos.html"><i class="fas fa-chevron-right"></i> Objetivos</a></li>
+          <li><a href="../html/nosotros2.html"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+          <li><a href="../html/contacto.html"><i class="fas fa-chevron-right"></i> Contactos</a></li>
+        </ul>
+      </div>
+      <div class="bf-footer-col bf-footer-center">
+        <div class="bf-footer-image">
+          <a class="bf-logo" href="../html/index.html">
+          <img src="../img/logo solo.png" alt="Imagen institucional"></a>
+        </div>
+        <p class="bf-footer-lema">"Formando líderes con innovación"</p>
+      </div>
+
+      <!-- ===== SÍGUENOS CON MENÚ CIRCULAR ===== -->
+      <div class="bf-footer-col bf-footer-right">
+        <h3>Síguenos</h3>
+        <div class="bf-footer-circle-wrap">
+          <div class="bf-circle-menu" id="bf-circle-menu">
+            <div class="bf-circle-toggle" id="bf-circle-toggle"></div>
+            <a href="https://www.facebook.com/Himanabird/" class="bf-circle-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/himanabird/" class="bf-circle-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="bf-circle-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://mail.google.com/mail/u/0/#search/himanabird%40gmail.com?compose=new" class="bf-circle-icon" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=18098706655&text=Buenas%2C%20vengo%20de%20Instagram%20y%20me%20interesa%20saber%20m%C3%A1s%20de%20los%20servicios%20que%20ofrecen%E2%80%A6." class="bf-circle-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bf-footer-copyright">
+      <p>&copy; 2026 HIMANABI. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+  // Menú móvil del header
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navbar    = document.getElementById('navbar');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      navbar.classList.toggle('open');
+      const icon = toggleBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+  }
+
+  // Menú circular del footer
+  const circleToggle = document.getElementById('bf-circle-toggle');
+  const circleMenu   = document.getElementById('bf-circle-menu');
+  if (circleToggle) {
+    circleToggle.addEventListener('click', () => {
+      circleMenu.classList.toggle('active');
+    });
+  }
+</script>

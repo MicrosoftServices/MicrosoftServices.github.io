@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nosotros – HIMANABI</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ═══════════════════════════════
+   BASE — warm browns from image
+   Main brown:  #7b4f1e
+   Mid brown:   #5c3610
+   Deep brown:  #3d2008
+   Gold:        #c8922a
+   Light gold:  #e8b84b
+   Cream text:  #f5e8cf
+═══════════════════════════════ */
+.hb-page{
+  font-family:'Lato',sans-serif;
+  background:#7b4f1e;
+  color:#f5e8cf;
+  overflow-x:hidden;
+}
+
+/* ═══════════════════════════════
+   STICKY SIDE DOTS NAV
+═══════════════════════════════ */
+.hb-sidenav{display:none;}
+.hb-dot{
+  width:8px;height:8px;border-radius:50%;
+  border:1.5px solid rgba(245,232,207,.45);
+  background:transparent;cursor:pointer;
+  transition:background .3s,transform .3s,border-color .3s;
+}
+.hb-dot.hb-active{
+  background:#f5e8cf;border-color:#f5e8cf;transform:scale(1.45);
+}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hb-hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  background:#5c3610;
+}
+
+/* grain overlay */
+.hb-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:.5;
+  animation:hb-grain-shift 8s steps(2) infinite;
+}
+@keyframes hb-grain-shift{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-2%,-1%)}
+  50%{transform:translate(1%,2%)}
+  75%{transform:translate(-1%,1%)}
+}
+
+/* warm radial bloom */
+.hb-bloom{
+  position:absolute;
+  width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,.3) 0%,transparent 68%);
+  top:50%;left:50%;transform:translate(-50%,-58%);
+  pointer-events:none;z-index:0;
+}
+
+/* giant bg word */
+.hb-bg-word{
+  position:absolute;
+  bottom:-50px;left:-15px;
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(10rem,22vw,20rem);
+  font-weight:700;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(245,232,207,.06);
+  line-height:1;user-select:none;pointer-events:none;
+  z-index:1;letter-spacing:-4px;
+}
+
+/* geometric ornament circles (from original design) */
+.hb-orb{
+  position:absolute;border-radius:50%;
+  pointer-events:none;z-index:0;
+}
+.hb-orb-1{
+  top:-80px;left:-80px;
+  width:380px;height:380px;
+  border:50px solid rgba(245,232,207,.05);
+}
+.hb-orb-2{
+  bottom:-100px;right:-100px;
+  width:480px;height:480px;
+  border:60px solid rgba(245,232,207,.04);
+}
+
+/* ── Hero layout with image ── */
+.hb-hero-split{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:52% 48%;
+  align-items:center;
+  gap:0;
+  padding:0 0 0 56px;
+  width:100%;
+  max-width:none;
+  margin:0;
+  flex:1;
+  min-height:0;
+}
+.hb-hero-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-left:0;
+}
+
+/* ── 3D Owl ── */
+.hb-hero-owl-wrap{
+  display:flex;align-items:center;justify-content:center;
+  animation:hb-fade-up 1s .5s both;
+  width:100%;
+  height:100%;
+  padding:40px 20px;
+}
+.hb-owl-3d{
+  position:relative;
+  width:clamp(180px, 22vw, 260px);
+  height:clamp(180px, 22vw, 260px);
+  display:flex;align-items:center;justify-content:center;
+  animation:hb-owl-float 4s ease-in-out infinite;
+  cursor:default;
+  perspective:800px;
+}
+@keyframes hb-owl-float{
+  0%,100%{transform:translateY(0) rotateY(-5deg) rotateX(4deg)}
+  50%  {transform:translateY(-18px) rotateY(5deg) rotateX(-3deg)}
+}
+.hb-owl-img{
+  width:100%;height:100%;
+  object-fit:contain;
+  position:relative;z-index:2;
+  filter:
+    drop-shadow(0 0 50px rgba(200,146,42,.65))
+    drop-shadow(0 0 100px rgba(200,146,42,.3))
+    drop-shadow(0 24px 48px rgba(0,0,0,.7))
+    brightness(1.08)
+    sepia(.18);
+  transition:filter .4s;
+}
+.hb-owl-3d:hover .hb-owl-img{
+  filter:
+    drop-shadow(0 0 70px rgba(200,146,42,.9))
+    drop-shadow(0 0 120px rgba(200,146,42,.45))
+    drop-shadow(0 24px 48px rgba(0,0,0,.7))
+    brightness(1.15)
+    sepia(.22);
+}
+.hb-owl-shadow{
+  position:absolute;
+  bottom:-18px;left:50%;transform:translateX(-50%);
+  width:140px;height:14px;
+  background:rgba(0,0,0,.55);
+  filter:blur(14px);border-radius:50%;z-index:1;
+  animation:hb-shadow-pulse 4s ease-in-out infinite;
+}
+@keyframes hb-shadow-pulse{
+  0%,100%{width:140px;opacity:.55}
+  50%    {width:90px;opacity:.25}
+}
+.hb-owl-glow{
+  position:absolute;inset:-30px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,.1) 0%,transparent 65%);
+  animation:hb-glow-pulse 4s ease-in-out infinite;
+  pointer-events:none;z-index:0;
+}
+@keyframes hb-glow-pulse{
+  0%,100%{transform:scale(1);opacity:.7}
+  50%    {transform:scale(1.12);opacity:1}
+}
+.hb-tag{
+  font-family:'Cinzel',serif;
+  font-size:.65rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;margin-bottom:32px;
+  display:flex;align-items:center;gap:16px;
+}
+.hb-tag::before{
+  content:'';display:block;
+  width:40px;height:1px;background:#e8b84b;
+}
+
+.hb-hero-h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:700;line-height:1.1;letter-spacing:1px;
+  margin-bottom:36px;overflow:hidden;
+}
+.hb-hero-h1 .hb-line{
+  display:block;transform:translateY(100%);
+  animation:hb-line-up .9s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+.hb-hero-h1 .hb-line:nth-child(1){animation-delay:.2s;color:#f5e8cf}
+.hb-hero-h1 .hb-line:nth-child(2){animation-delay:.4s;color:#e8b84b}
+@keyframes hb-line-up{to{transform:translateY(0)}}
+
+.hb-hero-desc{
+  font-size:1rem;line-height:2;
+  color:rgba(245,232,207,.75);font-weight:300;
+  max-width:540px;animation:hb-fade-up .9s .7s both;
+}
+.hb-hero-desc strong{color:#fff;font-weight:700}
+
+/* bottom bar */
+.hb-hero-bar{
+  position:relative;z-index:2;
+  display:flex;align-items:center;
+  padding:28px 64px;
+  border-top:1px solid rgba(245,232,207,.15);
+  gap:48px;flex-wrap:wrap;
+  animation:hb-fade-up .8s 1s both;
+  background:rgba(61,32,8,.3);
+}
+.hb-bar-item{display:flex;flex-direction:column;gap:4px;}
+.hb-bar-num{
+  font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;
+  color:#e8b84b;line-height:1;letter-spacing:1px;
+}
+.hb-bar-lbl{
+  font-family:'Lato',sans-serif;font-size:.68rem;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(245,232,207,.5);
+}
+.hb-bar-sep{width:1px;height:48px;background:rgba(245,232,207,.18);}
+
+/* scroll cue */
+.hb-scroll-cue{
+  position:absolute;bottom:90px;right:60px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  animation:hb-fade-up .8s 1.3s both;
+}
+.hb-scroll-line{
+  width:1px;height:70px;
+  background:linear-gradient(to bottom,#e8b84b,transparent);
+  animation:hb-scroll-anim 1.8s ease-in-out infinite;
+}
+@keyframes hb-scroll-anim{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.4);opacity:.4}}
+.hb-scroll-cue span{
+  font-family:'Cinzel',serif;font-size:.52rem;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(245,232,207,.45);
+  writing-mode:vertical-rl;
+}
+
+@keyframes hb-fade-up{
+  from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════
+   SECTION SHARED
+═══════════════════════════════ */
+.hb-section{
+  position:relative;
+  padding:120px 64px;
+  overflow:hidden;
+}
+.hb-section-eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:.6rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:20px;
+}
+.hb-section-eyebrow::after{
+  content:'';flex:1;max-width:60px;height:1px;background:#e8b84b;
+}
+
+/* ═══════════════════════════════
+   SOBRE NOSOTROS
+═══════════════════════════════ */
+.hb-about-section{background:#ffffff;}
+
+.hb-about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;max-width:1200px;margin:0 auto;align-items:center;
+}
+.hb-about-h2{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:700;line-height:1.15;color:#3d2008;
+  letter-spacing:1px;margin-bottom:32px;
+}
+.hb-about-h2 em{font-style:normal;color:#c8922a}
+.hb-about-body{
+  font-size:.97rem;line-height:2.1;
+  color:#5c3610;font-weight:300;
+  margin-bottom:32px;
+}
+.hb-about-body strong{color:#3d2008;font-weight:700}
+
+.hb-about-section .hb-section-eyebrow{color:#c8922a;}
+.hb-about-section .hb-section-eyebrow::after{background:#c8922a;}
+.hb-deco-frame{
+  position:relative;
+  background:#fff8f0;
+  border:1px solid rgba(92,54,16,.2);
+  padding:48px 42px;
+}
+.hb-deco-frame::before{
+  content:'';position:absolute;
+  top:10px;left:10px;right:10px;bottom:10px;
+  border:1px solid rgba(92,54,16,.07);
+  pointer-events:none;
+}
+.hb-deco-frame::after{
+  content:'';position:absolute;
+  top:8px;right:8px;width:28px;height:28px;
+  border-top:2px solid #c8922a;
+  border-right:2px solid #c8922a;
+}
+.hb-corner-bl{
+  position:absolute;bottom:8px;left:8px;
+  width:28px;height:28px;
+  border-bottom:2px solid #c8922a;
+  border-left:2px solid #c8922a;
+}
+.hb-frame-quote{
+  font-family:'Cinzel',serif;
+  font-size:clamp(.95rem,1.8vw,1.2rem);
+  line-height:1.9;color:#3d2008;font-weight:400;
+  letter-spacing:.3px;margin-bottom:24px;
+}
+.hb-frame-author{
+  font-family:'Lato',sans-serif;
+  font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
+  color:#c8922a;font-weight:700;
+}
+
+/* ═══════════════════════════════
+   MISIÓN & VISIÓN
+═══════════════════════════════ */
+.hb-mv-section{background:#ffffff;}
+
+.hb-mv-section .hb-section-eyebrow{color:#c8922a;}
+.hb-mv-section .hb-section-eyebrow::after{background:#c8922a;}
+.hb-mv-section h2{color:#3d2008 !important;}
+
+.hb-mv-inner{max-width:1200px;margin:0 auto;}
+.hb-mv-header{margin-bottom:64px;}
+.hb-mv-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+.hb-mv-card{
+  position:relative;
+  padding:64px 52px;overflow:hidden;
+  background:#fff8f0;
+  border:1px solid rgba(92,54,16,.12);
+  border-radius:2px;
+  transition:background .4s,box-shadow .4s;
+  box-shadow:0 4px 24px rgba(92,54,16,.08);
+}
+.hb-mv-card:hover{background:#fff3e6;box-shadow:0 8px 36px rgba(92,54,16,.14)}
+
+/* vertical gold line */
+.hb-mv-card::before{
+  content:'';position:absolute;
+  top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,transparent,#e8b84b 30%,#c8922a 70%,transparent);
+}
+.hb-mv-card-num{display:none;}
+.hb-mv-icon-circle{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(200,146,42,.1);
+  border:1px solid rgba(200,146,42,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+}
+.hb-mv-icon-circle svg{width:22px;height:22px;}
+.hb-mv-sub{
+  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;
+  text-transform:uppercase;color:#c8922a;margin-bottom:12px;
+}
+.hb-mv-title{
+  font-family:'Cinzel',serif;
+  font-size:1.9rem;font-weight:700;
+  color:#3d2008;letter-spacing:1px;margin-bottom:22px;
+}
+.hb-mv-body{
+  font-size:.94rem;line-height:2;
+  color:#5c3610;font-weight:300;
+}
+
+/* ═══════════════════════════════
+   VALORES — ticker + grid
+═══════════════════════════════ */
+.hb-val-section{background:#ffffff;padding-bottom:100px;}
+
+.hb-val-section .hb-section-eyebrow{color:#c8922a;}
+.hb-val-section .hb-section-eyebrow::after{background:#c8922a;}
+.hb-val-section h2{color:#3d2008 !important;}
+
+/* ticker */
+.hb-ticker-wrap{
+  overflow:hidden;
+  border-top:1px solid rgba(92,54,16,.2);
+  border-bottom:1px solid rgba(92,54,16,.2);
+  padding:18px 0;margin-bottom:80px;
+  background:#5c3610;
+}
+.hb-ticker{
+  display:flex;width:max-content;
+  animation:hb-ticker-move 22s linear infinite;
+}
+.hb-ticker-item{
+  font-family:'Cinzel',serif;
+  font-size:.72rem;letter-spacing:4px;text-transform:uppercase;
+  color:#ffffff;
+  padding:0 36px;white-space:nowrap;
+  display:flex;align-items:center;gap:20px;
+}
+.hb-ticker-item::after{content:'◆';font-size:.45rem;color:rgba(232,184,74,.7);}
+@keyframes hb-ticker-move{
+  from{transform:translateX(0)}to{transform:translateX(-50%)}
+}
+
+.hb-val-inner{max-width:1200px;margin:0 auto;}
+.hb-val-header{margin-bottom:60px;}
+
+.hb-val-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1px;
+  background:rgba(92,54,16,.1);
+}
+.hb-val-item{
+  background:#ffffff;
+  padding:36px 24px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:background .35s;cursor:default;
+}
+.hb-val-item:hover{background:#fff8f0}
+.hb-val-item::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:0;
+  background:linear-gradient(to top,rgba(200,146,42,.14),transparent);
+  transition:height .35s;
+}
+.hb-val-item:hover::after{height:100%}
+
+.hb-val-idx{
+  display:block;font-family:'Cinzel',serif;
+  font-size:.58rem;letter-spacing:2px;
+  color:rgba(200,146,42,.5);margin-bottom:16px;
+}
+.hb-val-name{
+  font-family:'Cinzel',serif;font-size:.77rem;letter-spacing:2px;
+  text-transform:uppercase;color:#3d2008;font-weight:600;
+  display:block;position:relative;z-index:1;
+}
+.hb-val-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#c8922a;margin:14px auto 0;
+  box-shadow:0 0 8px rgba(200,146,42,.4);
+  transition:transform .3s;
+}
+.hb-val-item:hover .hb-val-dot{transform:scale(1.7)}
+
+/* ═══════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════ */
+.hb-reveal{
+  opacity:0;transform:translateY(36px);
+  transition:opacity .85s ease,transform .85s cubic-bezier(.23,1,.32,1);
+}
+.hb-reveal.hb-in{opacity:1;transform:translateY(0)}
+.hb-r1{transition-delay:.08s}.hb-r2{transition-delay:.2s}
+.hb-r3{transition-delay:.32s}.hb-r4{transition-delay:.44s}
+.hb-r5{transition-delay:.56s}
+
+@media(max-width:900px){
+  .hb-about-grid,.hb-mv-cards{grid-template-columns:1fr}
+  .hb-hero-split{grid-template-columns:1fr;padding:60px 24px 40px;text-align:center}
+  .hb-owl-3d{width:240px;height:240px}
+  .hb-hero-owl-wrap{order:-1}
+  .hb-val-grid{grid-template-columns:repeat(2,1fr)}
+  .hb-section{padding:80px 24px}
+  .hb-hero-bar{padding:24px 24px;gap:24px}
+  .hb-scroll-cue{display:none}
+}
+@media(max-width:500px){
+  .hb-val-grid{grid-template-columns:repeat(2,1fr)}
+  .hb-mv-card{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<div class="hb-page">
+
+<!-- SIDE NAV -->
+<nav class="hb-sidenav">
+  <a class="hb-dot hb-active" href="#hb-hero"></a>
+  <a class="hb-dot" href="#hb-about"></a>
+  <a class="hb-dot" href="#hb-mv"></a>
+  <a class="hb-dot" href="#hb-valores"></a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────── -->
+<section class="hb-hero" id="hb-hero">
+  <div class="hb-grain"></div>
+  <div class="hb-bloom"></div>
+  <div class="hb-orb hb-orb-1"></div>
+  <div class="hb-orb hb-orb-2"></div>
+  <div class="hb-bg-word">HIMANABI</div>
+
+  <div class="hb-hero-split">
+    <div class="hb-hero-content">
+      <div class="hb-tag">Soporte Educativo · Rep. Dom.</div>
+      <h1 class="hb-hero-h1">
+        <span class="hb-line">¿Quiénes</span>
+        <span class="hb-line">Somos?</span>
+      </h1>
+      <p class="hb-hero-desc">
+        Docentes calificados comprometidos con un soporte educativo
+        profesional, práctico y personalizado de manera
+        <strong>presencial, semipresencial o virtual.</strong>
+      </p>
+    </div>
+    <div class="hb-hero-owl-wrap">
+      <div class="hb-owl-3d" id="hbOwl">
+<img src="../img/logo solo.png" class="hb-owl-img" style="width:100%;height:100%;object-fit:contain;">
+        <div class="hb-owl-shadow"></div>
+        <div class="hb-owl-glow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hb-hero-bar">
+    <div class="hb-bar-item">
+      <span class="hb-bar-num" data-target="100">0</span>
+      <span class="hb-bar-lbl">% Compromiso</span>
+    </div>
+    <div class="hb-bar-sep"></div>
+    <div class="hb-bar-item">
+      <span class="hb-bar-num" data-target="3">0</span>
+      <span class="hb-bar-lbl">Modalidades</span>
+    </div>
+    <div class="hb-bar-sep"></div>
+    <div class="hb-bar-item">
+      <span class="hb-bar-num" data-target="10">0</span>
+      <span class="hb-bar-lbl">Valores</span>
+    </div>
+    <div class="hb-bar-sep"></div>
+    <div class="hb-bar-item">
+      <span class="hb-bar-num">∞</span>
+      <span class="hb-bar-lbl">Posibilidades</span>
+    </div>
+  </div>
+
+  <div class="hb-scroll-cue">
+    <div class="hb-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── SOBRE NOSOTROS ──────────────────── -->
+<section class="hb-section hb-about-section" id="hb-about">
+  <div class="hb-about-grid">
+
+    <div class="hb-reveal">
+      <div class="hb-section-eyebrow">Sobre Nosotros</div>
+      <h2 class="hb-about-h2">
+        Educación<br>
+        <em>que transforma</em><br>
+        vidas
+      </h2>
+      <p class="hb-about-body">
+        Somos docentes calificados y capacitados con experiencia,
+        que nos encargamos de brindar un soporte educativo
+        profesional y práctico a nuestros alumnos, manteniendo un
+        constante seguimiento y asesoramiento para lograr una
+        correcta capacitación y entendimiento en nuestros
+        estudiantes de manera <strong>presencial, semipresencial o virtual.</strong>
+      </p>
+    </div>
+
+    <div class="hb-reveal hb-r2">
+      <div class="hb-deco-frame">
+        <div class="hb-corner-bl"></div>
+        <p class="hb-frame-quote">
+          Formando líderes con innovación para un mundo que
+          exige excelencia, visión de futuro y un compromiso
+          inquebrantable con el conocimiento.
+        </p>
+        <span class="hb-frame-author">— HIMANABI · Soporte Educativo</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MISIÓN & VISIÓN ─────────────────── -->
+<section class="hb-section hb-mv-section" id="hb-mv">
+  <div class="hb-mv-inner">
+    <div class="hb-mv-header hb-reveal">
+      <div class="hb-section-eyebrow">Fundamentos</div>
+      <h2 style="font-family:'Cinzel Decorative',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;color:#f5e8cf;letter-spacing:1px;">
+        Misión &amp; Visión
+      </h2>
+    </div>
+    <div class="hb-mv-cards">
+
+      <div class="hb-mv-card hb-reveal hb-r1">
+        <div class="hb-mv-card-num">01</div>
+        <div class="hb-mv-icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <p class="hb-mv-sub">Nuestro propósito</p>
+        <h3 class="hb-mv-title">Misión</h3>
+        <p class="hb-mv-body">
+          Brindar un soporte educativo altamente efectivo a nuestros educandos
+          en las diferentes ramas del saber, garantizando calidad, compromiso
+          y resultados tangibles en cada etapa del aprendizaje.
+        </p>
+      </div>
+
+      <div class="hb-mv-card hb-reveal hb-r2">
+        <div class="hb-mv-card-num">02</div>
+        <div class="hb-mv-icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <p class="hb-mv-sub">Hacia dónde vamos</p>
+        <h3 class="hb-mv-title">Visión</h3>
+        <p class="hb-mv-body">
+          Hacer que nuestros educandos desarrollen una mejor comprensión en
+          los diferentes aspectos educativos del saber, enfocados al sistema
+          de competitividad actual que exige el mundo moderno.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── VALORES ──────────────────────────── -->
+<section class="hb-section hb-val-section" id="hb-valores">
+
+  <div class="hb-ticker-wrap">
+    <div class="hb-ticker">
+      <div class="hb-ticker-item">Productividad</div>
+      <div class="hb-ticker-item">Respeto</div>
+      <div class="hb-ticker-item">Honestidad</div>
+      <div class="hb-ticker-item">Liderazgo</div>
+      <div class="hb-ticker-item">Transparencia</div>
+      <div class="hb-ticker-item">Desarrollo Humano</div>
+      <div class="hb-ticker-item">Competitividad</div>
+      <div class="hb-ticker-item">Creatividad</div>
+      <div class="hb-ticker-item">Esfuerzo</div>
+      <div class="hb-ticker-item">Responsabilidad</div>
+      <div class="hb-ticker-item">Productividad</div>
+      <div class="hb-ticker-item">Respeto</div>
+      <div class="hb-ticker-item">Honestidad</div>
+      <div class="hb-ticker-item">Liderazgo</div>
+      <div class="hb-ticker-item">Transparencia</div>
+      <div class="hb-ticker-item">Desarrollo Humano</div>
+      <div class="hb-ticker-item">Competitividad</div>
+      <div class="hb-ticker-item">Creatividad</div>
+      <div class="hb-ticker-item">Esfuerzo</div>
+      <div class="hb-ticker-item">Responsabilidad</div>
+    </div>
+  </div>
+
+  <div class="hb-val-inner">
+    <div class="hb-val-header hb-reveal">
+      <div class="hb-section-eyebrow">Lo que nos define</div>
+      <h2 style="font-family:'Cinzel Decorative',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;color:#f5e8cf;letter-spacing:1px;">
+        Nuestros Valores
+      </h2>
+    </div>
+    <div class="hb-val-grid">
+      <div class="hb-val-item hb-reveal hb-r1"><span class="hb-val-idx">01</span><span class="hb-val-name">Productividad</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r2"><span class="hb-val-idx">02</span><span class="hb-val-name">Respeto</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r3"><span class="hb-val-idx">03</span><span class="hb-val-name">Honestidad</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r4"><span class="hb-val-idx">04</span><span class="hb-val-name">Liderazgo</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r5"><span class="hb-val-idx">05</span><span class="hb-val-name">Transparencia</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r1"><span class="hb-val-idx">06</span><span class="hb-val-name">Des. Humano</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r2"><span class="hb-val-idx">07</span><span class="hb-val-name">Competitividad</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r3"><span class="hb-val-idx">08</span><span class="hb-val-name">Creatividad</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r4"><span class="hb-val-idx">09</span><span class="hb-val-name">Esfuerzo</span><div class="hb-val-dot"></div></div>
+      <div class="hb-val-item hb-reveal hb-r5"><span class="hb-val-idx">10</span><span class="hb-val-name">Responsabilidad</span><div class="hb-val-dot"></div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('hb-in') });
+}, {threshold:.12});
+document.querySelectorAll('.hb-reveal').forEach(el => obs.observe(el));
+
+/* COUNTERS */
+function animCount(el, target, duration=1800){
+  let start=null;
+  const step = ts => {
+    if(!start) start=ts;
+    const p = Math.min((ts-start)/duration,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target;
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target);
+      if(!isNaN(t)) animCount(e.target,t);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+
+/* SIDE DOT ACTIVE */
+const sections = ['hb-hero','hb-about','hb-mv','hb-valores'];
+const dots = document.querySelectorAll('.hb-dot');
+const sObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const idx = sections.indexOf(e.target.id);
+      if(idx > -1){
+        dots.forEach(d => d.classList.remove('hb-active'));
+        dots[idx].classList.add('hb-active');
+      }
+    }
+  });
+},{threshold:.4});
+sections.forEach(id => { const el=document.getElementById(id); if(el) sObs.observe(el); });
+</script>
+</body>
+</html>
