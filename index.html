@@ -1,492 +1,520 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liceo Técnico Manuel Del Cabral - Portal Institucional</title>
-    <link rel="stylesheet" href="../css/banner-footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Summer's Paradise · Asistente IA con movimiento</title>
     <style>
-        :root {
-            --color-primary: #2c3e50;
-            --color-secondary: #3498db;
-            --color-accent: #e74c3c;
-            --color-green: #2ecc71;
-            --color-text: #333;
-            --color-light: #f8f9fa;
-            --color-white: #fff;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --border-radius: 8px;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-light);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--color-white);
-            padding: 150px 0 100px;
-            text-align: center;
-        }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        
-        .cta-buttons {
+            min-height: 100vh;
+            background: radial-gradient(circle at 30% 10%, #0b2b2a, #021010);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            padding: 12px 25px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: var(--color-primary);
-            transform: translateY(-3px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--color-white);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--color-white);
-            color: var(--color-primary);
-        }
-        
-        .btn-accent {
-            background-color: var(--color-accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #c0392b;
-        }
-        
-        /* Secciones generales */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        /* Slider */
-        .slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
             overflow: hidden;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .slide {
-            min-width: 100%;
             position: relative;
         }
-        
-        .slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 30px;
-        }
-        
-        .slide-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ccc;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .slider-dot.active {
-            background: var(--color-secondary);
-        }
-        
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
+
+        /* contenedor principal */
+        .main-container {
+            position: relative;
             z-index: 10;
-        }
-        
-        .slider-arrow:hover {
-            background: rgba(0,0,0,0.8);
-        }
-        
-        .slider-arrow.prev {
-            left: 20px;
-        }
-        
-        .slider-arrow.next {
-            right: 20px;
-        }
-        
-        /* Sección Nosotros */
-        .nosotros-cta {
-            background: linear-gradient(rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-            border-radius: var(--border-radius);
-            margin: 40px 0;
-        }
-        
-        .nosotros-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .nosotros-cta p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .nosotros-features {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
+            width: 100%;
+            max-width: 550px;
+            padding: 1.5rem;
         }
-        
-        .nosotros-feature {
-            background: rgba(255,255,255,0.2);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(5px);
-            max-width: 300px;
+
+        /* ORBE + anillos */
+        .orb-wrapper {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .nosotros-feature i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--color-white);
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            box-shadow: 0 0 12px rgba(0,245,255,0.3);
+            animation: ringPulse 4s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite;
         }
-        
-        .nosotros-feature h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+        .ring-1 { width: 300px; height: 300px; animation-delay: 0s; }
+        .ring-2 { width: 360px; height: 360px; animation-delay: 1s; }
+        .ring-3 { width: 420px; height: 420px; animation-delay: 2s; }
+        @keyframes ringPulse {
+            0% { transform: scale(0.7); opacity: 0.5; border-width: 2px; }
+            50% { transform: scale(1.05); opacity: 0.2; border-width: 1px; }
+            100% { transform: scale(0.7); opacity: 0.5; border-width: 2px; }
         }
-        
-        /* Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+
+        .orb {
+            width: 210px;
+            height: 210px;
+            background: radial-gradient(circle at 35% 35%, #fff 5%, #2af5ff 35%, #00a2c3 80%, #006b8f 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px #0ff, 0 0 110px #0ff5, inset 30px 30px 40px rgba(255,255,255,0.7), inset -20px -20px 40px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            position: relative;
+            animation: orbGlow 2.8s infinite alternate;
         }
-        
-        .service-card {
-            background-color: var(--color-white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+        .orb:active { transform: scale(0.96); }
+        @keyframes orbGlow {
+            0% { box-shadow: 0 0 40px #0ff, 0 0 80px #0ff5; }
+            100% { box-shadow: 0 0 90px #0ff, 0 0 150px #0ffa, 0 0 30px #4effff; }
+        }
+        .orb::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 5%, rgba(255,255,255,0) 80%);
+            border-radius: 50%;
+            filter: blur(5px);
+        }
+
+        /* estados animados */
+        .orb.listening {
+            animation: listeningPulse 0.9s infinite alternate;
+            box-shadow: 0 0 100px #0ff, 0 0 180px #0ff;
+        }
+        @keyframes listeningPulse {
+            from { transform: scale(1); box-shadow: 0 0 50px cyan; }
+            to { transform: scale(1.03); box-shadow: 0 0 110px #3efffc, 0 0 140px #00e0ff; }
+        }
+        .orb.speaking {
+            animation: speakingWave 1s ease-in-out infinite;
+        }
+        @keyframes speakingWave {
+            0% { transform: scale(1); filter: brightness(1);}
+            50% { transform: scale(1.02); filter: brightness(1.15);}
+            100% { transform: scale(1); filter: brightness(1);}
+        }
+
+        /* título: solo nombre */
+        .title {
             text-align: center;
-            transition: transform 0.3s ease;
+            margin-top: 0.8rem;
+            font-family: 'Playfair Display', serif;
         }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
+        .title h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #FFD966, #00ffd0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,255,200,0.3);
         }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--color-secondary);
-            margin-bottom: 20px;
+
+        /* botón de respaldo (se mantiene) */
+        .talk-btn {
+            background: rgba(10, 30, 35, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid #0ff;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 80px;
+            margin: 25px 0 15px;
+            cursor: pointer;
+            transition: 0.25s;
+            letter-spacing: 1px;
+            box-shadow: 0 0 18px rgba(0,255,255,0.3);
         }
-        
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--color-primary);
+        .talk-btn:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: scale(1.02);
         }
-        
-        .service-card p {
-            margin-bottom: 20px;
-            color: #666;
+
+        /* estado y mensajes */
+        .status-card {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #e0f2fe;
+            border: 1px solid rgba(0,255,255,0.4);
+            margin-top: 8px;
+            max-width: 90%;
         }
-        
-        /* Responsive */
-        @media (max-width: 850px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-            
-            .slide img {
-                height: 400px;
-            }
-            
-            .nosotros-cta h2 {
-                font-size: 2rem;
-            }
-            
-            .nosotros-cta p {
-                font-size: 1rem;
-            }
-            
-            .nosotros-features {
-                flex-direction: column;
-                align-items: center;
-            }
+        .motion-badge {
+            display: inline-block;
+            background: #0b4b4b;
+            border-radius: 40px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
-    <div id="banner-container"></div>
 
+<div class="main-container">
+    <div class="title">
+        <h1>Summer's Paradise</h1>
+    </div>
 
+    <div class="orb-wrapper">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="orb" id="orbCore"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container">
-            <h2>Formando Líderes Técnicos para el Futuro</h2>
-            <p>El Liceo Técnico Manuel Del Cabral es una institución educativa de vanguardia que combina excelencia académica con formación técnica especializada, preparando a nuestros estudiantes para los desafíos del siglo XXI.</p>
-            <div class="cta-buttons">
-                <a href="#nosotros" class="btn">Conoce Nuestra Institución</a>
-                <a href="#servicios" class="btn btn-outline">Nuestros Programas</a>
-            </div>
-        </div>
-    </section>
+    <button class="talk-btn" id="talkButton">🎙️ HABLAR CON SUMMER</button>
 
-    <!-- Slider -->
-    <section id="nosotros">
-        <div class="container">
-            <div class="section-title">
-                <h2>Conoce Nuestra Institución</h2>
-                <p>Descubre el Liceo Técnico Manuel Del Cabral a través de nuestras instalaciones y actividades</p>
-            </div>
+    <div class="status-card" id="statusMessage">
+        🌴 Iniciando sensores...
+    </div>
+    <div class="motion-badge" id="motionStatus">🔘 Cámara: solicitando permiso</div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    //  INFORMACIÓN PERSONALIZABLE DE LA EMPRESA (Summer's Paradise)
+    // --------------------------------------------------------------
+    const companyData = {
+        nombre: "Summer's Paradise",
+        descripcion: "Summer's Paradise es una agencia de experiencias y asesoría de viajes con inteligencia artificial, creada para ofrecer destinos de ensueño y atención personalizada 24/7 mediante nuestro asistente de voz.",
+        servicios: [
+            "🌴 Paquetes todo incluido a islas del Caribe y Maldivas",
+            "🏝️ Asesoría personalizada con IA para planificar tu viaje soñado",
+            "✈️ Vuelos + hoteles con descuentos exclusivos",
+            "🧘 Retiros de bienestar y mindfulness en playas paradisíacas",
+            "🎤 Experiencias 'Summer Concierge' con soporte por voz"
+        ],
+        precios: "Desde $299 USD por persona en escapadas de fin de semana, hasta paquetes premium de lujo desde $1299 USD. ¡Pregunta por ofertas early bird!",
+        contacto: "📞 WhatsApp: +1 (800) 555-SUMMER | ✉️ hola@summersparadise.com | 🌐 www.summersparadise.com",
+        ubicacion: "📍 Oficina central: Miami, Florida (USA) con operaciones en Cancún, Punta Cana y Riviera Maya. Atención global online.",
+        destinos: ["Maldivas", "Bora Bora", "Cancún", "República Dominicana", "Costa Rica", "Santorini", "Bali", "Islas Seychelles"],
+        reservas: "Puedes reservar directamente desde nuestra web, o diciéndome 'quiero reservar' y te guiaré. También aceptamos pagos seguros con tarjeta y cripto (USDC)."
+    };
+
+    // Respuesta inteligente
+    function getSmartResponse(questionText) {
+        const q = questionText.toLowerCase().trim();
+        if (q.includes("servicio") || q.includes("qué ofrecen") || q.includes("qué hacen") || q.includes("servicios disponibles")) {
+            return `En ${companyData.nombre} ofrecemos: ${companyData.servicios.join(", ")}. ¿Te gustaría más detalle de algún servicio específico?`;
+        }
+        if (q.includes("precio") || q.includes("cuánto cuesta") || q.includes("costo") || q.includes("precios")) {
+            return `Los precios de ${companyData.nombre}: ${companyData.precios} Además contamos con planes personalizados. ¿Quieres que calcule un presupuesto?`;
+        }
+        if (q.includes("reservar") || q.includes("reserva") || q.includes("cómo reservo")) {
+            return `${companyData.reservas} ¿Necesitas ayuda con tu reserva ahora?`;
+        }
+        if (q.includes("ubicación") || q.includes("dónde están") || q.includes("dirección")) {
+            return `${companyData.ubicacion} ¡Atención en línea para todo el mundo!`;
+        }
+        if (q.includes("destino") || q.includes("viajar") || q.includes("playa") || q.includes("islas")) {
+            return `Nuestros destinos favoritos son: ${companyData.destinos.join(", ")}. ¿Te interesa algún destino en especial?`;
+        }
+        if (q.includes("contacto") || q.includes("contactar") || q.includes("email") || q.includes("whatsapp")) {
+            return `${companyData.contacto} Estamos disponibles 24/7 para ti.`;
+        }
+        if (q.includes("quienes son") || q.includes("empresa")) {
+            return `${companyData.descripcion} ¿Te gustaría saber más?`;
+        }
+        if (q.includes("gracias") || q.includes("ok")) {
+            return "¡De nada! Es un placer asistirte. Si necesitas algo más, solo acércate o di mi nombre. 🌊";
+        }
+        if (q.includes("hola") || q.includes("buenas")) {
+            return `¡Hola! Soy Summer, tu asistente de ${companyData.nombre}. Pregúntame sobre servicios, precios o destinos.`;
+        }
+        return `Gracias por tu consulta. En ${companyData.nombre} te ofrecemos asesoría de viajes con IA. ¿Te gustaría saber más sobre servicios, precios o ubicación?`;
+    }
+
+    // -------------------  VOZ Y RECONOCIMIENTO  -------------------
+    let recognition = null;
+    let isListeningActive = false;
+    let isSpeakingNow = false;
+    let currentOrb = document.getElementById('orbCore');
+    const talkBtn = document.getElementById('talkButton');
+    const statusDiv = document.getElementById('statusMessage');
+    const motionStatusSpan = document.getElementById('motionStatus');
+
+    // síntesis de voz
+    function speakText(text, callback = null) {
+        if (isSpeakingNow) window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-ES';
+        utterance.rate = 1.0;
+        utterance.pitch = 1.05;
+        if (currentOrb) {
+            currentOrb.classList.remove('listening');
+            currentOrb.classList.add('speaking');
+        }
+        statusDiv.innerHTML = `🔊 Summer está hablando...`;
+        isSpeakingNow = true;
+        utterance.onend = () => {
+            isSpeakingNow = false;
+            if (currentOrb) currentOrb.classList.remove('speaking');
+            statusDiv.innerHTML = `✨ Modo automático activo. Acércate o di algo. ✨`;
+            if (callback) callback();
+            // después de hablar, reactivamos detección de movimiento si no está activa
+            enableMotionDetectionAfterConversation();
+        };
+        utterance.onerror = () => {
+            isSpeakingNow = false;
+            if (currentOrb) currentOrb.classList.remove('speaking');
+            statusDiv.innerHTML = `⚠️ Error de voz. El botón sigue disponible.`;
+            enableMotionDetectionAfterConversation();
+        };
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Inicializar reconocimiento de voz (una sola vez)
+    function initSpeechRecognition() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            statusDiv.innerHTML = "❌ Navegador sin soporte de voz. Usa Chrome/Edge.";
+            talkBtn.disabled = true;
+            return null;
+        }
+        const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recog = new SpeechRecognitionAPI();
+        recog.lang = 'es-ES';
+        recog.continuous = false;
+        recog.interimResults = false;
+        recog.maxAlternatives = 1;
+        return recog;
+    }
+
+    function processUserQuestion(question) {
+        if (!question || question.trim() === "") {
+            statusDiv.innerHTML = "No te escuché bien, intenta acercarte o usa el botón.";
+            resetToIdle();
+            enableMotionDetectionAfterConversation();
+            return;
+        }
+        statusDiv.innerHTML = `🗣️ Escuché: "${question.substring(0, 45)}..." · Pensando...`;
+        const answer = getSmartResponse(question);
+        if (currentOrb) currentOrb.classList.remove('listening');
+        setTimeout(() => {
+            speakText(answer);
+        }, 150);
+    }
+
+    function startListening() {
+        if (isSpeakingNow) {
+            statusDiv.innerHTML = "Summer está hablando, espera...";
+            return;
+        }
+        if (isListeningActive) return;
+        if (!recognition) {
+            recognition = initSpeechRecognition();
+            if (!recognition) return;
+            recognition.onstart = () => {
+                isListeningActive = true;
+                statusDiv.innerHTML = "🎤 Escuchando... ¡pregúntame ahora! (servicios, precios, destinos)";
+                if (currentOrb) {
+                    currentOrb.classList.add('listening');
+                    currentOrb.classList.remove('speaking');
+                }
+            };
+            recognition.onerror = (event) => {
+                let errorMsg = "No te escuché. Intenta de nuevo.";
+                if (event.error === 'no-speech') errorMsg = "No detecté voz. Asegúrate de hablar.";
+                else if (event.error === 'not-allowed') errorMsg = "Permiso de micrófono denegado. Usa el botón y permite el micro.";
+                statusDiv.innerHTML = `⚠️ ${errorMsg}`;
+                resetToIdle();
+                enableMotionDetectionAfterConversation();
+            };
+            recognition.onend = () => {
+                isListeningActive = false;
+                if (currentOrb) currentOrb.classList.remove('listening');
+                if (!isSpeakingNow) {
+                    statusDiv.innerHTML = `✅ Escucha automática detenida. Me activo con movimiento o el botón.`;
+                }
+            };
+            recognition.onresult = (event) => {
+                const userText = event.results[0][0].transcript;
+                if (userText && userText.trim() !== "") {
+                    recognition.stop();
+                    processUserQuestion(userText);
+                } else {
+                    statusDiv.innerHTML = "No entendí. Repite por favor.";
+                    resetToIdle();
+                    enableMotionDetectionAfterConversation();
+                }
+            };
+        }
+        if (isListeningActive) return;
+        try {
+            recognition.start();
+        } catch(e) {
+            console.warn(e);
+            statusDiv.innerHTML = "🔁 Toca el botón para activar micrófono.";
+        }
+    }
+
+    function resetToIdle() {
+        isListeningActive = false;
+        if (currentOrb) currentOrb.classList.remove('listening', 'speaking');
+    }
+
+    // ---------- DETECCIÓN DE MOVIMIENTO CON CÁMARA ----------
+    let videoStream = null;
+    let motionDetectionActive = false;
+    let motionCooldown = false;      // Evita múltiples welcomes seguidos
+    let lastMotionTimestamp = 0;
+    let animationFrameId = null;
+    let videoElement = null;
+    let canvasElement = null;
+    let previousFrame = null;
+
+    async function setupMotionDetection() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoStream = stream;
+            // crear elementos ocultos para procesar movimiento
+            videoElement = document.createElement('video');
+            videoElement.srcObject = stream;
+            videoElement.setAttribute('playsinline', '');
+            videoElement.style.position = 'fixed';
+            videoElement.style.top = '-1000px';
+            videoElement.style.left = '-1000px';
+            videoElement.style.width = '320px';
+            videoElement.style.height = '240px';
+            document.body.appendChild(videoElement);
+            canvasElement = document.createElement('canvas');
+            canvasElement.width = 160;
+            canvasElement.height = 120;
+            const ctx = canvasElement.getContext('2d');
             
-            <div class="slider-container">
-                <div class="slider" id="slider">
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Instalaciones del liceo">
-                        <div class="slide-content">
-                            <h3>Instalaciones Modernas</h3>
-                            <p>Contamos con laboratorios y talleres equipados con tecnología de punta para la formación técnica de nuestros estudiantes.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Estudiantes en clase">
-                        <div class="slide-content">
-                            <h3>Excelencia Académica</h3>
-                            <p>Nuestro equipo docente altamente calificado garantiza una educación de calidad que combina teoría y práctica.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Actividades extracurriculares">
-                        <div class="slide-content">
-                            <h3>Formación Integral</h3>
-                            <p>Promovemos el desarrollo de habilidades sociales, artísticas y deportivas para una formación completa de nuestros estudiantes.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="slider-arrow prev" id="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-arrow next" id="next"><i class="fas fa-chevron-right"></i></button>
-                <div class="slider-nav" id="slider-nav">
-                    <span class="slider-dot active"></span>
-                    <span class="slider-dot"></span>
-                    <span class="slider-dot"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Nosotros -->
-    <section id="nosotros-cta">
-        <div class="container">
-            <div class="nosotros-cta">
-                <h2>Descubre Más Sobre Nuestra Institución</h2>
-                <p>Conoce nuestra historia, equipo docente, metodologías educativas y todo lo que hace del Liceo Técnico Manuel Del Cabral una institución de excelencia.</p>
-                <a href="../html/nosotros.html" class="btn btn-accent" style="font-size: 1.2rem; padding: 15px 30px;">Ir a la Página Nosotros</a>
-                
-                <div class="nosotros-features">
-                    <div class="nosotros-feature">
-                        <i class="fas fa-history"></i>
-                        <h3>Nuestra Historia</h3>
-                        <p>Más de 30 años formando técnicos profesionales</p>
-                    </div>
-                    <div class="nosotros-feature">
-                        <i class="fas fa-users"></i>
-                        <h3>Nuestro Equipo</h3>
-                        <p>Docentes altamente calificados y comprometidos</p>
-                    </div>
-                    <div class="nosotros-feature">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Logros</h3>
-                        <p>Reconocimientos y premios a la excelencia educativa</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Servicios -->
-    <section id="servicios">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Programas Educativos</h2>
-                <p>Ofrecemos una amplia gama de especialidades técnicas que preparan a nuestros estudiantes para el mundo laboral</p>
-            </div>
+            await videoElement.play();
+            motionStatusSpan.innerHTML = "🎥 Cámara activa · Detección de movimiento ON";
+            statusDiv.innerHTML = "🌞 Summer está lista. Acércate a la cámara y habla sin botón.";
+            motionDetectionActive = true;
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Informática</h3>
-                    <p>Formación en desarrollo de software, redes y soporte técnico con tecnología de vanguardia.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+            // Función de detección de movimiento (diferencia entre frames)
+            function detectMotion() {
+                if (!motionDetectionActive || !videoElement || videoElement.paused || videoElement.readyState < 2) {
+                    animationFrameId = requestAnimationFrame(detectMotion);
+                    return;
+                }
+                ctx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+                const currentFrame = ctx.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                if (previousFrame) {
+                    let diff = 0;
+                    const dataCurr = currentFrame.data;
+                    const dataPrev = previousFrame.data;
+                    for (let i = 0; i < dataCurr.length; i += 4) {
+                        const rDiff = Math.abs(dataCurr[i] - dataPrev[i]);
+                        const gDiff = Math.abs(dataCurr[i+1] - dataPrev[i+1]);
+                        const bDiff = Math.abs(dataCurr[i+2] - dataPrev[i+2]);
+                        const pixelDiff = (rDiff + gDiff + bDiff) / 3;
+                        if (pixelDiff > 25) diff++;
+                    }
+                    const motionRatio = diff / (canvasElement.width * canvasElement.height);
+                    // Si hay movimiento significativo y no estamos en cooldown, ni hablando, ni escuchando
+                    if (motionRatio > 0.05 && !motionCooldown && !isSpeakingNow && !isListeningActive && (Date.now() - lastMotionTimestamp > 4000)) {
+                        lastMotionTimestamp = Date.now();
+                        motionCooldown = true;
+                        statusDiv.innerHTML = "🚶‍♂️ Movimiento detectado · Activando Summer...";
+                        // Dar la bienvenida cálida y luego iniciar escucha automática
+                        const welcomeMotionMsg = `¡Hola de nuevo! Soy Summer. Puedes preguntarme sobre servicios, precios o destinos. Habla ahora.`;
+                        speakText(welcomeMotionMsg, () => {
+                            // Después de la bienvenida, empezar a escuchar automáticamente
+                            startListening();
+                            // Reactivar cooldown después de terminar la conversación (se hace en speakText callback)
+                        });
+                        // El cooldown se desactiva después de 6 segundos para permitir nueva detección
+                        setTimeout(() => { motionCooldown = false; }, 7000);
+                    }
+                }
+                previousFrame = currentFrame;
+                animationFrameId = requestAnimationFrame(detectMotion);
+            }
+            detectMotion();
+        } catch (err) {
+            console.error("Error cámara:", err);
+            motionStatusSpan.innerHTML = "❌ Cámara no disponible · Usa el botón";
+            statusDiv.innerHTML = "⚠️ No se pudo acceder a la cámara. Usa el botón para hablar.";
+            motionDetectionActive = false;
+        }
+    }
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Electrónica</h3>
-                    <p>Especialización en circuitos, automatización y sistemas electrónicos industriales.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+    function enableMotionDetectionAfterConversation() {
+        // reactivar la posibilidad de movimiento tras terminar interacción
+        if (motionDetectionActive && videoStream) {
+            motionCooldown = false;
+            statusDiv.innerHTML = "🔍 Modo detección activo. Acércate a la cámara y habla.";
+        }
+    }
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-wrench"></i>
-                    </div>
-                    <h3>Mecánica Industrial</h3>
-                    <p>Formación en mantenimiento, diseño y operación de maquinaria industrial.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+    // Cerrar recursos al salir
+    function stopMotionAndCamera() {
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+        }
+        if (videoElement && videoElement.parentNode) videoElement.parentNode.removeChild(videoElement);
+        if (canvasElement && canvasElement.parentNode) canvasElement.parentNode.removeChild(canvasElement);
+    }
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Administración</h3>
-                    <p>Preparación en gestión empresarial, contabilidad y recursos humanos.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    // -------------------  INICIALIZACIÓN CON BIENVENIDA Y CÁMARA -------------------
+    async function initialize() {
+        // Primero solicitamos cámara para detección de movimiento
+        await setupMotionDetection();
+        // Damos bienvenida por voz al cargar (si la cámara se activó o no, igual damos bienvenida)
+        setTimeout(() => {
+            if (!isSpeakingNow && !isListeningActive) {
+                const welcomeMsg = `Bienvenido a ${companyData.nombre}. Soy Summer, tu asistente por voz. Puedes acercarte a la cámara o usar el botón para hablar. ¿Qué deseas saber hoy?`;
+                speakText(welcomeMsg, () => {
+                    // Después de la bienvenida inicial, no empezamos a escuchar automáticamente para no saturar.
+                    // Pero el usuario puede acercarse o usar el botón. 
+                    statusDiv.innerHTML = `🌊 Detección activa: acércate y habla. O toca el botón. 🌊`;
+                });
+            }
+        }, 1500);
+    }
 
-     <div id="footer-container"></div>
+    // Botón de respaldo: funciona exactamente igual, inicia escucha
+    function manualActivate() {
+        if (isSpeakingNow) {
+            statusDiv.innerHTML = "Espera a que termine de hablar...";
+            return;
+        }
+        if (isListeningActive) {
+            statusDiv.innerHTML = "Ya estoy escuchando, habla ahora.";
+            return;
+        }
+        startListening();
+    }
 
-  <!-- Script para cargar banner y footer desde un solo archivo -->
-  <script src="../js/banner-footer.js"></script>
+    // Eventos UI
+    if (talkBtn) talkBtn.addEventListener('click', manualActivate);
+    if (currentOrb) currentOrb.addEventListener('click', manualActivate);
 
+    // Limpieza antes de descargar
+    window.addEventListener('beforeunload', () => {
+        if (recognition) try { recognition.abort(); } catch(e) {}
+        window.speechSynthesis.cancel();
+        stopMotionAndCamera();
+    });
 
+    // Iniciar todo
+    initialize();
+    console.log("✅ Summer's Paradise con detección de movimiento y escucha automática activa.");
+</script>
 </body>
 </html>
