@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Summer's Paradise · Asistente IA con movimiento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Summer's Paradise · Asistente IA Voz Femenina</title>
     <style>
         * {
             margin: 0;
@@ -18,11 +18,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
+            touch-action: manipulation;
         }
 
-        /* contenedor principal */
         .main-container {
             position: relative;
             z-index: 10;
@@ -40,10 +40,7 @@
             position: relative;
             width: 260px;
             height: 260px;
-            margin: 1rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0.5rem auto;
         }
         .ring {
             position: absolute;
@@ -52,9 +49,9 @@
             box-shadow: 0 0 12px rgba(0,245,255,0.3);
             animation: ringPulse 4s cubic-bezier(0.2, 0.9, 0.4, 1.1) infinite;
         }
-        .ring-1 { width: 300px; height: 300px; animation-delay: 0s; }
-        .ring-2 { width: 360px; height: 360px; animation-delay: 1s; }
-        .ring-3 { width: 420px; height: 420px; animation-delay: 2s; }
+        .ring-1 { width: 300px; height: 300px; animation-delay: 0s; top: -20px; left: -20px; }
+        .ring-2 { width: 360px; height: 360px; animation-delay: 1s; top: -50px; left: -50px; }
+        .ring-3 { width: 420px; height: 420px; animation-delay: 2s; top: -80px; left: -80px; }
         @keyframes ringPulse {
             0% { transform: scale(0.7); opacity: 0.5; border-width: 2px; }
             50% { transform: scale(1.05); opacity: 0.2; border-width: 1px; }
@@ -68,9 +65,10 @@
             border-radius: 50%;
             box-shadow: 0 0 60px #0ff, 0 0 110px #0ff5, inset 30px 30px 40px rgba(255,255,255,0.7), inset -20px -20px 40px rgba(0,0,0,0.5);
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s;
+            transition: transform 0.2s ease;
             position: relative;
             animation: orbGlow 2.8s infinite alternate;
+            margin: 0 auto;
         }
         .orb:active { transform: scale(0.96); }
         @keyframes orbGlow {
@@ -89,7 +87,6 @@
             filter: blur(5px);
         }
 
-        /* estados animados */
         .orb.listening {
             animation: listeningPulse 0.9s infinite alternate;
             box-shadow: 0 0 100px #0ff, 0 0 180px #0ff;
@@ -107,91 +104,125 @@
             100% { transform: scale(1); filter: brightness(1);}
         }
 
-        /* título: solo nombre */
-        .title {
-            text-align: center;
-            margin-top: 0.8rem;
-            font-family: 'Playfair Display', serif;
-        }
         .title h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             background: linear-gradient(135deg, #FFD966, #00ffd0);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 10px rgba(0,255,200,0.3);
+            text-align: center;
+            margin: 0.5rem 0 0;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* botón de respaldo (se mantiene) */
         .talk-btn {
-            background: rgba(10, 30, 35, 0.8);
+            background: rgba(10, 30, 35, 0.9);
             backdrop-filter: blur(12px);
             border: 1.5px solid #0ff;
             color: white;
             font-size: 1.2rem;
             font-weight: 600;
-            padding: 12px 32px;
+            padding: 12px 28px;
             border-radius: 80px;
-            margin: 25px 0 15px;
+            margin: 20px 0 12px;
             cursor: pointer;
-            transition: 0.25s;
-            letter-spacing: 1px;
-            box-shadow: 0 0 18px rgba(0,255,255,0.3);
+            transition: 0.2s;
+            width: 80%;
+            max-width: 280px;
+            touch-action: manipulation;
         }
-        .talk-btn:hover {
-            background: rgba(0, 245, 255, 0.2);
-            transform: scale(1.02);
-        }
+        .talk-btn:active { transform: scale(0.97); }
 
-        /* estado y mensajes */
         .status-card {
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(8px);
-            padding: 10px 20px;
-            border-radius: 50px;
+            padding: 8px 18px;
+            border-radius: 40px;
             font-size: 0.85rem;
             text-align: center;
             color: #e0f2fe;
             border: 1px solid rgba(0,255,255,0.4);
-            margin-top: 8px;
+            margin: 8px auto;
             max-width: 90%;
         }
         .motion-badge {
-            display: inline-block;
             background: #0b4b4b;
             border-radius: 40px;
-            padding: 4px 12px;
+            padding: 6px 14px;
             font-size: 0.7rem;
-            margin-top: 8px;
+            margin-top: 5px;
+            display: inline-block;
         }
+
+        /* overlay de inicio para móvil (permisos) */
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            transition: opacity 0.5s;
+        }
+        .start-overlay h2 {
+            color: #0ff;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .start-overlay p {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .start-btn {
+            background: #0ff;
+            color: #022;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 20px cyan;
+        }
+        .start-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
+<div class="start-overlay" id="startOverlay">
+    <h2>🌴 Summer's Paradise</h2>
+    <p>Para activar el asistente con voz femenina y detección de movimiento, necesitamos tu permiso de <strong>cámara y micrófono</strong>.<br>🔊 Toca el botón y permite el acceso.</p>
+    <button class="start-btn" id="startBtn">🎙️ ACTIVAR ASISTENTE</button>
+    <div style="margin-top: 20px; font-size: 12px; opacity:0.7;">Luego podrás acercarte a la cámara o usar el botón para hablar</div>
+</div>
 
-<div class="main-container">
+<div class="main-container" style="display: none;" id="mainUI">
     <div class="title">
         <h1>Summer's Paradise</h1>
     </div>
-
     <div class="orb-wrapper">
         <div class="ring ring-1"></div>
         <div class="ring ring-2"></div>
         <div class="ring ring-3"></div>
         <div class="orb" id="orbCore"></div>
     </div>
-
     <button class="talk-btn" id="talkButton">🎙️ HABLAR CON SUMMER</button>
-
-    <div class="status-card" id="statusMessage">
-        🌴 Iniciando sensores...
-    </div>
-    <div class="motion-badge" id="motionStatus">🔘 Cámara: solicitando permiso</div>
+    <div class="status-card" id="statusMessage">🌴 Iniciando sensores...</div>
+    <div class="motion-badge" id="motionStatus">📷 Cámara: esperando activación</div>
 </div>
 
 <script>
     // --------------------------------------------------------------
-    //  INFORMACIÓN PERSONALIZABLE DE LA EMPRESA (Summer's Paradise)
+    // DATOS DE LA EMPRESA (PERSONALIZABLE)
     // --------------------------------------------------------------
     const companyData = {
         nombre: "Summer's Paradise",
@@ -243,22 +274,33 @@
         return `Gracias por tu consulta. En ${companyData.nombre} te ofrecemos asesoría de viajes con IA. ¿Te gustaría saber más sobre servicios, precios o ubicación?`;
     }
 
-    // -------------------  VOZ Y RECONOCIMIENTO  -------------------
-    let recognition = null;
-    let isListeningActive = false;
-    let isSpeakingNow = false;
-    let currentOrb = document.getElementById('orbCore');
-    const talkBtn = document.getElementById('talkButton');
-    const statusDiv = document.getElementById('statusMessage');
-    const motionStatusSpan = document.getElementById('motionStatus');
+    // --------------------------------------------------------------
+    // VOZ FEMENINA (seleccionar voz en español femenina)
+    // --------------------------------------------------------------
+    let femaleVoice = null;
+    function loadFemaleVoice() {
+        const voices = speechSynthesis.getVoices();
+        // Buscar voz femenina en español (es-ES, es-MX, es-AR) que contenga "female" o "Mónica", "Google UK English Female" etc.
+        femaleVoice = voices.find(voice => 
+            (voice.lang === 'es-ES' || voice.lang === 'es-MX' || voice.lang === 'es-AR') && 
+            (voice.name.toLowerCase().includes('female') || voice.name.toLowerCase().includes('mujer') || 
+             voice.name.includes('Mónica') || voice.name.includes('Paulina') || voice.name.includes('Google') && voice.lang === 'es-ES')
+        ) || voices.find(voice => voice.lang === 'es-ES') || voices.find(voice => voice.lang.startsWith('es'));
+    }
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadFemaleVoice;
+    } else {
+        setTimeout(loadFemaleVoice, 100);
+    }
 
-    // síntesis de voz
     function speakText(text, callback = null) {
-        if (isSpeakingNow) window.speechSynthesis.cancel();
+        if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'es-ES';
-        utterance.rate = 1.0;
-        utterance.pitch = 1.05;
+        utterance.rate = 0.95;
+        utterance.pitch = 1.25; // tono más femenino
+        if (femaleVoice) utterance.voice = femaleVoice;
+        
         if (currentOrb) {
             currentOrb.classList.remove('listening');
             currentOrb.classList.add('speaking');
@@ -268,9 +310,8 @@
         utterance.onend = () => {
             isSpeakingNow = false;
             if (currentOrb) currentOrb.classList.remove('speaking');
-            statusDiv.innerHTML = `✨ Modo automático activo. Acércate o di algo. ✨`;
+            statusDiv.innerHTML = `✨ Escucha automática activa. Acércate o usa el botón. ✨`;
             if (callback) callback();
-            // después de hablar, reactivamos detección de movimiento si no está activa
             enableMotionDetectionAfterConversation();
         };
         utterance.onerror = () => {
@@ -282,11 +323,20 @@
         window.speechSynthesis.speak(utterance);
     }
 
-    // Inicializar reconocimiento de voz (una sola vez)
+    // --------------------------------------------------------------
+    // RECONOCIMIENTO DE VOZ
+    // --------------------------------------------------------------
+    let recognition = null;
+    let isListeningActive = false;
+    let isSpeakingNow = false;
+    let currentOrb = null;
+    let statusDiv = null;
+    let talkBtn = null;
+
     function initSpeechRecognition() {
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             statusDiv.innerHTML = "❌ Navegador sin soporte de voz. Usa Chrome/Edge.";
-            talkBtn.disabled = true;
+            if(talkBtn) talkBtn.disabled = true;
             return null;
         }
         const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -308,9 +358,7 @@
         statusDiv.innerHTML = `🗣️ Escuché: "${question.substring(0, 45)}..." · Pensando...`;
         const answer = getSmartResponse(question);
         if (currentOrb) currentOrb.classList.remove('listening');
-        setTimeout(() => {
-            speakText(answer);
-        }, 150);
+        setTimeout(() => speakText(answer), 100);
     }
 
     function startListening() {
@@ -332,8 +380,8 @@
             };
             recognition.onerror = (event) => {
                 let errorMsg = "No te escuché. Intenta de nuevo.";
-                if (event.error === 'no-speech') errorMsg = "No detecté voz. Asegúrate de hablar.";
-                else if (event.error === 'not-allowed') errorMsg = "Permiso de micrófono denegado. Usa el botón y permite el micro.";
+                if (event.error === 'no-speech') errorMsg = "No detecté voz. Habla más fuerte.";
+                else if (event.error === 'not-allowed') errorMsg = "Permiso de micrófono denegado. Reinicia y permite el micro.";
                 statusDiv.innerHTML = `⚠️ ${errorMsg}`;
                 resetToIdle();
                 enableMotionDetectionAfterConversation();
@@ -341,9 +389,7 @@
             recognition.onend = () => {
                 isListeningActive = false;
                 if (currentOrb) currentOrb.classList.remove('listening');
-                if (!isSpeakingNow) {
-                    statusDiv.innerHTML = `✅ Escucha automática detenida. Me activo con movimiento o el botón.`;
-                }
+                if (!isSpeakingNow) statusDiv.innerHTML = `✅ Modo automático activo. Acércate a la cámara o pulsa el botón.`;
             };
             recognition.onresult = (event) => {
                 const userText = event.results[0][0].transcript;
@@ -371,10 +417,12 @@
         if (currentOrb) currentOrb.classList.remove('listening', 'speaking');
     }
 
-    // ---------- DETECCIÓN DE MOVIMIENTO CON CÁMARA ----------
+    // --------------------------------------------------------------
+    // DETECCIÓN DE MOVIMIENTO CON CÁMARA (MÓVIL / PC)
+    // --------------------------------------------------------------
     let videoStream = null;
     let motionDetectionActive = false;
-    let motionCooldown = false;      // Evita múltiples welcomes seguidos
+    let motionCooldown = false;
     let lastMotionTimestamp = 0;
     let animationFrameId = null;
     let videoElement = null;
@@ -383,9 +431,8 @@
 
     async function setupMotionDetection() {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
             videoStream = stream;
-            // crear elementos ocultos para procesar movimiento
             videoElement = document.createElement('video');
             videoElement.srcObject = stream;
             videoElement.setAttribute('playsinline', '');
@@ -399,13 +446,11 @@
             canvasElement.width = 160;
             canvasElement.height = 120;
             const ctx = canvasElement.getContext('2d');
-            
             await videoElement.play();
             motionStatusSpan.innerHTML = "🎥 Cámara activa · Detección de movimiento ON";
-            statusDiv.innerHTML = "🌞 Summer está lista. Acércate a la cámara y habla sin botón.";
+            statusDiv.innerHTML = "🌞 Summer lista. Acércate a la cámara y habla sin botón.";
             motionDetectionActive = true;
             
-            // Función de detección de movimiento (diferencia entre frames)
             function detectMotion() {
                 if (!motionDetectionActive || !videoElement || videoElement.paused || videoElement.readyState < 2) {
                     animationFrameId = requestAnimationFrame(detectMotion);
@@ -425,19 +470,14 @@
                         if (pixelDiff > 25) diff++;
                     }
                     const motionRatio = diff / (canvasElement.width * canvasElement.height);
-                    // Si hay movimiento significativo y no estamos en cooldown, ni hablando, ni escuchando
                     if (motionRatio > 0.05 && !motionCooldown && !isSpeakingNow && !isListeningActive && (Date.now() - lastMotionTimestamp > 4000)) {
                         lastMotionTimestamp = Date.now();
                         motionCooldown = true;
                         statusDiv.innerHTML = "🚶‍♂️ Movimiento detectado · Activando Summer...";
-                        // Dar la bienvenida cálida y luego iniciar escucha automática
-                        const welcomeMotionMsg = `¡Hola de nuevo! Soy Summer. Puedes preguntarme sobre servicios, precios o destinos. Habla ahora.`;
-                        speakText(welcomeMotionMsg, () => {
-                            // Después de la bienvenida, empezar a escuchar automáticamente
+                        const welcomeMotion = `¡Hola! Soy Summer. Puedes preguntarme sobre servicios, precios o destinos. Habla ahora.`;
+                        speakText(welcomeMotion, () => {
                             startListening();
-                            // Reactivar cooldown después de terminar la conversación (se hace en speakText callback)
                         });
-                        // El cooldown se desactiva después de 6 segundos para permitir nueva detección
                         setTimeout(() => { motionCooldown = false; }, 7000);
                     }
                 }
@@ -454,14 +494,12 @@
     }
 
     function enableMotionDetectionAfterConversation() {
-        // reactivar la posibilidad de movimiento tras terminar interacción
         if (motionDetectionActive && videoStream) {
             motionCooldown = false;
             statusDiv.innerHTML = "🔍 Modo detección activo. Acércate a la cámara y habla.";
         }
     }
 
-    // Cerrar recursos al salir
     function stopMotionAndCamera() {
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
         if (videoStream) {
@@ -471,50 +509,59 @@
         if (canvasElement && canvasElement.parentNode) canvasElement.parentNode.removeChild(canvasElement);
     }
 
-    // -------------------  INICIALIZACIÓN CON BIENVENIDA Y CÁMARA -------------------
-    async function initialize() {
-        // Primero solicitamos cámara para detección de movimiento
+    // --------------------------------------------------------------
+    // INICIALIZACIÓN CON PERMISOS (Botón de inicio)
+    // --------------------------------------------------------------
+    const overlay = document.getElementById('startOverlay');
+    const mainUI = document.getElementById('mainUI');
+    const startBtn = document.getElementById('startBtn');
+
+    async function fullStart() {
+        overlay.style.display = 'none';
+        mainUI.style.display = 'flex';
+        currentOrb = document.getElementById('orbCore');
+        statusDiv = document.getElementById('statusMessage');
+        talkBtn = document.getElementById('talkButton');
+        motionStatusSpan = document.getElementById('motionStatus');
+        
+        // Cargar voces femeninas
+        loadFemaleVoice();
+        // Inicializar reconocimiento (lo creamos pero no empezamos hasta que sea necesario)
+        recognition = initSpeechRecognition();
+        
+        // Solicitar cámara y micrófono (micrófono lo pedirá al startListening)
         await setupMotionDetection();
-        // Damos bienvenida por voz al cargar (si la cámara se activó o no, igual damos bienvenida)
+        
+        // Bienvenida con voz femenina después de activar
         setTimeout(() => {
-            if (!isSpeakingNow && !isListeningActive) {
-                const welcomeMsg = `Bienvenido a ${companyData.nombre}. Soy Summer, tu asistente por voz. Puedes acercarte a la cámara o usar el botón para hablar. ¿Qué deseas saber hoy?`;
-                speakText(welcomeMsg, () => {
-                    // Después de la bienvenida inicial, no empezamos a escuchar automáticamente para no saturar.
-                    // Pero el usuario puede acercarse o usar el botón. 
-                    statusDiv.innerHTML = `🌊 Detección activa: acércate y habla. O toca el botón. 🌊`;
-                });
+            if (!isSpeakingNow) {
+                const welcomeMsg = `Bienvenido a ${companyData.nombre}. Soy Summer, tu asistente con voz femenina. Puedes acercarte a la cámara para activarme o usar el botón. ¿Qué deseas saber?`;
+                speakText(welcomeMsg);
             }
-        }, 1500);
+        }, 1200);
+        
+        // Eventos manuales
+        talkBtn.addEventListener('click', () => {
+            if (isSpeakingNow) {
+                statusDiv.innerHTML = "Espera que termine de hablar...";
+                return;
+            }
+            startListening();
+        });
+        if (currentOrb) currentOrb.addEventListener('click', () => {
+            if (isSpeakingNow) return;
+            startListening();
+        });
     }
 
-    // Botón de respaldo: funciona exactamente igual, inicia escucha
-    function manualActivate() {
-        if (isSpeakingNow) {
-            statusDiv.innerHTML = "Espera a que termine de hablar...";
-            return;
-        }
-        if (isListeningActive) {
-            statusDiv.innerHTML = "Ya estoy escuchando, habla ahora.";
-            return;
-        }
-        startListening();
-    }
-
-    // Eventos UI
-    if (talkBtn) talkBtn.addEventListener('click', manualActivate);
-    if (currentOrb) currentOrb.addEventListener('click', manualActivate);
-
-    // Limpieza antes de descargar
+    startBtn.addEventListener('click', fullStart);
+    
+    // Limpieza al salir
     window.addEventListener('beforeunload', () => {
         if (recognition) try { recognition.abort(); } catch(e) {}
         window.speechSynthesis.cancel();
         stopMotionAndCamera();
     });
-
-    // Iniciar todo
-    initialize();
-    console.log("✅ Summer's Paradise con detección de movimiento y escucha automática activa.");
 </script>
 </body>
 </html>
