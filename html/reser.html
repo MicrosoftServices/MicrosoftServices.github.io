@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas — Summer's Paradise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Yeseva+One&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+  <style>
+    :root {
+      --teal-dk: #0b4b5c;
+      --teal:    #1f7a8c;
+      --teal-lt: #2a9db5;
+      --sand:    #cfb49a;
+      --sand-lt: #e8d5bc;
+      --bg:      #f5f9fe;
+      --bg-blue: #e8f6fb;
+      --bg-blue2:#d0eaf6;
+      --text:    #1e2f3a;
+      --mist:    #6b8a99;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { overflow-x:hidden; scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+    /* PAGE */
+    .pt-page { max-width:1300px; margin:0 auto; padding:0 24px; width:100%; padding-top:130px; }
+
+    /* ══ HERO ══ */
+    .res-hero {
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      min-height:420px;
+      margin-bottom:56px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+      padding:60px 56px;
+    }
+
+    /* Video de fondo */
+    .res-hero-video-bg {
+      position:absolute; inset:0; z-index:0;
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+
+    /* Overlay oscuro sobre el video */
+    .res-hero-overlay {
+      position:absolute; inset:0; z-index:1;
+      background: linear-gradient(135deg,
+        rgba(11,75,92,0.82) 0%,
+        rgba(11,45,58,0.75) 40%,
+        rgba(8,28,36,0.65) 100%);
+    }
+
+    /* Patrón decorativo sutil encima */
+    .res-hero-overlay::after {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(circle at 80% 20%, rgba(207,180,154,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 80%, rgba(31,122,140,0.1) 0%, transparent 40%);
+      pointer-events:none;
+    }
+
+    .res-hero-left { position:relative; z-index:2; }
+    .res-hero-eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--sand-lt); margin-bottom:14px; }
+    .res-hero-eyebrow::before { content:''; width:26px; height:2px; background:var(--sand); display:block; }
+    .res-hero-title { font-family:'Yeseva One',serif; font-size:clamp(2.2rem,3.8vw,3.4rem); color:white; line-height:1.1; margin-bottom:14px; }
+    .res-hero-title span { background:linear-gradient(90deg,#cfb49a,#f0d5bc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .res-hero-desc { color:rgba(255,255,255,.75); font-size:.95rem; line-height:1.75; max-width:480px; }
+    .res-hero-stats { display:flex; gap:16px; position:relative; z-index:2; flex-shrink:0; }
+    .res-stat { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); backdrop-filter:blur(8px); border-radius:20px; padding:22px 20px; text-align:center; min-width:110px; }
+    .res-stat-icon { font-size:1.3rem; color:var(--sand); margin-bottom:8px; }
+    .res-stat-num { font-family:'Yeseva One',serif; font-size:1.5rem; color:white; line-height:1; margin-bottom:4px; }
+    .res-stat-label { font-size:.68rem; color:rgba(255,255,255,.6); font-weight:500; letter-spacing:.5px; }
+
+    /* ══ STEPPER ══ */
+    .res-stepper {
+      display:flex; align-items:center; justify-content:center;
+      gap:0; margin-bottom:52px; flex-wrap:wrap;
+    }
+    .res-step-btn {
+      display:flex; align-items:center; gap:12px;
+      padding:14px 24px; border-radius:40px; cursor:pointer;
+      border:2px solid #cce0e8; background:white;
+      transition:all .3s ease; font-family:'Inter',sans-serif;
+    }
+    .res-step-btn:hover { border-color:var(--teal); }
+    .res-step-btn.active { background:linear-gradient(135deg,var(--teal-dk),var(--teal)); border-color:transparent; box-shadow:0 8px 28px rgba(11,75,92,.3); }
+    .res-step-btn.done { border-color:var(--sand); background:rgba(207,180,154,.1); }
+    .res-step-circle {
+      width:36px; height:36px; border-radius:50%; display:flex; align-items:center;
+      justify-content:center; font-family:'Playfair Display',serif; font-weight:700;
+      font-size:.95rem; background:#e8f0f4; color:var(--mist); flex-shrink:0; transition:all .3s;
+    }
+    .res-step-btn.active .res-step-circle { background:rgba(255,255,255,.25); color:white; }
+    .res-step-btn.done .res-step-circle { background:var(--sand); color:white; }
+    .res-step-info { display:flex; flex-direction:column; }
+    .res-step-info strong { font-size:.85rem; font-weight:700; color:var(--teal-dk); line-height:1.1; }
+    .res-step-info span { font-size:.68rem; color:var(--mist); }
+    .res-step-btn.active .res-step-info strong,
+    .res-step-btn.active .res-step-info span { color:white; }
+    .res-step-btn.done .res-step-info strong { color:var(--teal-dk); }
+    .res-step-line { width:40px; height:2px; background:#cce0e8; flex-shrink:0; margin:0 4px; transition:background .4s; }
+    .res-step-line.done { background:linear-gradient(90deg,var(--sand),var(--teal)); }
+
+    /* ══ LAYOUT PRINCIPAL ══ */
+    .res-main-layout { display:grid; grid-template-columns:1fr 360px; gap:32px; align-items:start; }
+    .res-content-area { min-width:0; }
+    .res-panel { display:none; animation:panelIn .4s cubic-bezier(.16,1,.3,1) both; }
+    .res-panel.active { display:block; }
+    @keyframes panelIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+    .res-panel-title { font-family:'Playfair Display',serif; font-size:1.75rem; color:var(--teal-dk); margin-bottom:6px; display:flex; align-items:center; gap:12px; }
+    .res-panel-title i { color:var(--teal); font-size:1.3rem; }
+    .res-panel-sub { color:var(--mist); font-size:.9rem; margin-bottom:28px; }
+
+    /* ── Card blanca base ── */
+    .res-card { background:white; border-radius:22px; box-shadow:0 6px 28px rgba(11,75,92,.07); border:1px solid rgba(11,75,92,.06); overflow:hidden; }
+
+    /* ── PASO 1: Datos ── */
+    .res-datos-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .res-datos-inner { padding:32px 28px; }
+    .res-field { display:flex; flex-direction:column; gap:6px; }
+    .res-field.full { grid-column:1/-1; }
+    .res-field label { font-size:.68rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-dk); }
+    .res-field input, .res-field select {
+      padding:14px 18px; border:1.5px solid #d0eaf2; border-radius:14px;
+      font-family:'Inter',sans-serif; font-size:.95rem; color:var(--text);
+      background:#f7fbfd; outline:none; transition:all .2s; width:100%;
+    }
+    .res-field input:focus, .res-field select:focus { border-color:var(--teal); background:white; box-shadow:0 0 0 3px rgba(31,122,140,.1); }
+    .res-passenger-ctrl {
+      display:flex; align-items:center; gap:0;
+      border:1.5px solid #d0eaf2; border-radius:14px;
+      background:#f7fbfd; overflow:hidden;
+    }
+    .res-passenger-ctrl button {
+      width:50px; height:52px; border:none; background:none; cursor:pointer;
+      font-size:1.4rem; color:var(--teal-dk); font-weight:700; transition:background .2s;
+      flex-shrink:0; font-family:'Inter',sans-serif;
+    }
+    .res-passenger-ctrl button:hover { background:var(--bg-blue); }
+    .res-passenger-ctrl span { flex:1; text-align:center; font-size:1.5rem; font-weight:700; color:var(--teal-dk); font-family:'Yeseva One',serif; }
+
+    /* ── PASO 2: Hoteles ── */
+    .res-hotel-filter { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+    .res-destino-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(207,180,154,.15); border:1px solid rgba(207,180,154,.4); color:var(--teal-dk); font-size:.78rem; font-weight:700; padding:6px 16px; border-radius:20px; }
+    .res-destino-badge i { color:var(--sand); }
+    .res-hoteles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+    .res-hotel-card {
+      background:white; border-radius:20px; overflow:hidden;
+      border:2px solid #e8f0f4; transition:all .3s ease;
+      box-shadow:0 4px 18px rgba(11,75,92,.06); cursor:pointer;
+      display:flex; flex-direction:column;
+    }
+    .res-hotel-card:hover { transform:translateY(-5px); box-shadow:0 16px 44px rgba(11,75,92,.14); border-color:var(--teal); }
+    .res-hotel-card.selected { border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,122,140,.15), 0 12px 36px rgba(11,75,92,.14); }
+    .res-hotel-img { width:100%; height:180px; object-fit:cover; display:block; transition:transform .5s; }
+    .res-hotel-card:hover .res-hotel-img { transform:scale(1.05); }
+    .res-hotel-img-wrap { overflow:hidden; position:relative; }
+    .res-hotel-estrellas { position:absolute; top:12px; left:12px; background:rgba(0,0,0,.45); backdrop-filter:blur(4px); color:#f5b042; font-size:.78rem; padding:4px 10px; border-radius:20px; font-weight:700; }
+    .res-hotel-body { padding:18px 18px 16px; flex:1; display:flex; flex-direction:column; }
+    .res-hotel-name { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--teal-dk); margin-bottom:4px; }
+    .res-hotel-destino { font-size:.75rem; color:var(--teal); font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:5px; }
+    .res-hotel-desc { font-size:.8rem; color:var(--mist); line-height:1.55; margin-bottom:12px; flex:1; }
+    .res-hotel-planes { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:14px; }
+    .res-hotel-plan { font-size:.65rem; font-weight:600; background:var(--bg-blue); color:var(--teal-dk); padding:3px 10px; border-radius:12px; border:1px solid #c4dde6; }
+    .res-hotel-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid #eef3f6; gap:8px; }
+    .res-hotel-price { font-family:'Yeseva One',serif; font-size:1.15rem; color:var(--teal-dk); }
+    .res-hotel-price small { font-family:'Inter',sans-serif; font-size:.68rem; color:var(--mist); font-weight:400; }
+    .res-hotel-btns { display:flex; gap:6px; flex-shrink:0; }
+    .res-btn-sm {
+      padding:8px 14px; border-radius:30px; font-size:.72rem; font-weight:700;
+      cursor:pointer; border:none; transition:all .25s; font-family:'Inter',sans-serif;
+      display:inline-flex; align-items:center; gap:5px; white-space:nowrap;
+    }
+    .res-btn-elegir { background:linear-gradient(135deg,var(--teal-dk),var(--teal)); color:white; box-shadow:0 4px 14px rgba(11,75,92,.25); }
+    .res-btn-elegir:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(11,75,92,.35); }
+    .res-btn-elegir.selected { background:linear-gradient(135deg,var(--sand),#b89060); color:#0b1f28; }
+    .res-btn-ver { background:white; color:var(--teal); border:1.5px solid #c4dde6; }
+    .res-btn-ver:hover { border-color:var(--teal); background:var(--bg-blue); }
+
+    /* ── PASO 3: Transporte ── */
+    .res-transport-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+    .res-tcat-btn {
+      padding:8px 18px; border-radius:30px; border:1.5px solid #c4dde6;
+      background:white; color:var(--mist); font-size:.76rem; font-weight:700;
+      cursor:pointer; transition:all .25s; font-family:'Inter',sans-serif;
+    }
+    .res-tcat-btn:hover { border-color:var(--teal); color:var(--teal); }
+    .res-tcat-btn.active { background:linear-gradient(135deg,var(--teal-dk),var(--teal)); color:white; border-color:transparent; box-shadow:0 6px 18px rgba(11,75,92,.25); }
+    .res-transport-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px; }
+    .res-trans-card {
+      background:white; border-radius:18px; overflow:hidden;
+      border:2px solid #e8f0f4; transition:all .3s; cursor:pointer;
+      box-shadow:0 4px 16px rgba(11,75,92,.05);
+    }
+    .res-trans-card:hover { transform:translateY(-4px); box-shadow:0 14px 38px rgba(11,75,92,.13); border-color:var(--teal); }
+    .res-trans-card.selected { border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,122,140,.15); }
+    .res-trans-img { width:100%; height:140px; object-fit:cover; display:block; }
+    .res-trans-body { padding:14px 16px; }
+    .res-trans-tipo { font-size:.62rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--sand); margin-bottom:4px; }
+    .res-trans-name { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--teal-dk); margin-bottom:4px; }
+    .res-trans-desc { font-size:.75rem; color:var(--mist); line-height:1.5; margin-bottom:10px; }
+    .res-trans-footer { display:flex; align-items:center; justify-content:space-between; }
+    .res-trans-cap { font-size:.7rem; color:var(--teal); background:var(--bg-blue); padding:3px 10px; border-radius:12px; font-weight:600; }
+    .res-trans-price { font-size:.85rem; font-weight:700; color:var(--teal-dk); font-family:'Playfair Display',serif; }
+    .res-trans-sel-btn {
+      width:100%; margin-top:10px; padding:9px; border-radius:30px;
+      border:none; font-family:'Inter',sans-serif; font-size:.76rem; font-weight:700;
+      cursor:pointer; transition:all .25s; display:flex; align-items:center; justify-content:center; gap:6px;
+    }
+    .res-trans-sel-btn.idle { background:#f0fbff; color:var(--teal-dk); border:1.5px solid #c4dde6; }
+    .res-trans-sel-btn.idle:hover { background:var(--bg-blue); border-color:var(--teal); }
+    .res-trans-sel-btn.chosen { background:linear-gradient(135deg,var(--teal-dk),var(--teal)); color:white; }
+
+    /* ── PASO 4: Extras ── */
+    .res-extras-list { display:flex; flex-direction:column; gap:14px; }
+    .res-extra-row {
+      display:flex; align-items:center; gap:16px; padding:20px 22px;
+      background:white; border-radius:18px; border:2px solid #e8f0f4;
+      box-shadow:0 3px 14px rgba(11,75,92,.05); transition:border-color .25s;
+    }
+    .res-extra-row:hover { border-color:var(--teal); }
+    .res-extra-icon { font-size:2.2rem; flex-shrink:0; }
+    .res-extra-info { flex:1; }
+    .res-extra-name { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--teal-dk); margin-bottom:3px; }
+    .res-extra-desc { font-size:.8rem; color:var(--mist); line-height:1.5; }
+    .res-extra-price { font-size:.85rem; font-weight:700; color:var(--teal); margin-right:8px; white-space:nowrap; }
+    .res-toggle { position:relative; display:inline-block; width:50px; height:28px; flex-shrink:0; }
+    .res-toggle input { opacity:0; width:0; height:0; }
+    .res-slider { position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:#ccd8de; border-radius:28px; transition:.3s; }
+    .res-slider:before { position:absolute; content:''; height:22px; width:22px; left:3px; bottom:3px; background:white; border-radius:50%; transition:.3s; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+    input:checked + .res-slider { background:linear-gradient(135deg,var(--teal-dk),var(--teal)); }
+    input:checked + .res-slider:before { transform:translateX(22px); }
+
+    /* ══ SIDEBAR RESUMEN ══ */
+    .res-sidebar { position:sticky; top:130px; }
+    .res-sidebar-card {
+      background:linear-gradient(145deg,#0b4b5c,#1a6b7c);
+      border-radius:24px; padding:28px 24px;
+      box-shadow:0 16px 50px rgba(11,75,92,.35); color:white;
+    }
+    .res-sb-title { font-family:'Playfair Display',serif; font-size:1.25rem; color:white; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+    .res-sb-title i { color:var(--sand); }
+    .res-sb-sub { font-size:.72rem; color:rgba(255,255,255,.5); margin-bottom:22px; letter-spacing:.5px; text-transform:uppercase; }
+    .res-sb-row { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+    .res-sb-row:last-of-type { border-bottom:none; }
+    .res-sb-row-label { font-size:.78rem; color:rgba(255,255,255,.55); line-height:1.4; }
+    .res-sb-row-value { font-size:.85rem; font-weight:600; color:rgba(255,255,255,.9); text-align:right; flex-shrink:0; max-width:55%; }
+    .res-sb-divider { height:1px; background:rgba(255,255,255,.12); margin:16px 0; }
+    .res-sb-total { display:flex; justify-content:space-between; align-items:baseline; }
+    .res-sb-total-label { font-size:.8rem; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:1px; }
+    .res-sb-total-value { font-family:'Yeseva One',serif; font-size:2rem; color:var(--sand); }
+    .res-sb-note { font-size:.68rem; color:rgba(255,255,255,.35); margin-top:8px; text-align:right; }
+
+    /* Botón carrito flotante */
+    .res-cart-fab {
+      position:fixed; bottom:32px; right:32px; z-index:800;
+      width:62px; height:62px; border-radius:50%;
+      background:linear-gradient(135deg,var(--sand),#b89060);
+      border:none; color:#0b1f28; font-size:1.25rem;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; box-shadow:0 10px 34px rgba(207,180,154,.55);
+      transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .res-cart-fab:hover { transform:scale(1.1); }
+    .res-cart-badge {
+      position:absolute; top:-4px; right:-4px;
+      width:22px; height:22px; border-radius:50%;
+      background:var(--teal-dk); color:white;
+      font-size:.68rem; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+      border:2px solid white;
+    }
+
+    /* ══ BOTONES DE NAVEGACIÓN ══ */
+    .res-nav { display:flex; align-items:center; justify-content:space-between; margin-top:32px; gap:12px; }
+    .res-nav.right { justify-content:flex-end; }
+    .res-btn-back {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 26px; border-radius:40px; border:2px solid #c4dde6;
+      background:white; color:var(--teal-dk); font-weight:700; font-size:.85rem;
+      cursor:pointer; transition:all .25s; font-family:'Inter',sans-serif;
+    }
+    .res-btn-back:hover { border-color:var(--teal); background:var(--bg-blue); }
+    .res-btn-next {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 32px; border-radius:40px; border:none;
+      background:linear-gradient(135deg,var(--teal-dk),var(--teal));
+      color:white; font-weight:700; font-size:.88rem;
+      cursor:pointer; transition:all .3s; box-shadow:0 8px 24px rgba(11,75,92,.3);
+      font-family:'Inter',sans-serif;
+    }
+    .res-btn-next:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(11,75,92,.4); }
+    .res-btn-confirm {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:15px 40px; border-radius:40px; border:none;
+      background:linear-gradient(135deg,var(--sand),#b89060);
+      color:#0b1f28; font-weight:800; font-size:.95rem;
+      cursor:pointer; transition:all .3s; box-shadow:0 10px 30px rgba(207,180,154,.45);
+      font-family:'Inter',sans-serif;
+    }
+    .res-btn-confirm:hover { transform:translateY(-2px); box-shadow:0 14px 38px rgba(207,180,154,.6); }
+
+    /* ══ MODAL HOTEL DETALLE ══ */
+    .res-modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.8);
+      z-index:9000; display:flex; align-items:center; justify-content:center;
+      opacity:0; visibility:hidden; transition:all .3s; padding:20px;
+    }
+    .res-modal-overlay.open { opacity:1; visibility:visible; }
+    .res-modal-box {
+      background:white; max-width:1050px; width:100%; max-height:92vh;
+      overflow-y:auto; border-radius:24px;
+      box-shadow:0 30px 80px rgba(0,0,0,.4);
+      transform:scale(.95) translateY(20px);
+      transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+    }
+    .res-modal-overlay.open .res-modal-box { transform:scale(1) translateY(0); }
+    .res-modal-head {
+      position:sticky; top:0; background:white; border-bottom:1px solid #eef3f6;
+      padding:20px 28px; display:flex; align-items:center; justify-content:space-between; z-index:1;
+    }
+    .res-modal-head h2 { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--teal-dk); }
+    .res-modal-close { width:38px; height:38px; border-radius:50%; border:none; background:#f0f3f5; color:var(--mist); font-size:1.1rem; cursor:pointer; transition:all .2s; display:flex; align-items:center; justify-content:center; }
+    .res-modal-close:hover { background:var(--teal-dk); color:white; }
+    .res-modal-body { padding:28px 28px 32px; }
+    .res-modal-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+    .res-modal-gallery { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+    .res-modal-gallery img { width:100%; height:160px; object-fit:cover; border-radius:14px; }
+    .res-modal-gallery img:first-child { grid-column:1/-1; height:220px; }
+    .res-modal-amenities { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+    .res-modal-amenity { display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--text); }
+    .res-modal-amenity i { color:var(--teal); font-size:.75rem; }
+
+    /* ══ MODAL CONFIRMACIÓN ══ */
+    .res-success-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.8); backdrop-filter:blur(6px);
+      z-index:9999; display:flex; align-items:center; justify-content:center;
+      opacity:0; visibility:hidden; transition:all .3s;
+    }
+    .res-success-overlay.open { opacity:1; visibility:visible; }
+    .res-success-box {
+      background:white; border-radius:28px; padding:52px 44px; max-width:460px;
+      width:90%; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.35);
+      transform:scale(.9); transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+    }
+    .res-success-overlay.open .res-success-box { transform:scale(1); }
+    .res-success-ring { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--teal-dk),var(--teal)); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:1.8rem; color:white; box-shadow:0 12px 34px rgba(11,75,92,.4); animation:ring-in .6s cubic-bezier(.34,1.56,.64,1) both; }
+    @keyframes ring-in { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    .res-success-code { display:inline-block; background:#f0fbff; border:1.5px solid #c4dde6; border-radius:10px; padding:8px 22px; font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--teal-dk); letter-spacing:2px; margin:10px 0 18px; }
+    .res-success-title { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--teal-dk); margin-bottom:8px; }
+    .res-success-sub { font-size:.88rem; color:var(--mist); line-height:1.7; margin-bottom:28px; }
+    .res-success-close { display:inline-flex; align-items:center; gap:8px; padding:13px 32px; border-radius:40px; border:none; background:linear-gradient(135deg,var(--teal-dk),var(--teal)); color:white; font-weight:700; font-size:.9rem; cursor:pointer; transition:all .25s; font-family:'Inter',sans-serif; }
+    .res-success-close:hover { transform:translateY(-2px); }
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:1100px) { .res-main-layout { grid-template-columns:1fr; } .res-sidebar { position:static; } }
+    @media(max-width:900px) { .res-hero { flex-direction:column; padding:44px 28px; text-align:center; } .res-hero-stats { justify-content:center; } .res-modal-grid { grid-template-columns:1fr; } }
+    @media(max-width:768px) { .pt-page { padding-top:100px; } .res-stepper { gap:4px; } .res-step-info span { display:none; } .res-datos-grid { grid-template-columns:1fr; } .res-hoteles-grid { grid-template-columns:1fr; } .res-transport-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px) { .res-transport-grid { grid-template-columns:1fr; } .res-step-info strong { font-size:.72rem; } .res-step-line { width:16px; } }
+
+    /* ══ NO RESULTS ══ */
+    .res-no-results { text-align:center; padding:48px 20px; color:var(--mist); }
+    .res-no-results i { font-size:2.5rem; color:#ccd8de; display:block; margin-bottom:12px; }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+    <!-- ══ HERO con VIDEO de fondo ══ -->
+    <section class="res-hero">
+      <!-- Video de fondo (mismo que el index) -->
+      <video class="res-hero-video-bg" autoplay muted loop playsinline>
+        <source src="../video/13722194-hd_1920_1080_24fps.mp4" type="video/mp4">
+      </video>
+      <!-- Overlay con gradiente -->
+      <div class="res-hero-overlay"></div>
+
+      <div class="res-hero-left">
+        <div class="res-hero-eyebrow">Reserva en línea</div>
+        <h1 class="res-hero-title">Arma tu viaje<br><span>a tu medida</span></h1>
+        <p class="res-hero-desc">Elige destino, hotel, transporte y extras. Todo en 4 pasos simples. Un asesor te confirma en minutos.</p>
+      </div>
+      <div class="res-hero-stats">
+        <div class="res-stat"><div class="res-stat-icon"><i class="fas fa-hotel"></i></div><div class="res-stat-num">10+</div><div class="res-stat-label">Hoteles</div></div>
+        <div class="res-stat"><div class="res-stat-icon"><i class="fas fa-car"></i></div><div class="res-stat-num">22</div><div class="res-stat-label">Vehículos</div></div>
+        <div class="res-stat"><div class="res-stat-icon"><i class="fas fa-headset"></i></div><div class="res-stat-num">24/7</div><div class="res-stat-label">Soporte</div></div>
+      </div>
+    </section>
+
+    <!-- ══ STEPPER ══ -->
+    <div class="res-stepper" id="stepper">
+      <div class="res-step-btn active" id="sbtn-1" onclick="irPaso(1)">
+        <div class="res-step-circle">01</div>
+        <div class="res-step-info"><strong>Datos del viaje</strong><span>Destino y fechas</span></div>
+      </div>
+      <div class="res-step-line" id="sline-1"></div>
+      <div class="res-step-btn" id="sbtn-2" onclick="irPaso(2)">
+        <div class="res-step-circle">02</div>
+        <div class="res-step-info"><strong>Hotel</strong><span>Elige tu alojamiento</span></div>
+      </div>
+      <div class="res-step-line" id="sline-2"></div>
+      <div class="res-step-btn" id="sbtn-3" onclick="irPaso(3)">
+        <div class="res-step-circle">03</div>
+        <div class="res-step-info"><strong>Transporte</strong><span>Tu vehículo</span></div>
+      </div>
+      <div class="res-step-line" id="sline-3"></div>
+      <div class="res-step-btn" id="sbtn-4" onclick="irPaso(4)">
+        <div class="res-step-circle">04</div>
+        <div class="res-step-info"><strong>Extras</strong><span>Confirmar</span></div>
+      </div>
+    </div>
+
+    <!-- ══ LAYOUT PRINCIPAL ══ -->
+    <div class="res-main-layout">
+      <div class="res-content-area">
+
+        <!-- ─── PASO 1 ─── -->
+        <div class="res-panel active" id="panel-1">
+          <div class="res-panel-title"><i class="fas fa-plane-departure"></i> Datos del viaje</div>
+          <p class="res-panel-sub">Cuéntanos a dónde vas, cuándo y con cuántas personas.</p>
+          <div class="res-card">
+            <div class="res-datos-inner">
+              <div class="res-datos-grid">
+                <div class="res-field full">
+                  <label>Destino principal</label>
+                  <select id="inp-destino" onchange="onDestinoChange()">
+                    <option>Punta Cana</option>
+                    <option>Samaná</option>
+                    <option>Las Terrenas</option>
+                    <option>Playa Sosúa</option>
+                    <option>Playa Grande</option>
+                    <option>Playa Rincón</option>
+                    <option>Jarabacoa</option>
+                    <option>Santo Domingo</option>
+                    <option>La Romana · Bayahibe</option>
+                    <option>Puerto Plata</option>
+                    <option>Barahona</option>
+                    <option>Cabarete</option>
+                    <option>Monte Cristi</option>
+                    <option>Santiago de los Caballeros</option>
+                    <option>Constanza</option>
+                    <option>Lago Enriquillo</option>
+                  </select>
+                </div>
+                <div class="res-field">
+                  <label>Fecha de salida</label>
+                  <input type="date" id="inp-salida" onchange="actualizarResumen()">
+                </div>
+                <div class="res-field">
+                  <label>Fecha de regreso</label>
+                  <input type="date" id="inp-regreso" onchange="actualizarResumen()">
+                </div>
+                <div class="res-field full">
+                  <label>Número de pasajeros</label>
+                  <div class="res-passenger-ctrl">
+                    <button onclick="cambiarPasajeros(-1)">−</button>
+                    <span id="num-pasajeros">2</span>
+                    <button onclick="cambiarPasajeros(1)">+</button>
+                  </div>
+                </div>
+                <div class="res-field">
+                  <label>Nombre completo</label>
+                  <input type="text" id="inp-nombre" placeholder="Tu nombre" oninput="actualizarResumen()">
+                </div>
+                <div class="res-field">
+                  <label>Correo electrónico</label>
+                  <input type="email" id="inp-email" placeholder="correo@ejemplo.com">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="res-nav right">
+            <button class="res-btn-next" onclick="irPaso(2)">Elegir hotel <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- ─── PASO 2 ─── -->
+        <div class="res-panel" id="panel-2">
+          <div class="res-panel-title"><i class="fas fa-hotel"></i> Elige tu hotel</div>
+          <p class="res-panel-sub">Hoteles y resorts disponibles para tu destino. Puedes continuar sin seleccionar uno.</p>
+          <div class="res-hotel-filter">
+            <div class="res-destino-badge" id="hotel-badge"><i class="fas fa-map-marker-alt"></i> <span id="hotel-badge-txt">Punta Cana</span></div>
+          </div>
+          <div class="res-hoteles-grid" id="hoteles-grid"></div>
+          <div class="res-nav">
+            <button class="res-btn-back" onclick="irPaso(1)"><i class="fas fa-arrow-left"></i> Atrás</button>
+            <button class="res-btn-next" onclick="irPaso(3)">Elegir transporte <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- ─── PASO 3 ─── -->
+        <div class="res-panel" id="panel-3">
+          <div class="res-panel-title"><i class="fas fa-car"></i> Elige tu transporte</div>
+          <p class="res-panel-sub">Vehículos privados con conductor certificado. Precio por traslado completo.</p>
+          <div class="res-transport-filters" id="tcat-filters">
+            <button class="res-tcat-btn active" onclick="filtrarTransporte('Todos',this)">Todos</button>
+            <button class="res-tcat-btn" onclick="filtrarTransporte('Sedán',this)">🚗 Sedán</button>
+            <button class="res-tcat-btn" onclick="filtrarTransporte('SUV',this)">🚙 SUV</button>
+            <button class="res-tcat-btn" onclick="filtrarTransporte('Van',this)">🚐 Van</button>
+            <button class="res-tcat-btn" onclick="filtrarTransporte('Minibús',this)">🚌 Minibús</button>
+          </div>
+          <div class="res-transport-grid" id="transport-grid"></div>
+          <div class="res-nav">
+            <button class="res-btn-back" onclick="irPaso(2)"><i class="fas fa-arrow-left"></i> Atrás</button>
+            <button class="res-btn-next" onclick="irPaso(4)">Extras y confirmar <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- ─── PASO 4 ─── -->
+        <div class="res-panel" id="panel-4">
+          <div class="res-panel-title"><i class="fas fa-star"></i> Extras y confirmación</div>
+          <p class="res-panel-sub">Agrega servicios adicionales y confirma tu reserva.</p>
+          <div class="res-extras-list" id="extras-list"></div>
+          <div class="res-nav" style="margin-top:32px;">
+            <button class="res-btn-back" onclick="irPaso(3)"><i class="fas fa-arrow-left"></i> Atrás</button>
+            <button class="res-btn-confirm" onclick="confirmarReserva()"><i class="fas fa-lock"></i> Confirmar y reservar</button>
+          </div>
+        </div>
+
+      </div><!-- /content-area -->
+
+      <!-- ══ SIDEBAR ══ -->
+      <div class="res-sidebar">
+        <div class="res-sidebar-card">
+          <div class="res-sb-title"><i class="fas fa-receipt"></i> Tu reserva</div>
+          <div class="res-sb-sub">Resumen en tiempo real</div>
+
+          <div class="res-sb-row"><div class="res-sb-row-label">Destino</div><div class="res-sb-row-value" id="sb-destino">—</div></div>
+          <div class="res-sb-row"><div class="res-sb-row-label">Viajero</div><div class="res-sb-row-value" id="sb-nombre">—</div></div>
+          <div class="res-sb-row"><div class="res-sb-row-label">Fechas</div><div class="res-sb-row-value" id="sb-fechas">—</div></div>
+          <div class="res-sb-row"><div class="res-sb-row-label">Pasajeros</div><div class="res-sb-row-value" id="sb-pasajeros">2</div></div>
+          <div class="res-sb-row"><div class="res-sb-row-label">Hotel</div><div class="res-sb-row-value" id="sb-hotel">No seleccionado</div></div>
+          <div class="res-sb-row"><div class="res-sb-row-label">Transporte</div><div class="res-sb-row-value" id="sb-trans">No seleccionado</div></div>
+          <div class="res-sb-row" id="sb-extras-row" style="display:none;"><div class="res-sb-row-label">Extras</div><div class="res-sb-row-value" id="sb-extras">—</div></div>
+
+          <div class="res-sb-divider"></div>
+          <div class="res-sb-total">
+            <div class="res-sb-total-label">Total</div>
+            <div class="res-sb-total-value" id="sb-total">RD$ 0</div>
+          </div>
+          <div class="res-sb-note">Precio referencial · sujeto a disponibilidad</div>
+        </div>
+      </div>
+
+    </div><!-- /res-main-layout -->
+
+  </div><!-- /pt-page -->
+
+  <!-- ══ CARRITO FAB ══ -->
+  <button class="res-cart-fab" onclick="irPaso(4)" title="Ver resumen">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="res-cart-badge" id="cart-badge">0</span>
+  </button>
+
+  <!-- ══ MODAL HOTEL ══ -->
+  <div class="res-modal-overlay" id="hotelModal" onclick="if(event.target===this)cerrarModal()">
+    <div class="res-modal-box">
+      <div class="res-modal-head">
+        <h2 id="modal-hotel-title">—</h2>
+        <button class="res-modal-close" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="res-modal-body" id="modal-hotel-body"></div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL ÉXITO ══ -->
+  <div class="res-success-overlay" id="successOverlay">
+    <div class="res-success-box">
+      <div class="res-success-ring"><i class="fas fa-check"></i></div>
+      <div class="res-success-title">¡Reserva recibida!</div>
+      <div style="font-size:.8rem;color:var(--mist);margin-bottom:4px;">Tu código de reserva es</div>
+      <div class="res-success-code" id="success-code">SP-0000</div>
+      <p class="res-success-sub">Un asesor de Summer's Paradise te contactará en <strong>menos de 10 minutos</strong> al correo registrado para coordinar todos los detalles. ¡Gracias por elegirnos!</p>
+      <button class="res-success-close" onclick="cerrarSuccess()"><i class="fas fa-check"></i> Entendido</button>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/banner_footer.js"></script>
+
+  <script>
+    // ══════════════════════════════════════
+    //  BASE DE DATOS
+    // ══════════════════════════════════════
+    const allHoteles = [
+      { id:1,  nombre:'Excellence El Carmen',          destino:'Punta Cana',    estrellas:5, planes:['Todo incluido','Adults Only'], precio:32900, img:'/img/excellence_el_carmen.avif', desc:'Resort de lujo solo para adultos en Playa Bávaro. 12 restaurantes, 15 bares y spa de clase mundial.', amenities:['Piscinas infinitas','12 restaurantes','Spa & Wellness','Mayordomo','WiFi','Gimnasio'], imgs:['/img/excellence_el_carmen.avif','/img/excellence_el_carmen2.avif','/img/excellence_el_carmen3.avif'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.618!2d-68.5892!3d18.8152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c30700000013%3A0x155d660023d7c802!2sExcellence%20El%20Carmen!5e0!3m2!1ses!2sdo!4v1' },
+      { id:2,  nombre:'Hard Rock Hotel & Casino',      destino:'Punta Cana',    estrellas:5, planes:['Todo incluido','Entretenimiento'], precio:28900, img:'/img/hard-rock1.webp', desc:'Resort de música y entretenimiento con casino, campo de golf y Kids Club.', amenities:['Casino','Discoteca','Golf','Kids Club','WiFi Premium','Spa'], imgs:['/img/hard-rock1.webp','/img/hard-rock2.webp'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7557!2d-68.4875!3d18.7295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8ea2d831c3613%3A0xa81a3896d0e4c5a5!2sHard%20Rock%20Hotel%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1' },
+      { id:3,  nombre:'Secrets Cap Cana',              destino:'Punta Cana',    estrellas:5, planes:['Lujo','Adults Only'], precio:42900, img:'/img/secrets-cap1.jpg', desc:'El resort más exclusivo de Cap Cana con infinity pool y acceso a playa Juanillo.', amenities:['Infinity Pool','Mayordomo 24h','Snorkeling','Jacuzzi privado','Spa','Wine Cellar'], imgs:['/img/secrets-cap1.jpg','/img/secrets-cap2.webp'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784!2d-68.399!3d18.485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea891001d36a695%3A0x938358f0d69315cd!2sSecrets%20Cap%20Cana!5e0!3m2!1ses!2sdo!4v1' },
+      { id:4,  nombre:'Breathless Punta Cana',         destino:'Punta Cana',    estrellas:5, planes:['Solo Adultos','Fiesta'], precio:24900, img:'/img/breathless1.jpg', desc:'Resort solo para adultos con ambiente festivo, discoteca diaria y pool parties.', amenities:['Discoteca diaria','Pool parties','Spa hidroterapia','Bares temáticos','Piscinas'], imgs:['/img/breathless1.jpg','/img/breathless2.avif'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776!2d-68.584!3d18.8085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c306ff9564bd%3A0x2c107b66e57409ed!2sBreathless%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1' },
+      { id:5,  nombre:'Finest Punta Cana',             destino:'Punta Cana',    estrellas:5, planes:['Familiar','Todo incluido'], precio:27900, img:'/img/finest1.jpg', desc:'Perfecto para familias con water park, Kids Club y gastronomía infantil.', amenities:['Kids Club','Water park','Gastronomía infantil','7 piscinas','Spa'], imgs:['/img/finest1.jpg','/img/finest2.webp'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776!2d-68.587!3d18.8125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c348273c5203%3A0x130655fb2c0a9662!2sFinest%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1' },
+      { id:6,  nombre:'Billini Hotel',                 destino:'Santo Domingo', estrellas:5, planes:['Boutique','Zona Colonial'], precio:24900, img:'/img/billini-hotel.jpg', desc:'Boutique de lujo en la Zona Colonial con rooftop infinity pool y vistas al Malecón.', amenities:['Rooftop Pool','Bar Exclusivo','Concierge 24h','Restaurante','Spa'], imgs:['/img/billini-hotel.jpg','/img/billini-hotel2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784!2d-69.8894!3d18.4706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf883cd9bfeb9f%3A0x7e024e085bbfc895!2sBillini%20Hotel!5e0!3m2!1ses!2sdo!4v1' },
+      { id:7,  nombre:'JW Marriott Santo Domingo',     destino:'Santo Domingo', estrellas:5, planes:['Urbano','Lujo'], precio:19900, img:'/img/jwmarriot1.webp', desc:'Lujo urbano en Piantini con rooftop bar, spa y anexo al Blue Mall.', amenities:['Rooftop Bar','Spa','Fitness Center','Piscina','Business Center'], imgs:['/img/jwmarriot1.webp','/img/jwmarriot2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784!2d-69.9437!3d18.4722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89e4e155d045%3A0xd2ff63ab14d64822!2sJW%20Marriott%20Santo%20Domingo!5e0!3m2!1ses!2sdo!4v1' },
+      { id:8,  nombre:'El Embajador Hotel',            destino:'Santo Domingo', estrellas:5, planes:['Histórico','Clásico'], precio:12900, img:'/img/embajador1.jpg', desc:'Hotel histórico con piscina olímpica, campo de golf y casino cercano.', amenities:['Piscina olímpica','Campo de golf','Casinos cercanos','Restaurante','Parking'], imgs:['/img/embajador1.jpg','/img/embajador2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784!2d-69.938!3d18.454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea5620cfeaf71a9%3A0x2bf176b790c001bf!2sEl%20Embajador!5e0!3m2!1ses!2sdo!4v1' },
+      { id:9,  nombre:'Bahía Príncipe Cayacoa',        destino:'Samaná',        estrellas:5, planes:['Todo incluido','Vista al mar'], precio:18900, img:'/img/cayacoa1.jpg', desc:'Resort todo incluido en la bahía de Samaná con piscina infinita y avistamiento de ballenas.', amenities:['Piscina Infinita','Acceso Cayo Levantado','Ballenas Jan–Mar','Spa','Gimnasio'], imgs:['/img/cayacoa1.jpg','/img/cayacoa2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768!2d-69.3400!3d19.1976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaee127ac215067%3A0x12b65e2dcbe5a240!2sEurostars%20Grand%20Cayacoa!5e0!3m2!1ses!2sdo!4v1' },
+      { id:10, nombre:'Luxury Bahía Príncipe Samaná',  destino:'Samaná',        estrellas:5, planes:['Lujo','Parejas'], precio:32900, img:'/img/luxury1.avif', desc:'Villas boutique con vistas panorámicas a la bahía. Perfectas para luna de miel.', amenities:['Villas privadas','Piscina privada','Spa Sensations','Desayuno incluido','WiFi'], imgs:['/img/luxury1.avif','/img/luxury2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768!2d-69.27!3d19.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaede1429f12491%3A0xfb2c924e04a6bf15!2sBahia%20Principe%20Escape%20Samana!5e0!3m2!1ses!2sdo!4v1' },
+      { id:11, nombre:'Lifestyle Tropical Beach',      destino:'Puerto Plata',  estrellas:4, planes:['Todo incluido','Familiar'], precio:14900, img:'/img/lifestyle2.jpg', desc:'Resort familiar con piscinas con cascada y Kids Club en Cofresí.', amenities:['Piscinas temáticas','Kids Club','Entretenimiento nocturno','Playa privada'], imgs:['/img/lifestyle2.jpg','/img/lifestyle1.webp'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753!2d-70.7310!3d19.8184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1ee384de81c63%3A0x86ce39914ff59c28!2sLifestyle%20Tropical!5e0!3m2!1ses!2sdo!4v1' },
+      { id:12, nombre:'Viva Wyndham V Heavens',        destino:'Puerto Plata',  estrellas:5, planes:['Adults Only','Wellness'], precio:20900, img:'/img/viva1.jpg', desc:'Resort solo para adultos con spa, yoga y beach club en Playa Dorada.', amenities:['Spa treatments','Clases de yoga','Beach club','Piscinas','Todo incluido premium'], imgs:['/img/viva1.jpg','/img/viva2.webp'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754!2d-70.6480!3d19.7692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1ef750a82dc2b%3A0xb91fcea10ff3befa!2sViva%20Wyndham%20Heavens!5e0!3m2!1ses!2sdo!4v1' },
+      { id:13, nombre:'Casa de Campo Resort',          destino:'La Romana · Bayahibe', estrellas:5, planes:['Golf','Lujo VIP'], precio:52900, img:'/img/campo_golf1.jpg', desc:'El resort más exclusivo del Caribe. 3 campos de golf, marina y centro ecuestre.', amenities:['3 campos de golf','Marina','Centro ecuestre','13 piscinas','12 restaurantes','Altos de Chavón'], imgs:['/img/campo_golf1.jpg','/img/campo_golf2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30283!2d-68.9189!3d18.4209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8aa4fddb6524b%3A0x7f28f72606914e7f!2sCasa%20de%20Campo!5e0!3m2!1ses!2sdo!4v1' },
+      { id:14, nombre:'Hilton La Romana',              destino:'La Romana · Bayahibe', estrellas:5, planes:['Todo incluido','Familiar'], precio:24900, img:'/img/hilton1.jpg', desc:'Water park, spa y salidas a Isla Saona desde Bayahibe.', amenities:['Water Park','Spa','9 Bares','Restaurantes','Isla Saona','Kids Club'], imgs:['/img/hilton1.jpg','/img/hilton2.jpg'], mapa:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121132!2d-68.9807!3d18.4208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf542d55843735%3A0xe5e486063825f558!2sHilton%20La%20Romana!5e0!3m2!1ses!2sdo!4v1' }
+    ];
+
+    const transportes = [
+      {id:1,  cat:'Sedán',   nombre:'Toyota Camry',            desc:'Elegante y confiable para traslados cómodos',      cap:'4 personas', precio:8500,  img:'../img/toyota.jpg'},
+      {id:2,  cat:'Sedán',   nombre:'Honda Accord',            desc:'Espacioso, silencioso y eficiente',                cap:'4 personas', precio:8200,  img:'../img/acocord.jpg'},
+      {id:3,  cat:'Sedán',   nombre:'Mercedes-Benz C300',      desc:'Lujo y tecnología de vanguardia · VIP',            cap:'4 personas', precio:12500, img:'../img/clase.jpg'},
+      {id:4,  cat:'Sedán',   nombre:'BMW Serie 5',             desc:'Dinamismo y confort premium alemán',               cap:'4 personas', precio:13200, img:'../img/bmw.jpg'},
+      {id:5,  cat:'Sedán',   nombre:'Toyota Avalon Híbrido',   desc:'Silencioso, híbrido y muy cómodo',                 cap:'5 personas', precio:9200,  img:'../img/avalon.jpg'},
+      {id:6,  cat:'Sedán',   nombre:'Tesla Model 3',           desc:'100% eléctrico, tecnológico y sostenible',         cap:'4 personas', precio:14800, img:'../img/tesla.jpg'},
+      {id:7,  cat:'SUV',     nombre:'Toyota Land Cruiser',     desc:'Robustez y espacio para todo terreno',             cap:'7 personas', precio:14500, img:'../img/cruiser.jpg'},
+      {id:8,  cat:'SUV',     nombre:'Chevrolet Tahoe',         desc:'Espacioso y potente · perfecto para familias',     cap:'8 personas', precio:13800, img:'../img/tahoe.jpg'},
+      {id:9,  cat:'SUV',     nombre:'Cadillac Escalade',       desc:'Ultra lujo con pantalla OLED y audio AKG',         cap:'7 personas', precio:18500, img:'../img/cadillac.jpg'},
+      {id:10, cat:'SUV',     nombre:'Hyundai Tucson',          desc:'Comodidad absoluta con asientos masajeadores',      cap:'5 personas', precio:9800,  img:'../img/hyudai.jpg'},
+      {id:11, cat:'SUV',     nombre:'Mercedes-Benz G-Class',   desc:'Ícono absoluto · cuero Nappa y Burmester',         cap:'5 personas', precio:22000, img:'../img/amg.jpg'},
+      {id:12, cat:'SUV',     nombre:'BMW X7',                  desc:'3 filas de lujo y audio Bowers & Wilkins',         cap:'7 personas', precio:19800, img:'../img/x7.jpg'},
+      {id:13, cat:'Van',     nombre:'Toyota Hiace',            desc:'Van ejecutiva · la más solicitada del país',       cap:'14 personas',precio:11500, img:'../img/hiace.jpg'},
+      {id:14, cat:'Van',     nombre:'Hyundai H1',              desc:'Asientos reclinables y entretenimiento a bordo',   cap:'12 personas',precio:10800, img:'../img/h1.jpeg'},
+      {id:15, cat:'Van',     nombre:'Mercedes-Benz Sprinter',  desc:'Business class · WiFi + USB en cada plaza',        cap:'16 personas',precio:14200, img:'../img/sprinter.jpg'},
+      {id:16, cat:'Van',     nombre:'Nissan Urvan',            desc:'Práctica y económica para traslados grupales',     cap:'15 personas',precio:9800,  img:'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80'},
+      {id:17, cat:'Van',     nombre:'Volkswagen Crafter',      desc:'Ingeniería alemana · muy confiable',               cap:'17 personas',precio:13200, img:'../img/vc.jpg'},
+      {id:18, cat:'Van',     nombre:'Ford Transit',            desc:'Confort americano · A/C dual y WiFi',              cap:'15 personas',precio:12500, img:'../img/ford.jpg'},
+      {id:19, cat:'Minibús', nombre:'Toyota Coaster',          desc:'Asientos reclinables y bodega inferior · top pick',cap:'30 personas',precio:18500, img:'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&q=80'},
+      {id:20, cat:'Minibús', nombre:'Mercedes Sprinter Bus',   desc:'VIP · WiFi + 220V + pantalla central',             cap:'22 personas',precio:17200, img:'https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=600&q=80'},
+      {id:21, cat:'Minibús', nombre:'Mitsubishi Rosa',         desc:'Ágil y práctico para excursiones grupales',        cap:'26 personas',precio:15800, img:'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&q=80'},
+      {id:22, cat:'Minibús', nombre:'Hyundai County',          desc:'Máxima capacidad · confort y bodega grande',       cap:'30 personas',precio:14500, img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/Hyundai_County_New_Breeze.jpg'},
+    ];
+
+    const extras = [
+      { id:'seguro',    icon:'🛡️', nombre:'Seguro de viaje',            desc:'Cobertura médica, cancelación y equipaje durante todo el viaje.', precio:4900, porPasajero:true  },
+      { id:'transfer',  icon:'✈️', nombre:'Traslado aeropuerto',         desc:'Pick-up y drop-off con conductor certificado las 24h.',           precio:3500, porPasajero:false },
+      { id:'guia',      icon:'🗺️', nombre:'Guía turístico privado',      desc:'Guía local certificado durante toda tu estadía en la isla.',       precio:6800, porPasajero:false },
+      { id:'foto',      icon:'📸', nombre:'Sesión de fotos profesional', desc:'2 horas con fotógrafo profesional en el destino. Fotos incluidas.',precio:8500, porPasajero:false },
+    ];
+
+    // ══════════════════════════════════════
+    //  ESTADO
+    // ══════════════════════════════════════
+    let pasoActual = 1;
+    let hotelSel = null;
+    let transSel = null;
+    let extrasSel = {};
+    let numPasajeros = 2;
+    let catTransporte = 'Todos';
+
+    // ══════════════════════════════════════
+    //  INIT
+    // ══════════════════════════════════════
+    window.addEventListener('DOMContentLoaded', () => {
+      const hoy = new Date();
+      const formatDate = d => d.toISOString().split('T')[0];
+      const mas5 = new Date(hoy); mas5.setDate(hoy.getDate() + 5);
+      const mas12 = new Date(hoy); mas12.setDate(hoy.getDate() + 12);
+      document.getElementById('inp-salida').value  = formatDate(mas5);
+      document.getElementById('inp-regreso').value = formatDate(mas12);
+      document.getElementById('inp-salida').min  = formatDate(hoy);
+      document.getElementById('inp-regreso').min = formatDate(hoy);
+
+      renderHoteles();
+      renderTransportes();
+      renderExtras();
+      actualizarResumen();
+    });
+
+    // ══════════════════════════════════════
+    //  NAVEGACIÓN
+    // ══════════════════════════════════════
+    function irPaso(n) {
+      document.querySelectorAll('.res-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + n).classList.add('active');
+
+      document.querySelectorAll('.res-step-btn').forEach((btn, i) => {
+        const num = i + 1;
+        btn.classList.remove('active','done');
+        if (num < n) btn.classList.add('done');
+        if (num === n) btn.classList.add('active');
+      });
+      for (let i = 1; i <= 3; i++) {
+        const line = document.getElementById('sline-' + i);
+        if (line) line.classList.toggle('done', i < n);
+      }
+
+      pasoActual = n;
+      actualizarResumen();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ══════════════════════════════════════
+    //  PASO 1
+    // ══════════════════════════════════════
+    function cambiarPasajeros(d) {
+      numPasajeros = Math.max(1, Math.min(15, numPasajeros + d));
+      document.getElementById('num-pasajeros').textContent = numPasajeros;
+      actualizarResumen();
+      renderExtras(); // actualiza precio por pasajero
+    }
+
+    function onDestinoChange() {
+      const dest = document.getElementById('inp-destino').value;
+      document.getElementById('hotel-badge-txt').textContent = dest;
+      hotelSel = null;
+      renderHoteles();
+      actualizarResumen();
+    }
+
+    // ══════════════════════════════════════
+    //  PASO 2 – HOTELES
+    // ══════════════════════════════════════
+    function renderHoteles() {
+      const dest = document.getElementById('inp-destino').value;
+      const grid = document.getElementById('hoteles-grid');
+      document.getElementById('hotel-badge-txt').textContent = dest;
+      const filtrados = allHoteles.filter(h => h.destino === dest);
+      if (!filtrados.length) {
+        grid.innerHTML = `<div class="res-no-results" style="grid-column:1/-1"><i class="fas fa-search"></i>No hay hoteles cargados para este destino.<br><small>Prueba con Punta Cana, Samaná, Santo Domingo o La Romana.</small></div>`;
+        return;
+      }
+      grid.innerHTML = '';
+      filtrados.forEach(h => {
+        const sel = hotelSel && hotelSel.id === h.id;
+        const div = document.createElement('div');
+        div.className = 'res-hotel-card' + (sel ? ' selected' : '');
+        div.innerHTML = `
+          <div class="res-hotel-img-wrap">
+            <img class="res-hotel-img" src="${h.img}" alt="${h.nombre}" loading="lazy">
+            <div class="res-hotel-estrellas">${'★'.repeat(h.estrellas)}</div>
+          </div>
+          <div class="res-hotel-body">
+            <div class="res-hotel-name">${h.nombre}</div>
+            <div class="res-hotel-destino"><i class="fas fa-map-marker-alt"></i> ${h.destino}</div>
+            <div class="res-hotel-desc">${h.desc}</div>
+            <div class="res-hotel-planes">${h.planes.map(p=>`<span class="res-hotel-plan">${p}</span>`).join('')}</div>
+            <div class="res-hotel-footer">
+              <div class="res-hotel-price">RD$ ${h.precio.toLocaleString('es-DO')}<br><small>/noche · persona</small></div>
+              <div class="res-hotel-btns">
+                <button class="res-btn-sm res-btn-elegir ${sel?'selected':''}" onclick="selHotel(${h.id})">${sel?'<i class="fas fa-check"></i> Elegido':'Elegir'}</button>
+                <button class="res-btn-sm res-btn-ver" onclick="verHotel(${h.id})"><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+          </div>`;
+        grid.appendChild(div);
+      });
+    }
+
+    function selHotel(id) {
+      hotelSel = hotelSel && hotelSel.id === id ? null : allHoteles.find(h => h.id === id);
+      renderHoteles();
+      actualizarResumen();
+    }
+
+    function verHotel(id) {
+      const h = allHoteles.find(x => x.id === id);
+      if (!h) return;
+      document.getElementById('modal-hotel-title').textContent = h.nombre;
+      document.getElementById('modal-hotel-body').innerHTML = `
+        <div class="res-modal-grid">
+          <div>
+            <div class="res-modal-gallery">
+              ${h.imgs.map(img => `<img src="${img}" loading="lazy">`).join('')}
+            </div>
+            <div style="margin-top:16px;border-radius:12px;overflow:hidden;"><iframe src="${h.mapa}" width="100%" height="220" style="border:0;" loading="lazy" allowfullscreen></iframe></div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span style="color:#f5b042;font-size:1rem;">${'★'.repeat(h.estrellas)}</span>
+              <span style="font-size:.78rem;color:var(--mist);">${h.destino}</span>
+            </div>
+            <p style="font-size:.9rem;color:var(--mist);line-height:1.75;margin-bottom:20px;">${h.desc}</p>
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sand);margin-bottom:12px;">Servicios incluidos</div>
+            <div class="res-modal-amenities">${h.amenities.map(a=>`<div class="res-modal-amenity"><i class="fas fa-check-circle"></i> ${a}</div>`).join('')}</div>
+            <div style="margin-top:24px;padding:16px;background:var(--bg-blue);border-radius:14px;display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-size:.7rem;color:var(--mist);text-transform:uppercase;letter-spacing:1px;">Precio desde</div><div style="font-family:'Yeseva One',serif;font-size:1.6rem;color:var(--teal-dk);">RD$ ${h.precio.toLocaleString('es-DO')}</div><div style="font-size:.68rem;color:var(--mist);">por noche · persona</div></div>
+              <button class="res-btn-sm res-btn-elegir" onclick="selHotel(${h.id});cerrarModal()" style="padding:12px 22px;font-size:.82rem;">${hotelSel&&hotelSel.id===h.id?'<i class="fas fa-check"></i> Ya elegido':'Elegir este hotel'}</button>
+            </div>
+          </div>
+        </div>`;
+      document.getElementById('hotelModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal() {
+      document.getElementById('hotelModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ══════════════════════════════════════
+    //  PASO 3 – TRANSPORTE
+    // ══════════════════════════════════════
+    function filtrarTransporte(cat, btn) {
+      catTransporte = cat;
+      document.querySelectorAll('.res-tcat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTransportes();
+    }
+
+    function renderTransportes() {
+      const grid = document.getElementById('transport-grid');
+      const lista = catTransporte === 'Todos' ? transportes : transportes.filter(t => t.cat === catTransporte || t.cat.startsWith(catTransporte));
+      grid.innerHTML = '';
+      lista.forEach(t => {
+        const sel = transSel && transSel.id === t.id;
+        const div = document.createElement('div');
+        div.className = 'res-trans-card' + (sel ? ' selected' : '');
+        div.innerHTML = `
+          <img class="res-trans-img" src="${t.img}" alt="${t.nombre}" loading="lazy">
+          <div class="res-trans-body">
+            <div class="res-trans-tipo">${t.cat}</div>
+            <div class="res-trans-name">${t.nombre}</div>
+            <div class="res-trans-desc">${t.desc}</div>
+            <div class="res-trans-footer">
+              <div class="res-trans-cap"><i class="fas fa-users"></i> ${t.cap}</div>
+              <div class="res-trans-price">RD$ ${t.precio.toLocaleString('es-DO')}</div>
+            </div>
+            <button class="res-trans-sel-btn ${sel?'chosen':'idle'}" onclick="selTrans(${t.id})">
+              ${sel?'<i class="fas fa-check"></i> Seleccionado':'Elegir este vehículo'}
+            </button>
+          </div>`;
+        grid.appendChild(div);
+      });
+    }
+
+    function selTrans(id) {
+      transSel = transSel && transSel.id === id ? null : transportes.find(t => t.id === id);
+      renderTransportes();
+      actualizarResumen();
+    }
+
+    // ══════════════════════════════════════
+    //  PASO 4 – EXTRAS
+    // ══════════════════════════════════════
+    function renderExtras() {
+      const list = document.getElementById('extras-list');
+      list.innerHTML = '';
+      extras.forEach(e => {
+        const precio = e.porPasajero ? e.precio * numPasajeros : e.precio;
+        const checked = !!extrasSel[e.id];
+        const div = document.createElement('div');
+        div.className = 'res-extra-row';
+        div.innerHTML = `
+          <div class="res-extra-icon">${e.icon}</div>
+          <div class="res-extra-info">
+            <div class="res-extra-name">${e.nombre}</div>
+            <div class="res-extra-desc">${e.desc}</div>
+          </div>
+          <div class="res-extra-price">RD$ ${precio.toLocaleString('es-DO')}${e.porPasajero?' total':''}</div>
+          <label class="res-toggle">
+            <input type="checkbox" ${checked?'checked':''} onchange="toggleExtra('${e.id}',this.checked,${precio})">
+            <span class="res-slider"></span>
+          </label>`;
+        list.appendChild(div);
+      });
+    }
+
+    function toggleExtra(id, on, precio) {
+      if (on) extrasSel[id] = precio;
+      else delete extrasSel[id];
+      actualizarResumen();
+    }
+
+    // ══════════════════════════════════════
+    //  RESUMEN
+    // ══════════════════════════════════════
+    function actualizarResumen() {
+      const dest   = document.getElementById('inp-destino').value;
+      const nombre = document.getElementById('inp-nombre')?.value || '—';
+      const sal    = document.getElementById('inp-salida').value;
+      const reg    = document.getElementById('inp-regreso').value;
+      const fechaStr = sal && reg ? `${formatShort(sal)} → ${formatShort(reg)}` : '—';
+
+      document.getElementById('sb-destino').textContent   = dest;
+      document.getElementById('sb-nombre').textContent    = nombre || '—';
+      document.getElementById('sb-fechas').textContent    = fechaStr;
+      document.getElementById('sb-pasajeros').textContent = numPasajeros + (numPasajeros===1?' persona':' personas');
+      document.getElementById('sb-hotel').textContent     = hotelSel ? hotelSel.nombre : 'No seleccionado';
+      document.getElementById('sb-trans').textContent     = transSel ? transSel.nombre : 'No seleccionado';
+
+      const extrasNombres = Object.keys(extrasSel).map(id => extras.find(e=>e.id===id)?.nombre || id);
+      const extrasRow = document.getElementById('sb-extras-row');
+      if (extrasNombres.length) {
+        extrasRow.style.display = 'flex';
+        document.getElementById('sb-extras').textContent = extrasNombres.join(', ');
+      } else {
+        extrasRow.style.display = 'none';
+      }
+
+      const total = calcTotal();
+      document.getElementById('sb-total').textContent = 'RD$ ' + total.toLocaleString('es-DO');
+
+      // badge carrito
+      let items = (hotelSel?1:0) + (transSel?1:0) + Object.keys(extrasSel).length;
+      document.getElementById('cart-badge').textContent = items;
+    }
+
+    function calcTotal() {
+      let t = 0;
+      if (hotelSel) t += hotelSel.precio * numPasajeros;
+      if (transSel) t += transSel.precio;
+      Object.values(extrasSel).forEach(p => t += p);
+      return t;
+    }
+
+    function formatShort(str) {
+      if (!str) return '—';
+      const d = new Date(str + 'T00:00:00');
+      return d.toLocaleDateString('es-DO',{day:'2-digit',month:'short'});
+    }
+
+    // ══════════════════════════════════════
+    //  CONFIRMAR
+    // ══════════════════════════════════════
+    function confirmarReserva() {
+      const code = 'SP-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('success-code').textContent = code;
+      document.getElementById('successOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarSuccess() {
+      document.getElementById('successOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      hotelSel = null; transSel = null; extrasSel = {}; numPasajeros = 2;
+      document.getElementById('num-pasajeros').textContent = '2';
+      document.getElementById('inp-nombre').value = '';
+      document.getElementById('inp-email').value  = '';
+      renderHoteles(); renderTransportes(); renderExtras();
+      irPaso(1);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros — Summer's Paradise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+
+  <style>
+    /* ════════════════════════════════
+       ESTILOS PROPIOS DE NOSOTROS
+       (el resto viene de index.css)
+    ════════════════════════════════ */
+
+    /* HERO */
+    .nsp-hero {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0b4b5c 0%, #1f7a8c 55%, #0d2f3a 100%);
+      padding: 90px 64px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 100px;
+      min-height: 540px;
+    }
+    .nsp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('../img/Playa_Sosúa.jpg') center/cover no-repeat;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .nsp-hero-waves { position:absolute; bottom:0; left:0; width:100%; overflow:hidden; line-height:0; }
+    .nsp-hero-waves svg { display:block; width:200%; height:70px; }
+    .nsp-hw1 { fill:rgba(245,249,254,0.5); animation:wSlide 4s linear infinite; }
+    .nsp-hw2 { fill:#f5f9fe; animation:wSlideR 3.2s linear infinite; }
+    @keyframes wSlide  { 0%{transform:translateX(0)}   100%{transform:translateX(-50%)} }
+    @keyframes wSlideR { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+    .nsp-hero-left { position:relative; z-index:1; }
+    .nsp-eyebrow { display:inline-flex; align-items:center; gap:12px; color:#cfb49a; font-size:.82rem; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin-bottom:22px; }
+    .nsp-eyebrow::before { content:''; display:block; width:36px; height:2px; background:#cfb49a; }
+    .nsp-hero-title { font-family:'Yeseva One',serif; font-size:clamp(2.4rem,4.2vw,3.8rem); color:#fff; line-height:1.12; margin-bottom:22px; }
+    .nsp-hero-title em { font-style:italic; color:#b3e0e8; }
+    .nsp-hero-desc { font-size:1.08rem; color:#cde3e9; line-height:1.8; max-width:500px; margin-bottom:40px; }
+    .nsp-stats { display:flex; gap:44px; flex-wrap:wrap; }
+    .nsp-stat { }
+    .nsp-stat-num { font-family:'Yeseva One',serif; font-size:2.8rem; color:#cfb49a; line-height:1; }
+    .nsp-stat-label { font-size:.8rem; color:#b3e0e8; letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+    .nsp-hero-right { position:relative; z-index:1; display:flex; justify-content:center; }
+    .nsp-hero-img-wrap { position:relative; width:100%; max-width:440px; }
+    .nsp-hero-img { width:100%; border-radius:22px; aspect-ratio:4/3; object-fit:cover; box-shadow:0 30px 80px rgba(0,0,0,.45); }
+    .nsp-quote-card { position:absolute; bottom:-26px; left:-26px; background:white; border-radius:18px; padding:20px 24px; box-shadow:0 20px 50px rgba(10,61,98,.18); max-width:270px; }
+    .nsp-quote-icon { color:#b3e0e8; font-size:1.3rem; margin-bottom:8px; }
+    .nsp-quote-text { font-size:.9rem; color:#2d4a5a; font-style:italic; line-height:1.55; font-family:'Playfair Display',serif; }
+
+    /* QUIÉNES SOMOS */
+    .nsp-historia { padding:20px 0 110px; position:relative; }
+    .nsp-historia::before { content:'NOSOTROS'; position:absolute; top:40px; left:-10px; font-family:'Yeseva One',serif; font-size:clamp(5rem,12vw,10rem); color:rgba(31,122,140,0.04); white-space:nowrap; pointer-events:none; user-select:none; letter-spacing:-2px; line-height:1; }
+    .nsp-section-label { color:#cfb49a; font-size:.82rem; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin-bottom:14px; display:block; }
+    .nsp-section-title { font-family:'Yeseva One',serif; font-size:clamp(1.9rem,3vw,2.8rem); color:#0b4b5c; line-height:1.15; margin-bottom:26px; }
+    .nsp-qs-wrap { display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:start; position:relative; z-index:1; }
+    .nsp-qs-visual { position:relative; padding-bottom:50px; padding-right:30px; }
+    .nsp-qs-visual::before { content:''; position:absolute; top:20%; bottom:20%; left:-28px; width:2px; background:linear-gradient(to bottom,transparent,#cfb49a 40%,transparent); }
+    .nsp-qs-img-main { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:28px; display:block; box-shadow:0 30px 70px rgba(10,61,98,0.18); }
+    .nsp-qs-img-float { position:absolute; bottom:0; right:-10px; width:55%; aspect-ratio:5/4; object-fit:cover; border-radius:20px; border:5px solid #f5f9fe; box-shadow:0 20px 50px rgba(10,61,98,0.22); transition:transform .4s; }
+    .nsp-qs-img-float:hover { transform:scale(1.03); }
+    .nsp-qs-badge { position:absolute; top:28px; left:-18px; width:96px; height:96px; background:linear-gradient(135deg,#0b4b5c,#1f7a8c); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(10,61,98,0.35); z-index:2; border:4px solid #f5f9fe; }
+    .nsp-qs-badge-num { font-family:'Yeseva One',serif; font-size:1.9rem; color:#cfb49a; line-height:1; }
+    .nsp-qs-badge-txt { font-size:.52rem; color:#b3e0e8; letter-spacing:1.5px; text-transform:uppercase; text-align:center; line-height:1.3; margin-top:2px; }
+    .nsp-qs-content { padding-top:10px; }
+    .nsp-qs-intro { font-size:1.1rem; color:#2d4a5a; line-height:1.85; border-left:3px solid #cfb49a; padding-left:20px; margin-bottom:28px; }
+    .nsp-qs-body { font-size:.96rem; color:#4a6572; line-height:1.85; margin-bottom:32px; }
+    .nsp-qs-body p+p { margin-top:12px; }
+    .nsp-qs-pills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px; }
+    .nsp-qs-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; border-radius:40px; font-size:.82rem; font-weight:600; border:1.5px solid #b3e0e8; color:#1f7a8c; background:#e5fafd; transition:all .25s; cursor:default; }
+    .nsp-qs-pill:hover { background:#1f7a8c; color:white; border-color:#1f7a8c; transform:translateY(-2px); }
+    .nsp-qs-pill i { font-size:.78rem; }
+    .nsp-qs-tl-label { font-size:.74rem; letter-spacing:2.5px; text-transform:uppercase; color:#cfb49a; font-weight:700; margin-bottom:22px; display:flex; align-items:center; gap:12px; }
+    .nsp-qs-tl-label::after { content:''; flex:1; height:1px; background:linear-gradient(to right,#cfb49a,transparent); }
+    .nsp-qs-tl-items { display:flex; flex-direction:column; }
+    .nsp-qs-tl-item { display:grid; grid-template-columns:72px 20px 1fr; gap:0 16px; align-items:start; padding-bottom:22px; }
+    .nsp-qs-tl-item:last-child { padding-bottom:0; }
+    .nsp-qs-tl-year { font-family:'Yeseva One',serif; font-size:1rem; color:#1f7a8c; text-align:right; padding-top:2px; line-height:1; }
+    .nsp-qs-tl-center { display:flex; flex-direction:column; align-items:center; }
+    .nsp-qs-tl-dot { width:14px; height:14px; border-radius:50%; background:#cfb49a; border:3px solid #f5f9fe; box-shadow:0 0 0 2px #cfb49a; flex-shrink:0; margin-top:2px; }
+    .nsp-qs-tl-line { width:2px; flex:1; background:linear-gradient(to bottom,#cfb49a,#d6eaf0); min-height:28px; margin-top:4px; }
+    .nsp-qs-tl-item:last-child .nsp-qs-tl-line { display:none; }
+    .nsp-qs-tl-title { font-size:.9rem; font-weight:700; color:#0b4b5c; margin-bottom:3px; }
+    .nsp-qs-tl-desc { font-size:.84rem; color:#6b8a99; line-height:1.6; }
+    .nsp-qs-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; border-radius:20px; overflow:hidden; margin-top:36px; box-shadow:0 10px 40px rgba(10,61,98,0.1); }
+    .nsp-qs-stat { background:white; padding:22px 16px; text-align:center; position:relative; transition:background .3s; }
+    .nsp-qs-stat:hover { background:#e5fafd; }
+    .nsp-qs-stat::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#1f7a8c,#cfb49a); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+    .nsp-qs-stat:hover::after { transform:scaleX(1); }
+    .nsp-qs-stat-num { font-family:'Yeseva One',serif; font-size:2rem; color:#0b4b5c; line-height:1; }
+    .nsp-qs-stat-num span { color:#1f7a8c; }
+    .nsp-qs-stat-label { font-size:.7rem; color:#6b8a99; text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+
+    
+    /* MISION VISION VALORES */
+    .nsp-mvv { padding:0 0 100px; }
+    .nsp-mvv-header { text-align:center; margin-bottom:60px; }
+    .nsp-mvv-sub { font-size:1rem; color:#6b8a99; max-width:460px; margin:12px auto 0; line-height:1.7; }
+    .nsp-mvv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-radius:24px; overflow:hidden; box-shadow:0 20px 60px rgba(10,61,98,0.12); }
+    .nsp-mvv-card { padding:52px 40px; position:relative; overflow:hidden; display:flex; flex-direction:column; gap:20px; transition:transform .3s; }
+    .nsp-mvv-card:hover { transform:translateY(-4px); }
+    .nsp-mvv-card.nsp-mision { background:#0b4b5c; }
+    .nsp-mvv-card.nsp-vision { background:#1f7a8c; }
+    .nsp-mvv-card.nsp-valores-card { background:#e5fafd; }
+    .nsp-mvv-num { position:absolute; top:-10px; right:20px; font-family:'Yeseva One',serif; font-size:8rem; line-height:1; opacity:0.06; pointer-events:none; user-select:none; }
+    .nsp-mvv-icon-wrap { width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+    .nsp-mision .nsp-mvv-icon-wrap { background:rgba(255,255,255,0.12); color:#cfb49a; }
+    .nsp-vision .nsp-mvv-icon-wrap { background:rgba(255,255,255,0.12); color:#b3e0e8; }
+    .nsp-valores-card .nsp-mvv-icon-wrap { background:rgba(11,75,92,0.1); color:#1f7a8c; }
+    .nsp-mvv-label { font-size:.75rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; }
+    .nsp-mision .nsp-mvv-label { color:#cfb49a; }
+    .nsp-vision .nsp-mvv-label { color:#b3e0e8; }
+    .nsp-valores-card .nsp-mvv-label { color:#1f7a8c; }
+    .nsp-mvv-title { font-family:'Yeseva One',serif; font-size:1.9rem; line-height:1.1; }
+    .nsp-mision .nsp-mvv-title, .nsp-vision .nsp-mvv-title { color:#fff; }
+    .nsp-valores-card .nsp-mvv-title { color:#0b4b5c; }
+    .nsp-mvv-text { font-size:.95rem; line-height:1.8; }
+    .nsp-mision .nsp-mvv-text, .nsp-vision .nsp-mvv-text { color:rgba(255,255,255,0.78); }
+    .nsp-valores-card .nsp-mvv-text { color:#4a6572; }
+    .nsp-mvv-divider { width:40px; height:2px; background:rgba(255,255,255,0.25); margin:4px 0; }
+    .nsp-valores-card .nsp-mvv-divider { background:rgba(11,75,92,0.2); }
+    .nsp-mvv-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+    .nsp-mvv-list li { display:flex; align-items:center; gap:10px; font-size:.92rem; color:#4a6572; }
+    .nsp-mvv-list li::before { content:''; width:8px; height:8px; border-radius:50%; background:#1f7a8c; flex-shrink:0; }
+
+    /* VALORES DETALLE */
+    .nsp-valores { background:#e5fafd; border-radius:30px; padding:80px 60px; margin:0 0 60px; }
+    .nsp-valores-header { text-align:center; margin-bottom:52px; }
+    .nsp-valores-sub { font-size:1rem; color:#6b8a99; max-width:420px; margin:12px auto 0; line-height:1.7; }
+    .nsp-valores-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .nsp-valor-card { background:#fff; border-radius:20px; padding:30px 26px; box-shadow:0 6px 20px rgba(10,61,98,.06); transition:transform .3s, box-shadow .3s; position:relative; overflow:hidden; }
+    .nsp-valor-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#1f7a8c,#cfb49a); transform:scaleX(0); transform-origin:left; transition:transform .4s; }
+    .nsp-valor-card:hover { transform:translateY(-6px); box-shadow:0 18px 50px rgba(10,61,98,.13); }
+    .nsp-valor-card:hover::after { transform:scaleX(1); }
+    .nsp-valor-icon { width:50px; height:50px; border-radius:14px; background:#e5fafd; display:flex; align-items:center; justify-content:center; font-size:1.35rem; color:#1f7a8c; margin-bottom:18px; }
+    .nsp-valor-name { font-family:'Yeseva One',serif; font-size:1.2rem; color:#0b4b5c; margin-bottom:10px; }
+    .nsp-valor-desc { font-size:.88rem; color:#6b8a99; line-height:1.7; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+    .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+    /* RESPONSIVE */
+    @media (max-width:900px) {
+      .nsp-hero { grid-template-columns:1fr; padding:60px 30px; }
+      .nsp-hero-right { display:none; }
+      .nsp-qs-wrap { grid-template-columns:1fr; }
+      .nsp-qs-visual { display:none; }
+      .nsp-historia::before { display:none; }
+      .nsp-team-grid { grid-template-columns:1fr 1fr; }
+      .nsp-mvv-grid { grid-template-columns:1fr; }
+      .nsp-valores-grid { grid-template-columns:1fr 1fr; }
+      .nsp-valores { padding:60px 30px; }
+    }
+    @media (max-width:600px) {
+      .nsp-team-grid { grid-template-columns:1fr; }
+      .nsp-valores-grid { grid-template-columns:1fr; }
+    }
+    
+    
+    html, body { overflow-x: hidden; max-width: 100%; }
+    .pt-page { padding-top: 135px !important; }
+    *, *::before, *::after { box-sizing: border-box; }
+  
+
+  </style>
+</head>
+
+<body>
+
+  <!-- El header se inyecta aquí por banner_footer.js -->
+  <div id="header-placeholder"></div>
+ <div class="pt-page">
+  <!-- ══ HERO ══ -->
+  <section class="nsp-hero">
+    <div class="nsp-hero-left">
+      <div class="nsp-eyebrow">Nuestra Historia</div>
+      <h1 class="nsp-hero-title">Nacimos para<br>llevar el <em>paraíso</em><br>a tu vida.</h1>
+      <p class="nsp-hero-desc">Summer's Paradise nació del sueño de seis amigos apasionados por la belleza de la República Dominicana. Lo que empezó como una idea, hoy transforma vidas a través de experiencias únicas.</p>
+      <div class="nsp-stats">
+        <div class="nsp-stat">
+          <div class="nsp-stat-num">6K+</div>
+          <div class="nsp-stat-label">Viajeros felices</div>
+        </div>
+        <div class="nsp-stat">
+          <div class="nsp-stat-num">15+</div>
+          <div class="nsp-stat-label">Destinos</div>
+        </div>
+        <div class="nsp-stat">
+          <div class="nsp-stat-num">4.9★</div>
+          <div class="nsp-stat-label">Valoración</div>
+        </div>
+      </div>
+    </div>
+    <div class="nsp-hero-right">
+      <div class="nsp-hero-img-wrap">
+        <img src="../img/punta.jpg" alt="Playa" class="nsp-hero-img">
+        <div class="nsp-quote-card">
+          <div class="nsp-quote-icon"><i class="fas fa-quote-left"></i></div>
+          <p class="nsp-quote-text">"Viajar no es escapar de la vida, es que la vida no se te escape."</p>
+        </div>
+      </div>
+    </div>
+    <div class="nsp-hero-waves">
+      <svg viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="nsp-hw1" d="M0,35 C240,60 480,10 720,35 C960,60 1200,10 1440,35 C1680,60 1920,10 2160,35 C2400,60 2640,10 2880,35 L2880,70 L0,70 Z"/>
+        <path class="nsp-hw2" d="M0,48 C360,18 720,62 1080,44 C1440,26 1800,58 2160,44 C2520,30 2700,54 2880,48 L2880,70 L0,70 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══ QUIÉNES SOMOS ══ -->
+  <section class="nsp-historia">
+    <div class="nsp-qs-wrap">
+      <div class="nsp-qs-visual reveal">
+        <div class="nsp-qs-badge">
+          <div class="nsp-qs-badge-num">3+</div>
+          <div class="nsp-qs-badge-txt">años de pasión</div>
+        </div>
+        <img src="../img/isla_saona.png" alt="Paisaje" class="nsp-qs-img-main">
+        <img src="../img/Playa_Macao.jpeg" alt="Playa" class="nsp-qs-img-float">
+      </div>
+      <div class="nsp-qs-content reveal d2">
+        <span class="nsp-section-label">Quiénes somos</span>
+        <h2 class="nsp-section-title">Una agencia hecha<br>con corazón dominicano</h2>
+        <p class="nsp-qs-intro">En 2022, seis jóvenes con alma viajera decidieron que República Dominicana merecía una agencia diferente: una que tratara cada viaje como una experiencia única, irrepetible y llena de alma.</p>
+        <div class="nsp-qs-body">
+          <p>Combinamos experiencia en hospitalidad, tecnología, marketing y logística para crear algo que el mercado no había visto: turismo nacional de primer nivel, con calidez local y estándares internacionales.</p>
+          <p>Cada destino que ofrecemos lo hemos vivido primero. No somos una agencia más — somos seis personas que apostaron todo por su tierra.</p>
+        </div>
+        <div class="nsp-qs-pills">
+          <span class="nsp-qs-pill"><i class="fas fa-map-marked-alt"></i> Turismo premium</span>
+          <span class="nsp-qs-pill"><i class="fas fa-star"></i> 4.9 valoración</span>
+          <span class="nsp-qs-pill"><i class="fas fa-users"></i> 6K+ viajeros</span>
+          <span class="nsp-qs-pill"><i class="fas fa-globe-americas"></i> 15+ destinos</span>
+          <span class="nsp-qs-pill"><i class="fas fa-leaf"></i> Sostenible</span>
+        </div>
+        <div class="nsp-qs-tl-label">Nuestra trayectoria</div>
+        <div class="nsp-qs-tl-items">
+          <div class="nsp-qs-tl-item">
+            <div class="nsp-qs-tl-year">2022</div>
+            <div class="nsp-qs-tl-center"><div class="nsp-qs-tl-dot"></div><div class="nsp-qs-tl-line"></div></div>
+            <div class="nsp-qs-tl-text"><div class="nsp-qs-tl-title">Fundación</div><div class="nsp-qs-tl-desc">Seis amigos formalizan Summer's Paradise con la misión de revolucionar el turismo dominicano.</div></div>
+          </div>
+          <div class="nsp-qs-tl-item">
+            <div class="nsp-qs-tl-year">2023</div>
+            <div class="nsp-qs-tl-center"><div class="nsp-qs-tl-dot"></div><div class="nsp-qs-tl-line"></div></div>
+            <div class="nsp-qs-tl-text"><div class="nsp-qs-tl-title">Primer circuito premium</div><div class="nsp-qs-tl-desc">Tour exclusivo por Samaná y Punta Cana. 50 viajeros encantados desde el primer día.</div></div>
+          </div>
+          <div class="nsp-qs-tl-item">
+            <div class="nsp-qs-tl-year">2024</div>
+            <div class="nsp-qs-tl-center"><div class="nsp-qs-tl-dot"></div><div class="nsp-qs-tl-line"></div></div>
+            <div class="nsp-qs-tl-text"><div class="nsp-qs-tl-title">Crecimiento acelerado</div><div class="nsp-qs-tl-desc">Más de 3,000 viajeros y expansión a 15 destinos exclusivos en todo el país.</div></div>
+          </div>
+          <div class="nsp-qs-tl-item">
+            <div class="nsp-qs-tl-year">2025</div>
+            <div class="nsp-qs-tl-center"><div class="nsp-qs-tl-dot"></div></div>
+            <div class="nsp-qs-tl-text"><div class="nsp-qs-tl-title">Reconocimiento nacional</div><div class="nsp-qs-tl-desc">4.9 promedio y 6,000+ viajeros que confían en nosotros cada año.</div></div>
+          </div>
+        </div>
+        <div class="nsp-qs-stats">
+          <div class="nsp-qs-stat"><div class="nsp-qs-stat-num">6<span>K+</span></div><div class="nsp-qs-stat-label">Viajeros felices</div></div>
+          <div class="nsp-qs-stat"><div class="nsp-qs-stat-num">15<span>+</span></div><div class="nsp-qs-stat-label">Destinos</div></div>
+          <div class="nsp-qs-stat"><div class="nsp-qs-stat-num">4<span>.9★</span></div><div class="nsp-qs-stat-label">Valoración</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ══ MISIÓN VISIÓN VALORES ══ -->
+  <section class="nsp-mvv">
+    <div class="nsp-mvv-header reveal">
+      <span class="nsp-section-label" style="text-align:center;display:block;">Nuestra esencia</span>
+      <h2 class="nsp-section-title" style="text-align:center;">Misión, Visión y Valores</h2>
+      <p class="nsp-mvv-sub">Los tres pilares que guían cada decisión que tomamos como equipo y como agencia.</p>
+    </div>
+    <div class="nsp-mvv-grid">
+      <div class="nsp-mvv-card nsp-mision reveal d1">
+        <div class="nsp-mvv-num">M</div>
+        <div class="nsp-mvv-icon-wrap"><i class="fas fa-bullseye"></i></div>
+        <div class="nsp-mvv-label">Misión</div>
+        <div class="nsp-mvv-divider"></div>
+        <div class="nsp-mvv-title">¿Por qué existimos?</div>
+        <p class="nsp-mvv-text">Hacer que cada dominicano y visitante descubra la belleza extraordinaria de la República Dominicana a través de experiencias de viaje únicas, accesibles y memorables. Conectamos personas con su tierra de una manera auténtica, segura y de primera calidad.</p>
+      </div>
+      <div class="nsp-mvv-card nsp-vision reveal d2">
+        <div class="nsp-mvv-num">V</div>
+        <div class="nsp-mvv-icon-wrap"><i class="fas fa-eye"></i></div>
+        <div class="nsp-mvv-label">Visión</div>
+        <div class="nsp-mvv-divider"></div>
+        <div class="nsp-mvv-title">¿A dónde vamos?</div>
+        <p class="nsp-mvv-text">Ser la agencia de turismo nacional más reconocida y querida de República Dominicana para 2030, referente regional en experiencias auténticas, sostenibles y de alto impacto emocional que pongan al país en el mapa del turismo de calidad.</p>
+      </div>
+      <div class="nsp-mvv-card nsp-valores-card reveal d3">
+        <div class="nsp-mvv-num">V</div>
+        <div class="nsp-mvv-icon-wrap"><i class="fas fa-gem"></i></div>
+        <div class="nsp-mvv-label">Valores</div>
+        <div class="nsp-mvv-divider"></div>
+        <div class="nsp-mvv-title">¿Cómo actuamos?</div>
+        <ul class="nsp-mvv-list">
+          <li>Autenticidad en cada experiencia</li>
+          <li>Pasión por lo que hacemos</li>
+          <li>Excelencia sin excepciones</li>
+          <li>Sostenibilidad y respeto al entorno</li>
+          <li>Comunidad y trabajo en equipo</li>
+          <li>Innovación constante</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VALORES DETALLE ══ -->
+  <section class="nsp-valores">
+    <div class="nsp-valores-header reveal">
+      <span class="nsp-section-label" style="text-align:center;display:block;">Lo que nos mueve</span>
+      <h2 class="nsp-section-title" style="text-align:center;">Nuestros valores,<br>nuestra brújula</h2>
+      <p class="nsp-valores-sub">Cada decisión que tomamos pasa por estos principios. Sin excepción.</p>
+    </div>
+    <div class="nsp-valores-grid">
+      <div class="nsp-valor-card reveal d1"><div class="nsp-valor-icon"><i class="fas fa-compass"></i></div><div class="nsp-valor-name">Autenticidad</div><p class="nsp-valor-desc">Cada experiencia refleja la esencia más genuina de la República Dominicana. Nada aquí es genérico.</p></div>
+      <div class="nsp-valor-card reveal d2"><div class="nsp-valor-icon"><i class="fas fa-heart"></i></div><div class="nsp-valor-name">Pasión</div><p class="nsp-valor-desc">Somos los primeros viajeros de lo que ofrecemos. Si no nos emociona, no lo vendemos.</p></div>
+      <div class="nsp-valor-card reveal d3"><div class="nsp-valor-icon"><i class="fas fa-star"></i></div><div class="nsp-valor-name">Excelencia</div><p class="nsp-valor-desc">Desde la primera consulta hasta el último atardecer, cada detalle importa. La mediocridad no es opción.</p></div>
+      <div class="nsp-valor-card reveal d1"><div class="nsp-valor-icon"><i class="fas fa-leaf"></i></div><div class="nsp-valor-name">Sostenibilidad</div><p class="nsp-valor-desc">Amamos este país y lo protegemos. Colaboramos con comunidades locales y cuidamos el medio ambiente.</p></div>
+      <div class="nsp-valor-card reveal d2"><div class="nsp-valor-icon"><i class="fas fa-users"></i></div><div class="nsp-valor-name">Comunidad</div><p class="nsp-valor-desc">Somos familia, y esa energía se transmite a cada viajero. Cuando viajas con nosotros, formas parte de algo especial.</p></div>
+      <div class="nsp-valor-card reveal d3"><div class="nsp-valor-icon"><i class="fas fa-lightbulb"></i></div><div class="nsp-valor-name">Innovación</div><p class="nsp-valor-desc">Reinventamos constantemente lo que puede ser un viaje, con tecnología y creatividad al servicio de la aventura.</p></div>
+    </div>
+  </section>
+  </div>
+
+  <!-- El footer se inyecta aquí por banner_footer.js -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Un solo script para cargar header y footer -->
+  <script src="../js/banner_footer.js"></script>
+
+<script>
+  (function() {
+    var revEls = document.querySelectorAll('.reveal');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revEls.forEach(function(el) { obs.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

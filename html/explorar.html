@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorar Destinos — Summer's Paradise</title> 
+  <link rel="stylesheet" href="../css/explorar.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+
+ 
+</head>
+<body>
+
+  <!-- Header inyectado por banner_footer.js -->
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="exp-hero">
+    <div class="exp-hero-inner">
+      <div class="exp-hero-text">
+        <div class="exp-eyebrow">Descubre la Isla</div>
+        <h1 class="exp-hero-title">Explora cada<br>rincón del <em>paraíso</em></h1>
+        <p class="exp-hero-desc">
+          25 destinos únicos en toda la República Dominicana. Playas vírgenes,
+          montañas eternas, ciudades con historia y aventuras sin fin te esperan.
+        </p>
+        <div class="exp-chips">
+          <div class="exp-chip"><i class="fas fa-umbrella-beach"></i> 14 Playas</div>
+          <div class="exp-chip"><i class="fas fa-leaf"></i> 6 Naturaleza</div>
+          <div class="exp-chip"><i class="fas fa-landmark"></i> 3 Cultura</div>
+          <div class="exp-chip"><i class="fas fa-mountain"></i> 4 Aventura</div>
+        </div>
+      </div>
+      <div class="exp-hero-visual">
+        <div class="exp-preview-card" style="transform: rotate(-3deg);">
+          <img src="../img/isla_saona.png" alt="Isla Saona">
+          <div class="exp-preview-label">Isla Saona</div>
+        </div>
+        <div class="exp-preview-card" style="transform: rotate(2deg);">
+          <img src="../img/punta_cana1.jpg" alt="Punta Cana">
+          <div class="exp-preview-label">Punta Cana</div>
+        </div>
+        <div class="exp-preview-card" style="transform: rotate(-1.5deg);">
+          <img src="../img/jarabacoa.jpg" alt="Jarabacoa">
+          <div class="exp-preview-label">Jarabacoa</div>
+        </div>
+      </div>
+    </div>
+   
+  </section>
+
+  <!-- ══════════ TOOLBAR ══════════ -->
+  <div class="exp-toolbar">
+    <div class="exp-toolbar-inner">
+      <div class="exp-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Buscar destino, región, actividad…">
+      </div>
+      <div class="exp-filters" id="filtersBar">
+        <button class="exp-fil on" data-cat="all">
+          <span class="dot"></span> Todos
+        </button>
+        <button class="exp-fil" data-cat="playa">
+          <span class="dot" style="background:var(--cat-playa)"></span> Playa
+        </button>
+        <button class="exp-fil" data-cat="naturaleza">
+          <span class="dot" style="background:var(--cat-naturaleza)"></span> Naturaleza
+        </button>
+        <button class="exp-fil" data-cat="cultura">
+          <span class="dot" style="background:var(--cat-cultura)"></span> Cultura
+        </button>
+        <button class="exp-fil" data-cat="aventura">
+          <span class="dot" style="background:var(--cat-aventura)"></span> Aventura
+        </button>
+      </div>
+      <div class="exp-count">Mostrando <span id="countNum">25</span> destinos</div>
+    </div>
+  </div>
+
+  <!-- ══════════ GRID ══════════ -->
+  <div class="exp-section">
+    <div class="exp-grid" id="destGrid">
+      <!-- cards insertadas por JS -->
+    </div>
+  </div>
+
+  </div><!-- /pt-page -->
+
+  <!-- ══════════ MODAL ══════════ -->
+  <div class="exp-modal-bg" id="modalBg">
+    <div class="exp-modal" id="modal">
+      <button class="exp-modal-close" id="modalClose">✕</button>
+      <img class="exp-modal-img" id="modalImg" src="" alt="">
+      <div class="exp-modal-body">
+        <div class="exp-modal-region" id="modalRegion"></div>
+        <div class="exp-modal-top">
+          <div class="exp-modal-name" id="modalName"></div>
+          <div class="exp-modal-stars">
+            <div class="d-stars" id="modalStars"></div>
+            <span class="d-rating" id="modalRating"></span>
+          </div>
+        </div>
+        <p class="exp-modal-desc" id="modalDesc"></p>
+        <div class="exp-modal-info">
+          <div class="exp-modal-info-item">
+            <div class="exp-modal-info-label">Categoría</div>
+            <div class="exp-modal-info-val" id="modalCat"></div>
+          </div>
+          <div class="exp-modal-info-item">
+            <div class="exp-modal-info-label">Mejor Época</div>
+            <div class="exp-modal-info-val" id="modalSeason"></div>
+          </div>
+          <div class="exp-modal-info-item">
+            <div class="exp-modal-info-label">Provincia</div>
+            <div class="exp-modal-info-val" id="modalProvince"></div>
+          </div>
+          <div class="exp-modal-info-item">
+            <div class="exp-modal-info-label">Valoración</div>
+            <div class="exp-modal-info-val" id="modalRatingVal"></div>
+          </div>
+        </div>
+        <div class="exp-modal-tags" id="modalTags"></div>
+       <a href="../html/reser.html" class="exp-modal-btn" id="modalReservar">
+  <i class="fas fa-calendar-check"></i>
+  Reservar este Destino
+  <i class="fas fa-arrow-right"></i>
+</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer inyectado por banner_footer.js -->
+  <div id="footer-placeholder"></div>
+  <script src="../js/banner_footer.js"></script>
+
+  <script>
+  const destinations = [
+    {id:'monte-cristi',   name:'Monte Cristi',     region:'Monte Cristi',          cat:'naturaleza', stars:4.4, desc:'El noroeste del país esconde El Morro, manglares vírgenes y un desierto costero único dentro del Parque Nacional Monte Cristi. Un ecosistema salvaje alejado del turismo masivo, con kayak entre manglares y avistamiento de aves únicas del Caribe.',       tags:["El Morro","Manglares","Aves","Naturaleza"],          season:'Nov – Abr', img:'../img/monte_cristi.jpeg'},
+    {id:'playa-sosua',    name:'Playa Sosúa',       region:'Puerto Plata',          cat:'playa',      stars:4.5, desc:'Esta bahía en herradura protegida ofrece aguas cristalinas y calmadas ideales para el snorkel y el buceo entre arrecifes de coral. Su ambiente cosmopolita, restaurantes frente al mar y vibrante oferta nocturna la hacen irresistible.',               tags:["Snorkel","Coral","Bahía Protegida","Buceo"],          season:'Nov – Abr', img:'../img/Playa_Sosúa.jpg'},
+    {id:'cabarete',       name:'Cabarete',           region:'Puerto Plata',          cat:'aventura',   stars:4.8, desc:'La capital mundial del kitesurf combina vientos perfectos, olas increíbles y una vibrante vida nocturna frente al Atlántico. El Spot Beach reúne a los mejores riders del mundo en un ambiente festivo e internacional.',                               tags:["Kitesurf","Windsurf","Surf","Nightlife"],             season:'Jun – Ago', img:'../img/cabarete.jpg'},
+    {id:'playa-encuentro',name:'Playa Encuentro',    region:'Puerto Plata',          cat:'aventura',   stars:4.6, desc:'Este spot de olas potentes es el mejor punto de surf del país, con escuelas para principiantes y condiciones avanzadas para expertos. Rodeado de naturaleza virgen y lejos del turismo de resort.',                                                   tags:["Surf","Olas","Escuela Surf","Deportes"],              season:'Jun – Sep', img:'../img/playa_encuentro.jpg'},
+    {id:'playa-grande',   name:'Playa Grande',       region:'María Trinidad Sánchez', cat:'playa',     stars:4.8, desc:'Dos kilómetros de arena dorada salvaje enmarcados por acantilados verdes y sin desarrollo turístico masivo. Considerada una de las playas más hermosas de toda la región del Caribe por su autenticidad y paisaje dramático.',                       tags:["Playa Salvaje","Surf","Acantilados","Sin Masificar"], season:'Nov – Abr', img:'../img/playa_grande.jpeg'},
+    {id:'santiago',       name:'Santiago',            region:'Santiago',              cat:'cultura',    stars:4.7, desc:'La segunda ciudad del país es el corazón cultural del Cibao: epicentro del carnaval más colorido del país, la industria del tabaco y la gastronomía criolla dominicana. El Monumento a los Héroes de la Restauración domina su horizonte.',           tags:["Carnaval","Cultura","Tabaco","Gastronomía"],          season:'Feb – Mar', img:'../img/santiago1.jpg'},
+    {id:'jarabacoa',      name:'Jarabacoa',           region:'La Vega',               cat:'aventura',   stars:4.8, desc:'La Ciudad de la Eterna Primavera ofrece rafting de clase mundial en el río Yaque del Norte, cascadas espectaculares como Jimenoa y Baiguate, y senderismo en un clima de montaña inigualable a 530 metros sobre el nivel del mar.',                tags:["Rafting","Cascadas","Senderismo","Clima Fresco"],     season:'Todo el año',img:'../img/jarabacoa.jpg'},
+    {id:'constanza',      name:'Constanza',           region:'La Vega',               cat:'naturaleza', stars:4.6, desc:'El Valle Encantado a 1,200 metros de altura sorprende con flores europeas, fresas, clima frío y es el punto de partida para escalar el Pico Duarte, el techo del Caribe a 3,098 metros. Paisajes de otro mundo en el corazón del país.',           tags:["Pico Duarte","Flores","Clima Frío","Ecoturismo"],     season:'Dic – Feb', img:'../img/constanza.webp'},
+    {id:'las-terrenas',   name:'Las Terrenas',        region:'Samaná',                cat:'playa',      stars:4.7, desc:'Este cosmopolita pueblo caribeño fusiona gastronomía internacional con playas de cocoteros y un ambiente bohemio único. Restaurantes franceses junto a bares de pescadores, con kitesurf al atardecer sobre el Atlántico.',                        tags:["Playa","Gastronomía","Kitesurf","Ambiente Bohemio"], season:'Nov – May', img:'../img/las_terrenas.jpg'},
+    {id:'playa-rincon',   name:'Playa Rincón',        region:'Samaná',                cat:'playa',      stars:4.9, desc:'Considerada una de las 10 playas más bellas del mundo: arena blanca virgen, un río de agua dulce que desemboca en el mar turquesa y una selva tropical impenetrable que llega hasta la orilla. Sin urbanización ni resorts.',                       tags:["Playa Virgen","Sin Resorts","Río Dulce","Selva"],     season:'Nov – May', img:'../img/Playa_Rincón.webp'},
+    {id:'samana',         name:'Samaná',              region:'Samaná',                cat:'naturaleza', stars:4.8, desc:'Capital de la Provincia Samaná y santuario natural de las ballenas jorobadas que llegan cada enero a marzo para reproducirse. Con la imponente Cascada El Limón, playas de ensueño y el Parque Nacional Los Haitises a un bote de distancia.',       tags:["Ballenas","Cascadas","Ecoturismo","Playa Virgen"],   season:'Ene – Mar', img:'../img/Samaná.jpg'},
+    {id:'playa-las-galeras',name:'Playa Las Galeras', region:'Samaná',               cat:'playa',      stars:4.7, desc:'Un auténtico pueblo de pescadores al extremo noreste de la Península de Samaná, rodeado de playas remotas e inaccesibles como Playa Fronton, perfectas para el ecoturismo. El contraste entre tranquilidad absoluta y belleza extrema.',               tags:["Playas Remotas","Pesca","Ecoturismo","Tranquilidad"], season:'Nov – May', img:'../img/Playa_Las_Galeras.jpeg'},
+    {id:'playa-limon',    name:'Playa Limón',          region:'El Seibo',             cat:'playa',      stars:4.6, desc:'Catorce kilómetros de playa virgen sin ninguna urbanización, con una laguna de agua dulce única, cañaverales y paseos a caballo por la costa más salvaje del Este dominicano. Un secreto bien guardado.',                                             tags:["Playa Virgen","Laguna","Caballos","Aventura"],        season:'Nov – May', img:'../img/Playa_Limón.webp'},
+    {id:'lago-enriquillo', name:'Lago Enriquillo',    region:'Independencia',        cat:'naturaleza', stars:4.6, desc:'El lago más grande del Caribe y el punto más bajo de las Antillas, con 40 metros bajo el nivel del mar. Alberga la mayor población de cocodrilos americanos e iguanas rinocerontes en una Reserva de Biosfera declarada por la UNESCO.',              tags:["Cocodrilos","Iguanas","Reserva UNESCO","Ecoturismo"], season:'Nov – Abr', img:'../img/lago_enrriquillo.jpg'},
+    {id:'barahona',       name:'Barahona',             region:'Barahona',             cat:'naturaleza', stars:4.5, desc:'La Perla del Sur: origen exclusivo en el mundo del larimar, la piedra semipreciosa azul única de República Dominicana. Playas de arena oscura volcánica, ríos turquesa de singular belleza y naturaleza exuberante virgen en el suroeste.',           tags:["Larimar","Playa Única","Naturaleza","Ecoturismo"],   season:'Nov – Abr', img:'../img/Barahona.jpeg'},
+    {id:'santo-domingo',  name:'Santo Domingo',        region:'Distrito Nacional',    cat:'cultura',    stars:4.7, desc:'La primera ciudad colonial de Europa en el Nuevo Mundo y Patrimonio de la Humanidad UNESCO, con la Catedral más antigua de América, el Alcázar de Colón y una vibrante Zona Colonial llena de historia viva, gastronomía y vida nocturna sin igual.', tags:["Patrimonio UNESCO","Historia","Gastronomía","Vida Nocturna"], season:'Nov – Abr', img:'../img/santo_domingo1.webp'},
+    {id:'boca-chica',     name:'Boca Chica',           region:'San Pedro de Macorís', cat:'playa',      stars:4.4, desc:'Una laguna natural protegida por un arrecife de coral crea aguas poco profundas, cálidas y tranquilas, ideales para familias con niños. A solo 30 minutos de Santo Domingo, es la playa de escape favorita de los capitalinos.',                     tags:["Laguna","Snorkel","Coral","Familiar"],                season:'Nov – May', img:'../img/boca_chica.jpg'},
+    {id:'juan-dolio',     name:'Juan Dolio',           region:'San Pedro de Macorís', cat:'playa',      stars:4.3, desc:'Una tranquila franja costera con arrecife de coral, ambiente totalmente relajado y playas auténticas lejos del turismo masivo. Perfecta para desconectarse, hacer snorkel y disfrutar de atardeceres sin multitudes ni ruido.',                       tags:["Arrecife","Snorkel","Relajado","Auténtico"],          season:'Nov – May', img:'../img/juan_dolio.jpg'},
+    {id:'la-romana',      name:'La Romana',            region:'La Romana',            cat:'cultura',    stars:4.7, desc:'Hogar de Casa de Campo, los campos de golf más exclusivos del Caribe, y el histórico pueblo artesanal de Altos de Chavón réplica de un pueblo medieval italiano. Arte, lujo y autenticidad cultural se fusionan en esta joya del sureste.',           tags:["Golf","Altos de Chavón","Arte","Lujo"],               season:'Nov – Abr', img:'../img/la_romana.jpeg'},
+    {id:'playa-bayahibe', name:'Playa Bayahibe',       region:'La Romana',            cat:'playa',      stars:4.6, desc:'El mejor punto de buceo del Caribe dominicano: arrecifes de coral espectaculares, barcos hundidos para explorar y la puerta de entrada a la Isla Saona. Un pueblo de pescadores que conserva su esencia entre turistas que llegan en catamaran.',    tags:["Buceo","Snorkel","Barco Hundido","Isla Saona"],       season:'Nov – May', img:'../img/Playa_Bayahibe.jpg'},
+    {id:'isla-saona',     name:'Isla Saona',            region:'La Altagracia',        cat:'playa',      stars:4.8, desc:'La icónica isla postal dominicana con piscinas naturales llenas de estrellas de mar, arena blanca inmaculada y palmeras que se curvan sobre el Mar Caribe. Declarada Parque Nacional, es uno de los ecosistemas más prístinos del país.',             tags:["Piscina Natural","Estrellas de Mar","Isla","Snorkel"], season:'Nov – May', img:'../img/isla_saona.png'},
+    {id:'playa-macao',    name:'Playa Macao',           region:'La Altagracia',        cat:'aventura',   stars:4.7, desc:'La playa más salvaje y auténtica del Este: olas perfectas para el surf, arena dorada y sin un solo resort en kilómetros de costa. Rodeada de acantilados naturales, es el contrapunto perfecto a los all-inclusive de la zona.',                     tags:["Playa Virgen","Surf","Aventura","Sin Resorts"],       season:'Oct – Mar', img:'../img/Playa_Macao.jpeg'},
+    {id:'bavaro',         name:'Playa Bávaro',          region:'La Altagracia',        cat:'playa',      stars:5.0, desc:'Elegida repetidamente como la mejor playa del mundo por su arena blanca de cuarzo puro, aguas turquesas absolutamente transparentes y los mejores resorts all-inclusive del Caribe. 50 kilómetros de costa perfecta bajo el sol.',                    tags:["Top Mundial","Arena Blanca","Lujo","All-Inclusive"],  season:'Todo el año',img:'../img/Playa_Bávaro.jpg'},
+    {id:'punta-cana',     name:'Punta Cana',            region:'La Altagracia',        cat:'playa',      stars:4.9, desc:'El destino turístico más visitado del Caribe combina playas de ensueño con resorts de 5 estrellas, golf de clase mundial diseñado por Nicklaus y Dye, buceo en el Atlántico y shows de entretenimiento nocturnos de primer nivel.',                  tags:["Playa","Resorts 5★","Buceo","Golf"],                  season:'Todo el año',img:'../img/punta_cana1.jpg'},
+    {id:'playa-juanillo', name:'Playa Juanillo',        region:'La Altagracia',        cat:'playa',      stars:4.9, desc:'La playa más exclusiva del enclave privado Cap Cana: arena rosada único tono, aguas cristalinas de color esmeralda y acceso directo a marinas de lujo con yates y campos de golf diseñados por Jack Nicklaus. Para viajeros que exigen lo mejor.',  tags:["Lujo","Cap Cana","Privada","Arena Rosa"],             season:'Todo el año',img:'../img/playa_juanillo.jpg'},
+  ];
+
+  const catLabel = { playa:'Playa', naturaleza:'Naturaleza', cultura:'Cultura', aventura:'Aventura' };
+  const catIcon  = { playa:'fa-umbrella-beach', naturaleza:'fa-leaf', cultura:'fa-landmark', aventura:'fa-mountain' };
+
+  const grid   = document.getElementById('destGrid');
+  const countEl= document.getElementById('countNum');
+  const searchEl = document.getElementById('searchInput');
+
+  let activeFilter = 'all';
+  let searchQuery  = '';
+
+  function starsHTML(n) {
+    return [0,1,2,3,4].map(i=>`<span class="d-star${i<Math.floor(n)?'':' e'}">★</span>`).join('');
+  }
+
+  function renderCards() {
+    const q = searchQuery.toLowerCase();
+    const visible = destinations.filter(d => {
+      const catOk = activeFilter === 'all' || d.cat === activeFilter;
+      const qOk   = !q || d.name.toLowerCase().includes(q)
+                       || d.region.toLowerCase().includes(q)
+                       || d.tags.some(t=>t.toLowerCase().includes(q))
+                       || d.desc.toLowerCase().includes(q);
+      return catOk && qOk;
+    });
+
+    countEl.textContent = visible.length;
+
+    if (!visible.length) {
+      grid.innerHTML = `<div class="exp-empty"><i class="fas fa-search"></i><p>No encontramos destinos con esa búsqueda. Intenta con otro término.</p></div>`;
+      return;
+    }
+
+    grid.innerHTML = visible.map((d, i) => {
+      const delay = ['d1','d2','d3','d4','d5','d6'][i % 6];
+      return `
+      <div class="d-card reveal ${delay}" data-id="${d.id}" style="cursor:pointer">
+        <div class="d-img-wrap">
+          <img class="d-img" src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.style.background='var(--pale)'">
+          <div class="d-img-overlay"></div>
+          <span class="d-cat ${d.cat}">${catLabel[d.cat]}</span>
+          <div class="d-season-badge"><i class="fas fa-calendar-alt" style="margin-right:4px;font-size:.6rem;opacity:.7"></i>${d.season}</div>
+          <div class="d-stars-wrap">
+            <div class="d-stars">${starsHTML(d.stars)}</div>
+            <span class="d-rating">${d.stars} / 5.0</span>
+          </div>
+        </div>
+        <div class="d-body">
+          <div class="d-meta">
+            <div class="d-region">${d.region}</div>
+          </div>
+          <div class="d-name">${d.name}</div>
+          <p class="d-desc">${d.desc}</p>
+          <div class="d-tags">${d.tags.map(t=>`<span class="d-tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="d-divider"></div>
+        <div class="d-footer">
+          <div class="d-season-info">Mejor época:<br><strong>${d.season}</strong></div>
+          <button class="d-btn" onclick="event.stopPropagation();openModal('${d.id}')">
+            Reservar <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Click en card = abrir modal
+    grid.querySelectorAll('.d-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.id));
+    });
+
+    // Trigger reveal
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        if (!el.classList.contains('visible')) {
+          setTimeout(() => el.classList.add('visible'), 60);
+        }
+      });
+    });
+  }
+
+  // ── Filters ──
+  document.getElementById('filtersBar').addEventListener('click', e => {
+    const btn = e.target.closest('.exp-fil');
+    if (!btn) return;
+    document.querySelectorAll('.exp-fil').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeFilter = btn.dataset.cat;
+    renderCards();
+  });
+
+  // ── Search ──
+  searchEl.addEventListener('input', () => {
+    searchQuery = searchEl.value;
+    renderCards();
+  });
+
+  // ── Modal ──
+  function openModal(id) {
+    const d = destinations.find(x => x.id === id);
+    if (!d) return;
+    document.getElementById('modalImg').src     = d.img;
+    document.getElementById('modalImg').alt     = d.name;
+    document.getElementById('modalRegion').textContent  = d.region;
+    document.getElementById('modalName').textContent    = d.name;
+    document.getElementById('modalDesc').textContent    = d.desc;
+    document.getElementById('modalCat').textContent     = catLabel[d.cat];
+    document.getElementById('modalSeason').textContent  = d.season;
+    document.getElementById('modalProvince').textContent= d.region;
+    document.getElementById('modalRatingVal').textContent = d.stars + ' / 5.0 ★';
+    document.getElementById('modalStars').innerHTML     = starsHTML(d.stars);
+    document.getElementById('modalRating').textContent  = d.stars + ' / 5.0';
+    document.getElementById('modalTags').innerHTML      = d.tags.map(t=>`<span class="exp-modal-tag">${t}</span>`).join('');
+    document.getElementById('modalBg').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalBg').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalBg').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalBg')) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  
+
+  // ── Scroll reveal ──
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+
+  function observeReveal() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => revObs.observe(el));
+  }
+
+  // ── Init ──
+  renderCards();
+  observeReveal();
+  </script>
+
+</body>
+</html>

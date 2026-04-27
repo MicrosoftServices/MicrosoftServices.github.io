@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel - Summer's Paradise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Flatpickr (calendario) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/hotel-detalle.css">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+  
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page hotel-detail-page">
+    <div class="hotel-detail-container" id="hotelDetailContainer">
+      <div class="loading-spinner">Cargando información del hotel...</div>
+    </div>
+  </div>
+
+  <!-- MODAL DE RESERVA -->
+  <div id="reservaModal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalHotelName">Reservar</h3>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label><i class="far fa-calendar-alt"></i> Fechas de estadía</label>
+          <div class="date-range">
+            <div class="form-group" style="margin-bottom: 0;">
+              <input type="text" id="checkinDate" placeholder="Check-in" readonly>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <input type="text" id="checkoutDate" placeholder="Check-out" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="price-preview" id="pricePreview">
+          <p><strong>Precio por noche:</strong> <span id="nightRate">$0</span></p>
+          <p><strong>Total estadía:</strong> <span id="totalPrice">$0</span></p>
+        </div>
+
+        <div class="form-group">
+          <label><i class="fas fa-credit-card"></i> Datos de la tarjeta</label>
+          <input type="text" id="cardNumber" placeholder="Número de tarjeta" maxlength="19">
+        </div>
+        <div class="card-row">
+          <div class="form-group">
+            <input type="text" id="cardExpiry" placeholder="MM/AA">
+          </div>
+          <div class="form-group">
+            <input type="text" id="cardCvv" placeholder="CVV" maxlength="4">
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="cardName" placeholder="Titular de la tarjeta">
+        </div>
+        
+        <button class="btn-pagar" id="confirmPaymentBtn">Confirmar reserva y pagar</button>
+        <div class="note-payment"><i class="fas fa-lock"></i> Pago 100% seguro. Simulación de reserva.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../js/banner_footer.js"></script>
+  <script>
+    // Base de datos completa de todos los hoteles
+    const hotelsDB = {
+      // Punta Cana
+      'excellence-el-carmen': {
+        name: 'Excellence El Carmen',
+        tag: 'Adults Only · 5 Estrellas',
+        rating: 9.5,
+        price: 299,
+        description: 'Excellence El Carmen es un resort de lujo solo para adultos ubicado en Playa Bávaro, Punta Cana. Ofrece suites elegantes con servicio de mayordomo, 12 restaurantes gourmet, 15 bares, piscinas infinitas y un spa de clase mundial.',
+        longDescription: 'Situado en la espectacular costa de Punta Cana, Excellence El Carmen redefine el concepto todo incluido de lujo. Cada suite cuenta con jacuzzi privado, terraza o balcón, y acceso a áreas exclusivas. El complejo cuenta con 12 restaurantes que abarcan cocina internacional, italiana, asiática, mexicana, mediterránea y más. El spa Miilé tiene un circuito de hidroterapia gratuito. La animación nocturna incluye shows en vivo, música y casino.',
+        amenities: ['Piscinas infinitas', '12 restaurantes gourmet', 'Spa & Wellness Center', '15 bares premium', 'Mayordomo', 'Actividades acuáticas', 'Gimnasio', 'WiFi gratis'],
+        images: [
+          '/img/excellence_el_carmen3.avif',
+          '/img/excellence_el_carmen.avif',
+          '/img/excellence_el_carmen2.avif',
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.618089225047!2d-68.58918952480117!3d18.815165882336444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c30700000013%3A0x155d660023d7c802!2sExcellence%20El%20Carmen!5e0!3m2!1ses-419!2sdo!4v1775569682127!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Lujo Todo Incluido'
+      },
+      'hard-rock-hotel': {
+        name: 'Hard Rock Hotel & Casino',
+        tag: 'Todo Incluido · Entretenimiento',
+        rating: 9.2,
+        price: 259,
+        description: 'Hard Rock Hotel Punta Cana es un resort temático de música y entretenimiento. Cuenta con casino, discoteca, campo de golf, kids club y amplias suites.',
+        longDescription: 'El Hard Rock Hotel & Casino Punta Cana es el destino perfecto para los amantes de la música y la diversión. Ofrece 9 restaurantes temáticos, 14 bares, piscinas con áreas VIP, spa Rock Spa®, y un impresionante casino. Las suites incluyen servicio de mayordomo y amenities de lujo.',
+        amenities: ['Casino', 'Discoteca', 'Campo de golf', 'Kids Club', 'WiFi premium', 'Spa', 'Piscinas', '9 restaurantes'],
+        images: [
+          '../img/hard-rock1.webp',
+          '/img/hard-rock2.webp',
+          '/img/hard-rock3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7557.07450839236!2d-68.48746600513485!3d18.729524429619918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8ea2d831c3613%3A0xa81a3896d0e4c5a5!2sHard%20Rock%20Hotel%20%26%20Casino%20Punta%20Cana!5e0!3m2!1ses-419!2sdo!4v1775570020293!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Todo Incluido'
+      },
+      'secrets-cap-cana': {
+        name: 'Secrets Cap Cana',
+        tag: 'Lujo · Frente al mar',
+        rating: 9.7,
+        price: 389,
+        description: 'Secrets Cap Cana es un resort de lujo solo para adultos en Cap Cana. Ofrece suites con jacuzzi, piscinas infinitas y acceso a playa privada.',
+        longDescription: 'Ubicado en la exclusiva comunidad de Cap Cana, Secrets Cap Cana ofrece una experiencia todo incluido de primer nivel. Las suites cuentan con jacuzzi en la terraza, servicio de mayordomo 24/7, y vistas al mar. El complejo dispone de piscinas infinitas, un spa de clase mundial y acceso a la playa de arena blanca Juanillo.',
+        amenities: ['Infinity pool', 'Servicio 24h', 'Fitness center', 'Snorkeling incluido', 'Jacuzzi privado', 'Mayordomo', 'Spa', 'Wine cellar'],
+        images: [
+          '/img/secrets-cap1.jpg',
+          '/img/secrets-cap2.webp',
+          '/img/secrets-cap3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.974538412736!2d-68.3991374241152!3d18.484812482601825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea891001d36a695%3A0x938358f0d69315cd!2sSecrets%20Cap%20Cana%20Resort%20%26%20Spa!5e0!3m2!1ses-419!2sdo!4v1775570075030!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Adults Only'
+      },
+      'breathless-punta-cana': {
+        name: 'Breathless Punta Cana',
+        tag: 'Solo Adultos · Fiesta',
+        rating: 9.0,
+        price: 219,
+        description: 'Breathless Punta Cana es un resort solo para adultos con ambiente festivo, discoteca diaria, pool parties y spa.',
+        longDescription: 'Diseñado para los que buscan diversión y lujo, Breathless Punta Cana ofrece una experiencia todo incluido con energía vibrante. Disfruta de sus piscinas con áreas de fiesta, discoteca, bares temáticos y un spa de hidroterapia. Las suites son modernas y elegantes.',
+        amenities: ['Discoteca diaria', 'Pool parties', 'Spa hidroterapia', 'Bares temáticos', 'Piscinas', 'Gimnasio'],
+        images: [
+          '/img/breathless1.jpg',
+          '/img/breathless3.jpg',
+          '/img/breathless2.avif'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.767763511453!2d-68.58409842410875!3d18.808500282341722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c306ff9564bd%3A0x2c107b66e57409ed!2sBreathless%20Punta%20Cana%20Resort%20%26%20Spa!5e0!3m2!1ses-419!2sdo!4v1775570251814!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Adults Only'
+      },
+      'finest-punta-cana': {
+        name: 'Finest Punta Cana',
+        tag: 'Family Friendly',
+        rating: 9.4,
+        price: 279,
+        description: 'Finest Punta Cana es un resort familiar todo incluido con water park, kids club y gastronomía infantil.',
+        longDescription: 'Perfecto para familias, Finest Punta Cana combina lujo y diversión para todas las edades. Cuenta con un impresionante parque acuático, club para niños con actividades supervisadas, y restaurantes con menús especiales para los más pequeños. Los adultos también disfrutan de áreas exclusivas.',
+        amenities: ['Kids Club', 'Water park', 'Gastronomía infantil', 'Piscinas', 'Spa familiar', 'Entretenimiento diario'],
+        images: [
+          '/img/finest1.jpg',
+          '/img/finest2.webp',
+          '/img/finest3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.6771984418247!2d-68.58743592410862!3d18.812533782338505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8c348273c5203%3A0x130655fb2c0a9662!2sFinest%20Punta%20Cana!5e0!3m2!1ses-419!2sdo!4v1775570305453!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Familiar'
+      },
+      // Santo Domingo
+      'jw-marriott-santo-domingo': {
+        name: 'JW Marriott Santo Domingo',
+        tag: 'Lujo Urbano · 5 Estrellas',
+        rating: 9.3,
+        price: 189,
+        description: 'JW Marriott Santo Domingo ofrece lujo contemporáneo en el corazón financiero de la ciudad, con rooftop bar, spa y centro de negocios.',
+        longDescription: 'Situado en la exclusiva zona de Piantini, el JW Marriott combina elegancia moderna con servicios de primer nivel. Disfruta de su rooftop bar con vistas panorámicas, el spa de clase mundial y su ubicación privilegiada junto al Blue Mall, el centro comercial más lujoso de la ciudad.',
+        amenities: ['Rooftop bar', 'Fitness & Spa', 'Business center', 'Piscina', 'Restaurante gourmet', 'Blue Mall anexo'],
+        images: [
+          '/img/jwmarriot1.webp',
+          '/img/jwmarriot2.jpg',
+          '/img/jwmarriot3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2527309177303!2d-69.9437329241155!3d18.47220798261193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89e4e155d045%3A0xd2ff63ab14d64822!2sJW%20Marriott%20Hotel%20Santo%20Domingo!5e0!3m2!1ses-419!2sdo!4v1775570571404!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Urbano'
+      },
+      'el-embajador': {
+        name: 'El Embajador Hotel',
+        tag: 'Histórico · Elegancia',
+        rating: 8.9,
+        price: 129,
+        description: 'El Embajador es un hotel histórico con piscina olímpica, campo de golf y casino cercano.',
+        longDescription: 'Inaugurado en 1956, El Embajador es un ícono de la hospitalidad dominicana. Ofrece habitaciones clásicas y suites elegantes, una piscina olímpica al aire libre, canchas de tenis y fácil acceso a campos de golf y casinos. Su restaurante El Patio es famoso por su buffet.',
+        amenities: ['Piscina olímpica', 'Campo de golf', 'Casinos cercanos', 'Restaurante El Patio', 'Parking gratuito', 'WiFi'],
+        images: [
+          '/img/embajador1.jpg',
+          '/img/embajador2.jpg',
+          '/img/embajador3.avif'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.6358017591297!2d-69.93820560321043!3d18.45483799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea5620cfeaf71a9%3A0x2bf176b790c001bf!2sEl%20Embajador%2C%20a%20Royal%20Hideaway%20Hotel!5e0!3m2!1ses-419!2sdo!4v1775570682013!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Histórico'
+      },
+      'billini-hotel': {
+        name: 'Billini Hotel',
+        tag: 'Boutique · Zona Colonial',
+        rating: 9.6,
+        price: 219,
+        description: 'Billini Hotel es un boutique de lujo en la Zona Colonial, con rooftop infinity pool y vistas al Malecón.',
+        longDescription: 'Ubicado en un edificio colonial restaurado, Billini Hotel combina historia y modernidad. Su rooftop ofrece una piscina infinita con vistas espectaculares al Mar Caribe y al Malecón. Las suites son amplias y cuentan con detalles únicos. El servicio de concierge está disponible 24/7.',
+        amenities: ['Vistas al Malecón', 'Rooftop infinity pool', 'Bar exclusivo', 'Concierge 24h', 'Restaurante gourmet', 'Spa'],
+        images: [
+          '../img/billini-hotel.jpg',
+          '../img/billini-hotel2.jpg',
+          '../img/billini-hotel3.jpg',
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2872943750217!2d-69.88941372411563!3d18.470641382613266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf883cd9bfeb9f%3A0x7e024e085bbfc895!2sBILLINI%20HOTEL%20HISTORIC%20LUXURY!5e0!3m2!1ses-419!2sdo!4v1775570745767!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Boutique'
+      },
+      // Samaná
+      'bahia-principe-cayacoa': {
+        name: 'Bahía Príncipe Cayacoa',
+        tag: 'Todo Incluido · Vistas al mar',
+        rating: 9.1,
+        price: 199,
+        description: 'Bahía Príncipe Cayacoa ofrece acceso a Cayo Levantado, piscina infinita y avistamiento de ballenas.',
+        longDescription: 'Situado en la península de Samaná, este resort todo incluido ofrece vistas espectaculares a la bahía. Sus instalaciones incluyen una piscina infinita, acceso directo a la playa y excursiones a Cayo Levantado. Durante la temporada de ballenas (enero-marzo), se pueden observar desde el hotel.',
+        amenities: ['Acceso a Cayo Levantado', 'Piscina infinita', 'Avistamiento ballenas', 'Todo incluido', 'Spa', 'Gimnasio'],
+        images: [
+          '/img/cayacoa1.jpg',
+          '/img/cayacoa2.jpg',
+          '/img/cayacoa3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.945722792106!2d-69.34004692410049!3d19.197572882032343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaee127ac215067%3A0x12b65e2dcbe5a240!2sEurostars%20Grand%20Cayacoa!5e0!3m2!1ses-419!2sdo!4v1775570859477!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'enero – marzo',
+        stars: 5,
+        category: 'Todo Incluido'
+      },
+      'luxury-bahia-principe-samana': {
+        name: 'Luxury Bahía Príncipe Samaná',
+        tag: 'Lujo · Privado',
+        rating: 9.4,
+        price: 289,
+        description: 'Luxury Bahía Príncipe Samaná es un resort solo para adultos con amenities premium y vistas panorámicas.',
+        longDescription: 'Este exclusivo resort solo para adultos ofrece una experiencia todo incluido de lujo en Las Galeras. Sus suites cuentan con jacuzzi y vistas al mar. Disfruta de su spa Sensations, piscinas infinitas y acceso a playas vírgenes. La gastronomía es de alto nivel con restaurantes especializados.',
+        amenities: ['Premium amenities', 'Spa Sensations', 'Centro fitness', 'Jacuzzi privado', 'Piscinas infinitas', 'Todo incluido de lujo'],
+        images: [
+          '/img/luxury1.avif',
+          '/img/luxury2.jpg',
+          '/img/luxury3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.248988453115!2d-69.27311562410087!3d19.184324282042745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaede1429f12491%3A0xfb2c924e04a6bf15!2sBahia%20Principe%20Escape%20Samana!5e0!3m2!1ses-419!2sdo!4v1775570897766!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'enero – marzo',
+        stars: 5,
+        category: 'Adults Only'
+      },
+      // Puerto Plata
+      'lifestyle-tropical-beach': {
+        name: 'Lifestyle Tropical Beach',
+        tag: 'Todo Incluido · Familiar',
+        rating: 8.7,
+        price: 149,
+        description: 'Lifestyle Tropical Beach ofrece piscinas con cascada, entretenimiento nocturno y kids club.',
+        longDescription: 'Frente a la playa de Cofresí, este resort familiar ofrece una amplia gama de actividades para todas las edades. Sus piscinas temáticas con cascadas, el club para niños y el entretenimiento nocturno garantizan diversión sin fin. Ideal para vacaciones económicas sin sacrificar calidad.',
+        amenities: ['Piscinas con cascada', 'Entretenimiento nocturno', 'Kids Club', 'Playa privada', 'Bares', 'Restaurantes buffet'],
+        images: [
+          '/img/lifestyle1.webp',
+          '/img/lifestyle2.jpg',
+          '/img/lifestyle3.avif'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.509083025417!2d-70.73097422477571!3d19.818401281545082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1ee384de81c63%3A0x86ce39914ff59c28!2sLifestyle%20Tropical%20Beach%20Resort%20%26%20Spa%20All%20Inclusive!5e0!3m2!1ses-419!2sdo!4v1775573382499!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'enero – marzo',
+        stars: 4,
+        category: 'Familiar'
+      },
+      'viva-wyndham-v-heavens': {
+        name: 'Viva Wyndham V Heavens',
+        tag: 'Relax · Wellness',
+        rating: 9.0,
+        price: 209,
+        description: 'Viva Wyndham V Heavens es un resort solo para adultos con spa, yoga y beach club.',
+        longDescription: 'Diseñado para el descanso y la desconexión, V Heavens ofrece un ambiente tranquilo con actividades de bienestar como yoga al amanecer y tratamientos de spa. Su beach club privado y sus piscinas son ideales para relajarse. La gastronomía es saludable y variada.',
+        amenities: ['Spa treatments', 'Clases de yoga', 'Beach club', 'Piscinas', 'Todo incluido premium', 'Gimnasio'],
+        images: [
+          '/img/viva1.jpg',
+          '/img/viva2.webp',
+          '/img/viva3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754.669903566738!2d-70.64798612408842!3d19.769174481583377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1ef750a82dc2b%3A0xb91fcea10ff3befa!2sViva%20Wyndham%20Heavens!5e0!3m2!1ses-419!2sdo!4v1775573494224!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'enero – marzo',
+        stars: 5,
+        category: 'Adults Only'
+      },
+      // La Romana
+      'casa-de-campo': {
+        name: 'Casa de Campo Resort & Villas',
+        tag: 'Resort de Lujo · Golf',
+        rating: 9.8,
+        price: 459,
+        description: 'Casa de Campo es el resort más exclusivo del Caribe, con 3 campos de golf diseñados por Pete Dye, marina y centro ecuestre.',
+        longDescription: 'Considerado el mejor resort de golf del Caribe, Casa de Campo se extiende a lo largo de 7,000 acres. Sus villas privadas ofrecen lujo incomparable. Además del golf, cuenta con una marina de lujo, centro ecuestre, 13 piscinas, 12 restaurantes y el famoso Altos de Chavón, una réplica de un pueblo mediterráneo del siglo XVI.',
+        amenities: ['3 campos de golf', 'Marina & Yacht Club', 'Centro ecuestre', '13 piscinas', 'Canchas de tenis', '12 restaurantes', 'Altos de Chavón', 'Spa'],
+        images: [
+          '/img/campo_golf1.jpg',
+          '/img/campo_golf2.jpg',
+          '/img/campo_golf3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30283.07285772666!2d-68.918855!3d18.4208612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea8aa4fddb6524b%3A0x7f28f72606914e7f!2sCasa%20de%20Campo%20Resort%20and%20Villas!5e0!3m2!1ses-419!2sdo!4v1775573626478!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Lujo'
+      },
+      'hilton-la-romana': {
+        name: 'Hilton La Romana',
+        tag: 'Todo Incluido · Familiar',
+        rating: 9.2,
+        price: 239,
+        description: 'Hilton La Romana ofrece water park, spa y salidas a Isla Saona.',
+        longDescription: 'Frente a la playa de Bayahibe, este resort todo incluido de la cadena Hilton es ideal para familias. Su parque acuático es uno de los más grandes de la zona, y ofrece excursiones a Isla Saona e Isla Catalina. Cuenta con 9 bares, múltiples restaurantes y un spa de primer nivel.',
+        amenities: ['Water park', 'Spa & Wellness', '9 bares', 'Restaurantes temáticos', 'Salidas a Saona', 'Kids Club', 'Gimnasio'],
+        images: [
+          '/img/hilton1.jpg',
+          '/img/hilton2.jpg',
+          '/img/hilton3.jpg'
+        ],
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121132.30472124212!2d-68.9806564478266!3d18.420842325468918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf542d55843735%3A0xe5e486063825f558!2sHilton%20Garden%20Inn%20La%20Romana!5e0!3m2!1ses-419!2sdo!4v1775573772039!5m2!1ses-419!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+        season: 'diciembre – abril',
+        stars: 5,
+        category: 'Familiar'
+      }
+    };
+
+    // Variables globales para el modal
+    let currentHotel = null;
+    let flatpickrCheckin, flatpickrCheckout;
+
+    function getHotelId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // === FUNCIONES DEL MODAL ===
+    function openReservationModal() {
+      if (!currentHotel) return;
+      
+      const modal = document.getElementById('reservaModal');
+      document.getElementById('modalHotelName').innerText = `Reservar en ${currentHotel.name}`;
+      document.getElementById('nightRate').innerText = `$${currentHotel.price} USD`;
+      document.getElementById('totalPrice').innerText = `$0 USD`;
+      
+      // Resetear campos
+      document.getElementById('checkinDate').value = '';
+      document.getElementById('checkoutDate').value = '';
+      document.getElementById('cardNumber').value = '';
+      document.getElementById('cardExpiry').value = '';
+      document.getElementById('cardCvv').value = '';
+      document.getElementById('cardName').value = '';
+      
+      modal.classList.add('active');
+      
+      // Inicializar flatpickr (calendario)
+      if (flatpickrCheckin) flatpickrCheckin.destroy();
+      if (flatpickrCheckout) flatpickrCheckout.destroy();
+      
+      flatpickrCheckin = flatpickr("#checkinDate", {
+        locale: "es",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        onChange: function(selectedDates, dateStr) {
+          if (dateStr) {
+            flatpickrCheckout.set('minDate', dateStr);
+          }
+          calculateTotal();
+        }
+      });
+      
+      flatpickrCheckout = flatpickr("#checkoutDate", {
+        locale: "es",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        onChange: function() { calculateTotal(); }
+      });
+    }
+
+    function calculateTotal() {
+      if (!currentHotel) return;
+      const start = document.getElementById('checkinDate').value;
+      const end = document.getElementById('checkoutDate').value;
+      if (start && end) {
+        const checkin = new Date(start);
+        const checkout = new Date(end);
+        const diffTime = Math.abs(checkout - checkin);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays > 0) {
+          const total = diffDays * currentHotel.price;
+          document.getElementById('totalPrice').innerHTML = `$${total} USD`;
+          return total;
+        }
+      }
+      document.getElementById('totalPrice').innerHTML = `$0 USD`;
+      return 0;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('reservaModal');
+      modal.classList.remove('active');
+      if (flatpickrCheckin) flatpickrCheckin.destroy();
+      if (flatpickrCheckout) flatpickrCheckout.destroy();
+    }
+
+    function loadHotelDetail() {
+      const id = getHotelId();
+      if (!id || !hotelsDB[id]) {
+        document.getElementById('hotelDetailContainer').innerHTML = '<div class="error-message">Hotel no encontrado. <a href="hoteles.html">Volver a hoteles</a></div>';
+        return;
+      }
+      currentHotel = hotelsDB[id];
+      const container = document.getElementById('hotelDetailContainer');
+      
+      // Generar estrellas
+      const starsHtml = Array(5).fill().map((_, i) => `<i class="fas fa-star${i < currentHotel.stars ? '' : '-alt'}"></i>`).join('');
+      // Amenidades
+      const amenitiesHtml = currentHotel.amenities.map(am => `<li><i class="fas fa-check-circle"></i> ${am}</li>`).join('');
+      // Galería
+      const galleryHtml = currentHotel.images.map(img => `<div class="gallery-item-hd"><img src="${img}" alt="${currentHotel.name}"></div>`).join('');
+      // Descripción larga o corta
+      const descHtml = currentHotel.longDescription || currentHotel.description;
+
+      container.innerHTML = `
+        <div class="hotel-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${currentHotel.images[0]}')">
+          <div class="hero-content">
+            <h1>${currentHotel.name}</h1>
+            <div class="hero-rating">${starsHtml} <span>${currentHotel.rating} / 10</span></div>
+            <p>${currentHotel.tag}</p>
+          </div>
+        </div>
+        <div class="hotel-detail-grid">
+          <div class="detail-main">
+            <h2>Descripción</h2>
+            <p class="hotel-desc">${descHtml}</p>
+            <h2>Servicios y Amenidades</h2>
+            <ul class="amenities-list">${amenitiesHtml}</ul>
+            <h2>Galería</h2>
+            <div class="gallery-grid-hd">${galleryHtml}</div>
+          </div>
+          <div class="detail-sidebar">
+            <div class="price-box">
+              <span class="price-amount">USD $${currentHotel.price}</span>
+              <span class="price-night">/ noche</span>
+              <div class="price-note">Impuestos incluidos</div>
+              <button class="hotel-btn book-btn" id="openModalBtn">Reservar ahora</button>
+            </div>
+            <div class="info-box">
+              <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+              <p>${currentHotel.location}</p>
+            </div>
+            <div class="info-box">
+              <h3><i class="fas fa-calendar-alt"></i> Mejor época</h3>
+              <p>${currentHotel.season}</p>
+            </div>
+            <div class="info-box">
+              <h3><i class="fas fa-tag"></i> Categoría</h3>
+              <p>${currentHotel.category}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Asignar evento al botón de reservar
+      const openModalBtn = document.getElementById('openModalBtn');
+      if (openModalBtn) {
+        openModalBtn.addEventListener('click', openReservationModal);
+      }
+    }
+
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+      loadHotelDetail();
+      
+      // Eventos del modal
+      const closeBtn = document.getElementById('closeModalBtn');
+      const modal = document.getElementById('reservaModal');
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+      
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      
+      // Confirmar pago
+      const confirmBtn = document.getElementById('confirmPaymentBtn');
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+          const checkin = document.getElementById('checkinDate').value;
+          const checkout = document.getElementById('checkoutDate').value;
+          const cardNum = document.getElementById('cardNumber').value.trim();
+          const expiry = document.getElementById('cardExpiry').value;
+          const cvv = document.getElementById('cardCvv').value;
+          const cardHolder = document.getElementById('cardName').value.trim();
+          
+          if (!checkin || !checkout) {
+            alert("❌ Por favor selecciona las fechas de check-in y check-out.");
+            return;
+          }
+          if (!cardNum || !expiry || !cvv || !cardHolder) {
+            alert("❌ Completa todos los datos de la tarjeta para continuar.");
+            return;
+          }
+          const totalText = document.getElementById('totalPrice').innerText;
+          if (totalText === "$0 USD") {
+            alert("⚠️ Verifica las fechas, la estadía debe ser al menos 1 noche.");
+            return;
+          }
+          
+          alert(`✅ ¡Reserva confirmada en ${currentHotel.name}!\n📅 Desde ${checkin} hasta ${checkout}\n💰 Total: ${totalText}\n💳 Pago autorizado con tarjeta terminada en ${cardNum.slice(-4)}.\n¡Gracias por confiar en Summer's Paradise!`);
+          closeModal();
+        });
+      }
+      
+      // Formatear número de tarjeta
+      const cardNumberInput = document.getElementById('cardNumber');
+      if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', (e) => {
+          let val = e.target.value.replace(/\D/g, '');
+          if (val.length > 16) val = val.slice(0, 16);
+          let formatted = '';
+          for (let i = 0; i < val.length; i++) {
+            if (i > 0 && i % 4 === 0) formatted += ' ';
+            formatted += val[i];
+          }
+          e.target.value = formatted;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

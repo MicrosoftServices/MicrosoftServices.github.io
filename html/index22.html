@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer's Paradise</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Fuente Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <style>
+    html, body { overflow-x: hidden; max-width: 100%; }
+    .pt-page { padding-top: 130px !important; }
+    *, *::before, *::after { box-sizing: border-box; }
+  </style>
+</head>
+<body>
+
+  <!-- El header se inyecta aquí por banner_footer.js -->
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+    <!-- ========== HERO ========== -->
+    <section class="pt-hero" id="home">
+      <div class="pt-hero-video-container">
+        <video class="pt-hero-video active" id="video1" autoplay muted loop playsinline>
+          <source src="../video/13722194-hd_1920_1080_24fps.mp4" type="video/mp4">
+        </video>
+        <video class="pt-hero-video" id="video2" muted loop playsinline>
+          <source src="../video/3576378-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="pt-hero-overlay"></div>
+      <div class="pt-hero-text-overlay">
+        <div class="pt-hero-subtitle">Descubre el Paraíso</div>
+        <h1 class="pt-hero-title">Experiencias que Transforman</h1>
+        <p class="pt-hero-description">
+          Viaja por playas, montañas y cultura dominicana con Summer's Paradise,
+          tu agencia nacional premium.
+        </p>
+        <div class="pt-hero-buttons">
+          <a href="#" class="pt-btn pt-btn-primary">Explorar Ahora</a>
+          <a href="#" class="pt-btn pt-btn-outline">Planificar Viaje</a>
+        </div>
+      </div>
+      <!-- OLAS REALISTAS -->
+      <div class="pt-waves">
+        <svg viewBox="0 0 2880 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="wave4" d="M0,80 C120,40 240,120 360,80 C480,40 600,120 720,80 C840,40 960,120 1080,80 C1200,40 1320,120 1440,80 C1560,40 1680,120 1800,80 C1920,40 2040,120 2160,80 C2280,40 2400,120 2520,80 C2640,40 2760,120 2880,80 L2880,160 L0,160 Z" />
+          <path class="wave3" d="M0,65 C180,20 320,110 500,60 C680,10 820,100 1000,55 C1180,10 1300,95 1440,60 C1620,20 1760,110 1940,60 C2120,10 2260,100 2440,55 C2620,10 2740,95 2880,60 L2880,160 L0,160 Z" />
+          <path class="wave1" d="M0,50 C200,100 380,5 580,55 C780,105 940,8 1140,55 C1340,102 1500,10 1700,55 C1900,100 2060,8 2260,55 C2460,102 2620,10 2880,55 L2880,160 L0,160 Z" />
+          <path class="wave2" d="M0,75 C250,120 450,20 700,70 C950,120 1150,25 1440,72 C1730,119 1930,22 2180,70 C2430,118 2630,28 2880,72 L2880,160 L0,160 Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ========== DESTINOS DESTACADOS ========== -->
+    <section class="destinations" id="destinations">
+      <div class="section-header">
+        <div class="section-subtitle">Destinos Exclusivos</div>
+        <h2 class="section-title">Lugares que Soñarás en RD</h2>
+      </div>
+      <div class="destinations-grid">
+        <div class="destination-card">
+          <img src="../img/punta.jpg" alt="Punta Cana" class="destination-image">
+          <div class="destination-overlay">
+            <div class="destination-category">Lujo</div>
+            <h3 class="destination-name">Punta Cana</h3>
+            <div class="destination-info">
+              <div class="destination-price">$1,499</div>
+              <div class="destination-duration">
+                <i class="far fa-clock"></i>
+                <span>7 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="destination-card">
+          <img src="../img/sama.jpg" alt="Samaná" class="destination-image">
+          <div class="destination-overlay">
+            <div class="destination-category">Naturaleza</div>
+            <h3 class="destination-name">Samaná</h3>
+            <div class="destination-info">
+              <div class="destination-price">$1,199</div>
+              <div class="destination-duration">
+                <i class="far fa-clock"></i>
+                <span>5 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="destination-card">
+          <img src="../img/colonial.jpg" alt="Zona Colonial" class="destination-image">
+          <div class="destination-overlay">
+            <div class="destination-category">Romance</div>
+            <h3 class="destination-name">Zona Colonial</h3>
+            <div class="destination-info">
+              <div class="destination-price">$999</div>
+              <div class="destination-duration">
+                <i class="far fa-clock"></i>
+                <span>4 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Olas debajo de las tarjetas -->
+      <div class="dest-waves">
+        <svg viewBox="0 0 2880 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="dest-wave4" d="M0,80 C120,40 240,120 360,80 C480,40 600,120 720,80 C840,40 960,120 1080,80 C1200,40 1320,120 1440,80 C1560,40 1680,120 1800,80 C1920,40 2040,120 2160,80 C2280,40 2400,120 2520,80 C2640,40 2760,120 2880,80 L2880,160 L0,160 Z" />
+          <path class="dest-wave3" d="M0,65 C180,20 320,110 500,60 C680,10 820,100 1000,55 C1180,10 1300,95 1440,60 C1620,20 1760,110 1940,60 C2120,10 2260,100 2440,55 C2620,10 2740,95 2880,60 L2880,160 L0,160 Z" />
+          <path class="dest-wave1" d="M0,50 C200,100 380,5 580,55 C780,105 940,8 1140,55 C1340,102 1500,10 1700,55 C1900,100 2060,8 2260,55 C2460,102 2620,10 2880,55 L2880,160 L0,160 Z" />
+          <path class="dest-wave2" d="M0,75 C250,120 450,20 700,70 C950,120 1150,25 1440,72 C1730,119 1930,22 2180,70 C2430,118 2630,28 2880,72 L2880,160 L0,160 Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ========== TEST ========== -->
+    <section class="pt-test" id="test">
+      <div class="pt-test-inner">
+        <div class="pt-test-header">
+          <div class="section-subtitle">Quiz de Viaje</div>
+          <h2 class="section-title">Descubre tu Destino Ideal</h2>
+          <p class="pt-test-desc">Responde una sola pregunta y te revelaremos el rincón perfecto de la isla para ti.</p>
+        </div>
+        <div class="pt-test-box">
+          <div class="pt-test-question">
+            <div class="pt-question-icon">✦</div>
+            <p>¿Qué experiencia buscas en tu próximo viaje?</p>
+          </div>
+          <div class="pt-test-options">
+            <button class="pt-opt-btn" onclick="mostrarDestino('playa', this)">
+              <span class="pt-opt-icon"></span>
+              <span class="pt-opt-label">Playa & Lujo</span>
+              <span class="pt-opt-sub">Sol, arena y aguas cristalinas</span>
+            </button>
+            <button class="pt-opt-btn" onclick="mostrarDestino('aventura', this)">
+              <span class="pt-opt-icon"></span>
+              <span class="pt-opt-label">Aventura</span>
+              <span class="pt-opt-sub">Adrenalina y paisajes extremos</span>
+            </button>
+            <button class="pt-opt-btn" onclick="mostrarDestino('naturaleza', this)">
+              <span class="pt-opt-icon"></span>
+              <span class="pt-opt-label">Naturaleza</span>
+              <span class="pt-opt-sub">Selva, cascadas y fauna silvestre</span>
+            </button>
+            <button class="pt-opt-btn" onclick="mostrarDestino('historia', this)">
+              <span class="pt-opt-icon"></span>
+              <span class="pt-opt-label">Historia & Cultura</span>
+              <span class="pt-opt-sub">Patrimonio, arte y gastronomía</span>
+            </button>
+          </div>
+          <div id="pt-resultado" class="pt-resultado-box" style="display:none;">
+            <div class="pt-resultado-inner">
+              <div class="pt-res-tag">Tu destino ideal</div>
+              <div class="pt-res-nombre" id="pt-res-nombre"></div>
+              <div class="pt-res-desc" id="pt-res-desc"></div>
+              <a href="#destinations" class="pt-res-cta">Ver paquetes disponibles →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FRASE ========== -->
+    <section class="pt-cta">
+      <h2>La República Dominicana no solo se visita...</h2>
+      <h1>Se vive.</h1><br>
+      <a href="#" class="pt-cta-btn">Empieza tu aventura</a>
+    </section>
+
+    <!-- ========== GALERIA ========== -->
+    <section class="gallery" id="gallery">
+      <div class="section-header">
+        <div class="section-subtitle">Momentos Inolvidables</div>
+        <h2 class="section-title">Nuestra Galería</h2>
+      </div>
+      <div class="gallery-container">
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://remaxmonumental.com/wp-content/uploads/2024/03/img-interes-1.jpg" alt="Punta Cana">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Punta Cana</h3>
+                <p>Playas Paradisíacas</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://www.barcelo.com/guia-turismo/wp-content/uploads/2020/10/santuario-ballenas_republica-dominicana_888_1.jpg" alt="Samaná">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Samaná</h3>
+                <p>Ballenas y Cascadas</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/21299440/pexels-photo-21299440/free-photo-of-zona-colonial-santo-domingo.jpeg" alt="Zona Colonial">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Zona Colonial</h3>
+                <p>Historia Viva</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://bohionews.com/wp-content/uploads/2020/06/Jarabacoa_9.jpg" alt="Jarabacoa">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Jarabacoa</h3>
+                <p>Aventura en Montañas</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://realestatelasterrenas.com/wp-content/uploads/2025/05/beautiful-sunset-northern-pantanal-world-s-largest-wetlands-wild-brazil-brazilian-wildlife-nature-amazing-landscape-riverside-by-boat-scaled.jpg" alt="Atardecer Dominicano">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Atardecer</h3>
+                <p>Colores del Caribe</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item2">
+            <img src="https://cdn.getyourguide.com/image/format=auto,fit=contain,gravity=center,quality=60,width=1440,height=650,dpr=1/tour_img/2af6e1095fae1026bdf149963099ec3631a2624da499f68e00254e28b33d383a.jpg" alt="Puerto Plata">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Puerto Plata</h3>
+                <p>Paisajes pintorezcos</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item3">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/27/2f/4a/91/excurciones-a-la-isla.jpg?w=1100&h=1100&s=1" alt="Bayahibe">
+            <div class="gallery-overlay">
+              <div class="gallery-text">
+                <h3 class="gallery-title">Bayahibe</h3>
+                <p>Playas cristalinas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- El footer se inyecta aquí por banner_footer.js -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Un solo script para cargar header y footer -->
+  <script src="../js/banner_footer.js"></script>
+
+  <script>
+    // Script para el TEST
+    function mostrarDestino(tipo, btn) {
+      document.querySelectorAll('.pt-opt-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      const destinos = {
+        playa: {
+          nombre: "Punta Cana ",
+          desc: "Playas de arena blanca, resorts de lujo y el Caribe más azul. El paraíso tropical perfecto para desconectarte del mundo con total comodidad."
+        },
+        aventura: {
+          nombre: "Jarabacoa ",
+          desc: "El corazón montañoso de RD te espera con rafting, cañoning y vistas impresionantes desde la Cordillera Central. Para los espíritus más valientes."
+        },
+        naturaleza: {
+          nombre: "Samaná ",
+          desc: "Cascadas escondidas, ballenas jorobadas y selva tropical virgen. Un santuario natural único donde la isla muestra su cara más salvaje y pura."
+        },
+        historia: {
+          nombre: "Santo Domingo ",
+          desc: "La primera ciudad del Nuevo Mundo. Calles empedradas, fortalezas coloniales y una gastronomía que cuenta siglos de historia entre cada bocado."
+        }
+      };
+
+      const d = destinos[tipo];
+      document.getElementById('pt-res-nombre').textContent = d.nombre;
+      document.getElementById('pt-res-desc').textContent = d.desc;
+
+      const box = document.getElementById('pt-resultado');
+      box.classList.remove('pt-resultado-box');
+      box.style.display = 'none';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          box.style.display = 'block';
+          box.classList.add('pt-resultado-box');
+        });
+      });
+    }
+
+    // Cambio automático de videos
+    const videos = document.querySelectorAll(".pt-hero-video");
+    let currentVideo = 0;
+    setInterval(() => {
+      videos[currentVideo].classList.remove("active");
+      currentVideo = (currentVideo + 1) % videos.length;
+      videos[currentVideo].classList.add("active");
+    }, 8000);
+
+    // Animación de aviones en las tarjetas de destino
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.destination-card');
+      cards.forEach(card => card.classList.add('plane-hidden'));
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const grid = entry.target;
+            const gridCards = grid.querySelectorAll('.destination-card');
+            gridCards.forEach((card, index) => {
+              card.classList.remove('plane-hidden');
+              card.classList.add(`animate-plane-${index + 1}`);
+            });
+            observer.unobserve(grid);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      const grid = document.querySelector('.destinations-grid');
+      if (grid) observer.observe(grid);
+    });
+  </script>
+
+</body>
+</html>

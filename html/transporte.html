@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transporte Premium — Summer's Paradise</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+  <!-- CSS propio de la página -->
+  <link rel="stylesheet" href="../css/tp.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+
+  <!-- El header se inyecta aquí por banner_footer.js -->
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+    <div class="trp-hero">
+      <div class="trp-hero-left">
+        <div class="trp-hero-eyebrow">Servicio exclusivo</div>
+        <h1 class="trp-hero-title">Viaja con<br><em>estilo propio</em></h1>
+        <p class="trp-hero-desc">Sedanes ejecutivos, SUVs de lujo, vans y minibuses VIP. Conductor profesional incluido y cobertura en toda la República Dominicana.</p>
+        <div class="trp-hero-chips">
+          <div class="trp-hero-chip"><i class="fas fa-user-tie"></i> Conductor certificado</div>
+          <div class="trp-hero-chip"><i class="fas fa-clock"></i> Disponible 24/7</div>
+          <div class="trp-hero-chip"><i class="fas fa-map-marker-alt"></i> Todo el país</div>
+          <div class="trp-hero-chip"><i class="fas fa-shield-alt"></i> Totalmente asegurado</div>
+        </div>
+      </div>
+      <div class="trp-hero-right">
+        <div class="trp-stat-box">
+          <div class="trp-stat-icon"><i class="fas fa-car"></i></div>
+          <div class="trp-stat-num">24+</div>
+          <div class="trp-stat-label">Vehículos en flota</div>
+        </div>
+        <div class="trp-stat-box">
+          <div class="trp-stat-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="trp-stat-num">4</div>
+          <div class="trp-stat-label">Categorías premium</div>
+        </div>
+        <div class="trp-stat-box">
+          <div class="trp-stat-icon"><i class="fas fa-star"></i></div>
+          <div class="trp-stat-num">5★</div>
+          <div class="trp-stat-label">Valoración media</div>
+        </div>
+        <div class="trp-stat-box">
+          <div class="trp-stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <div class="trp-stat-num">100%</div>
+          <div class="trp-stat-label">Cobertura nacional</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         FLOTA
+    ══════════════════════════════ -->
+    <section class="trp-section">
+      <div class="trp-section-inner">
+
+        <div class="trp-sec-header">
+          <span class="section-subtitle">Escoge tu vehículo · Reserva en minutos</span>
+          <h2 class="section-title">Nuestra Flota</h2>
+          <p class="trp-intro">Cada unidad mantenida al día, conductor profesional y puntualidad garantizada. Elige la categoría que mejor se adapte a tu viaje.</p>
+        </div>
+
+        <!-- Pills de categoría -->
+        <div class="trp-cat-pills">
+          <div class="trp-pill active" onclick="switchCat('sedan',this)">
+            <span class="trp-pill-icon">🚗</span>
+            <span class="trp-pill-label">Sedán Premium</span>
+            <span class="trp-pill-count">6 vehículos</span>
+          </div>
+          <div class="trp-pill" onclick="switchCat('suv',this)">
+            <span class="trp-pill-icon">🚙</span>
+            <span class="trp-pill-label">SUV de Lujo</span>
+            <span class="trp-pill-count">6 vehículos</span>
+          </div>
+          <div class="trp-pill" onclick="switchCat('van',this)">
+            <span class="trp-pill-icon">🚐</span>
+            <span class="trp-pill-label">Van Ejecutiva</span>
+            <span class="trp-pill-count">6 vehículos</span>
+          </div>
+          <div class="trp-pill" onclick="switchCat('bus',this)">
+            <span class="trp-pill-icon">🚌</span>
+            <span class="trp-pill-label">Minibús VIP</span>
+            <span class="trp-pill-count">6 vehículos</span>
+          </div>
+        </div>
+
+        <!-- ── SEDÁN ── -->
+        <div class="trp-zone active" id="cat-sedan">
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⭐ Top Pick</div>
+                <div class="trp-front-img" style="background-image:url('../img/toyota.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ejecutivo</div>
+                  <div class="trp-front-name">Toyota Camry</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 4 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Ejecutivo · Más solicitado</div><div class="trp-back-name">Toyota Camry</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:33%"></div></div><span class="trp-cap-val">4</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización dual de zona</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos de cuero premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-music"></i> Sistema de audio premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> Puertos USB / carga inalámbrica</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('../img/acocord.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ejecutivo · Silencioso</div>
+                  <div class="trp-front-name">Honda Accord</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 4 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Ejecutivo · Silencioso</div><div class="trp-back-name">Honda Accord</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:33%"></div></div><span class="trp-cap-val">4</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-mobile-alt"></i> Apple CarPlay / Android Auto</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Interior cuero premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Clima automático de zona</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">👑 VIP</div>
+                <div class="trp-front-img" style="background-image:url('../img/clase.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ultra Premium</div>
+                  <div class="trp-front-name">Mercedes-Benz C300</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 4 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">👑 Ultra Premium</div><div class="trp-back-name">Mercedes-Benz C300</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:33%"></div></div><span class="trp-cap-val">4</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Burmester 3D Surround</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos con masaje</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Chofer VIP certificado</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">🏆 Premium</div>
+                <div class="trp-front-img" style="background-image:url('../img/bmw.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Premium</div>
+                  <div class="trp-front-name">BMW Serie 5</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 4 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">🏆 Gran Turismo</div><div class="trp-back-name">BMW Serie 5</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:33%"></div></div><span class="trp-cap-val">4</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Sistema Harman Kardon</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización 4 zonas</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi + carga inalámbrica</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('../img/avalon.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ejecutivo · Híbrido</div>
+                  <div class="trp-front-name">Toyota Avalon</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 5 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Ejecutivo · Híbrido</div><div class="trp-back-name">Toyota Avalon</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:42%"></div></div><span class="trp-cap-val">5</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-leaf"></i> Motor híbrido silencioso</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos semipiel premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-music"></i> JBL Premium Audio</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⚡ Eléctrico</div>
+                <div class="trp-front-img" style="background-image:url('../img/tesla.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Eco Premium</div>
+                  <div class="trp-front-name">Tesla Model 3</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 5 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">⚡ Eco Premium · Eléctrico</div><div class="trp-back-name">Tesla Model 3</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:42%"></div></div><span class="trp-cap-val">5</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-tablet-alt"></i> Pantalla táctil 15.4"</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi + USB-C en todas las plazas</div>
+                    <div class="trp-back-feat"><i class="fas fa-leaf"></i> 100% eléctrico · Cero emisiones</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /cat-sedan -->
+
+        <!-- ── SUV ── -->
+        <div class="trp-zone" id="cat-suv">
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⭐ Top Pick</div>
+                <div class="trp-front-img" style="background-image:url('../img/cruiser.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">SUV · Premium</div>
+                  <div class="trp-front-name">Toyota Land Cruiser</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 7 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">⭐ Más solicitado · SUV</div><div class="trp-back-name">Toyota Land Cruiser</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:58%"></div></div><span class="trp-cap-val">7</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-mountain"></i> Tracción 4WD todo terreno</div>
+                    <div class="trp-back-feat"><i class="fas fa-users"></i> 3 filas de asientos completas</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización multi-zona</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Gran maletero con bodega</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('../img/tahoe.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">SUV · Full-Size</div>
+                  <div class="trp-front-name">Chevrolet Tahoe</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 8 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">SUV · Full-Size Americano</div><div class="trp-back-name">Chevrolet Tahoe</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:67%"></div></div><span class="trp-cap-val">8</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-tv"></i> Sistema de entretenimiento trasero</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización tri-zona</div>
+                    <div class="trp-back-feat"><i class="fas fa-users"></i> 3 filas · 8 plazas totales</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">👑 VIP</div>
+                <div class="trp-front-img" style="background-image:url('../img/cadillac.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ultra Lujo · Icónico</div>
+                  <div class="trp-front-name">Cadillac Escalade</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 7 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">👑 Ultra Lujo · Icónico</div><div class="trp-back-name">Cadillac Escalade</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:58%"></div></div><span class="trp-cap-val">7</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-desktop"></i> Pantalla OLED curva 38"</div>
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Audio AKG Premium 36 altavoces</div>
+                    <div class="trp-back-feat"><i class="fas fa-car"></i> Suspensión neumática magnética</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Chauffeur certificado</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">🏆</div>
+                <div class="trp-front-img" style="background-image:url('../img/hyudai.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Comodidad Absoluta</div>
+                  <div class="trp-front-name">Hyundai Tucson</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 5 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Comodidad · Absoluta</div><div class="trp-back-name">Hyundai Tucson</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:42%"></div></div><span class="trp-cap-val">5</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos masajeadores con memoria</div>
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Meridian Signature 29 altavoces</div>
+                    <div class="trp-back-feat"><i class="fas fa-wind"></i> Cabin Air Ionisation</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⚡ Ícono</div>
+                <div class="trp-front-img" style="background-image:url('../img/amg.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ultra Premium</div>
+                  <div class="trp-front-name">Mercedes-Benz G-Class</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 5 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">⚡ Ícono · Ultra Premium</div><div class="trp-back-name">Mercedes-Benz G-Class</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:42%"></div></div><span class="trp-cap-val">5</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Interior AMG cuero Nappa</div>
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Burmester 3D Surround</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Chauffeur VIP dedicado</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('../img/x7.jpg')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">SUV · Alemán</div>
+                  <div class="trp-front-name">BMW X7</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 7 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">SUV · Alemán Premium</div><div class="trp-back-name">BMW X7</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:58%"></div></div><span class="trp-cap-val">7</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Bowers & Wilkins Diamond</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> 3 filas lujo pleno</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi 5G + USB en cada fila</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /cat-suv -->
+
+        <!-- ── VAN ── -->
+        <div class="trp-zone" id="cat-van">
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⭐ Top Pick</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1626668011687-8a114cf5a34c?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Van Premium</div>
+                  <div class="trp-front-name">Toyota Hiace</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 14 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">⭐ Más solicitada · Van</div><div class="trp-back-name">Toyota Hiace</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:78%"></div></div><span class="trp-cap-val">14</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización dual frontal/trasero</div>
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Sistema de audio premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Bodega amplia para equipaje</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Van Ejecutiva</div>
+                  <div class="trp-front-name">Hyundai H1</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 12 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Van Ejecutiva · Confort</div><div class="trp-back-name">Hyundai H1</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:67%"></div></div><span class="trp-cap-val">12</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos individuales reclinables</div>
+                    <div class="trp-back-feat"><i class="fas fa-tv"></i> Pantalla de entretenimiento</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización dual independiente</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">👑 VIP</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Van · Business Class</div>
+                  <div class="trp-front-name">Mercedes-Benz Sprinter</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 16 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">👑 VIP · Business Class</div><div class="trp-back-name">Mercedes-Benz Sprinter</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:89%"></div></div><span class="trp-cap-val">16</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos capitán individuales</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi + USB en cada asiento</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Chauffeur ejecutivo</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Van · Espaciosa</div>
+                  <div class="trp-front-name">Nissan Urvan</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 15 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Van Ejecutiva · Espaciosa</div><div class="trp-back-name">Nissan Urvan</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:83%"></div></div><span class="trp-cap-val">15</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-expand-arrows-alt"></i> Amplio espacio interior plano</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Gran bodega de equipaje</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Clima frontal y trasero</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">🏆 Premium</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1566288623394-377af472d81b?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Ingeniería Alemana</div>
+                  <div class="trp-front-name">Volkswagen Crafter</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 17 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">🏆 Ingeniería Alemana</div><div class="trp-back-name">Volkswagen Crafter</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:94%"></div></div><span class="trp-cap-val">17</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos reclinables premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-desktop"></i> Sistema MIB3 infotainment</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Conductor ejecutivo certificado</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Van · Confort</div>
+                  <div class="trp-front-name">Ford Transit</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 15 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Van · Confort Americano</div><div class="trp-back-name">Ford Transit</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:83%"></div></div><span class="trp-cap-val">15</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> A/C dual independiente</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Maletero trasero amplio</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi a bordo</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /cat-van -->
+
+        <!-- ── BUS ── -->
+        <div class="trp-zone" id="cat-bus">
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">⭐ Top Pick</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Minibús Premium</div>
+                  <div class="trp-front-name">Toyota Coaster</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 30 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">⭐ Más solicitado · Minibús</div><div class="trp-back-name">Toyota Coaster</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:83%"></div></div><span class="trp-cap-val">30</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos reclinables ergonómicos</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización tipo bus ejecutivo</div>
+                    <div class="trp-back-feat"><i class="fas fa-volume-up"></i> Sistema de audio premium</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Bodega inferior de equipaje</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">👑 VIP</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Business VIP</div>
+                  <div class="trp-front-name">Mercedes-Benz Sprinter Bus</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 22 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">👑 VIP · Business</div><div class="trp-back-name">Mercedes-Benz Sprinter Bus</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:61%"></div></div><span class="trp-cap-val">22</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos VIP individuales</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi a bordo + USB / 220V</div>
+                    <div class="trp-back-feat"><i class="fas fa-tv"></i> Pantalla central de entretenimiento</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Chauffeur certificado en uniforme</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Minibús · Urbano y Ágil</div>
+                  <div class="trp-front-name">Mitsubishi Rosa</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 26 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">Minibús · Urbano y Ágil</div><div class="trp-back-name">Mitsubishi Rosa</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:72%"></div></div><span class="trp-cap-val">26</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-city"></i> Compacto y ágil en ciudad</div>
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos individuales cómodos</div>
+                    <div class="trp-back-feat"><i class="fas fa-snowflake"></i> Climatización full</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="trp-card" onclick="flipCard(this)">
+            <div class="trp-card-inner">
+              <div class="trp-face trp-face-front">
+                <div class="trp-ribbon">🚍 VIP Plus</div>
+                <div class="trp-front-img" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80')"></div>
+                <div class="trp-front-body">
+                  <div class="trp-front-tag">Máxima Capacidad</div>
+                  <div class="trp-front-name">Yutong ZK6729</div>
+                  <div class="trp-front-footer">
+                    <div class="trp-front-cap"><i class="fas fa-users"></i> 36 pasajeros</div>
+                    <div class="trp-front-hint"><i class="fas fa-sync-alt"></i> Ver detalles</div>
+                  </div>
+                </div>
+              </div>
+              <div class="trp-face trp-face-back">
+                <div class="trp-back-header"><div class="trp-back-tag">🚍 VIP Plus · Máxima Capacidad</div><div class="trp-back-name">Yutong ZK6729</div></div>
+                <div class="trp-back-body">
+                  <div class="trp-cap-row"><span class="trp-cap-label"><i class="fas fa-users"></i> Capacidad</span><div class="trp-cap-bar-wrap"><div class="trp-cap-bar" style="--bar-w:100%"></div></div><span class="trp-cap-val">36</span></div>
+                  <div class="trp-back-feats">
+                    <div class="trp-back-feat"><i class="fas fa-couch"></i> Asientos VIP con reposapiés</div>
+                    <div class="trp-back-feat"><i class="fas fa-wifi"></i> WiFi + pantallas individuales</div>
+                    <div class="trp-back-feat"><i class="fas fa-suitcase"></i> Bodega inferior grande</div>
+                    <div class="trp-back-feat"><i class="fas fa-user-tie"></i> Conductor profesional certificado</div>
+                  </div>
+                </div>
+                <div class="trp-back-actions">
+                  <a href="#" class="trp-btn-reservar"><i class="fas fa-calendar-check"></i> Reservar ahora</a>
+                  <button class="trp-btn-flip-back" onclick="event.stopPropagation();flipCard(this.closest('.trp-card'))"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /cat-bus -->
+
+        <div class="trp-note">
+          <i class="fas fa-info-circle"></i>
+          Traslados desde cualquier punto de República Dominicana &nbsp;·&nbsp;
+          Conductor profesional incluido en todos los servicios &nbsp;·&nbsp;
+          Reservas con mínimo 24h de anticipación &nbsp;·&nbsp;
+          Te interesa un vehículo en especifico, Contactanos
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /pt-page -->
+
+  <!-- El footer se inyecta aquí por banner_footer.js -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script compartido de banner y footer -->
+  <script src="../js/banner_footer.js"></script>
+  <!-- Script propio de la página -->
+  <script src="../js/tp.js"></script>
+
+</body>
+</html>

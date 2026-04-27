@@ -1,0 +1,22 @@
+esto va despues de body 
+
+
+ <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+
+esto va despues del ultimo codigo html 
+
+
+</div>
+   <div id="footer-placeholder"></div>
+
+  <!-- Un solo script para cargar header y footer -->
+  <script src="../js/banner_footer.js"></script>
+
+
+
+
+
+

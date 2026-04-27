@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoteles — Summer's Paradise</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  
+  <!-- CSS externos -->
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/hoteles.css">
+  
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- Header dinámico -->
+  <div id="header-placeholder"></div>
+
+  <!-- HERO CON VIDEO -->
+  <section class="hotel-hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="">
+      <source src="../video/Hoteles.mp4" type="video/mp4">
+      <!-- Fallback: imagen si no carga el video -->
+      <img src="../img/hotel-fallback.jpg" alt="Hotel de lujo" class="hero-video-fallback">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1 class="hero-title">Encuentra tu<br><span>Hotel ideal</span></h1>
+        <br>
+        <p class="hero-description">Los mejores resorts, hoteles y alojamientos de lujo en República Dominicana. Reserva con las mejores tarifas garantizadas.</p>
+        <div class="hero-buttons">
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- Espacio para efectos visuales, el video se ve más claro aquí -->
+        
+        </div>
+      </div>
+    </div>
+      
+      <!-- DIFUMINADO INFERIOR -->
+    <div class="hero-bottom-blur"></div>
+
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="pt-page">
+
+    <!-- ===== SECCIÓN HOTELES ===== -->
+    <section class="hotel-section" id="hoteles">
+
+      <div class="hotel-header">
+        <h1 class="section-title">Catálogo de Hoteles</h1>
+      </div>
+
+<!-- Tabs por zona - Versión corregida -->
+      <div class="hotel-tabs">
+        <button class="hotel-tab active" data-zone="puntacana">
+          <i class="fas fa-umbrella-beach"></i> Punta Cana
+        </button>
+        <button class="hotel-tab" data-zone="santodomingo">
+          <i class="fas fa-city"></i> Santo Domingo
+        </button>
+        <button class="hotel-tab" data-zone="samana">
+          <i class="fas fa-mountain"></i> Samaná
+        </button>
+        <button class="hotel-tab" data-zone="puertoplata">
+          <i class="fas fa-water"></i> Puerto Plata
+        </button>
+        <button class="hotel-tab" data-zone="laromana">
+          <i class="fas fa-golf-ball"></i> La Romana
+        </button>
+      </div>
+
+      <!-- ===== ZONA PUNTA CANA ===== -->
+      <div class="hotel-zone active" id="zone-puntacana">
+        <!-- Excellence El Carmen -->
+        <a href="hotel-detalle.html?id=excellence-el-carmen" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/excellence_el_carmen.avif')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Adults Only · 5 Estrellas</div>
+              <h3 class="hotel-name">Excellence El Carmen</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>9.5 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hard Rock Hotel -->
+        <a href="hotel-detalle.html?id=hard-rock-hotel" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/hard-rock1.webp')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Todo Incluido · Entretenimiento</div>
+              <h3 class="hotel-name">Hard Rock Hotel & Casino</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>9.2 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Secrets Cap Cana -->
+        <a href="hotel-detalle.html?id=secrets-cap-cana" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/secrets-cap1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Lujo · Frente al mar</div>
+              <h3 class="hotel-name">Secrets Cap Cana</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.7 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Breathless Punta Cana -->
+        <a href="hotel-detalle.html?id=breathless-punta-cana" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/breathless1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Solo Adultos · Fiesta</div>
+              <h3 class="hotel-name">Breathless Punta Cana</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.0 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Finest Punta Cana -->
+        <a href="hotel-detalle.html?id=finest-punta-cana" class="hotel-card-link">
+          <div class="hotel-card">
+  <div class="hotel-card-img" style="background-image:url('/img/finest1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Family Friendly</div>
+              <h3 class="hotel-name">Finest Punta Cana</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.4 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ===== ZONA SANTO DOMINGO ===== -->
+      <div class="hotel-zone" id="zone-santodomingo">
+        <!-- JW Marriott -->
+        <a href="hotel-detalle.html?id=jw-marriott-santo-domingo" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/jwmarriot1.webp')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Lujo Urbano · 5 Estrellas</div>
+              <h3 class="hotel-name">JW Marriott Santo Domingo</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.3 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- El Embajador -->
+        <a href="hotel-detalle.html?id=el-embajador" class="hotel-card-link">
+          <div class="hotel-card">
+           <div class="hotel-card-img" style="background-image:url('/img/embajador1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Histórico · Elegancia</div>
+              <h3 class="hotel-name">El Embajador Hotel</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>8.9 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Billini Hotel -->
+        <a href="hotel-detalle.html?id=billini-hotel" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/billini-hotel.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Boutique · Zona Colonial</div>
+              <h3 class="hotel-name">Billini Hotel</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.6 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ===== ZONA SAMANÁ ===== -->
+      <div class="hotel-zone" id="zone-samana">
+        <!-- Bahía Príncipe Cayacoa -->
+        <a href="hotel-detalle.html?id=bahia-principe-cayacoa" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/cayacoa1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Todo Incluido · Vistas al mar</div>
+              <h3 class="hotel-name">Bahía Príncipe Cayacoa</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.1 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Luxury Bahía Príncipe Samaná -->
+        <a href="hotel-detalle.html?id=luxury-bahia-principe-samana" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/luxury1.avif')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Lujo · Privado</div>
+              <h3 class="hotel-name">Luxury Bahía Príncipe Samaná</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.4 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ===== ZONA PUERTO PLATA ===== -->
+      <div class="hotel-zone" id="zone-puertoplata">
+        <!-- Lifestyle Tropical Beach -->
+        <a href="hotel-detalle.html?id=lifestyle-tropical-beach" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/lifestyle2.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Todo Incluido · Familiar</div>
+              <h3 class="hotel-name">Lifestyle Tropical Beach</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>8.7 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Viva Wyndham V Heavens -->
+        <a href="hotel-detalle.html?id=viva-wyndham-v-heavens" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/viva1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Relax · Wellness</div>
+              <h3 class="hotel-name">Viva Wyndham V Heavens</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.0 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ===== ZONA LA ROMANA ===== -->
+      <div class="hotel-zone" id="zone-laromana">
+<!-- Casa de Campo -->
+        <a href="hotel-detalle.html?id=casa-de-campo" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/campo_golf1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Resort de Lujo · Golf</div>
+              <h3 class="hotel-name">Casa de Campo Resort</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.8 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Hilton La Romana -->
+        <a href="hotel-detalle.html?id=hilton-la-romana" class="hotel-card-link">
+          <div class="hotel-card">
+            <div class="hotel-card-img" style="background-image:url('/img/hilton1.jpg')"></div>
+            <div class="hotel-card-body">
+              <div class="hotel-tag">Todo Incluido · Familiar</div>
+              <h3 class="hotel-name">Hilton La Romana</h3>
+              <div class="hotel-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>9.2 / 10</span>
+              </div>
+              <span class="hotel-btn">Ver detalles →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Nota informativa -->
+      <div class="hotel-note">
+        <i class="fas fa-info-circle"></i>
+        Mejores precios garantizados &nbsp;·&nbsp;
+        Reserva flexible sin cargos ocultos &nbsp;·&nbsp;
+        Soporte 24/7 en español
+      </div>
+
+    </section>
+
+  </div><!-- /pt-page -->
+
+  <!-- Footer dinámico -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="../js/banner_footer.js"></script>
+  <script>
+    /* ── Sistema de Tabs mejorado ── */
+    (function() {
+      // Función para cambiar de zona
+      function switchHotelZone(zoneId) {
+        // Ocultar todas las zonas
+        document.querySelectorAll('.hotel-zone').forEach(zone => {
+          zone.classList.remove('active');
+        });
+        
+        // Mostrar la zona seleccionada
+        const targetZone = document.getElementById('zone-' + zoneId);
+        if (targetZone) {
+          targetZone.classList.add('active');
+          animateHotelCards(targetZone);
+        }
+        
+        // Actualizar clase active en los tabs
+        document.querySelectorAll('.hotel-tab').forEach(tab => {
+          tab.classList.remove('active');
+          if (tab.getAttribute('data-zone') === zoneId) {
+            tab.classList.add('active');
+          }
+        });
+      }
+
+      // Animación suave para las tarjetas
+      window.animateHotelCards = function(container) {
+        if (!container) return;
+        const cards = container.querySelectorAll('.hotel-card-link');
+        cards.forEach((card, index) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+      }
+
+      // Asignar eventos a los tabs
+      document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.hotel-tab');
+        tabs.forEach(tab => {
+          tab.addEventListener('click', function(e) {
+            const zone = this.getAttribute('data-zone');
+            if (zone) {
+              switchHotelZone(zone);
+            }
+          });
+        });
+
+        // Animar tarjetas iniciales
+        const activeZone = document.querySelector('.hotel-zone.active');
+        if (activeZone) {
+          animateHotelCards(activeZone);
+        }
+
+        // Observer para animar al hacer scroll
+        const section = document.querySelector('.hotel-section');
+        if (section) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const visibleZone = document.querySelector('.hotel-zone.active');
+                if (visibleZone && visibleZone.querySelectorAll('.hotel-card-link').length > 0) {
+                  const cards = visibleZone.querySelectorAll('.hotel-card-link');
+                  let needsAnimation = false;
+                  cards.forEach(card => {
+                    if (card.style.opacity !== '1') needsAnimation = true;
+                  });
+                  if (needsAnimation) animateHotelCards(visibleZone);
+                }
+                observer.unobserve(section);
+              }
+            });
+          }, { threshold: 0.1 });
+          observer.observe(section);
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

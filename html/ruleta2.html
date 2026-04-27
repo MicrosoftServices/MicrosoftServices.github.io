@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruleta de Viajes</title>
+  <link rel="stylesheet" href="../css/ruleta.css">
+</head>
+<body>
+
+<h1>¿No sabes a dónde viajar?</h1>
+<p>Gira la ruleta y descubre tu destino ideal en República Dominicana</p>
+
+<div class="ruleta-wrapper">
+  <div class="flecha"></div>
+  <canvas id="ruleta" width="400" height="400"></canvas>
+</div>
+
+<button id="btnGirar">Girar Ruleta</button>
+
+<div id="popupResultado" class="popup oculto">
+  <div class="popup-content">
+    <h2 id="textoResultado"></h2>
+    <button id="btnReservar">Reservar paquete</button>
+  </div>
+</div>
+
+<script src="../js/ruletaa.js"></script>
+
+<div class="olas">
+  <div class="ola"></div>
+  <div class="ola"></div>
+  <div class="ola"></div>
+</div>
+
+</body>
+</html>

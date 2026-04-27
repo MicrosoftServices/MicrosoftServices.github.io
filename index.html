@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer's Paradise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+
+  <style>
+    html, body { overflow-x: hidden; max-width: 100%; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    #header-placeholder {
+      position: fixed !important;
+      top: 20px !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      padding: 0 20px !important;
+      box-sizing: border-box !important;
+      z-index: 1000 !important;
+      pointer-events: none !important;
+    }
+    #header-placeholder .pt-header {
+      position: static !important;
+      top: auto !important;
+      margin: 0 auto !important;
+      max-width: 1400px !important;
+      width: 100% !important;
+      pointer-events: all !important;
+    }
+    .pt-hero {
+      height: 100vh !important;
+      min-height: 100vh !important;
+      margin-top: 0 !important;
+    }
+
+    /* ── Scroll video panel fijo ── */
+    .sv-spacer {
+      height: 600vh;
+      background: #07202e;
+      position: relative;
+    }
+    .sv-panel {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: #07202e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5vw;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .sv-panel.sv-active { opacity: 1; pointer-events: all; }
+    .sv-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 75, 92, 0.85) 0%, rgba(31, 122, 140, 0.6) 50%, rgba(42, 157, 181, 0.2) 100%);
+        
+      z-index: 0;
+    }
+    .sv-text {
+      position: relative; z-index: 2;
+      flex: 1; max-width: 380px;
+      padding: 0 2vw 0 6vw;
+      opacity: 0; transform: translateX(-30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .sv-text.sv-visible { opacity: 1; transform: translateX(0); }
+    .sv-label {
+      display: block; font-size: .72rem; letter-spacing: 5px;
+      text-transform: uppercase; color: #c9a96e;
+      margin-bottom: 1rem; font-family: 'Inter', sans-serif;
+    }
+    .sv-title {
+      font-family: 'Yeseva One', Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 3.4rem);
+      font-weight: 400; color: #fff; line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .sv-desc {
+      color: rgba(255,255,255,.5); font-size: .88rem;
+      line-height: 1.85; margin-bottom: 2rem; font-family: 'Inter', sans-serif;
+    }
+    .sv-btn {
+      display: inline-block; background: #1f7a8c; color: #fff;
+      padding: .75rem 1.8rem; border-radius: 50px;
+      font-size: .82rem; font-weight: 600; text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background .25s, transform .2s;
+    }
+    .sv-btn:hover { background: #0d5566; transform: translateY(-2px); }
+    .sv-frame { position: relative; z-index: 2; flex: 0 0 auto; }
+    .sv-frame::before {
+      content: ''; position: absolute; inset: -10px;
+      border-radius: 30px; border: 1px solid rgba(201,169,110,.22); pointer-events: none;
+    }
+    .sv-frame::after {
+      content: ''; position: absolute; inset: -22px;
+      border-radius: 38px; border: 1px solid rgba(201,169,110,.07); pointer-events: none;
+    }
+    .sv-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 140%; height: 140%;
+      background: radial-gradient(ellipse, rgba(31,122,140,.5) 0%, transparent 68%);
+      filter: blur(40px); border-radius: 50%; z-index: -1;
+    }
+    #sv-video {
+      display: block; width: clamp(200px, 24vw, 340px);
+      aspect-ratio: 9/16; object-fit: cover; border-radius: 22px;
+      box-shadow: 0 28px 75px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.05);
+    }
+    .sv-vignette {
+      position: absolute; inset: 0; border-radius: 22px;
+      background: linear-gradient(to bottom, rgba(7,32,46,.18) 0%, transparent 22%, transparent 78%, rgba(7,32,46,.28) 100%);
+      pointer-events: none;
+    }
+    .sv-progress {
+      position: absolute; bottom: 14px; left: 18px; right: 18px;
+      height: 2px; background: rgba(255,255,255,.14); border-radius: 2px; overflow: hidden;
+    }
+    .sv-progress-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #c9a96e, #e8c99a); border-radius: 2px;
+    }
+    .sv-tracker {
+      position: absolute; right: 2.5rem; top: 50%; transform: translateY(-50%);
+      z-index: 4; width: 2px; height: 110px;
+      background: rgba(255,255,255,.1); border-radius: 2px;
+    }
+    .sv-tracker-fill { width: 100%; height: 0%; background: #c9a96e; border-radius: 2px; }
+
+    .destinos-btn {
+      background: white;
+      border: 1.5px solid #ddd;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: #333;
+      position: static;
+      transform: none;
+      box-shadow: none;
+    }
+    .destinos-btn:hover {
+      background: #1f7a8c;
+      color: white;
+      border-color: #1f7a8c;
+    }
+    .destinos-section,
+    .destinos-track-wrapper {
+      overflow: hidden;
+    }
+
+    @media (max-width: 860px) {
+      .sv-panel { flex-direction: column; gap: 2rem; padding: 0 5vw; }
+      .sv-text  { text-align: center; max-width: 90%; padding: 0; }
+      #sv-video { width: clamp(160px, 50vw, 260px); }
+      .sv-tracker { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <br>
+  <div id="header-placeholder"></div>
+
+  <!-- ══ HERO ══ -->
+  <div class="pt-page" style="padding-top: 130px;">
+    <section class="pt-hero" id="home">
+      <div class="pt-hero-video-container">
+        <video class="pt-hero-video active" id="video1" autoplay muted loop playsinline>
+          <source src="../video/playaaaaa2.mp4" type="video/mp4">
+        </video>
+        <video class="pt-hero-video" id="video2" muted loop playsinline>
+          <source src="../video/playaaaaa.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="pt-hero-overlay"></div>
+      <div class="pt-hero-text-overlay">
+        <div class="pt-hero-subtitle">Descubre el Paraíso</div>
+        <h1 class="pt-hero-title">Experiencias que Transforman</h1>
+        <p class="pt-hero-description">
+          Viaja por playas, montañas y cultura dominicana con Summer's Paradise,
+          tu agencia nacional premium.
+        </p>
+        <div class="pt-hero-buttons">
+         
+        </div>
+      </div>
+      <div class="pt-waves">
+        <svg viewBox="0 0 2880 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="wave4" d="M0,80 C120,40 240,120 360,80 C480,40 600,120 720,80 C840,40 960,120 1080,80 C1200,40 1320,120 1440,80 C1560,40 1680,120 1800,80 C1920,40 2040,120 2160,80 C2280,40 2400,120 2520,80 C2640,40 2760,120 2880,80 L2880,160 L0,160 Z" />
+          <path class="wave3" d="M0,65 C180,20 320,110 500,60 C680,10 820,100 1000,55 C1180,10 1300,95 1440,60 C1620,20 1760,110 1940,60 C2120,10 2260,100 2440,55 C2620,10 2740,95 2880,60 L2880,160 L0,160 Z" />
+          <path class="wave1" d="M0,50 C200,100 380,5 580,55 C780,105 940,8 1140,55 C1340,102 1500,10 1700,55 C1900,100 2060,8 2260,55 C2460,102 2620,10 2880,55 L2880,160 L0,160 Z" />
+          <path class="wave2" d="M0,75 C250,120 450,20 700,70 C950,120 1150,25 1440,72 C1730,119 1930,22 2180,70 C2430,118 2630,28 2880,72 L2880,160 L0,160 Z" />
+        </svg>
+      </div>
+    </section>
+  </div>
+  <!-- ══ FIN HERO ══ -->
+
+
+  <!-- ══ DESTINOS — carrusel ══ -->
+  <section class="destinos-section">
+    <div class="destinos-header">
+      <div>
+        <h2 class="destinos-titulo">Destinos Destacados</h2>
+      </div>
+      <div class="destinos-nav">
+        <button class="destinos-btn prev">&#8249;</button>
+        <button class="destinos-btn next">&#8250;</button>
+      </div>
+    </div>
+
+    <div class="destinos-track-wrapper">
+      <div class="destinos-track">
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/puertoplata.jpg" alt="Puerto Plata">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Puerto Plata</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/samana.jpg" alt="Samaná">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Samaná</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/santodomingo.jpg" alt="Santo Domingo">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Santo Domingo</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/barahona.jpg" alt="Barahona">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Barahona</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/santiago.jpg" alt="Santiago">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Santiago</span>
+              <a class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/lavega.jpg" alt="La Vega">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>La Vega</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/boca_chica.jpg" alt="San Pedro de Macorís">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>San Pedro de Macorís</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/laromana.jpg" alt="La Romana">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>La Romana</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/lago_enrriquillo.jpg" alt="Independencia">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>Independencia</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+        <div class="destino-card">
+          <div class="destino-img-wrap">
+            <img src="../img/laaltagracia.jpg" alt="La Altagracia">
+            <div class="destino-rating"><span class="estrella-amarilla">★</span> 5</div>
+            <div class="destino-nombre-hover">
+              <span>La Altagracia</span>
+              <a  class="destino-arrow">🡵</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-waves">
+      <svg viewBox="0 0 2880 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="dest-wave4" d="M0,80 C120,40 240,120 360,80 C480,40 600,120 720,80 C840,40 960,120 1080,80 C1200,40 1320,120 1440,80 C1560,40 1680,120 1800,80 C1920,40 2040,120 2160,80 C2280,40 2400,120 2520,80 C2640,40 2760,120 2880,80 L2880,160 L0,160 Z" />
+        <path class="dest-wave3" d="M0,65 C180,20 320,110 500,60 C680,10 820,100 1000,55 C1180,10 1300,95 1440,60 C1620,20 1760,110 1940,60 C2120,10 2260,100 2440,55 C2620,10 2740,95 2880,60 L2880,160 L0,160 Z" />
+        <path class="dest-wave1" d="M0,50 C200,100 380,5 580,55 C780,105 940,8 1140,55 C1340,102 1500,10 1700,55 C1900,100 2060,8 2260,55 C2460,102 2620,10 2880,55 L2880,160 L0,160 Z" />
+        <path class="dest-wave2" d="M0,75 C250,120 450,20 700,70 C950,120 1150,25 1440,72 C1730,119 1930,22 2180,70 C2430,118 2630,28 2880,72 L2880,160 L0,160 Z" />
+      </svg>
+    </div>
+  </section>
+  <!-- ══ FIN DESTINOS ══ -->
+
+
+  <!-- ══ ESTADÍSTICAS ══ -->
+  <section class="sp-stats-section" id="stats">
+    <div class="sp-stats-bg-glow"></div>
+    <div class="sp-stats-inner">
+      <div class="sp-stats-label">Nuestra Historia</div>
+      <h2 class="sp-stats-title">Números que nos respaldan</h2>
+      <div class="sp-stats-grid">
+        <div class="sp-stat-card">
+          <div class="sp-stat-icon">✈</div>
+          <div class="sp-stat-number">
+            <span class="sp-counter" data-target="1200">0</span>
+            <span class="sp-stat-suffix">+</span>
+          </div>
+          <div class="sp-stat-name">Viajeros felices</div>
+          <div class="sp-stat-bar"><div class="sp-stat-bar-fill" style="--fill-delay: 0s"></div></div>
+        </div>
+        <div class="sp-stat-card">
+          <div class="sp-stat-icon">🗺</div>
+          <div class="sp-stat-number">
+            <span class="sp-counter" data-target="10">0</span>
+            <span class="sp-stat-suffix"></span>
+          </div>
+          <div class="sp-stat-name">Destinos nacionales</div>
+          <div class="sp-stat-bar"><div class="sp-stat-bar-fill" style="--fill-delay: 0.15s"></div></div>
+        </div>
+        <div class="sp-stat-card">
+          <div class="sp-stat-icon"><span class="estrella-amarilla">★</span></div>
+          <div class="sp-stat-number">
+            <span class="sp-counter" data-target="5">0</span>
+            <span class="sp-stat-suffix"> años</span>
+          </div>
+          <div class="sp-stat-name">De experiencia</div>
+          <div class="sp-stat-bar"><div class="sp-stat-bar-fill" style="--fill-delay: 0.3s"></div></div>
+        </div>
+        <div class="sp-stat-card">
+          <div class="sp-stat-icon">💛</div>
+          <div class="sp-stat-number">
+            <span class="sp-counter" data-target="98">0</span>
+            <span class="sp-stat-suffix">%</span>
+          </div>
+          <div class="sp-stat-name">Satisfacción del cliente</div>
+          <div class="sp-stat-bar"><div class="sp-stat-bar-fill" style="--fill-delay: 0.45s"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-waves2">
+      <svg viewBox="0 0 2880 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="dest-wave04" d="M0,80 C120,40 240,120 360,80 C480,40 600,120 720,80 C840,40 960,120 1080,80 C1200,40 1320,120 1440,80 C1560,40 1680,120 1800,80 C1920,40 2040,120 2160,80 C2280,40 2400,120 2520,80 C2640,40 2760,120 2880,80 L2880,160 L0,160 Z" />
+        <path class="dest-wave03" d="M0,65 C180,20 320,110 500,60 C680,10 820,100 1000,55 C1180,10 1300,95 1440,60 C1620,20 1760,110 1940,60 C2120,10 2260,100 2440,55 C2620,10 2740,95 2880,60 L2880,160 L0,160 Z" />
+        <path class="dest-wave01" d="M0,50 C200,100 380,5 580,55 C780,105 940,8 1140,55 C1340,102 1500,10 1700,55 C1900,100 2060,8 2260,55 C2460,102 2620,10 2880,55 L2880,160 L0,160 Z" />
+        <path class="dest-wave02" d="M0,75 C250,120 450,20 700,70 C950,120 1150,25 1440,72 C1730,119 1930,22 2180,70 C2430,118 2630,28 2880,72 L2880,160 L0,160 Z" />
+      </svg>
+    </div>
+  </section>
+  <!-- ══ FIN ESTADÍSTICAS ══ -->
+  
+
+
+  <!-- ══ TESTIMONIOS ══ -->
+  <section class="sp-testimonios" id="testimonios">
+    <div class="section-inner">
+      <div class="section-header" style="text-align:center; margin-bottom: 60px;">
+        <div class="section-subtitle">Lo que dicen</div>
+        <h2 class="section-title">Nuestros Viajeros</h2>
+      </div>
+      <div class="sp-test-carousel">
+        <div class="sp-test-track" id="sp-test-track">
+          <div class="sp-test-card">
+            <div class="sp-test-quote">"</div>
+            <p class="sp-test-text">Samaná fue un sueño hecho realidad. Summer's Paradise organizó cada detalle a la perfección — desde las ballenas hasta el transporte. ¡Volveré sin dudarlo!</p>
+            <div class="sp-test-footer">
+              <div class="sp-test-avatar" style="background:#1f7a8c;">MR</div>
+              <div>
+                <div class="sp-test-name">María Rodríguez</div>
+                <div class="sp-test-origin">Santo Domingo</div>
+              </div>
+              <div class="sp-test-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="sp-test-card">
+            <div class="sp-test-quote">"</div>
+            <p class="sp-test-text">Llevé a mi familia a Barahona y fue una experiencia increíble. Los niños quedaron fascinados con el lago Enriquillo y las playas de arena negra. 100% recomendado.</p>
+            <div class="sp-test-footer">
+              <div class="sp-test-avatar" style="background:#c9a96e;color:#07202e;">JM</div>
+              <div>
+                <div class="sp-test-name">José Miguel Santos</div>
+                <div class="sp-test-origin">Santiago de los Caballeros</div>
+              </div>
+              <div class="sp-test-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="sp-test-card">
+            <div class="sp-test-quote">"</div>
+            <p class="sp-test-text">El tour por la Zona Colonial de Santo Domingo fue simplemente mágico. La guía conocía cada historia, cada piedra. Me hicieron sentir orgullosa de ser dominicana.</p>
+            <div class="sp-test-footer">
+              <div class="sp-test-avatar" style="background:#0d5566;">AL</div>
+              <div>
+                <div class="sp-test-name">Ana Lucía Pérez</div>
+                <div class="sp-test-origin">La Romana</div>
+              </div>
+              <div class="sp-test-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="sp-test-card">
+            <div class="sp-test-quote">"</div>
+            <p class="sp-test-text">El rafting en Jarabacoa fue la aventura de mi vida. Todo estuvo perfectamente coordinado. El equipo de Summer's Paradise es súper profesional y atento.</p>
+            <div class="sp-test-footer">
+              <div class="sp-test-avatar" style="background:#2a9d8f;">CR</div>
+              <div>
+                <div class="sp-test-name">Carlos Ramírez</div>
+                <div class="sp-test-origin">Punta Cana</div>
+              </div>
+              <div class="sp-test-stars">★★★★★</div>
+            </div>
+          </div>
+          <div class="sp-test-card">
+            <div class="sp-test-quote">"</div>
+            <p class="sp-test-text">Puerto Plata nos robó el corazón. El teleférico, la fortaleza, las playas... Todo en un fin de semana. No esperaba tanto por tan poco. ¡Excelente relación calidad-precio!</p>
+            <div class="sp-test-footer">
+              <div class="sp-test-avatar" style="background:#e76f51;">LV</div>
+              <div>
+                <div class="sp-test-name">Laura Ventura</div>
+                <div class="sp-test-origin">Santo Domingo Norte</div>
+              </div>
+              <div class="sp-test-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sp-test-controls">
+        <button class="sp-test-btn sp-test-prev" aria-label="Anterior">&#8249;</button>
+        <div class="sp-test-dots" id="sp-test-dots"></div>
+        <button class="sp-test-btn sp-test-next" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </div>
+  </section>
+  <!-- ══ FIN TESTIMONIOS ══ -->
+
+
+  <!-- ══ SCROLL VIDEO ══ -->
+  <div class="sv-panel" id="sv-panel">
+    <div class="sv-bg"></div>
+    <div class="sv-text" id="sv-text">
+      <span class="sv-label">Descubre</span>
+      <h2 class="sv-title">Playas que<br>roban el aliento</h2>
+      <p class="sv-desc">
+        Arenas blancas, aguas cristalinas y atardeceres
+        que no encontrarás en ningún otro lugar del mundo.
+        Este es tu momento.
+      </p>
+      <a href="../html/explorar.html" class="sv-btn">Ver destinos de playa</a>
+    </div>
+    <div class="sv-frame" id="sv-frame">
+      <div class="sv-glow"></div>
+      <video id="sv-video" muted playsinline preload="auto" disablePictureInPicture>
+        <source src="../video/beach_scrub.mp4" type="video/mp4" />
+      </video>
+      <div class="sv-vignette"></div>
+      <div class="sv-progress">
+        <div class="sv-progress-fill" id="sv-progress-fill"></div>
+      </div>
+    </div>
+    <div class="sv-tracker">
+      <div class="sv-tracker-fill" id="sv-tracker-fill"></div>
+    </div>
+  </div>
+  <div class="sv-spacer" id="sv-spacer"></div>
+  <!-- ══ FIN SCROLL VIDEO ══ -->
+
+
+
+
+  <!-- ══ CTA ══ -->
+  <section class="pt-cta">
+    <div class="pt-cta-content">
+      <h2>La República Dominicana no solo se visita...</h2>
+      <h1>Se vive.</h1>
+      <a href="../html/mapa de la pagina.html" class="pt-cta-btn">Empieza tu aventura</a>
+    </div>
+  </section>
+
+
+  <!-- ══ GALERÍA ══ -->
+  <section class="gallery" id="gallery">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-subtitle">Momentos Inolvidables</div>
+        <h2 class="section-title">Nuestra Galería</h2>
+      </div>
+      <div class="gallery-container">
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="../img/punta cana.jpg" alt="Punta Cana">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Punta Cana</h3><p>Playas Paradisíacas</p></div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://www.barcelo.com/guia-turismo/wp-content/uploads/2020/10/santuario-ballenas_republica-dominicana_888_1.jpg" alt="Samaná">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Samaná</h3><p>Ballenas y Cascadas</p></div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.pexels.com/photos/21299440/pexels-photo-21299440/free-photo-of-zona-colonial-santo-domingo.jpeg" alt="Zona Colonial">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Zona Colonial</h3><p>Historia Viva</p></div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="../img/jarabacoa.jpg" alt="Jarabacoa">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Jarabacoa</h3><p>Aventura en Montañas</p></div></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://realestatelasterrenas.com/wp-content/uploads/2025/05/beautiful-sunset-northern-pantanal-world-s-largest-wetlands-wild-brazil-brazilian-wildlife-nature-amazing-landscape-riverside-by-boat-scaled.jpg" alt="Atardecer Dominicano">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Atardecer</h3><p>Colores del Caribe</p></div></div>
+          </div>
+          <div class="gallery-item2">
+            <img src="https://cdn.getyourguide.com/image/format=auto,fit=contain,gravity=center,quality=60,width=1440,height=650,dpr=1/tour_img/2af6e1095fae1026bdf149963099ec3631a2624da499f68e00254e28b33d383a.jpg" alt="Puerto Plata">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Puerto Plata</h3><p>Paisajes pintorezcos</p></div></div>
+          </div>
+          <div class="gallery-item3">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/27/2f/4a/91/excurciones-a-la-isla.jpg?w=1100&h=1100&s=1" alt="Bayahibe">
+            <div class="gallery-overlay"><div class="gallery-text"><h3 class="gallery-title">Bayahibe</h3><p>Playas cristalinas</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ══ FIN GALERÍA ══ -->
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/banner_footer.js"></script>
+
+  <!-- ══ SCRIPTS ══ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ── Hero video switch ──
+      const heroVideos = document.querySelectorAll(".pt-hero-video");
+      let curVid = 0;
+      setInterval(() => {
+        heroVideos[curVid].classList.remove("active");
+        curVid = (curVid + 1) % heroVideos.length;
+        heroVideos[curVid].currentTime = 0;
+        heroVideos[curVid].play();
+        heroVideos[curVid].classList.add("active");
+      }, 8000);
+
+      // ── Carrusel destinos con Autoplay ──
+      const track = document.querySelector('.destinos-track');
+      const destinoCards = document.querySelectorAll('.destino-card');
+      const btnNext = document.querySelector('.destinos-btn.next');
+      const btnPrev = document.querySelector('.destinos-btn.prev');
+      let index = 0;
+      let autoplayInterval;
+
+      function getVisible() {
+        if (window.innerWidth < 768) return 1;
+        if (window.innerWidth < 1024) return 2;
+        return 4;
+      }
+
+      function updateTrack() {
+        if (!destinoCards.length || !track) return;
+        const gap = 20;
+        const cardWidth = destinoCards[0].offsetWidth + gap;
+        track.style.transform = `translateX(-${index * cardWidth}px)`;
+      }
+
+      function nextSlide() {
+        const visibleCards = getVisible();
+        const maxIndex = destinoCards.length - visibleCards;
+        index = index < maxIndex ? index + 1 : 0;
+        updateTrack();
+      }
+
+      function prevSlide() {
+        if (index > 0) {
+          index--;
+        } else {
+          index = destinoCards.length - getVisible();
+        }
+        updateTrack();
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayInterval = setInterval(nextSlide, 3000);
+      }
+      function stopAutoplay() { clearInterval(autoplayInterval); }
+
+      if (btnNext) btnNext.addEventListener('click', () => { nextSlide(); startAutoplay(); });
+      if (btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAutoplay(); });
+      track.addEventListener('mouseenter', stopAutoplay);
+      track.addEventListener('mouseleave', startAutoplay);
+      window.addEventListener('resize', () => { index = 0; updateTrack(); });
+      updateTrack();
+      startAutoplay();
+
+      // ── Quiz de destino ──
+      window.mostrarDestino = function(tipo, btn) {
+        document.querySelectorAll('.pt-opt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        const destinos = {
+          playa:      { nombre: "Punta Cana",    desc: "Playas de arena blanca, resorts de lujo y el Caribe más azul." },
+          aventura:   { nombre: "Jarabacoa",     desc: "Rafting, cañoning y vistas impresionantes desde la Cordillera Central." },
+          naturaleza: { nombre: "Samaná",        desc: "Cascadas escondidas, ballenas jorobadas y selva tropical virgen." },
+          historia:   { nombre: "Santo Domingo", desc: "La primera ciudad del Nuevo Mundo. Historia viva en cada calle." }
+        };
+        const d = destinos[tipo];
+        document.getElementById('pt-res-nombre').textContent = d.nombre;
+        document.getElementById('pt-res-desc').textContent = d.desc;
+        const box = document.getElementById('pt-resultado');
+        box.classList.remove('pt-resultado-box');
+        box.style.display = 'none';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          box.style.display = 'block';
+          box.classList.add('pt-resultado-box');
+        }));
+      };
+
+      // ── Estadísticas — Contador animado ──
+      (function initStats() {
+        const counters = document.querySelectorAll('.sp-counter');
+        const bars     = document.querySelectorAll('.sp-stat-bar-fill');
+        if (!counters.length) return;
+        let animated = false;
+
+        function animateCounters() {
+          if (animated) return;
+          animated = true;
+          counters.forEach(counter => {
+            const target    = parseInt(counter.dataset.target, 10);
+            const increment = target / (1800 / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                counter.textContent = target.toLocaleString();
+                clearInterval(timer);
+              } else {
+                counter.textContent = Math.floor(current).toLocaleString();
+              }
+            }, 16);
+          });
+          bars.forEach(bar => bar.classList.add('sp-bar-active'));
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) animateCounters(); });
+        }, { threshold: 0.3 });
+
+        const statsSection = document.querySelector('.sp-stats-section');
+        if (statsSection) observer.observe(statsSection);
+      })();
+
+      // ── Testimonios — Carrusel ──
+      (function initTestimonios() {
+        const testTrack = document.getElementById('sp-test-track');
+        const dotsWrap  = document.getElementById('sp-test-dots');
+        const tBtnPrev  = document.querySelector('.sp-test-prev');
+        const tBtnNext  = document.querySelector('.sp-test-next');
+        if (!testTrack) return;
+
+        const tCards = testTrack.querySelectorAll('.sp-test-card');
+        let tCurrent = 0;
+        let tAutoTimer;
+        let isDragging = false, dragStartX = 0, dragDelta = 0;
+
+        function tGetVisible() {
+          if (window.innerWidth < 580) return 1;
+          if (window.innerWidth < 900) return 2;
+          return 3;
+        }
+
+        function buildDots() {
+          dotsWrap.innerHTML = '';
+          const total = tCards.length - tGetVisible() + 1;
+          for (let i = 0; i < total; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'sp-test-dot' + (i === tCurrent ? ' sp-dot-active' : '');
+            btn.setAttribute('aria-label', `Ir al testimonio ${i + 1}`);
+            btn.addEventListener('click', () => tGoTo(i));
+            dotsWrap.appendChild(btn);
+          }
+        }
+
+        function tUpdateTrack() {
+          const cardW = tCards[0].offsetWidth + 24;
+          testTrack.style.transform = `translateX(-${tCurrent * cardW}px)`;
+          document.querySelectorAll('.sp-test-dot').forEach((d, i) => {
+            d.classList.toggle('sp-dot-active', i === tCurrent);
+          });
+        }
+
+        function tGoTo(i) {
+          const max = tCards.length - tGetVisible();
+          tCurrent = Math.max(0, Math.min(i, max));
+          tUpdateTrack();
+        }
+
+        function tNext() { tGoTo(tCurrent + 1); }
+        function tPrev() { tGoTo(tCurrent - 1); }
+
+        function tStartAuto() {
+          tStopAuto();
+          tAutoTimer = setInterval(() => {
+            const max = tCards.length - tGetVisible();
+            tGoTo(tCurrent < max ? tCurrent + 1 : 0);
+          }, 4500);
+        }
+        function tStopAuto() { clearInterval(tAutoTimer); }
+
+        if (tBtnNext) tBtnNext.addEventListener('click', () => { tNext(); tStartAuto(); });
+        if (tBtnPrev) tBtnPrev.addEventListener('click', () => { tPrev(); tStartAuto(); });
+
+        const carousel = document.querySelector('.sp-test-carousel');
+        if (carousel) {
+          carousel.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX; dragDelta = 0; tStopAuto(); });
+          window.addEventListener('mousemove', e => { if (isDragging) dragDelta = e.clientX - dragStartX; });
+          window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (dragDelta < -60) tNext(); else if (dragDelta > 60) tPrev();
+            tStartAuto();
+          });
+          carousel.addEventListener('touchstart', e => { dragStartX = e.touches[0].clientX; tStopAuto(); }, { passive: true });
+          carousel.addEventListener('touchend', e => {
+            dragDelta = e.changedTouches[0].clientX - dragStartX;
+            if (dragDelta < -60) tNext(); else if (dragDelta > 60) tPrev();
+            tStartAuto();
+          });
+          carousel.addEventListener('mouseenter', tStopAuto);
+          carousel.addEventListener('mouseleave', tStartAuto);
+        }
+
+        window.addEventListener('resize', () => { tCurrent = 0; buildDots(); tUpdateTrack(); });
+        buildDots();
+        tUpdateTrack();
+        tStartAuto();
+      })();
+
+      // ── Asistente IA — input Enter ──
+      const spInput = document.getElementById('sp-ai-input');
+      if (spInput) {
+        spInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); spAiSendInput(); }
+        });
+        spInput.addEventListener('input', () => {
+          spInput.style.height = 'auto';
+          spInput.style.height = Math.min(spInput.scrollHeight, 110) + 'px';
+        });
+      }
+
+    }); // fin DOMContentLoaded
+
+
+    // ── Asistente IA — funciones globales (fuera de DOMContentLoaded) ──
+    const SP_AI_SYSTEM = `Eres "Sol", la asistente virtual de Summer's Paradise, una agencia de turismo nacional premium de la República Dominicana. Tu personalidad es cálida, entusiasta y muy conocedora del país.
+
+Destinos de la agencia: Puerto Plata, Samaná, Santo Domingo, Barahona, Santiago, La Vega, Pedernales, La Romana, Peravia y La Altagracia (Punta Cana / Bávaro).
+
+Reglas estrictas:
+- Responde SIEMPRE en español dominicano cálido y amigable.
+- Máximo 3-4 oraciones por respuesta, o una lista de máximo 4 puntos concisos.
+- Solo hablas de destinos nacionales dominicanos. Si preguntan por el extranjero, redirige amablemente.
+- Usa 1-2 emojis por respuesta, sin exagerar.
+- No inventes precios exactos; di que los paquetes se consultan con la agencia.
+- Menciona Summer's Paradise cuando sea natural hacerlo.
+- Sé específico: menciona lugares, actividades y experiencias reales.`;
+
+    let spAiLoading = false;
+
+    function spAiAddMessage(text, role) {
+      const box = document.getElementById('sp-ai-messages');
+      if (!box) return;
+      const div = document.createElement('div');
+      div.className = `sp-ai-msg sp-ai-msg--${role}`;
+      div.textContent = text;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function spAiAddTyping() {
+      const box = document.getElementById('sp-ai-messages');
+      if (!box) return;
+      const div = document.createElement('div');
+      div.className = 'sp-ai-msg sp-ai-msg--typing';
+      div.id = 'sp-ai-typing';
+      div.innerHTML = '<div class="sp-ai-typing-dots"><span></span><span></span><span></span></div>';
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function spAiRemoveTyping() {
+      const t = document.getElementById('sp-ai-typing');
+      if (t) t.remove();
+    }
+
+    async function spAiSend(text) {
+      if (spAiLoading || !text.trim()) return;
+      spAiLoading = true;
+      spAiAddMessage(text, 'user');
+      const chips = document.getElementById('sp-ai-chips');
+      if (chips) chips.style.display = 'none';
+      spAiAddTyping();
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SP_AI_SYSTEM,
+            messages: [{ role: 'user', content: text }]
+          })
+        });
+        const data = await res.json();
+        spAiRemoveTyping();
+        const reply = data.content?.[0]?.text || 'Lo siento, hubo un problema. Intenta de nuevo.';
+        spAiAddMessage(reply, 'bot');
+      } catch {
+        spAiRemoveTyping();
+        spAiAddMessage('Hubo un error de conexión. Por favor intenta de nuevo.', 'bot');
+      }
+      spAiLoading = false;
+    }
+
+    function spAiSendInput() {
+      const input = document.getElementById('sp-ai-input');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      input.style.height = 'auto';
+      spAiSend(text);
+    }
+
+  </script>
+
+  <script src="../js/scroll-video.js"></script>
+</body>
+</html>

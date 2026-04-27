@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Summer's Paradise - Contacto Directo | Envío WhatsApp</title>
+  <!-- Preconnect para mejorar rendimiento -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter + Yeseva One -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="../css/contactar.css">
+  
+  <!-- Google Analytics (reemplaza GA_MEASUREMENT_ID con tu ID real) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+
+  <!-- Hero con partículas -->
+  <section class="pt-hero-contact">
+    <div class="pt-hero-overlay"></div>
+    <div class="particle-effect" id="particleContainer"></div>
+    <div class="pt-hero-text-overlay">
+      <div class="pt-hero-subtitle">Conecta con el Paraíso</div>
+      <h1 class="pt-hero-title">Tu aventura comienza hoy</h1>
+      <p class="pt-hero-description">Escríbenos directamente a WhatsApp y recibe atención personalizada para vivir República Dominicana como nunca imaginaste.</p>
+    </div>
+  </section>
+
+  <!-- Sección contacto principal -->
+  <main class="contact-main">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Hablemos de <span class="highlight">tu viaje soñado</span></h2>
+        <div class="contact-intro-text">
+En Summer's Paradise convertimos cada itinerario en una experiencia única.
+<br><br>
+Completa el formulario y te redirigiremos a WhatsApp para conversar al instante. <br><br>
+Sin esperas, sin complicaciones: tu próxima aventura está a un solo clic.
+<br><br> 
+🌞 Déjanos tus datos y empieza a soñar con el paraíso.        </div>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-pin"></i></div>
+            <div class="contact-text"><strong>Oficina Principal</strong><p>Malecón Center, Suite 305, Santo Domingo, R.D.</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-headset"></i></div>
+            <div class="contact-text"><strong>Atención 24/7 vía WhatsApp</strong><p>Respuesta rápida por nuestro canal oficial</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <div class="contact-text"><strong>Correo Preferente</strong><p><a href="mailto:hola@summersparadise.com">hola@summersparadise.com</a></p></div>
+          </div>
+        </div>
+        <div class="social-links-contact">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Formulario mejorado -->
+      <div class="contact-form-card">
+        <h3><i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp</h3>
+        
+        <!-- Barra de progreso -->
+        <div class="progress-bar">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="formProgressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText">Completa el formulario 0%</div>
+        </div>
+        
+        <form id="contactFormDirect">
+          <div class="form-row">
+            <div class="input-group"><label>Nombre completo *</label><input type="text" id="nombreDir" placeholder="Ej: Ana María Pérez" required></div>
+            <div class="input-group"><label>Correo electrónico *</label><input type="email" id="emailDir" placeholder="tu@ejemplo.com" required></div>
+          </div>
+          <div class="form-row">
+            <div class="input-group"><label>Teléfono / WhatsApp (opcional)</label><input type="tel" id="telefonoDir" placeholder="+1 809 000 0000"></div>
+            <div class="input-group"><label>Destino de interés</label>
+              <select id="interesDir">
+                <option value="">-- Selecciona --</option>
+                <option>Punta Cana - Todo incluido</option>
+                <option>Samaná - Ballenas y naturaleza</option>
+                <option>Jarabacoa - Aventura</option>
+                <option>Santo Domingo - Historia & Cultura</option>
+                <option>La Romana - Lujo y Golf</option>
+                <option>Paquete personalizado</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group"><label><i class="far fa-calendar-alt"></i> Fecha de viaje deseada</label>
+              <input type="date" id="fechaViaje" min="2026-04-20">
+            </div>
+            <div class="input-group"><label><i class="fas fa-tag"></i> ¿Código de descuento?</label>
+              <input type="text" id="codigoCupon" placeholder="Ej: SUMMER2026">
+            </div>
+          </div>
+          
+          
+          <div class="input-group">
+            <label>Mensaje o requisitos especiales</label>
+            <textarea rows="4" id="mensajeDir" placeholder="¿Cuántos días, viajeros o experiencias te gustaría incluir?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="whatsappSubmitBtn">
+            <i class="fab fa-whatsapp"></i> 
+            <span>Enviar mensaje directo a WhatsApp</span>
+          </button>
+          <div id="feedbackDirect" class="form-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sección de Testimonios -->
+  <section class="testimonials">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2rem; color: #0a2b3e;">⭐ Lo que dicen nuestros viajeros</h2>
+      <p style="color: #4a627a; margin-top: 0.5rem;">Más de 500 clientes satisfechos avalan nuestra experiencia</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"Excelente atención, nos ayudaron con todo el itinerario. La playa de Punta Cana fue espectacular y el hotel superó nuestras expectativas. Volveremos a contratar sus servicios sin dudarlo."</p>
+        <div class="testimonial-author">María González</div>
+        <div class="testimonial-location">Punta Cana, 2025</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"La experiencia en Samaná fue inolvidable. Vimos ballenas, disfrutamos de playas vírgenes y el equipo de Summer's Paradise estuvo pendiente de cada detalle. 100% recomendados."</p>
+        <div class="testimonial-author">Carlos Rodríguez</div>
+        <div class="testimonial-location">Samaná, 2025</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testimonial-text">"El tour por Santo Domingo fue increíble. La guía conocía cada rincón histórico. Además, el transporte fue muy cómodo. Sin duda repetiré con ellos en mi próximo viaje."</p>
+        <div class="testimonial-author">Laura Méndez</div>
+        <div class="testimonial-location">Santo Domingo, 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Estadísticas -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item"><i class="fas fa-smile"></i><div class="stat-number" data-target="568">0</div><div class="stat-label">Clientes felices</div></div>
+      <div class="stat-item"><i class="fas fa-map-marked-alt"></i><div class="stat-number" data-target="18">0</div><div class="stat-label">Destinos exclusivos</div></div>
+      <div class="stat-item"><i class="fas fa-clock"></i><div class="stat-number" data-target="24">0</div><div class="stat-label">Soporte 24/7</div></div>
+      <div class="stat-item"><i class="fas fa-calendar-check"></i><div class="stat-number" data-target="1240">0</div><div class="stat-label">Viajes organizados</div></div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <h2 class="faq-title">Preguntas Frecuentes</h2>
+      <div class="faq-item">
+        <div class="faq-question">¿Cómo funciona el envío por WhatsApp? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Completa el formulario y serás redirigido automáticamente a WhatsApp con un mensaje pre-llenado con tus datos. Solo debes enviarlo y nuestro equipo te responderá en minutos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Cuánto tiempo tarda la respuesta? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Nuestro equipo de asesores responde en menos de 10 minutos en horario laboral (8am-8pm) y en máximo 2 horas fuera de ese horario.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Ofrecen paquetes personalizados? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">¡Sí! Nos especializamos en crear experiencias a medida según tus preferencias, presupuesto y fechas disponibles.</div>
+      </div>
+    </div>
+  </section>
+
+  
+</div>
+
+</div>
+   <div id="footer-placeholder"></div>
+
+  <!-- Un solo script para cargar header y footer -->
+  <script src="../js/banner_footer.js"></script>
+
+
+
+
+<script>
+  // Header scroll
+  const headerEl = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => { 
+    if(window.scrollY > 20) headerEl.classList.add('scrolled'); 
+    else headerEl.classList.remove('scrolled'); 
+  });
+  
+  // Partículas
+  function createParticles() {
+    const container = document.getElementById('particleContainer');
+    if(!container) return;
+    const particleCount = 65;
+    for(let i=0; i<particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 12 + 4;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = Math.random() * 8 + 5 + 's';
+      particle.style.animationDelay = Math.random() * 12 + 's';
+      particle.style.opacity = Math.random() * 0.6 + 0.2;
+      particle.style.background = `radial-gradient(circle, rgba(255,217,102,0.9) 0%, rgba(255,180,50,0.6) 100%)`;
+      container.appendChild(particle);
+    }
+  }
+  createParticles();
+
+  // Cerrar menú móvil
+  const mobileCheck = document.getElementById('pt-mobile-menu-toggle');
+  if(mobileCheck) {
+    document.querySelectorAll('.pt-mobile-menu a').forEach(link => link.addEventListener('click', () => { mobileCheck.checked = false; }));
+  }
+
+  // Número de WhatsApp oficial (cambiar por el número real)
+  const WHATSAPP_NUMBER = "18494911089";
+
+  // Barra de progreso del formulario
+  function updateFormProgress() {
+    const form = document.getElementById('contactFormDirect');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    let filled = 0;
+    let total = 0;
+    inputs.forEach(input => {
+      if(input.type !== 'checkbox' && input.type !== 'radio') {
+        total++;
+        if(input.value && input.value.trim() !== '') filled++;
+      }
+    });
+    // Contar checkboxes marcados
+    const checkboxes = document.querySelectorAll('#serviciosCheckbox input:checked');
+    filled += checkboxes.length;
+    total += document.querySelectorAll('#serviciosCheckbox input').length;
+    
+    const percent = Math.round((filled / total) * 100);
+    const fillBar = document.getElementById('formProgressFill');
+    const progressText = document.getElementById('progressText');
+    if(fillBar) fillBar.style.width = percent + '%';
+    if(progressText) progressText.textContent = `Completado ${percent}%`;
+  }
+  
+  // Escuchar cambios en el formulario
+  const formElements = document.querySelectorAll('#contactFormDirect input, #contactFormDirect select, #contactFormDirect textarea');
+  formElements.forEach(el => el.addEventListener('input', updateFormProgress));
+  document.querySelectorAll('#serviciosCheckbox input').forEach(cb => cb.addEventListener('change', updateFormProgress));
+  updateFormProgress();
+
+  // FAQ Acordeón
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Animación de contadores (stats)
+  function animateNumbers() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+      const target = parseInt(stat.getAttribute('data-target'));
+      let current = 0;
+      const increment = target / 50;
+      const updateNumber = () => {
+        current += increment;
+        if(current < target) {
+          stat.textContent = Math.floor(current);
+          requestAnimationFrame(updateNumber);
+        } else {
+          stat.textContent = target;
+        }
+      };
+      updateNumber();
+    });
+  }
+  
+  // Intersection Observer para stats
+  const statsSection = document.querySelector('.stats-section');
+  if(statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          animateNumbers();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(statsSection);
+  }
+
+  // Mensaje de bienvenida automático
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const welcomeMsg = document.createElement('div');
+      welcomeMsg.innerHTML = '👋 ¡Bienvenido a Summer\'s Paradise! Completa el formulario y recibe atención personalizada al instante';
+      welcomeMsg.style.cssText = 'position: fixed; bottom: 20px; left: 20px; background: #1f3e4b; color: white; padding: 12px 20px; border-radius: 50px; z-index: 999; animation: slideIn 0.5s ease; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);';
+      document.body.appendChild(welcomeMsg);
+      setTimeout(() => {
+        welcomeMsg.style.animation = 'slideOut 0.5s ease';
+        setTimeout(() => welcomeMsg.remove(), 500);
+      }, 6000);
+    }, 1500);
+  });
+
+  // FORMULARIO PRINCIPAL: envía a WhatsApp (CORREGIDO)
+  const formDirect = document.getElementById('contactFormDirect');
+  const feedbackDirect = document.getElementById('feedbackDirect');
+  const submitBtn = document.getElementById('whatsappSubmitBtn');
+
+  formDirect.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Deshabilitar botón mientras se procesa
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+    submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> <span>Redirigiendo...</span>';
+    
+    const nombre = document.getElementById('nombreDir')?.value.trim();
+    const email = document.getElementById('emailDir')?.value.trim();
+    const telefono = document.getElementById('telefonoDir')?.value.trim();
+    const interes = document.getElementById('interesDir')?.value;
+    const fechaViaje = document.getElementById('fechaViaje')?.value;
+    const codigoCupon = document.getElementById('codigoCupon')?.value.trim();
+    const fuenteContacto = document.getElementById('fuenteContacto')?.value;
+    const mensajeExtra = document.getElementById('mensajeDir')?.value.trim();
+    
+    // Obtener servicios seleccionados
+    const serviciosSeleccionados = [];
+    document.querySelectorAll('#serviciosCheckbox input:checked').forEach(cb => {
+      serviciosSeleccionados.push(cb.value);
+    });
+
+    // Validaciones mejoradas
+    if(!nombre || nombre.length < 2) {
+      feedbackDirect.innerHTML = '⚠️ Por favor completa tu nombre completo.';
+      feedbackDirect.style.color = '#b45309';
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> <span>Enviar mensaje directo a WhatsApp</span>';
+      return;
+    }
+    
+    if(!email || !email.includes('@') || !email.includes('.')) {
+      feedbackDirect.innerHTML = '❌ Ingresa un correo electrónico válido.';
+      feedbackDirect.style.color = '#b45309';
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> <span>Enviar mensaje directo a WhatsApp</span>';
+      return;
+    }
+
+    // Construir mensaje para WhatsApp
+    let mensajeWhatsapp = `🏝️ *SUMMER'S PARADISE - NUEVA CONSULTA* 🏝️%0A%0A`;
+    mensajeWhatsapp += `👤 *Nombre:* ${encodeURIComponent(nombre)}%0A`;
+    mensajeWhatsapp += `📧 *Correo:* ${encodeURIComponent(email)}%0A`;
+    if(telefono) mensajeWhatsapp += `📱 *Teléfono:* ${encodeURIComponent(telefono)}%0A`;
+    if(interes && interes !== "") mensajeWhatsapp += `🎯 *Destino:* ${encodeURIComponent(interes)}%0A`;
+    if(fechaViaje) mensajeWhatsapp += `📅 *Fecha viaje:* ${encodeURIComponent(fechaViaje)}%0A`;
+    if(serviciosSeleccionados.length > 0) mensajeWhatsapp += `✨ *Servicios extra:* ${encodeURIComponent(serviciosSeleccionados.join(', '))}%0A`;
+    if(codigoCupon) mensajeWhatsapp += `🏷️ *Código descuento:* ${encodeURIComponent(codigoCupon)}%0A`;
+    if(fuenteContacto && fuenteContacto !== "") mensajeWhatsapp += `🔍 *Nos encontró por:* ${encodeURIComponent(fuenteContacto)}%0A`;
+    if(mensajeExtra) mensajeWhatsapp += `💬 *Mensaje:* ${encodeURIComponent(mensajeExtra)}%0A`;
+    mensajeWhatsapp += `%0A🔄 *Consulta generada desde el sitio web*`;
+    
+    // Abrir WhatsApp
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${mensajeWhatsapp}`;
+    
+    // Mostrar feedback de éxito
+    feedbackDirect.innerHTML = '✅ ¡Listo! Serás redirigido a WhatsApp para enviar tu mensaje directamente.';
+    feedbackDirect.style.color = '#1f6e43';
+    
+    // Evento de conversión para Google Analytics
+    if(typeof gtag !== 'undefined') {
+      gtag('event', 'generate_lead', {
+        'event_category': 'contact',
+        'event_label': 'whatsapp_form'
+      });
+    }
+    
+    // Abrir WhatsApp en nueva pestaña después de un breve delay
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+      
+      // Restaurar botón después de 2 segundos
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> <span>Enviar mensaje directo a WhatsApp</span>';
+      }, 2000);
+    }, 500);
+    
+    // Limpiar feedback después de 6 segundos
+    setTimeout(() => { 
+      if(feedbackDirect.innerHTML !== '') {
+        feedbackDirect.innerHTML = '';
+      }
+    }, 6000);
+  });
+</script>
+</body>
+</html>

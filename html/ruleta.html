@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruleta de Viajes</title>
+  <link rel="stylesheet" href="../css/ruleta.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <div class="pt-page">
+
+  <div class="deco-circle dc1"></div>
+  <div class="deco-circle dc2"></div>
+  <div class="deco-circle dc3"></div>
+
+  <div class="header">
+    <div class="header-label">República Dominicana</div>
+    <h1>¿A dónde viajas <span>hoy?</span></h1>
+    <p>Gira la ruleta y deja que el destino decida</p>
+  </div>
+
+  <div class="wheel-area">
+    <div class="wheel-frame">
+      <div class="wheel-shadow"></div>
+      <div class="wheel-ring2"></div>
+      <div class="wheel-ring"></div>
+      <div class="pointer-wrap">
+        <div class="pointer-dot"></div>
+        <div class="pointer-triangle"></div>
+      </div>
+      <canvas id="ruleta" width="340" height="340"></canvas>
+      <div class="center-hub"></div>
+    </div>
+
+    <button class="spin-btn" id="btnGirar">
+      <div class="spin-btn-inner">
+        <span class="spin-icon">✦</span>
+        Girar la Ruleta
+      </div>
+    </button>
+  </div>
+
+  <div class="wave-deco">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none">
+      <path d="M0,50 C360,100 1080,10 1440,55 L1440,110 L0,110 Z" fill="rgba(160,215,235,0.35)"/>
+      <path d="M0,70 C480,20 960,100 1440,70 L1440,110 L0,110 Z" fill="rgba(160,215,235,0.2)"/>
+    </svg>
+  </div>
+
+  <div class="modal-overlay" id="popupResultado">
+    <div class="modal-card">
+      <span class="modal-emoji" id="modalEmoji">🌴</span>
+      <div class="modal-eyebrow">Tu próximo destino es</div>
+      <div class="modal-destination" id="textoResultado">Punta Cana</div>
+      <div class="modal-desc" id="modalDesc">Playas paradisíacas te esperan.</div>
+      <div class="modal-actions">
+        <button class="btn-book" id="btnReservar">Reservar paquete →</button>
+        <button class="btn-retry" id="btnCerrar">Girar de nuevo</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+   </div>
+   <div id="footer-placeholder"></div>
+
+  <!-- Un solo script para cargar header y footer -->
+  <script src="../js/banner_footer.js"></script>
+
+
+
+
+
+  <script src="../js/ruletaa.js"></script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso · Summer’s Paradise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/login.css">
+
+  <!-- ── MODAL STYLES (solo modales, no toca login.css) ── -->
+  <style>
+    /* Overlay */
+    .sp-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(15,26,28,.65);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+    .sp-overlay.open { opacity: 1; visibility: visible; }
+
+    /* Modal box */
+    .sp-modal {
+      background: #FFFFFF;
+      width: min(680px, 94vw);
+      max-height: 88vh;
+      border-radius: 18px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.28);
+      transform: translateY(24px) scale(.97);
+      transition: transform .35s cubic-bezier(.34,1.3,.64,1);
+    }
+    .sp-overlay.open .sp-modal { transform: translateY(0) scale(1); }
+
+    /* Header */
+    .sp-mhead {
+      background: #0F1A1C;
+      padding: 32px 40px 28px;
+      position: relative; flex-shrink: 0;
+    }
+    .sp-mhead::after {
+      content: ''; position: absolute; bottom: 0; left: 40px; right: 40px;
+      height: 1px; background: rgba(201,168,76,.25);
+    }
+    .sp-mlogo-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .sp-micon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: linear-gradient(135deg, #2A6B70, #3A8A90);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; color: #fff;
+      box-shadow: 0 4px 16px rgba(42,107,112,.35);
+    }
+    .sp-mbrand {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem;
+      font-weight: 700; color: #fff; line-height: 1.1;
+    }
+    .sp-mbrand span {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: .65rem; font-weight: 400; letter-spacing: .14em;
+      text-transform: uppercase; color: #C9A84C; margin-top: 2px;
+    }
+    .sp-mtitle {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      font-weight: 700; color: #fff;
+    }
+    .sp-msub { font-size: .8rem; color: rgba(255,255,255,.45); margin-top: 4px; }
+    .sp-mclose {
+      position: absolute; top: 18px; right: 18px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.1); border: none; cursor: pointer;
+      color: rgba(255,255,255,.65); font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .sp-mclose:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+    /* Body */
+    .sp-mbody {
+      padding: 36px 40px; overflow-y: auto; flex: 1;
+      scroll-behavior: smooth;
+    }
+    .sp-mbody::-webkit-scrollbar { width: 5px; }
+    .sp-mbody::-webkit-scrollbar-track { background: #F7F5F1; }
+    .sp-mbody::-webkit-scrollbar-thumb { background: #DDE2E3; border-radius: 99px; }
+
+    /* TOC */
+    .sp-mtoc {
+      background: #F7F5F1; border-radius: 10px;
+      padding: 18px 22px; margin-bottom: 32px;
+    }
+    .sp-mtoc p {
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: #7A8A8C; margin-bottom: 10px;
+    }
+    .sp-mtoc ol { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .sp-mtoc li a { font-size: .82rem; color: #2A6B70; text-decoration: none; }
+    .sp-mtoc li a:hover { text-decoration: underline; }
+
+    /* Sections */
+    .sp-msec { margin-bottom: 34px; scroll-margin-top: 16px; }
+    .sp-msec:last-child { margin-bottom: 0; }
+    .sp-msec-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: #C9A84C; margin-bottom: 5px;
+    }
+    .sp-msec h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      font-weight: 700; color: #0F1A1C; margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1.5px solid #F0EEEA;
+    }
+    .sp-msec p { font-size: .875rem; color: #4A5A5C; line-height: 1.78; margin-bottom: 8px; }
+    .sp-msec ul, .sp-msec ol {
+      padding-left: 18px; display: flex; flex-direction: column;
+      gap: 6px; margin-bottom: 8px;
+    }
+    .sp-msec li { font-size: .875rem; color: #4A5A5C; line-height: 1.72; }
+    .sp-msec strong { color: #0F1A1C; font-weight: 600; }
+    .sp-mcallout {
+      background: linear-gradient(135deg,rgba(42,107,112,.07),rgba(201,168,76,.06));
+      border-left: 3px solid #2A6B70;
+      border-radius: 0 8px 8px 0;
+      padding: 13px 17px; margin: 14px 0;
+      font-size: .85rem; color: #3A5A5C; line-height: 1.75;
+    }
+    .sp-mtable {
+      width: 100%; border-collapse: collapse;
+      margin: 12px 0; font-size: .83rem;
+    }
+    .sp-mtable th {
+      background: #0F1A1C; color: #fff; font-weight: 600;
+      padding: 9px 13px; text-align: left;
+    }
+    .sp-mtable th:first-child { border-radius: 7px 0 0 0; }
+    .sp-mtable th:last-child  { border-radius: 0 7px 0 0; }
+    .sp-mtable td { padding: 9px 13px; border-bottom: 1px solid #DDE2E3; color: #4A5A5C; }
+    .sp-mtable tr:last-child td { border-bottom: none; }
+    .sp-mtable tr:nth-child(even) td { background: #F7F5F1; }
+
+    /* Rights grid */
+    .sp-mrights {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 12px 0;
+    }
+    .sp-mright-card {
+      background: #F7F5F1; border: 1px solid #DDE2E3;
+      border-radius: 9px; padding: 12px 14px;
+    }
+    .sp-mright-card i { color: #2A6B70; display: block; font-size: .85rem; margin-bottom: 5px; }
+    .sp-mright-card strong { display: block; font-size: .81rem; color: #0F1A1C; margin-bottom: 2px; }
+    .sp-mright-card p { font-size: .76rem !important; color: #7A8A8C !important; margin: 0 !important; line-height: 1.4 !important; }
+
+    /* Footer */
+    .sp-mfoot {
+      padding: 18px 40px;
+      border-top: 1px solid #DDE2E3;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      flex-shrink: 0; background: #F7F5F1;
+    }
+    .sp-mfoot p { font-size: .76rem; color: #7A8A8C; }
+    .sp-mfoot-btn {
+      padding: 10px 24px; background: #0F1A1C; color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 600;
+      transition: background .2s; white-space: nowrap;
+    }
+    .sp-mfoot-btn:hover { background: #2A6B70; }
+
+    @media (max-width: 600px) {
+      .sp-mhead  { padding: 22px 20px 18px; }
+      .sp-mbody  { padding: 24px 20px; }
+      .sp-mfoot  { flex-direction: column; align-items: flex-start; padding: 14px 20px; }
+      .sp-mrights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Panel Izquierdo -->
+  <div class="pt-left">
+    <div class="pt-left-img"></div>
+    <div class="pt-left-overlay"></div>
+    <div class="pt-left-line"></div>
+    <div class="pt-left-content">
+      <div class="pt-left-logo">
+        Summer's Paradise
+      </div>
+      <div class="pt-left-copy">
+        <p class="pt-left-eyebrow">República Dominicana</p>
+        <h1 class="pt-left-headline">
+          Vive el<br><em>paraíso</em><br>de verdad.
+        </h1>
+        <p class="pt-left-desc">
+          Experiencias de viaje irrepetibles diseñadas para quienes buscan algo más que un destino — buscan una historia.
+        </p>
+        <div class="pt-left-badge">
+          <i class="fas fa-star"></i>
+          Más de 4,800 viajeros satisfechos en 2024
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Derecho  -->
+  <div class="pt-right">
+    <div class="pt-form-wrap">
+
+      <!-- Logo M -->
+      <div class="pt-mobile-logo"><span></span> Summer's Paradise</div>
+
+      <p class="pt-form-eyebrow">Bienvenido</p>
+      <h2 class="pt-form-heading" id="formHeading">Tu aventura<br>comienza aquí.</h2>
+
+      <!-- Tabs -->
+      <div class="pt-tabs" id="tabs">
+        <button class="pt-tab active" data-tab="login">Iniciar sesión</button>
+        <button class="pt-tab" data-tab="register">Crear cuenta</button>
+        <div class="pt-tab-line" id="tabLine"></div>
+      </div>
+
+      <!-- Success -->
+      <div class="pt-success" id="success">
+        <div class="pt-success-ring"><i class="fas fa-check"></i></div>
+        <h3 id="successTitle">¡Bienvenido!</h3>
+        <p id="successMsg">Redirigiendo a tu paraíso…</p>
+      </div>
+
+      <div class="pt-panels" id="panels">
+
+        <!-- LOGIN PANEL -->
+        <div class="pt-panel" id="panelLogin">
+          <div class="pt-field" id="fLEmail">
+            <label>Correo electrónico</label>
+            <div class="pt-field-wrap">
+              <i class="fas fa-at pt-field-icon"></i>
+              <input type="email" id="lEmail" placeholder="tu@correo.com">
+            </div>
+            <span class="pt-field-error">Correo inválido.</span>
+          </div>
+
+          <div class="pt-field" id="fLPwd">
+            <label>Contraseña</label>
+            <div class="pt-field-wrap">
+              <i class="fas fa-lock pt-field-icon"></i>
+              <input type="password" id="lPwd" placeholder="••••••••">
+              <button class="pt-eye" type="button" data-t="lPwd"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="pt-field-error">Mínimo 6 caracteres.</span>
+          </div>
+
+          <div class="pt-forgot"><a href="#">¿Olvidaste tu contraseña?</a></div>
+
+          <button class="pt-cta" id="btnLogin">
+            <span class="btn-text">Entrar &rarr;</span>
+            <div class="spinner"></div>
+          </button>
+        </div>
+
+        <!-- REGISTER PANEL -->
+        <div class="pt-panel out-right" id="panelReg">
+          <div class="pt-row">
+            <div class="pt-field" id="fRFirst">
+              <label>Nombre</label>
+              <div class="pt-field-wrap">
+                <i class="fas fa-user pt-field-icon"></i>
+                <input type="text" id="rFirst" placeholder="Ana">
+              </div>
+              <span class="pt-field-error">Requerido.</span>
+            </div>
+            <div class="pt-field" id="fRLast">
+              <label>Apellido</label>
+              <div class="pt-field-wrap">
+                <i class="fas fa-user pt-field-icon"></i>
+                <input type="text" id="rLast" placeholder="García">
+              </div>
+              <span class="pt-field-error">Requerido.</span>
+            </div>
+          </div>
+
+          <div class="pt-field" id="fREmail">
+            <label>Correo electrónico</label>
+            <div class="pt-field-wrap">
+              <i class="fas fa-at pt-field-icon"></i>
+              <input type="email" id="rEmail" placeholder="tu@correo.com">
+            </div>
+            <span class="pt-field-error">Correo inválido.</span>
+          </div>
+
+          <div class="pt-field" id="fRPwd">
+            <label>Contraseña</label>
+            <div class="pt-field-wrap">
+              <i class="fas fa-lock pt-field-icon"></i>
+              <input type="password" id="rPwd" placeholder="Mín. 8 caracteres">
+              <button class="pt-eye" type="button" data-t="rPwd"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="pt-field-error">Mínimo 8 caracteres.</span>
+          </div>
+
+          <div class="pt-field" id="fRPwd2">
+            <label>Confirmar contraseña</label>
+            <div class="pt-field-wrap">
+              <i class="fas fa-lock pt-field-icon"></i>
+              <input type="password" id="rPwd2" placeholder="Repite la contraseña">
+              <button class="pt-eye" type="button" data-t="rPwd2"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="pt-field-error">Las contraseñas no coinciden.</span>
+          </div>
+
+          <div class="pt-terms">
+            <input type="checkbox" id="terms">
+            <label for="terms">Acepto los <a href="#" onclick="spOpenModal('terms');return false;">Términos de uso</a> y la <a href="#" onclick="spOpenModal('privacy');return false;">Política de privacidad</a>.</label>
+          </div>
+
+          <button class="pt-cta" id="btnReg">
+            <span class="btn-text">Crear mi cuenta &rarr;</span>
+            <div class="spinner"></div>
+          </button>
+
+        </div>
+
+      </div><!-- /panels -->
+    </div><!-- /form-wrap -->
+  </div><!-- /right -->
+
+  <script src="../js/login.js"></script>
+
+  <!-- ══════════════════════════════════
+       MODAL: TÉRMINOS DE USO
+  ══════════════════════════════════ -->
+  <div class="sp-overlay" id="sp-modal-terms">
+    <div class="sp-modal" role="dialog" aria-modal="true">
+
+      <div class="sp-mhead">
+        <button class="sp-mclose" onclick="spCloseModal('terms')"><i class="fas fa-times"></i></button>
+        <div class="sp-mlogo-row">
+          <div class="sp-micon"><i class="fas fa-umbrella-beach"></i></div>
+          <div class="sp-mbrand">Summer's Paradise <span>República Dominicana</span></div>
+        </div>
+        <div class="sp-mtitle">Términos de Uso</div>
+        <div class="sp-msub">Última actualización: 15 de enero de 2025</div>
+      </div>
+
+      <div class="sp-mbody">
+        <div class="sp-mtoc">
+          <p>Contenido</p>
+          <ol>
+            <li><a href="#t1">Aceptación de los términos</a></li>
+            <li><a href="#t2">Descripción del servicio</a></li>
+            <li><a href="#t3">Registro y cuenta de usuario</a></li>
+            <li><a href="#t4">Reservas y pagos</a></li>
+            <li><a href="#t5">Cancelaciones y reembolsos</a></li>
+            <li><a href="#t6">Responsabilidades del usuario</a></li>
+            <li><a href="#t7">Limitación de responsabilidad</a></li>
+            <li><a href="#t8">Modificaciones</a></li>
+            <li><a href="#t9">Ley aplicable y jurisdicción</a></li>
+          </ol>
+        </div>
+
+        <div class="sp-msec" id="t1">
+          <div class="sp-msec-num">01</div>
+          <h3>Aceptación de los Términos</h3>
+          <p>Al acceder o utilizar los servicios de <strong>Summer's Paradise S.R.L.</strong> a través de nuestra plataforma web, aplicación móvil o cualquier canal digital, usted acepta quedar legalmente vinculado por estos Términos de Uso. Si no está de acuerdo con alguna disposición, le rogamos no utilizar nuestros servicios.</p>
+          <div class="sp-mcallout">Estos términos constituyen un acuerdo legal entre usted y Summer's Paradise S.R.L., empresa constituida en la República Dominicana bajo las leyes vigentes.</div>
+        </div>
+
+        <div class="sp-msec" id="t2">
+          <div class="sp-msec-num">02</div>
+          <h3>Descripción del Servicio</h3>
+          <p>Summer's Paradise ofrece una plataforma de reserva y gestión de experiencias turísticas en la República Dominicana, que incluye:</p>
+          <ul>
+            <li>Reserva de paquetes vacacionales, excursiones y tours.</li>
+            <li>Alojamiento en hoteles, villas y propiedades boutique seleccionadas.</li>
+            <li>Servicios de transporte terrestre y acuático.</li>
+            <li>Experiencias gastronómicas y actividades de aventura.</li>
+            <li>Atención personalizada por parte de concierges locales.</li>
+          </ul>
+          <p>Nos reservamos el derecho de modificar, suspender o descontinuar cualquier parte del servicio en cualquier momento, notificando al usuario con un mínimo de 15 días de anticipación cuando sea posible.</p>
+        </div>
+
+        <div class="sp-msec" id="t3">
+          <div class="sp-msec-num">03</div>
+          <h3>Registro y Cuenta de Usuario</h3>
+          <p>Para acceder a la totalidad de nuestros servicios, deberá crear una cuenta proporcionando información veraz, completa y actualizada. Usted es responsable de:</p>
+          <ul>
+            <li>Mantener la confidencialidad de sus credenciales de acceso.</li>
+            <li>Notificarnos de inmediato ante cualquier uso no autorizado de su cuenta.</li>
+            <li>Todas las actividades realizadas bajo su sesión iniciada.</li>
+            <li>Ser mayor de 18 años o contar con supervisión de un tutor legal.</li>
+          </ul>
+          <p>Summer's Paradise no será responsable por pérdidas derivadas del uso no autorizado de su cuenta cuando dicho uso sea consecuencia de su negligencia.</p>
+        </div>
+
+        <div class="sp-msec" id="t4">
+          <div class="sp-msec-num">04</div>
+          <h3>Reservas y Pagos</h3>
+          <p>Todas las reservas están sujetas a disponibilidad. Al completar una reserva, usted confirma la exactitud de los datos, acepta el precio total y autoriza el cargo al método de pago seleccionado.</p>
+          <div class="sp-mcallout">Los precios se expresan en dólares estadounidenses (USD). Summer's Paradise trabaja con pasarelas de pago certificadas PCI DSS para garantizar la seguridad de sus transacciones.</div>
+          <p>En caso de error en el precio publicado, le notificaremos antes de confirmar su reserva y podrá cancelar sin costo alguno.</p>
+        </div>
+
+        <div class="sp-msec" id="t5">
+          <div class="sp-msec-num">05</div>
+          <h3>Cancelaciones y Reembolsos</h3>
+          <table class="sp-mtable">
+            <thead><tr><th>Plazo de cancelación</th><th>Reembolso aplicable</th></tr></thead>
+            <tbody>
+              <tr><td>Más de 30 días antes</td><td>100 % menos 5 % de gestión</td></tr>
+              <tr><td>Entre 15 y 30 días</td><td>75 % del monto total</td></tr>
+              <tr><td>Entre 7 y 14 días</td><td>50 % del monto total</td></tr>
+              <tr><td>Menos de 7 días</td><td>Sin reembolso (salvo fuerza mayor)</td></tr>
+            </tbody>
+          </table>
+          <p>Los reembolsos se procesan en un plazo de 5 a 10 días hábiles al método de pago original.</p>
+        </div>
+
+        <div class="sp-msec" id="t6">
+          <div class="sp-msec-num">06</div>
+          <h3>Responsabilidades del Usuario</h3>
+          <p>Al utilizar nuestros servicios, usted se compromete a no proporcionar información falsa, realizar reservas de mala fe, interferir con la plataforma, publicar contenido ofensivo ni revender servicios sin autorización escrita.</p>
+        </div>
+
+        <div class="sp-msec" id="t7">
+          <div class="sp-msec-num">07</div>
+          <h3>Limitación de Responsabilidad</h3>
+          <p>Summer's Paradise actúa como intermediario entre el viajero y los proveedores de servicios. No asumimos responsabilidad por demoras causadas por terceros o clima, pérdida de equipaje, ni lesiones en actividades de alto riesgo debidamente informadas. Nuestra responsabilidad total no superará el monto efectivamente pagado.</p>
+        </div>
+
+        <div class="sp-msec" id="t8">
+          <div class="sp-msec-num">08</div>
+          <h3>Modificaciones a los Términos</h3>
+          <p>Nos reservamos el derecho de actualizar estos Términos en cualquier momento. Los cambios sustanciales serán comunicados por correo electrónico o aviso en la plataforma con al menos <strong>10 días de anticipación</strong>. El uso continuado implica su aceptación.</p>
+        </div>
+
+        <div class="sp-msec" id="t9">
+          <div class="sp-msec-num">09</div>
+          <h3>Ley Aplicable y Jurisdicción</h3>
+          <p>Estos Términos se rigen por las leyes de la <strong>República Dominicana</strong>. Cualquier controversia se someterá a los tribunales del Distrito Nacional, Santo Domingo.</p>
+          <p>Consultas: <strong>legal@summersparadise.do</strong></p>
+        </div>
+      </div>
+
+      <div class="sp-mfoot">
+        <p>Summer's Paradise S.R.L. · Santo Domingo, RD</p>
+        <button class="sp-mfoot-btn" onclick="spCloseModal('terms')">Entendido &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       MODAL: POLÍTICA DE PRIVACIDAD
+  ══════════════════════════════════ -->
+  <div class="sp-overlay" id="sp-modal-privacy">
+    <div class="sp-modal" role="dialog" aria-modal="true">
+
+      <div class="sp-mhead">
+        <button class="sp-mclose" onclick="spCloseModal('privacy')"><i class="fas fa-times"></i></button>
+        <div class="sp-mlogo-row">
+          <div class="sp-micon"><i class="fas fa-umbrella-beach"></i></div>
+          <div class="sp-mbrand">Summer's Paradise <span>República Dominicana</span></div>
+        </div>
+        <div class="sp-mtitle">Política de Privacidad</div>
+        <div class="sp-msub">Última actualización: 15 de enero de 2025</div>
+      </div>
+
+      <div class="sp-mbody">
+        <div class="sp-mtoc">
+          <p>Contenido</p>
+          <ol>
+            <li><a href="#p1">¿Quiénes somos?</a></li>
+            <li><a href="#p2">Datos que recopilamos</a></li>
+            <li><a href="#p3">Finalidad del tratamiento</a></li>
+            <li><a href="#p4">Base legal</a></li>
+            <li><a href="#p5">Compartición de datos</a></li>
+            <li><a href="#p6">Retención de datos</a></li>
+            <li><a href="#p7">Sus derechos</a></li>
+            <li><a href="#p8">Cookies</a></li>
+            <li><a href="#p9">Seguridad</a></li>
+            <li><a href="#p10">Contacto y DPO</a></li>
+          </ol>
+        </div>
+
+        <div class="sp-msec" id="p1">
+          <div class="sp-msec-num">01</div>
+          <h3>¿Quiénes Somos?</h3>
+          <p><strong>Summer's Paradise S.R.L.</strong> es una empresa de servicios turísticos constituida en la República Dominicana, con domicilio en la Avenida Abraham Lincoln, Torre Empresarial, Piso 8, Santo Domingo, Distrito Nacional.</p>
+          <div class="sp-mcallout">Actuamos como Responsable del Tratamiento de sus datos personales conforme a la Ley 172-13 sobre Protección de Datos Personales de la República Dominicana.</div>
+        </div>
+
+        <div class="sp-msec" id="p2">
+          <div class="sp-msec-num">02</div>
+          <h3>Datos que Recopilamos</h3>
+          <ul>
+            <li><strong>Identificación:</strong> nombre, apellido, pasaporte o cédula, fecha de nacimiento.</li>
+            <li><strong>Contacto:</strong> correo electrónico, teléfono, dirección postal.</li>
+            <li><strong>Pago:</strong> últimos cuatro dígitos de tarjeta y nombre del titular (procesados por proveedor PCI DSS).</li>
+            <li><strong>Navegación:</strong> dirección IP, dispositivo, páginas visitadas y duración de sesión.</li>
+            <li><strong>Preferencias:</strong> destinos de interés, historial de reservas y reseñas.</li>
+          </ul>
+        </div>
+
+        <div class="sp-msec" id="p3">
+          <div class="sp-msec-num">03</div>
+          <h3>Finalidad del Tratamiento</h3>
+          <ul>
+            <li>Gestión y confirmación de reservas y pagos.</li>
+            <li>Comunicaciones operativas relacionadas con su viaje.</li>
+            <li>Atención al cliente y resolución de reclamaciones.</li>
+            <li>Comunicaciones comerciales (solo con consentimiento previo).</li>
+            <li>Mejora de la plataforma y personalización de la experiencia.</li>
+            <li>Cumplimiento de obligaciones legales y contables.</li>
+            <li>Prevención del fraude y seguridad de la cuenta.</li>
+          </ul>
+        </div>
+
+        <div class="sp-msec" id="p4">
+          <div class="sp-msec-num">04</div>
+          <h3>Base Legal del Tratamiento</h3>
+          <ul>
+            <li><strong>Ejecución contractual:</strong> para gestionar la reserva que usted solicita.</li>
+            <li><strong>Consentimiento:</strong> para marketing y cookies no esenciales.</li>
+            <li><strong>Interés legítimo:</strong> para seguridad y prevención del fraude.</li>
+            <li><strong>Obligación legal:</strong> para el cumplimiento de normativas fiscales y turísticas.</li>
+          </ul>
+        </div>
+
+        <div class="sp-msec" id="p5">
+          <div class="sp-msec-num">05</div>
+          <h3>Compartición de Datos con Terceros</h3>
+          <p>No vendemos sus datos personales. Solo los compartimos con proveedores turísticos necesarios para su viaje, procesadores de pago certificados, proveedores tecnológicos bajo acuerdos de confidencialidad y autoridades cuando lo exija la ley.</p>
+          <div class="sp-mcallout">Todos nuestros proveedores están contractualmente obligados a proteger sus datos y utilizarlos únicamente para los fines autorizados.</div>
+        </div>
+
+        <div class="sp-msec" id="p6">
+          <div class="sp-msec-num">06</div>
+          <h3>Retención de Datos</h3>
+          <ul>
+            <li><strong>Cuenta activa:</strong> mientras mantenga su cuenta abierta.</li>
+            <li><strong>Historial de reservas:</strong> 5 años (obligación fiscal).</li>
+            <li><strong>Marketing:</strong> hasta que retire su consentimiento.</li>
+            <li><strong>Navegación:</strong> máximo 24 meses.</li>
+          </ul>
+          <p>Transcurridos estos plazos, sus datos serán eliminados o anonimizados de forma segura.</p>
+        </div>
+
+        <div class="sp-msec" id="p7">
+          <div class="sp-msec-num">07</div>
+          <h3>Sus Derechos</h3>
+          <p>Conforme a la Ley 172-13, usted tiene los siguientes derechos:</p>
+          <div class="sp-mrights">
+            <div class="sp-mright-card"><i class="fas fa-eye"></i><strong>Acceso</strong><p>Conocer qué datos tenemos sobre usted.</p></div>
+            <div class="sp-mright-card"><i class="fas fa-pen"></i><strong>Rectificación</strong><p>Corregir datos inexactos o incompletos.</p></div>
+            <div class="sp-mright-card"><i class="fas fa-trash-alt"></i><strong>Supresión</strong><p>Solicitar la eliminación de sus datos.</p></div>
+            <div class="sp-mright-card"><i class="fas fa-ban"></i><strong>Oposición</strong><p>Oponerse a determinados tratamientos.</p></div>
+            <div class="sp-mright-card"><i class="fas fa-download"></i><strong>Portabilidad</strong><p>Recibir sus datos en formato estructurado.</p></div>
+            <div class="sp-mright-card"><i class="fas fa-pause-circle"></i><strong>Limitación</strong><p>Restringir el tratamiento en ciertas circunstancias.</p></div>
+          </div>
+          <p>Envíe su solicitud a <strong>privacidad@summersparadise.do</strong> con copia de su documento de identidad. Responderemos en un máximo de 15 días hábiles.</p>
+        </div>
+
+        <div class="sp-msec" id="p8">
+          <div class="sp-msec-num">08</div>
+          <h3>Cookies y Tecnologías de Rastreo</h3>
+          <ul>
+            <li><strong>Esenciales:</strong> necesarias para el funcionamiento de la plataforma (sin consentimiento).</li>
+            <li><strong>Analíticas:</strong> para medir uso y mejorar la experiencia (requieren consentimiento).</li>
+            <li><strong>Marketing:</strong> para personalizar anuncios en terceras plataformas (requieren consentimiento).</li>
+          </ul>
+          <p>Puede gestionar sus preferencias desde la configuración de su navegador en cualquier momento.</p>
+        </div>
+
+        <div class="sp-msec" id="p9">
+          <div class="sp-msec-num">09</div>
+          <h3>Seguridad de los Datos</h3>
+          <ul>
+            <li>Cifrado TLS 1.3 en todas las comunicaciones.</li>
+            <li>Almacenamiento en servidores certificados ISO 27001.</li>
+            <li>Autenticación multifactor para el personal.</li>
+            <li>Revisiones y pruebas de seguridad periódicas.</li>
+            <li>Notificación de incidentes en un plazo de 72 horas.</li>
+          </ul>
+          <div class="sp-mcallout">En caso de brecha de seguridad que afecte sus derechos, le notificaremos personalmente en el menor tiempo posible.</div>
+        </div>
+
+        <div class="sp-msec" id="p10">
+          <div class="sp-msec-num">10</div>
+          <h3>Contacto y Delegado de Protección de Datos</h3>
+          <ul>
+            <li><strong>Correo:</strong> privacidad@summersparadise.do</li>
+            <li><strong>Dirección:</strong> Av. Abraham Lincoln, Torre Empresarial, Piso 8, Santo Domingo, RD</li>
+            <li><strong>Teléfono:</strong> +1 (809) 555-0190</li>
+          </ul>
+          <p>Si considera que sus derechos no han sido atendidos, puede presentar una reclamación ante el INDOTEL o la autoridad de protección de datos competente.</p>
+        </div>
+      </div>
+
+      <div class="sp-mfoot">
+        <p>Summer's Paradise S.R.L. · Santo Domingo, RD</p>
+        <button class="sp-mfoot-btn" onclick="spCloseModal('privacy')">Entendido &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MODAL SCRIPT (independiente del login.js) ── -->
+  <script>
+    function spOpenModal(type) {
+      var overlay = document.getElementById('sp-modal-' + type);
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      overlay.querySelector('.sp-mbody').scrollTop = 0;
+    }
+    function spCloseModal(type) {
+      document.getElementById('sp-modal-' + type).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    // Cerrar al hacer clic fuera del modal
+    document.querySelectorAll('.sp-overlay').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        if (e.target === el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+      });
+    });
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.sp-overlay.open').forEach(function(el) {
+          el.classList.remove('open'); document.body.style.overflow = '';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excursiones — Summer's Paradise</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/new.css">
+  <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+<div class="pt-page">
+
+  <!-- ============================================================
+       HERO BANNER INTERIOR
+       ============================================================ -->
+  <div class="exc-page-hero">
+    <div class="exc-hero-text">
+      <h1 class="exc-hero-title">
+        Excursiones por<br>
+        <span>toda la isla</span>
+      </h1>
+      <p class="exc-hero-desc">
+        Descubre República Dominicana desde el este hasta el norte.
+        Salidas desde cualquier ciudad, guías expertos y experiencias
+        que no olvidarás jamás.
+      </p>
+    </div>
+
+    <div class="exc-hero-stats">
+      <div class="exc-stat">
+        <div class="exc-stat-num">12+</div>
+        <div class="exc-stat-label">Excursiones</div>
+      </div>
+      <div class="exc-stat">
+        <div class="exc-stat-num">3</div>
+        <div class="exc-stat-label">Zonas del país</div>
+      </div>
+      <div class="exc-stat">
+        <div class="exc-stat-num">100%</div>
+        <div class="exc-stat-label">Personalizadas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN EXCURSIONES
+       ============================================================ -->
+  <section class="exc-section" id="excursiones">
+
+    <div class="exc-header">
+      <span class="section-subtitle">Elige tu zona · Elige tu aventura</span>
+      <h2 class="section-title">Catálogo de Excursiones</h2>
+      <p class="exc-intro">
+        Horarios de salida y duración varían según tu punto de partida.
+        Contáctanos y creamos tu excursión perfecta.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="exc-tabs">
+      <button class="exc-tab active" onclick="switchZone('este', this)">
+        <i class="fas fa-umbrella-beach"></i> Zona Este
+      </button>
+      <button class="exc-tab" onclick="switchZone('metro', this)">
+        <i class="fas fa-city"></i> Santo Domingo
+      </button>
+      <button class="exc-tab" onclick="switchZone('norte', this)">
+        <i class="fas fa-mountain"></i> Zona Norte
+      </button>
+    </div>
+
+    <!-- ===== ZONA ESTE ===== -->
+    <div class="exc-zone active" id="zone-este">
+
+      <!-- Party Boat -->
+      <div class="exc-card exc-featured">
+        <div class="exc-badge">⭐ Destacado</div>
+        <div class="exc-card-img" style="background-image:url('../img/party.jpg')"></div>
+        <div class="exc-card-index">01</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Fiesta · Mar</div>
+          <h3 class="exc-name">Party Boat, Punta Cana</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+            <ul class="exc-includes">
+              <li><i class="fas fa-check"></i> Snorkeling y piscina natural</li>
+              <li><i class="fas fa-check"></i> Open Bar bebidas nacionales</li>
+              <li><i class="fas fa-check"></i> Animación y snack variado</li>
+              <li><i class="fas fa-check"></i> Staff y guía turístico incluido</li>
+            </ul>
+            <div class="exc-meta">
+              <span><i class="far fa-clock"></i> 3 horas a bordo</span>
+              <span><i class="fas fa-sun"></i> 8:30 · 11:30 · 14:30</span>
+              <span><i class="fas fa-users"></i> Mín. 30 personas</span>
+            </div>
+            <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buggies Experience -->
+      <div class="exc-card exc-featured">
+        <div class="exc-badge">⭐ Destacado</div>
+        <div class="exc-card-img" style="background-image:url('../img/buggies.png')"></div>
+        <div class="exc-card-index">02</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Aventura · Naturaleza</div>
+          <h3 class="exc-name">Buggies Experience</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Rancho ecológico, cuevas y playa Macao</li>
+            <li><i class="fas fa-check"></i> Degustación de café, cacao y tabaco</li>
+            <li><i class="fas fa-check"></i> Snacks y almuerzo buffet</li>
+            <li><i class="fas fa-check"></i> Staff y guía turístico incluido</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 3 horas</span>
+            <span><i class="fas fa-sun"></i> 7:30 · 11:30 · 13:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coco Bongo -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/bongo.png')"></div>
+        <div class="exc-card-index">03</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Nocturno · Show</div>
+          <h3 class="exc-name">Coco Bongo</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Acceso al show Coco Bongo</li>
+            <li><i class="fas fa-check"></i> Transporte turístico cómodo</li>
+            <li><i class="fas fa-check"></i> Staff de la empresa incluido</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> Noche completa</span>
+            <span><i class="fas fa-moon"></i> Recogida: 19:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scape Park -->
+      <div class="exc-card exc-featured">
+        <div class="exc-badge">⭐ Destacado</div>
+        <div class="exc-card-img" style="background-image:url('../img/scape.png')"></div>
+        <div class="exc-card-index">04</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Aventura · Eco</div>
+          <h3 class="exc-name">Scape Park</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Hoyo Azul y Zip Line Eco Adventure</li>
+            <li><i class="fas fa-check"></i> Parque acuático Saltos Azules</li>
+            <li><i class="fas fa-check"></i> Cave Swim y Cueva Iguabonita</li>
+            <li><i class="fas fa-check"></i> Ruta cultural, Animalario y almuerzo</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 8 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 7:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Isla Saona -->
+      <div class="exc-card exc-featured">
+        <div class="exc-badge">⭐ Destacado</div>
+        <div class="exc-card-img" style="background-image:url('../img/saona.png')"></div>
+        <div class="exc-card-index">05</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Playa · Lujo</div>
+          <h3 class="exc-name">Isla Saona</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Lanchas rápidas o catamarán</li>
+            <li><i class="fas fa-check"></i> Piscina natural y open bar</li>
+            <li><i class="fas fa-check"></i> Animación y almuerzo buffet</li>
+            <li><i class="fas fa-check"></i> Impuestos de medio ambiente incluidos</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 13 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 6:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Isla Catalina -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/catalina.png')"></div>
+        <div class="exc-card-index">06</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Playa · Snorkeling</div>
+          <h3 class="exc-name">Isla Catalina</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Transporte en catamarán o barco</li>
+            <li><i class="fas fa-check"></i> Snorkeling y almuerzo buffet</li>
+            <li><i class="fas fa-check"></i> Open bar bebidas locales</li>
+            <li><i class="fas fa-check"></i> Impuestos de medio ambiente incluidos</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 12 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 7:00</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catamarán Privado -->
+      <div class="exc-card exc-featured">
+        <div class="exc-badge">⭐ Destacado</div>
+        <div class="exc-card-img" style="background-image:url('../img/catamaran.png')"></div>
+        <div class="exc-card-index">07</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">VIP · Privado</div>
+          <h3 class="exc-name">Catamarán Privado</h3>
+          <p class="exc-vip-label">"Experiencia VIP 100% Privada"</p>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Embarcación totalmente privada</li>
+            <li><i class="fas fa-check"></i> Open bar nacional y DJ en vivo</li>
+            <li><i class="fas fa-check"></i> Animación y almuerzo buffet</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> Full Day</span>
+            <span><i class="fas fa-sun"></i> Recogida: 8:00</span>
+            <span><i class="fas fa-users"></i> Mín. 30 personas</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- La Romana -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/romana.png')"></div>
+        <div class="exc-card-index">08</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Cultura · Historia</div>
+          <h3 class="exc-name">La Romana, Arte y Belleza Natural</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Cueva de las Maravillas y Altos de Chavón</li>
+            <li><i class="fas fa-check"></i> Marina Casa de Campo</li>
+            <li><i class="fas fa-check"></i> Playa Minitas y almuerzo típico</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 10 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 8:00</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /zone-este -->
+
+    <!-- ===== ZONA METROPOLITANA ===== -->
+    <div class="exc-zone" id="zone-metro">
+
+      <div class="exc-card exc-wide">
+        <div class="exc-card-img" style="background-image:url('../img/stodgo.png')"></div>
+        <div class="exc-card-index">09</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Ciudad · Historia</div>
+          <h3 class="exc-name">Santo Domingo City Tours</h3>
+          <span class="exc-wide-badge">Día Completo</span>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes exc-two-col">
+            <li><i class="fas fa-check"></i> Alcázar de Colón y Catedral</li>
+            <li><i class="fas fa-check"></i> Faro a Colón</li>
+            <li><i class="fas fa-check"></i> Panteón Nacional Dominicano</li>
+            <li><i class="fas fa-check"></i> Museo del Ámbar y Larimar</li>
+            <li><i class="fas fa-check"></i> Parque Nacional Los 3 Ojos</li>
+            <li><i class="fas fa-check"></i> Almuerzo en restaurant típico</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 12 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 7:00</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /zone-metro -->
+
+    <!-- ===== ZONA NORTE ===== -->
+    <div class="exc-zone" id="zone-norte">
+
+      <!-- Cayo Levantado -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/levantado.jpg')"></div>
+        <div class="exc-card-index">10</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Isla · Naturaleza</div>
+          <h3 class="exc-name">Samaná Tours · Cayo Levantado</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Lancha a Cayo Levantado</li>
+            <li><i class="fas fa-check"></i> Playa natural y almuerzo típico dominicano</li>
+            <li><i class="fas fa-check"></i> Impuestos incluidos</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 16 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 4:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ballenas Jorobadas -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80')"></div>
+        <div class="exc-card-index">11</div>
+        <div class="exc-card-body">
+          <div class="exc-tag exc-season">🐋 Tour de Temporada</div>
+          <h3 class="exc-name">Samaná · Ballenas Jorobadas</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Visita al santuario de ballenas jorobadas</li>
+            <li><i class="fas fa-check"></i> Almuerzo buffet en Cayo Levantado</li>
+            <li><i class="fas fa-check"></i> Equipos de seguridad y staff profesional</li>
+            <li><i class="fas fa-check"></i> Impuestos de parque incluidos</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 16 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 4:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Los Haitises -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/haitises.png')"></div>
+        <div class="exc-card-index">12</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Eco · Naturaleza</div>
+          <h3 class="exc-name">Experiencia Los Haitises</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Recorrido en lancha y senderos ecológicos</li>
+            <li><i class="fas fa-check"></i> Cuevas naturales y piscinas naturales</li>
+            <li><i class="fas fa-check"></i> Pasadía hotel Caño Hondo y almuerzo buffet</li>
+            <li><i class="fas fa-check"></i> Impuestos de parque incluidos</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 13 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 6:00</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zipline Montaña Redonda -->
+      <div class="exc-card">
+        <div class="exc-card-img" style="background-image:url('../img/zipline.png')"></div>
+        <div class="exc-card-index">13</div>
+        <div class="exc-card-body">
+          <div class="exc-tag">Aventura · Vistas</div>
+          <h3 class="exc-name">Zipline y Montaña Redonda</h3>
+          <div class="exc-card-expanded">
+            <div class="exc-card-divider"></div>
+          <ul class="exc-includes">
+            <li><i class="fas fa-check"></i> Visita a Montaña Redonda</li>
+            <li><i class="fas fa-check"></i> Tirolesas desde la cima</li>
+            <li><i class="fas fa-check"></i> Almuerzo en restaurant</li>
+          </ul>
+          <div class="exc-meta">
+            <span><i class="far fa-clock"></i> 10 horas</span>
+            <span><i class="fas fa-sun"></i> Recogida: 7:30</span>
+          </div>
+          <a href="#" class="exc-btn">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /zone-norte -->
+
+    <!-- Nota informativa -->
+    <div class="exc-note">
+      <i class="fas fa-info-circle"></i>
+      Salidas desde cualquier ciudad de República Dominicana &nbsp;·&nbsp;
+      Horarios varían según punto de partida &nbsp;·&nbsp;
+      Excursiones personalizadas disponibles
+    </div>
+
+  </section>
+
+</div><!-- /pt-page -->
+
+<div id="footer-placeholder"></div>
+<script src="../js/banner_footer.js"></script>
+
+<script>
+  /* ── Header scroll ── */
+  (function () {
+    const checkbox = document.getElementById('pt-mobile-menu-toggle');
+    document.querySelectorAll('.pt-mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => { checkbox.checked = false; });
+    });
+
+    const header = document.getElementById('mainHeader');
+    function checkScroll() {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+  })();
+
+  /* ── Animar tarjetas de forma inmediata (sin esperar IntersectionObserver) ── */
+  function animateZoneCards(zoneEl) {
+    zoneEl.querySelectorAll('.exc-card').forEach((card, i) => {
+      card.style.transition = 'none';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.getBoundingClientRect(); // forzar reflow
+      card.style.transition = `opacity 0.3s ease ${i * 0.05}s, transform 0.3s ease ${i * 0.05}s`;
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+  }
+
+  /* ── Tabs de zona ── */
+  function switchZone(zone, btn) {
+    document.querySelectorAll('.exc-zone').forEach(z => z.classList.remove('active'));
+    document.querySelectorAll('.exc-tab').forEach(t => t.classList.remove('active'));
+    const zoneEl = document.getElementById('zone-' + zone);
+    zoneEl.classList.add('active');
+    btn.classList.add('active');
+    animateZoneCards(zoneEl); // animar al instante
+  }
+
+  /* ── Animación al entrar la sección en pantalla (solo primera vez) ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    const section = document.querySelector('.exc-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateZoneCards(document.querySelector('.exc-zone.active'));
+          observer.unobserve(section);
+        }
+      });
+    }, { threshold: 0.1 });
+    if (section) observer.observe(section);
+  });
+</script>
+
+</body>
+</html>
