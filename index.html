@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer Paradise – Tu Asistente de Viajes con IA</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Nunito:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- n8n Chat -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────── */
+    :root {
+      --navy:       #0B2740;
+      --navy-deep:  #060E1A;
+      --ocean:      #145C78;
+      --sky:        #2A8FAB;
+      --cream:      #F4EBD5;
+      --cream-pale: #FDF7EE;
+      --gold:       #E6B55A;
+      --gold-warm:  #C98D38;
+      --sand:       #BFA06B;
+      --success:    #4CAF50;
+
+      --glass:      rgba(11,39,64,.42);
+      --glass-bdr:  rgba(230,181,90,.22);
+      --r-xl:       24px;
+      --r-lg:       16px;
+      --r-md:       12px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      height:100%;
+      font-family:'Nunito', sans-serif;
+      background:var(--navy-deep);
+      color:var(--cream);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    /* ─── BACKGROUND ────────────────────────────────────── */
+    .bg-scene {
+      position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+    }
+
+    .bg-gradient {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 90% 55% at 15% 100%, rgba(20,92,120,.55) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 40% at 85%  0%,  rgba(42,143,171,.2) 0%, transparent 55%),
+        linear-gradient(160deg, #061220 0%, #0B2740 40%, #091E30 70%, #040A12 100%);
+    }
+
+    .stars {
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(1px   1px   at 12% 8%,  rgba(244,235,213,.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 28% 4%,  rgba(230,181,90,.6)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 55% 12%, rgba(244,235,213,.5)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 78% 6%,  rgba(244,235,213,.4)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 92% 18%, rgba(244,235,213,.45) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 38% 28%, rgba(230,181,90,.35) 0%, transparent 100%),
+        radial-gradient(1px   1px   at 65% 22%, rgba(244,235,213,.4)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 8%  35%, rgba(244,235,213,.3)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 48% 45%, rgba(230,181,90,.25)  0%, transparent 100%),
+        radial-gradient(1px   1px   at 83% 38%, rgba(244,235,213,.3)  0%, transparent 100%);
+    }
+
+    .orb {
+      position:absolute; border-radius:50%; filter:blur(65px); opacity:.13;
+      animation:floatOrb var(--d,9s) ease-in-out infinite;
+    }
+    .orb-1 { width:360px; height:360px; background:var(--sky);      top:5%;  left:-8%;  --d:10s; }
+    .orb-2 { width:240px; height:240px; background:var(--gold);     bottom:18%; right:3%;  --d:8s;  animation-delay:-4s; }
+    .orb-3 { width:180px; height:180px; background:var(--ocean);    top:48%; left:58%;  --d:13s; animation-delay:-7s; }
+    .orb-4 { width:130px; height:130px; background:var(--gold-warm); top:22%; right:20%; --d:7s;  animation-delay:-2s; opacity:.08; }
+
+    @keyframes floatOrb {
+      0%,100% { transform:translate(0,0) scale(1); }
+      33%      { transform:translate(18px,-22px) scale(1.06); }
+      66%      { transform:translate(-14px,16px) scale(.94); }
+    }
+
+    .wave-bar {
+      position:absolute; bottom:0; left:0; right:0; height:160px;
+    }
+    .wave-bar svg { width:100%; height:100%; }
+
+    .palm-deco {
+      position:absolute; bottom:0; right:0;
+      width:clamp(120px,18vw,260px);
+      opacity:.05; pointer-events:none;
+    }
+
+    /* ─── LOGO ──────────────────────────────────────────── */
+    .logo-corner {
+      position:fixed; top:18px; left:22px; z-index:200;
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      animation:fadeInDown .7s ease both;
+    }
+
+    .logo-icon {
+      width:44px; height:44px;
+      background:linear-gradient(135deg, var(--gold), var(--gold-warm));
+      border-radius:13px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.25rem; color:var(--navy-deep);
+      box-shadow:0 4px 18px rgba(230,181,90,.45);
+      flex-shrink:0;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .logo-corner:hover .logo-icon {
+      transform:rotate(-8deg) scale(1.07);
+      box-shadow:0 6px 24px rgba(230,181,90,.6);
+    }
+
+    .logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .logo-text .lt-main {
+      font-family:'Cormorant Garamond', serif;
+      font-size:1rem; font-weight:600;
+      color:var(--gold); letter-spacing:.06em;
+    }
+    .logo-text .lt-sub {
+      font-size:.62rem; font-weight:400;
+      color:rgba(244,235,213,.5);
+      letter-spacing:.22em; text-transform:uppercase;
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────────── */
+    .main-wrapper {
+      position:relative; z-index:1;
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:108px 16px 52px;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    .hero-header { text-align:center; margin-bottom:38px; }
+
+    .hero-eyebrow {
+      font-family:'Dancing Script', cursive;
+      font-size:clamp(.9rem,2vw,1.15rem);
+      color:var(--gold); letter-spacing:.15em;
+      margin-bottom:10px;
+      opacity:0; animation:fadeInUp .7s ease .25s both;
+    }
+
+    .hero-title {
+      font-family:'Cormorant Garamond', serif;
+      font-size:clamp(2.8rem,7.5vw,5.2rem);
+      font-weight:600; line-height:1.05;
+      color:var(--cream); margin-bottom:18px;
+      opacity:0; animation:fadeInUp .8s ease .45s both;
+    }
+    .hero-title em {
+      font-style:italic; font-weight:300;
+      color:var(--gold);
+      text-shadow:0 0 40px rgba(230,181,90,.35);
+    }
+
+    .hero-sub {
+      font-size:clamp(.82rem,1.8vw,.98rem);
+      color:rgba(244,235,213,.6); max-width:460px;
+      margin:0 auto; font-weight:300;
+      line-height:1.75; letter-spacing:.02em;
+      opacity:0; animation:fadeInUp .8s ease .65s both;
+    }
+
+    /* ─── FEATURES ──────────────────────────────────────── */
+    .features-strip {
+      display:flex; gap:10px; flex-wrap:wrap;
+      justify-content:center; margin-top:28px;
+      opacity:0; animation:fadeInUp .8s ease 1s both;
+    }
+
+    .feat-pill {
+      display:flex; align-items:center; gap:7px;
+      background:rgba(11,39,64,.38);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(230,181,90,.1);
+      border-radius:40px; padding:7px 16px;
+      font-size:.73rem; color:rgba(244,235,213,.55);
+      transition:all .25s ease;
+    }
+    .feat-pill:hover {
+      border-color:rgba(230,181,90,.25);
+      color:rgba(244,235,213,.8);
+      transform:translateY(-2px);
+    }
+    .feat-pill i { color:var(--gold); font-size:.68rem; }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    .footer-credit {
+      opacity:0; animation:fadeInUp .8s ease 1.2s both;
+      font-size:.63rem; color:rgba(244,235,213,.2);
+      margin-top:22px; text-align:center; letter-spacing:.08em;
+    }
+    .footer-credit span { color:rgba(230,181,90,.4); }
+
+    /* ─── KEYFRAMES ─────────────────────────────────────── */
+    @keyframes fadeInUp   { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:none} }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none} }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width:575px) {
+      .main-wrapper  { padding:76px 10px 38px; }
+      .hero-title    { font-size:2.5rem; }
+      .logo-text     { display:none; }
+      .feat-pill span { display:none; }
+    }
+
+    /* ─── N8N CHAT THEME ─────────────────────────────────── */
+    :root {
+      /* Primary = gold */
+      --chat--color--primary:            #C98D38;
+      --chat--color--primary-shade-50:   #B87D2E;
+      --chat--color--primary--shade-100: #A06C20;
+      /* Secondary = sky blue */
+      --chat--color--secondary:          #2A8FAB;
+      --chat--color-secondary-shade-50:  #1f7a94;
+      /* Surfaces */
+      --chat--color-white:               #F4EBD5;
+      --chat--color-light:               #0f2e47;
+      --chat--color-light-shade-50:      #1a3d58;
+      --chat--color-light-shade-100:     #2a5470;
+      --chat--color-medium:              #2a5470;
+      --chat--color-dark:                #060E1A;
+      --chat--color-disabled:            #3a5a72;
+      --chat--color-typing:              #C98D38;
+      /* Layout */
+      --chat--border-radius:             12px;
+      --chat--font-family:               'Nunito', sans-serif;
+      /* Window */
+      --chat--window--width:             400px;
+      --chat--window--height:            580px;
+      --chat--window--border:            1px solid rgba(230,181,90,.22);
+      --chat--window--border-radius:     20px;
+      /* Header */
+      --chat--header--background:        #0B2740;
+      --chat--header--color:             #F4EBD5;
+      --chat--heading--font-size:        1.3em;
+      /* Messages */
+      --chat--message--bot--background:  rgba(20,92,120,.45);
+      --chat--message--bot--color:       #F4EBD5;
+      --chat--message--user--background: rgba(201,141,56,.6);
+      --chat--message--user--color:      #F4EBD5;
+      --chat--message--pre--background:  rgba(0,0,0,.2);
+      /* Body / footer */
+      --chat--body--background:          #091E30;
+      --chat--footer--background:        #0B2740;
+      --chat--footer--color:             #F4EBD5;
+      /* Input */
+      --chat--input--background:         #0f2e47;
+      --chat--input--text-color:         #F4EBD5;
+      /* Toggle button */
+      --chat--toggle--background:        #C98D38;
+      --chat--toggle--hover--background: #B87D2E;
+      --chat--toggle--active--background:#A06C20;
+      --chat--toggle--color:             #060E1A;
+      --chat--toggle--size:              60px;
+      /* Send button */
+      --chat--input--send--button--background:       #0f2e47;
+      --chat--input--send--button--color:            #C98D38;
+      --chat--input--send--button--background-hover: #1a3d58;
+      --chat--input--send--button--color-hover:      #E6B55A;
+    }
+
+    /* Extra polish on the n8n widget */
+    .n8n-chat-window {
+      box-shadow: 0 35px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04) !important;
+    }
+    .n8n-chat-toggle-button {
+      box-shadow: 0 6px 24px rgba(201,141,56,.5) !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ BACKGROUND SCENE ══════════════════════════════════ -->
+<div class="bg-scene" aria-hidden="true">
+  <div class="bg-gradient"></div>
+  <div class="stars"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <div class="wave-bar">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 C200,20 400,140 600,80 C800,20 1000,140 1200,80 C1320,46 1380,90 1440,70 L1440,160 L0,160 Z"
+            fill="rgba(42,143,171,0.07)"/>
+      <path d="M0,110 C240,60 480,150 720,100 C960,50 1200,140 1440,95 L1440,160 L0,160 Z"
+            fill="rgba(20,92,120,0.06)"/>
+    </svg>
+  </div>
+
+  <svg class="palm-deco" viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg" fill="var(--sky)">
+    <rect x="92" y="120" width="14" height="220" rx="7"/>
+    <ellipse cx="60"  cy="95"  rx="68" ry="18" transform="rotate(-20 60 95)"/>
+    <ellipse cx="140" cy="80"  rx="68" ry="18" transform="rotate(20 140 80)"/>
+    <ellipse cx="50"  cy="120" rx="55" ry="14" transform="rotate(-35 50 120)"/>
+    <ellipse cx="150" cy="110" rx="55" ry="14" transform="rotate(35 150 110)"/>
+    <ellipse cx="99"  cy="60"  rx="58" ry="14" transform="rotate(-5 99 60)"/>
+  </svg>
+</div>
+
+<!-- ══ LOGO ════════════════════════════════════════════════ -->
+<a href="#" class="logo-corner" aria-label="Summer Paradise">
+  <div class="logo-icon" aria-hidden="true"><i class="fas fa-umbrella-beach"></i></div>
+  <div class="logo-text">
+    <span class="lt-main">Summer's Paradise</span>
+    <span class="lt-sub">Agencia de Viajes</span>
+  </div>
+</a>
+
+<main class="main-wrapper">
+
+  <header class="hero-header">
+    <p class="hero-eyebrow">✦ Tu asistente de viajes con inteligencia artificial ✦</p>
+    <h1 class="hero-title">Habla con <em>Sammy</em></h1>
+    <p class="hero-sub">Cuéntale a dónde sueñas ir. Sammy diseñará tu experiencia perfecta, a tu medida y en tu idioma.</p>
+  </header>
+
+  <div class="features-strip" aria-label="Beneficios">
+    <div class="feat-pill"><i class="fas fa-shield-halved"></i><span>Pagos seguros</span></div>
+    <div class="feat-pill"><i class="fas fa-clock"></i><span>24 / 7</span></div>
+    <div class="feat-pill"><i class="fas fa-plane"></i><span>+100 destinos</span></div>
+    <div class="feat-pill"><i class="fas fa-star"></i><span>+10,000 viajeros</span></div>
+    <div class="feat-pill"><i class="fas fa-headset"></i><span>Soporte humano</span></div>
+  </div>
+
+  <p class="footer-credit">© 2025 <span>Summer Paradise</span> · Todos los derechos reservados</p>
+
+</main>
+
+<!-- ══ SCRIPTS ══════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ once:true, duration:700, easing:'ease-out-quad' });</script>
+
+<!-- n8n Chat Widget -->
+<script type="module">
+import  {  createChat  }  from  'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js' ;
+
+createChat ( { 
+	webhookUrl : 'https://kenryu83.app.n8n.cloud/webhook/418719bd-a659-412e-a70b-913d798c5e80/chat' , 
+	webhookConfig : { 
+		method : 'POST' , 
+		headers : { } 
+	} , 
+	target : '#n8n-chat' , 
+	mode : 'window' , 
+	chatInputKey : 'chatInput' , 
+	chatSessionKey : 'sessionId' , 
+	loadPreviousSession : true , 
+	metadata : { } , 
+	showWelcomeScreen : false , 
+	defaultLanguage : 'en' , 
+	initialMessages : [ 
+		'¡Hola! 👋' , 
+		'Me llamo Sammy. ¿En qué puedo ayudarte hoy?' 
+	] , 
+	i18n : { 
+		en : { 
+			title : '¡Hola! 👋' , 
+			subtitle : "Inicia un chat. Estamos aquí para ayudarte las 24 horas del día, los 7 días de la semana." , 
+			footer : '' , 
+			getStarted : 'Nueva Conversación' , 
+			inputPlaceholder : 'Escriba su pregunta...' , 
+		} , 
+	} , 
+	enableStreaming : false , 
+} ) ;
+
+</script>
+
+</body>
+</html>
