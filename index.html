@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liceo Técnico Manuel Del Cabral - Portal Institucional</title>
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <style>
+        :root {
+            --color-primary: #2c3e50;
+            --color-secondary: #3498db;
+            --color-accent: #e74c3c;
+            --color-green: #2ecc71;
+            --color-text: #333;
+            --color-light: #f8f9fa;
+            --color-white: #fff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--color-white);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+        
+        .btn-accent {
+            background-color: var(--color-accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Secciones generales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* Slider */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 30px;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .slider-dot.active {
+            background: var(--color-secondary);
+        }
+        
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        
+        .slider-arrow:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .slider-arrow.prev {
+            left: 20px;
+        }
+        
+        .slider-arrow.next {
+            right: 20px;
+        }
+        
+        /* Sección Nosotros */
+        .nosotros-cta {
+            background: linear-gradient(rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            border-radius: var(--border-radius);
+            margin: 40px 0;
+        }
+        
+        .nosotros-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .nosotros-cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .nosotros-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nosotros-feature {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+            max-width: 300px;
+        }
+        
+        .nosotros-feature i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--color-white);
+        }
+        
+        .nosotros-feature h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 850px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .slide img {
+                height: 400px;
+            }
+            
+            .nosotros-cta h2 {
+                font-size: 2rem;
+            }
+            
+            .nosotros-cta p {
+                font-size: 1rem;
+            }
+            
+            .nosotros-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="banner-container"></div>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h2>Formando Líderes Técnicos para el Futuro</h2>
+            <p>El Liceo Técnico Manuel Del Cabral es una institución educativa de vanguardia que combina excelencia académica con formación técnica especializada, preparando a nuestros estudiantes para los desafíos del siglo XXI.</p>
+            <div class="cta-buttons">
+                <a href="#nosotros" class="btn">Conoce Nuestra Institución</a>
+                <a href="#servicios" class="btn btn-outline">Nuestros Programas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slider -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conoce Nuestra Institución</h2>
+                <p>Descubre el Liceo Técnico Manuel Del Cabral a través de nuestras instalaciones y actividades</p>
+            </div>
+            
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Instalaciones del liceo">
+                        <div class="slide-content">
+                            <h3>Instalaciones Modernas</h3>
+                            <p>Contamos con laboratorios y talleres equipados con tecnología de punta para la formación técnica de nuestros estudiantes.</p>
+                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Estudiantes en clase">
+                        <div class="slide-content">
+                            <h3>Excelencia Académica</h3>
+                            <p>Nuestro equipo docente altamente calificado garantiza una educación de calidad que combina teoría y práctica.</p>
+                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Actividades extracurriculares">
+                        <div class="slide-content">
+                            <h3>Formación Integral</h3>
+                            <p>Promovemos el desarrollo de habilidades sociales, artísticas y deportivas para una formación completa de nuestros estudiantes.</p>
+                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow prev" id="prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-arrow next" id="next"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-nav" id="slider-nav">
+                    <span class="slider-dot active"></span>
+                    <span class="slider-dot"></span>
+                    <span class="slider-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros-cta">
+        <div class="container">
+            <div class="nosotros-cta">
+                <h2>Descubre Más Sobre Nuestra Institución</h2>
+                <p>Conoce nuestra historia, equipo docente, metodologías educativas y todo lo que hace del Liceo Técnico Manuel Del Cabral una institución de excelencia.</p>
+                <a href="../html/nosotros.html" class="btn btn-accent" style="font-size: 1.2rem; padding: 15px 30px;">Ir a la Página Nosotros</a>
+                
+                <div class="nosotros-features">
+                    <div class="nosotros-feature">
+                        <i class="fas fa-history"></i>
+                        <h3>Nuestra Historia</h3>
+                        <p>Más de 30 años formando técnicos profesionales</p>
+                    </div>
+                    <div class="nosotros-feature">
+                        <i class="fas fa-users"></i>
+                        <h3>Nuestro Equipo</h3>
+                        <p>Docentes altamente calificados y comprometidos</p>
+                    </div>
+                    <div class="nosotros-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Logros</h3>
+                        <p>Reconocimientos y premios a la excelencia educativa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Programas Educativos</h2>
+                <p>Ofrecemos una amplia gama de especialidades técnicas que preparan a nuestros estudiantes para el mundo laboral</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Informática</h3>
+                    <p>Formación en desarrollo de software, redes y soporte técnico con tecnología de vanguardia.</p>
+                    <a href="#" class="btn btn-accent">Más Información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Electrónica</h3>
+                    <p>Especialización en circuitos, automatización y sistemas electrónicos industriales.</p>
+                    <a href="#" class="btn btn-accent">Más Información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3>Mecánica Industrial</h3>
+                    <p>Formación en mantenimiento, diseño y operación de maquinaria industrial.</p>
+                    <a href="#" class="btn btn-accent">Más Información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Administración</h3>
+                    <p>Preparación en gestión empresarial, contabilidad y recursos humanos.</p>
+                    <a href="#" class="btn btn-accent">Más Información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <div id="footer-container"></div>
+
+  <!-- Script para cargar banner y footer desde un solo archivo -->
+  <script src="../js/banner-footer.js"></script>
+
+
+</body>
+</html>

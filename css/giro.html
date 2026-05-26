@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIMANABI - Menú Circular + Header/Footer</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Fuente Poppins (para el menú) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ESTILOS GENERALES (compatibilidad) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f9f9; /* fondo neutro para el resto de la página */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .bf-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== HEADER (exactamente como lo tenías) ========== */
+        .bf-site-header {
+            background: #ffffff;
+            color: #333333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid #C49A6C;
+        }
+
+        .bf-header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            min-height: 80px;
+        }
+
+        .bf-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bf-logo .bf-logo-fallback {
+            width: 60px;
+            height: 60px;
+            background: #E6B87E;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5D3A1A;
+            font-size: 2rem;
+        }
+
+        .bf-logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 3px;
+            font-weight: 700;
+            color: #5D3A1A;
+        }
+
+        .bf-logo-text p {
+            font-size: 0.9rem;
+            color: #8B5A2B;
+        }
+
+        .bf-navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .bf-navbar a {
+            color: #333333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bf-navbar a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .bf-nav-btn {
+            background-color: #C49A6C;
+            color: #ffffff !important;
+            border-radius: 50px;
+            padding: 10px 18px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bf-nav-btn:hover {
+            background-color: #8B5A2B;
+            transform: translateY(-3px);
+        }
+
+        /* Botón menú móvil */
+        .bf-menu-toggle {
+            display: none;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid #C49A6C;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #5D3A1A;
+            font-size: 1.6rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .bf-menu-toggle:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.05);
+        }
+
+        .bf-menu-toggle:active {
+            transform: scale(0.9);
+        }
+
+        /* Responsive header */
+        @media (max-width: 850px) {
+            .bf-menu-toggle {
+                display: flex;
+            }
+
+            .bf-navbar {
+                position: absolute;
+                top: 100px;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.98);
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.4s ease;
+                border-bottom: 2px solid #C49A6C;
+            }
+
+            .bf-navbar.open {
+                max-height: 400px;
+                padding: 15px 0;
+            }
+
+            .bf-navbar ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .bf-navbar a {
+                width: 90%;
+                justify-content: center;
+                color: #5D3A1A;
+            }
+
+            .bf-nav-btn {
+                width: 80%;
+            }
+        }
+
+        /* ========== MAIN (contenedor del menú circular) ========== */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: radial-gradient(circle at 30% 30%, #a8ede0, #fed6e3); /* fondo del menú */
+        }
+
+        /* ===== MENÚ CIRCULAR (copiado exactamente con ajuste de contenedor) ===== */
+        .magic-menu {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .magic-menu .menu {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .magic-menu .toggle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 0 2px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .magic-menu .toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,255,255,0.5);
+        }
+
+        .magic-menu .toggle::before {
+            content: "\f0c9";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.5s;
+        }
+
+        .magic-menu .menu.active .toggle::before {
+            content: "\f00d";
+            transform: rotate(180deg);
+        }
+
+        .magic-menu .social-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            font-size: 2rem;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: scale(0) rotate(0deg);
+            pointer-events: none;
+            border: 3px solid rgba(255,255,255,0.8);
+            color: white;
+        }
+
+        .magic-menu .menu.active .social-icon {
+            opacity: 1;
+            transform: scale(1) rotate(360deg);
+            pointer-events: auto;
+        }
+
+        /* Colores de cada red */
+        .magic-menu .social-icon:nth-child(2) { background: #1877f2; } /* Facebook */
+        .magic-menu .social-icon:nth-child(3) { background: #1da1f2; } /* Twitter */
+        .magic-menu .social-icon:nth-child(4) { background: #e4405f; } /* Instagram */
+        .magic-menu .social-icon:nth-child(5) { background: #25d366; } /* WhatsApp */
+        .magic-menu .social-icon:nth-child(6) { background: #ea4335; } /* Gmail */
+
+        .magic-menu .social-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: white;
+        }
+
+        /* Posicionamiento circular */
+        .magic-menu .menu.active .social-icon:nth-child(2) { transform: rotate(0deg) translate(130px) rotate(0deg); }
+        .magic-menu .menu.active .social-icon:nth-child(3) { transform: rotate(72deg) translate(130px) rotate(-72deg); }
+        .magic-menu .menu.active .social-icon:nth-child(4) { transform: rotate(144deg) translate(130px) rotate(-144deg); }
+        .magic-menu .menu.active .social-icon:nth-child(5) { transform: rotate(216deg) translate(130px) rotate(-216deg); }
+        .magic-menu .menu.active .social-icon:nth-child(6) { transform: rotate(288deg) translate(130px) rotate(-288deg); }
+
+        .magic-menu .social-icon {
+            transform-origin: center;
+        }
+
+        .magic-menu .welcome-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #2c3e50;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
+            padding: 15px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+            white-space: nowrap;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .magic-menu .welcome-text h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e2b3a;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+        }
+
+        .magic-menu .welcome-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .magic-menu .note {
+            margin-top: 20px;
+            color: #1e2b3a;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ========== FOOTER (exactamente como lo tenías, sin YouTube) ========== */
+        .bf-site-footer {
+            background: linear-gradient(135deg, #5D3A1A 0%, #7B4F2E 100%);
+            color: white;
+            padding: 40px 0 20px;
+            border-top: 5px solid #C49A6C;
+        }
+
+        .bf-footer-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .bf-footer-col {
+            flex: 1 1 200px;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .bf-footer-center {
+            flex: 0 0 auto;
+        }
+
+        .bf-image-fallback {
+            width: 220px;
+            height: 220px;
+            background-color: #E6B87E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            color: #5D3A1A;
+            font-size: 5rem;
+        }
+
+        .bf-footer-lema {
+            font-size: 1rem;
+            color: #F5E6D3;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .bf-footer-left h3,
+        .bf-footer-right h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .bf-footer-left h3::after,
+        .bf-footer-right h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background-color: #C49A6C;
+        }
+
+        .bf-footer-left ul {
+            list-style: none;
+        }
+
+        .bf-footer-left ul li {
+            margin-bottom: 8px;
+        }
+
+        .bf-footer-left ul li a {
+            color: #F5E6D3;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bf-footer-left ul li a:hover {
+            color: #E6B87E;
+        }
+
+        /* Redes sociales del footer */
+        .bf-footer-social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .bf-footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(245, 230, 211, 0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid #C49A6C;
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+        }
+
+        .bf-footer-social a:active {
+            transform: scale(0.85);
+        }
+
+        .bf-footer-social a[aria-label="Facebook"]:hover {
+            background-color: #1877f2;
+            border-color: #1877f2;
+            transform: translateY(-5px);
+        }
+        .bf-footer-social a[aria-label="Instagram"]:hover {
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+            border-color: transparent;
+            transform: translateY(-5px);
+        }
+        .bf-footer-social a[aria-label="Twitter"]:hover {
+            background-color: #1da1f2;
+            border-color: #1da1f2;
+            transform: translateY(-5px);
+        }
+        .bf-footer-social a[aria-label="Correo"]:hover {
+            background-color: #E6B87E;
+            border-color: #E6B87E;
+            color: #5D3A1A;
+            transform: translateY(-5px);
+        }
+        .bf-footer-social a[aria-label="WhatsApp"]:hover {
+            background-color: #25D366;
+            border-color: #25D366;
+            transform: translateY(-5px);
+        }
+
+        .bf-footer-copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: #F5E6D3;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .bf-footer-main {
+                flex-direction: column;
+            }
+            .bf-image-fallback {
+                width: 160px;
+                height: 160px;
+                font-size: 4rem;
+            }
+            .bf-footer-social a {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="bf-site-header">
+        <div class="bf-container bf-header-inner">
+            <div class="bf-logo">
+                <div class="bf-logo-fallback">H</div>
+                <div class="bf-logo-text">
+                    <h1>HIMANABI</h1>
+                    <p>SOPORTE EDUCATIVO REP. DOM.</p>
+                </div>
+            </div>
+            <button class="bf-menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="bf-navbar" id="navbar">
+                <ul>
+                    <li><a href="#"><i class="fas fa-users"></i> Nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-bullseye"></i> Objetivos</a></li>
+                    <li><a href="#"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="#" class="bf-nav-btn"><i class="fas fa-envelope"></i> Contactos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== MAIN CON EL MENÚ CIRCULAR ========== -->
+    <main class="main-content">
+        <div class="magic-menu">
+            <div class="menu">
+                <div class="toggle"></div>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                <div class="welcome-text">
+                    <h1>✨ Magic Social Server ✨</h1>
+                    <p>Conecta con el mundo · Redes sociales y más</p>
+                </div>
+            </div>
+            <p class="note">⬇️ Haz clic en el centro para revelar los iconos ⬇️</p>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bf-site-footer">
+        <div class="bf-container">
+            <div class="bf-footer-main">
+                <div class="bf-footer-col bf-footer-left">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Objetivos</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contactos</a></li>
+                    </ul>
+                </div>
+                <div class="bf-footer-col bf-footer-center">
+                    <div class="bf-footer-image">
+                        <div class="bf-image-fallback">H</div>
+                    </div>
+                    <p class="bf-footer-lema">“Formando líderes con innovación”</p>
+                </div>
+                <div class="bf-footer-col bf-footer-right">
+                    <h3>Síguenos</h3>
+                    <div class="bf-footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bf-footer-copyright">
+                <p>&copy; 2026 HIMANABI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para el menú móvil (header) -->
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                navbar.classList.toggle('open');
+                const icon = toggleBtn.querySelector('i');
+                if (navbar.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // Script para el menú circular
+        const magicMenu = document.querySelector('.magic-menu .menu');
+        const magicToggle = document.querySelector('.magic-menu .toggle');
+        if (magicToggle) {
+            magicToggle.addEventListener('click', () => {
+                magicMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

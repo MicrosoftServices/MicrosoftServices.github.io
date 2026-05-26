@@ -1,0 +1,766 @@
+/* ============================================================
+   HIMANABI · Banner & Footer · Summer Paradise
+   ============================================================ */
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --brown:     #5D3A1A;
+  --brown-mid: #7B4F2E;
+  --brown-lt:  #8B5A2B;
+  --gold:      #C49A6C;
+  --gold-lt:   #E6B87E;
+  --cream:     #F5E6D3;
+  --cream-lt:  #FDF6EE;
+  --white:     #ffffff;
+  --font-d:    'Playfair Display', Georgia, serif;
+  --font-b:    'DM Sans', 'Segoe UI', Tahoma, sans-serif;
+  --ease:      .35s cubic-bezier(.4,0,.2,1);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-b);
+  background: var(--cream-lt);
+  color: var(--brown);
+  line-height: 1.65;
+}
+
+/* Bloqueo de scroll cuando el overlay está abierto */
+body[style*="overflow: hidden"] { touch-action: none; }
+
+.bf-container { width: 92%; max-width: 1200px; margin: 0 auto; }
+
+/* ===========================================================
+   HEADER
+   =========================================================== */
+.bf-site-header {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  border-bottom: 3px solid var(--gold);
+  box-shadow: 0 2px 16px rgba(93,58,26,.10);
+  transition: box-shadow var(--ease);
+  /* Importante en iOS: */
+  -webkit-transform: translateZ(0);
+}
+
+.bf-site-header.scrolled {
+  box-shadow: 0 4px 28px rgba(93,58,26,.22);
+}
+
+.bf-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  padding: 8px 0;
+  gap: 12px;
+}
+
+/* ── Logo ─────────────────────────────────── */
+.bf-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bf-logo-ring {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bf-logo-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.bf-logo-text { display: flex; flex-direction: column; }
+
+.bf-logo-name {
+  font-family: var(--font-d);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--brown);
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+
+.bf-logo-tagline {
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 3px;
+}
+
+/* ── Nav desktop ──────────────────────────── */
+.bf-navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  align-items: center;
+}
+
+.bf-navbar a {
+  font-family: var(--font-b);
+  font-weight: 500;
+  font-size: .92rem;
+  color: var(--brown-lt);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  transition: background var(--ease), color var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bf-navbar a:not(.bf-nav-btn)::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 50%;
+  width: 0; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width var(--ease), left var(--ease);
+}
+
+.bf-navbar a:not(.bf-nav-btn):hover::after,
+.bf-navbar a:not(.bf-nav-btn):focus::after {
+  width: 55%; left: 22.5%;
+}
+
+.bf-navbar a:not(.bf-nav-btn):hover,
+.bf-navbar a:not(.bf-nav-btn):focus {
+  background: rgba(196,154,108,.09);
+  color: var(--brown);
+  outline: none;
+}
+
+.bf-nav-btn {
+  background: var(--brown) !important;
+  color: var(--white) !important;
+  border-radius: 50px;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(93,58,26,.25);
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease) !important;
+}
+
+.bf-nav-btn:hover, .bf-nav-btn:focus {
+  background: var(--gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px rgba(93,58,26,.3) !important;
+  outline: none;
+}
+
+/* ── Hamburguesa ──────────────────────────── */
+.bf-menu-toggle {
+  display: none;                  /* oculto en desktop */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  /* Touch: área más grande */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background var(--ease), border-color var(--ease);
+  /* Asegurar que esté encima de todo */
+  position: relative;
+  z-index: 1000;
+}
+
+.bf-menu-toggle:hover,
+.bf-menu-toggle:focus {
+  background: rgba(196,154,108,.12);
+  outline: none;
+}
+
+.bf-burger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 22px;
+  pointer-events: none; /* evita que el hijo intercepte el clic */
+}
+
+.bf-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--brown);
+  border-radius: 2px;
+  pointer-events: none;
+  transition:
+    transform .32s ease,
+    opacity   .32s ease;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Animación → X */
+.bf-menu-toggle.is-open .bf-burger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.bf-menu-toggle.is-open .bf-burger span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.bf-menu-toggle.is-open .bf-burger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Focus visible */
+.bf-menu-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.bf-navbar a:focus-visible    { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* ===========================================================
+   OVERLAY MÓVIL
+   =========================================================== */
+.bf-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  /* Estado inicial: invisible e inaccesible */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .42s ease, visibility 0s linear .42s;
+  /* iOS smooth scroll fix */
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+.bf-mobile-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transition: opacity .42s ease, visibility 0s linear 0s;
+}
+
+/* Fondo oscuro */
+.bf-overlay-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, var(--brown) 0%, #3A200D 58%, #1e0d04 100%);
+  transform: translateX(100%);
+  transition: transform .52s cubic-bezier(.77,0,.175,1);
+  will-change: transform;
+}
+
+.bf-mobile-overlay.open .bf-overlay-bg {
+  transform: translateX(0);
+}
+
+/* Olas decorativas */
+.bf-overlay-waves {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: .55;
+  z-index: 1;
+}
+.bf-overlay-waves svg { width: 100%; display: block; }
+
+/* Botón cerrar */
+.bf-overlay-close {
+  position: fixed;
+  top: 18px; right: 18px;
+  z-index: 20;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  border: 2px solid rgba(255,255,255,.32);
+  color: var(--white);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: rotate(-90deg) scale(.75);
+  transition: opacity .36s ease .3s, transform .36s ease .3s,
+              background .2s ease, border-color .2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bf-mobile-overlay.open .bf-overlay-close {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.bf-overlay-close:hover,
+.bf-overlay-close:focus {
+  background: rgba(255,255,255,.26);
+  outline: none;
+}
+
+/* Nav del overlay */
+.bf-overlay-nav {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 90px 8% 60px;
+  gap: 32px;
+}
+
+/* Logo en overlay */
+.bf-overlay-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity .45s ease .12s, transform .45s ease .12s;
+}
+.bf-mobile-overlay.open .bf-overlay-logo { opacity: 1; transform: translateX(0); }
+
+.bf-overlay-logo img {
+  width: 80px; height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  padding: 4px;
+
+  display: block;
+}
+
+.bf-overlay-logo span {
+  font-family: var(--font-d);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: .06em;
+}
+
+/* Links del overlay */
+.bf-overlay-links {
+  list-style: none;
+  width: 100%;
+}
+
+.bf-overlay-links li {
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  opacity: 0;
+  transform: translateX(-44px);
+  transition:
+    opacity   .45s ease calc(.18s + var(--i, 1) * .07s),
+    transform .45s ease calc(.18s + var(--i, 1) * .07s);
+}
+.bf-overlay-links li:first-child { border-top: 1px solid rgba(255,255,255,.09); }
+
+.bf-mobile-overlay.open .bf-overlay-links li { opacity: 1; transform: translateX(0); }
+
+.bf-overlay-links a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 17px 0;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color .28s ease, padding-left .28s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.bf-overlay-links a:hover,
+.bf-overlay-links a:focus {
+  color: var(--gold-lt);
+  padding-left: 8px;
+  outline: none;
+}
+
+.bf-overlay-links a i {
+  margin-left: auto;
+  font-size: .82rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+
+.bf-overlay-links a:hover i,
+.bf-overlay-links a:focus i { opacity: 1; transform: translateX(0); }
+
+.bf-ol-num {
+  font-family: var(--font-d);
+  font-size: .78rem;
+  color: var(--gold);
+  opacity: .75;
+  min-width: 22px;
+}
+
+.bf-ol-text {
+  font-family: var(--font-d);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+/* Redes en overlay */
+.bf-overlay-social {
+  display: flex;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease .55s, transform .45s ease .55s;
+}
+.bf-mobile-overlay.open .bf-overlay-social { opacity: 1; transform: translateY(0); }
+
+.bf-overlay-social a {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.25);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background .28s ease, transform .28s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.bf-overlay-social a:hover,
+.bf-overlay-social a:focus {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-4px) scale(1.1);
+  outline: none;
+}
+
+.bf-overlay-lema {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: .92rem;
+  color: rgba(245,230,211,.52);
+  opacity: 0;
+  transition: opacity .45s ease .72s;
+}
+.bf-mobile-overlay.open .bf-overlay-lema { opacity: 1; }
+
+/* ===========================================================
+   RESPONSIVE HEADER
+   =========================================================== */
+@media (max-width: 860px) {
+  .bf-menu-toggle { display: flex; }
+  .bf-navbar      { display: none; }
+
+  .bf-logo-name    { font-size: 1.2rem; }
+  .bf-logo-tagline { font-size: .58rem; }
+  .bf-logo-ring    { width: 64px; height: 64px; }
+}
+
+@media (max-width: 400px) {
+  .bf-logo-tagline { display: none; }
+  .bf-logo-name    { font-size: 1.1rem; }
+  .bf-logo-ring    { width: 54px; height: 54px; }
+}
+
+/* ===========================================================
+   FOOTER
+   =========================================================== */
+.bf-site-footer {
+  background: linear-gradient(160deg, #3A200D 0%, var(--brown) 42%, var(--brown-mid) 100%);
+  color: var(--cream);
+  font-family: var(--font-b);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Ola canvas */
+.bf-footer-wave {
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+#bf-wave-canvas {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+/* Grid 3 columnas */
+.bf-footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.4fr;
+  gap: 48px;
+  padding: 48px 0 38px;
+  align-items: start;
+}
+
+/* ── Col 1: Brand ────────────────────────── */
+.bf-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .25s ease;
+}
+
+.bf-footer-brand:hover { opacity: .88; }
+
+.bf-footer-brand img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.bf-footer-brand-name {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: .06em;
+  line-height: 1.1;
+}
+
+.bf-footer-brand-sub {
+  display: block;
+  font-size: .66rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+
+.bf-footer-desc {
+  font-size: .88rem;
+  color: rgba(245,230,211,.75);
+  line-height: 1.7;
+  margin-bottom: 14px;
+  max-width: 280px;
+}
+
+.bf-footer-lema {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: .9rem;
+  color: var(--gold-lt);
+  opacity: .85;
+}
+
+/* ── Col 2: Links ────────────────────────── */
+.bf-footer-heading { margin-bottom: 20px; }
+
+.bf-footer-heading span {
+  display: block;
+  font-family: var(--font-d);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+
+.bf-footer-heading-line {
+  width: 38px; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.bf-footer-links ul { list-style: none; }
+.bf-footer-links ul li { margin-bottom: 10px; }
+
+.bf-footer-links ul li a {
+  color: rgba(245,230,211,.82);
+  text-decoration: none;
+  font-size: .9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color .28s ease, padding-left .28s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bf-footer-links ul li a i { font-size: .7rem; color: var(--gold); transition: transform .28s ease; }
+
+.bf-footer-links ul li a:hover { color: var(--gold-lt); padding-left: 6px; }
+.bf-footer-links ul li a:hover i { transform: translateX(4px); }
+
+/* ── Col 3: Contacto + Redes ─────────────── */
+.bf-footer-contact-list { list-style: none; margin-bottom: 22px; }
+.bf-footer-contact-list li { margin-bottom: 12px; }
+
+.bf-footer-contact-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(245,230,211,.82);
+  text-decoration: none;
+  font-size: .88rem;
+  transition: color .28s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.bf-footer-contact-list a:hover { color: var(--gold-lt); }
+
+.bf-contact-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: rgba(196,154,108,.18);
+  border: 1px solid rgba(196,154,108,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: .95rem;
+  flex-shrink: 0;
+  transition: background .28s ease, transform .28s ease, color .28s ease;
+}
+
+.bf-footer-contact-list a:hover .bf-contact-icon {
+  background: var(--gold);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+/* Redes sociales: iconos BLANCOS sin fondo */
+.bf-footer-social-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+
+.bf-fs-icon {
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.35rem;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  transition: transform .32s cubic-bezier(.34,1.56,.64,1), opacity .28s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.bf-fs-icon:hover,
+.bf-fs-icon:focus {
+  transform: translateY(-6px) scale(1.2);
+  opacity: .85;
+  outline: none;
+}
+
+/* Divider */
+.bf-footer-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 6px;
+}
+
+/* Línea curva simple */
+.bf-footer-curve-line {
+  width: 100%;
+  height: 20px;
+  display: block;
+}
+
+.bf-footer-divider-icon {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(196,154,108,.15);
+  border: 1.5px solid rgba(196,154,108,.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: .95rem;
+}
+
+/* Copyright */
+.bf-footer-copyright {
+  text-align: center;
+  padding: 20px 0 28px;
+  color: rgba(245,230,211,.52);
+  font-size: .82rem;
+}
+
+.bf-footer-copyright strong { color: var(--gold-lt); }
+
+.bf-footer-credit {
+  margin-top: 4px;
+  font-size: .74rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+/* ===========================================================
+   RESPONSIVE FOOTER – Tablets (≤ 900px)
+   =========================================================== */
+@media (max-width: 900px) {
+  .bf-footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+  .bf-footer-about {
+    grid-column: 1 / -1;   /* ocupa todo el ancho */
+  }
+}
+
+/* ===========================================================
+   RESPONSIVE FOOTER – Móviles (≤ 580px)
+   =========================================================== */
+@media (max-width: 580px) {
+  .bf-footer-main {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 36px 0 26px;
+    text-align: center;
+  }
+  .bf-footer-about { grid-column: auto; }
+
+  .bf-footer-brand      { justify-content: center; }
+  .bf-footer-desc       { margin-left: auto; margin-right: auto; }
+  .bf-footer-heading-line { margin: 0 auto; }
+  .bf-footer-links ul li a  { justify-content: center; }
+  .bf-footer-contact-list a { justify-content: center; }
+  .bf-footer-social-row     { justify-content: center; }
+
+  /* Overlay móvil centrado */
+  .bf-overlay-nav { align-items: center; text-align: center; }
+  .bf-overlay-links a { justify-content: center; }
+  .bf-overlay-links a i { display: none; }
+  .bf-overlay-social { justify-content: center; }
+}
+
+@media (max-width: 360px) {
+  .bf-ol-text { font-size: 1.35rem; }
+  .bf-overlay-logo span { font-size: 1.2rem; }
+}
