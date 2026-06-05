@@ -1,492 +1,375 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liceo Técnico Manuel Del Cabral - Portal Institucional</title>
+    <title>HIMANABI — Soporte Educativo Rep. Dom.</title>
+    <meta name="description" content="HIMANABI ofrece soporte educativo profesional, práctico y personalizado de manera presencial, semipresencial o virtual en República Dominicana.">
     <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
-    <style>
-        :root {
-            --color-primary: #2c3e50;
-            --color-secondary: #3498db;
-            --color-accent: #e74c3c;
-            --color-green: #2ecc71;
-            --color-text: #333;
-            --color-light: #f8f9fa;
-            --color-white: #fff;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --border-radius: 8px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-light);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--color-white);
-            padding: 150px 0 100px;
-            text-align: center;
-        }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            padding: 12px 25px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: var(--color-primary);
-            transform: translateY(-3px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--color-white);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--color-white);
-            color: var(--color-primary);
-        }
-        
-        .btn-accent {
-            background-color: var(--color-accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #c0392b;
-        }
-        
-        /* Secciones generales */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        /* Slider */
-        .slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .slide {
-            min-width: 100%;
-            position: relative;
-        }
-        
-        .slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 30px;
-        }
-        
-        .slide-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ccc;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .slider-dot.active {
-            background: var(--color-secondary);
-        }
-        
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            z-index: 10;
-        }
-        
-        .slider-arrow:hover {
-            background: rgba(0,0,0,0.8);
-        }
-        
-        .slider-arrow.prev {
-            left: 20px;
-        }
-        
-        .slider-arrow.next {
-            right: 20px;
-        }
-        
-        /* Sección Nosotros */
-        .nosotros-cta {
-            background: linear-gradient(rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-            border-radius: var(--border-radius);
-            margin: 40px 0;
-        }
-        
-        .nosotros-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .nosotros-cta p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .nosotros-features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .nosotros-feature {
-            background: rgba(255,255,255,0.2);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(5px);
-            max-width: 300px;
-        }
-        
-        .nosotros-feature i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--color-white);
-        }
-        
-        .nosotros-feature h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        /* Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .service-card {
-            background-color: var(--color-white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--color-secondary);
-            margin-bottom: 20px;
-        }
-        
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--color-primary);
-        }
-        
-        .service-card p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        
-        /* Responsive */
-        @media (max-width: 850px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-            
-            .slide img {
-                height: 400px;
-            }
-            
-            .nosotros-cta h2 {
-                font-size: 2rem;
-            }
-            
-            .nosotros-cta p {
-                font-size: 1rem;
-            }
-            
-            .nosotros-features {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+  <style>
+    .idx-hero-slogan {
+      font-family: Arial, Calibri, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e8b84b;
+      margin-top: 18px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: idx-fade-up .9s .9s both;
+    }
+  </style>
 </head>
 <body>
     <div id="banner-container"></div>
 
+<div class="idx-page">
 
+<!-- ── HERO ─────────────────────────────── -->
+<section class="idx-hero" id="idx-hero">
+  <div class="idx-grain"></div>
+  <div class="idx-bloom"></div>
+  <div class="idx-orb idx-orb-1"></div>
+  <div class="idx-orb idx-orb-2"></div>
+  <div class="idx-bg-word">HIMANABI</div>
+  <div class="idx-particles" id="idx-particles"></div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container">
-            <h2>Formando Líderes Técnicos para el Futuro</h2>
-            <p>El Liceo Técnico Manuel Del Cabral es una institución educativa de vanguardia que combina excelencia académica con formación técnica especializada, preparando a nuestros estudiantes para los desafíos del siglo XXI.</p>
-            <div class="cta-buttons">
-                <a href="#nosotros" class="btn">Conoce Nuestra Institución</a>
-                <a href="#servicios" class="btn btn-outline">Nuestros Programas</a>
-            </div>
-        </div>
-    </section>
+  <div class="idx-hero-split">
+    <div class="idx-hero-content">
+      <div class="idx-tag">Soporte Educativo · Rep. Dom.</div>
+      <h1 class="idx-hero-h1">
+        <span class="idx-line">Formando</span>
+        <span class="idx-line">Líderes</span>
+      </h1>
+      <p class="idx-hero-desc">
+        Docentes calificados comprometidos con un soporte educativo
+        profesional, práctico y personalizado de manera
+        <strong>presencial, semipresencial o virtual.</strong>
+      </p>
+      <p class="idx-hero-slogan">
+        <i class="fas fa-star" style="color:#e8b84b;font-size:.75rem;"></i>
+        Educación de calidad, resultados excepcionales.
+      </p>
+    </div>
+    <div class="idx-hero-owl-wrap">
+      <div class="idx-owl-3d" id="idxOwl">
+        <img src="../img/logo solo.png" class="idx-owl-img" alt="HIMANABI Logo">
+        <div class="idx-owl-shadow"></div>
+        <div class="idx-owl-glow"></div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Slider -->
-    <section id="nosotros">
-        <div class="container">
-            <div class="section-title">
-                <h2>Conoce Nuestra Institución</h2>
-                <p>Descubre el Liceo Técnico Manuel Del Cabral a través de nuestras instalaciones y actividades</p>
-            </div>
-            
-            <div class="slider-container">
-                <div class="slider" id="slider">
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Instalaciones del liceo">
-                        <div class="slide-content">
-                            <h3>Instalaciones Modernas</h3>
-                            <p>Contamos con laboratorios y talleres equipados con tecnología de punta para la formación técnica de nuestros estudiantes.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Estudiantes en clase">
-                        <div class="slide-content">
-                            <h3>Excelencia Académica</h3>
-                            <p>Nuestro equipo docente altamente calificado garantiza una educación de calidad que combina teoría y práctica.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Actividades extracurriculares">
-                        <div class="slide-content">
-                            <h3>Formación Integral</h3>
-                            <p>Promovemos el desarrollo de habilidades sociales, artísticas y deportivas para una formación completa de nuestros estudiantes.</p>
-                            <a href="nosotros.html" class="btn btn-accent" style="margin-top: 15px;">Conoce Más</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="slider-arrow prev" id="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-arrow next" id="next"><i class="fas fa-chevron-right"></i></button>
-                <div class="slider-nav" id="slider-nav">
-                    <span class="slider-dot active"></span>
-                    <span class="slider-dot"></span>
-                    <span class="slider-dot"></span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="idx-hero-bar">
+    <div class="idx-bar-item">
+      <span class="idx-bar-num" data-target="30">0</span>
+      <span class="idx-bar-lbl">Años de Experiencia</span>
+    </div>
+    <div class="idx-bar-sep"></div>
+    <div class="idx-bar-item">
+      <span class="idx-bar-num" data-target="500">0</span>
+      <span class="idx-bar-lbl">Estudiantes Formados</span>
+    </div>
+    <div class="idx-bar-sep"></div>
+    <div class="idx-bar-item">
+      <span class="idx-bar-num" data-target="50">0</span>
+      <span class="idx-bar-lbl">Docentes Calificados</span>
+    </div>
+    <div class="idx-bar-sep"></div>
+    <div class="idx-bar-item">
+      <span class="idx-bar-num" data-target="3">0</span>
+      <span class="idx-bar-lbl">Modalidades</span>
+    </div>
+  </div>
 
-    <!-- Sección Nosotros -->
-    <section id="nosotros-cta">
-        <div class="container">
-            <div class="nosotros-cta">
-                <h2>Descubre Más Sobre Nuestra Institución</h2>
-                <p>Conoce nuestra historia, equipo docente, metodologías educativas y todo lo que hace del Liceo Técnico Manuel Del Cabral una institución de excelencia.</p>
-                <a href="../html/nosotros.html" class="btn btn-accent" style="font-size: 1.2rem; padding: 15px 30px;">Ir a la Página Nosotros</a>
-                
-                <div class="nosotros-features">
-                    <div class="nosotros-feature">
-                        <i class="fas fa-history"></i>
-                        <h3>Nuestra Historia</h3>
-                        <p>Más de 30 años formando técnicos profesionales</p>
-                    </div>
-                    <div class="nosotros-feature">
-                        <i class="fas fa-users"></i>
-                        <h3>Nuestro Equipo</h3>
-                        <p>Docentes altamente calificados y comprometidos</p>
-                    </div>
-                    <div class="nosotros-feature">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Logros</h3>
-                        <p>Reconocimientos y premios a la excelencia educativa</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="idx-scroll-cue">
+    <div class="idx-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-    <!-- Servicios -->
-    <section id="servicios">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Programas Educativos</h2>
-                <p>Ofrecemos una amplia gama de especialidades técnicas que preparan a nuestros estudiantes para el mundo laboral</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Informática</h3>
-                    <p>Formación en desarrollo de software, redes y soporte técnico con tecnología de vanguardia.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+<!-- ── TICKER ──────────────────────────────── -->
+<div class="idx-ticker-wrap">
+  <div class="idx-ticker">
+    <div class="idx-ticker-item">Tutorías Individuales</div>
+    <div class="idx-ticker-item">Tutorías Grupales</div>
+    <div class="idx-ticker-item">Tutoría Técnica</div>
+    <div class="idx-ticker-item">Inteligencias Múltiples</div>
+    <div class="idx-ticker-item">Modalidad Virtual</div>
+    <div class="idx-ticker-item">Talleres y Charlas</div>
+    <div class="idx-ticker-item">Soporte Educativo</div>
+    <div class="idx-ticker-item">Tutorías Individuales</div>
+    <div class="idx-ticker-item">Tutorías Grupales</div>
+    <div class="idx-ticker-item">Tutoría Técnica</div>
+    <div class="idx-ticker-item">Inteligencias Múltiples</div>
+    <div class="idx-ticker-item">Modalidad Virtual</div>
+    <div class="idx-ticker-item">Talleres y Charlas</div>
+    <div class="idx-ticker-item">Soporte Educativo</div>
+  </div>
+</div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Electrónica</h3>
-                    <p>Especialización en circuitos, automatización y sistemas electrónicos industriales.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+<!-- ── SOBRE NOSOTROS PREVIEW ──────────────── -->
+<section class="idx-section idx-about" id="idx-about">
+  <div class="idx-about-grid">
+    <div class="idx-reveal">
+      <div class="idx-section-eyebrow"><h3>Sobre Nosotros</h3></div>
+      <h2 class="idx-about-h2">
+        Educación<br>
+        <em>que transforma</em><br>
+        vidas
+      </h2>
+      <p class="idx-about-body">
+        Somos docentes calificados y capacitados con experiencia,
+        que nos encargamos de brindar un soporte educativo
+        profesional y práctico a nuestros alumnos, manteniendo un
+        constante seguimiento y asesoramiento para lograr una
+        correcta capacitación en nuestros estudiantes de manera
+        <strong>presencial, semipresencial o virtual.</strong>
+      </p>
+      <a href="nosotros.html" class="idx-cta-btn" style="display:inline-flex;width:auto">
+        Conocer Más
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="idx-reveal idx-r2">
+      <div class="idx-deco-frame">
+        <div class="idx-corner-bl"></div>
+        <p class="idx-frame-quote">
+          Formando líderes con innovación para un mundo que
+          exige excelencia, visión de futuro y un compromiso
+          inquebrantable con el conocimiento.
+        </p>
+        <span class="idx-frame-author">— HIMANABI · Soporte Educativo</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-wrench"></i>
-                    </div>
-                    <h3>Mecánica Industrial</h3>
-                    <p>Formación en mantenimiento, diseño y operación de maquinaria industrial.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
+<!-- ── SERVICIOS PREVIEW ──────────────── -->
+<section class="idx-section idx-services" id="idx-services">
+  <div class="idx-services-inner">
+    <div class="idx-services-header idx-reveal">
+      <div class="idx-section-eyebrow"><h3>Nuestros Servicios</h3></div>
+      <h2 class="idx-services-h2">
+        Todo lo que<br>
+        <em>necesitas aprender</em>
+      </h2>
+    </div>
+    <div class="idx-svc-grid">
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Administración</h3>
-                    <p>Preparación en gestión empresarial, contabilidad y recursos humanos.</p>
-                    <a href="#" class="btn btn-accent">Más Información</a>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="idx-svc-card idx-reveal idx-r1">
+        <div class="idx-svc-icon"><i class="fas fa-user-graduate"></i></div>
+        <p class="idx-svc-title">Tutorías Individuales</p>
+        <p class="idx-svc-body">Sesiones uno a uno con docentes especializados, adaptadas al ritmo y necesidades de cada estudiante.</p>
+      </div>
 
-     <div id="footer-container"></div>
+      <div class="idx-svc-card idx-reveal idx-r2">
+        <div class="idx-svc-icon"><i class="fas fa-users"></i></div>
+        <p class="idx-svc-title">Tutorías Grupales</p>
+        <p class="idx-svc-body">Aprendizaje colaborativo en grupos reducidos que fortalecen habilidades sociales y académicas.</p>
+      </div>
+
+      <div class="idx-svc-card idx-reveal idx-r3">
+        <div class="idx-svc-icon"><i class="fas fa-tools"></i></div>
+        <p class="idx-svc-title">Tutoría Técnica</p>
+        <p class="idx-svc-body">Soporte especializado en áreas técnicas: matemáticas, física, química, programación y más.</p>
+      </div>
+
+      <div class="idx-svc-card idx-reveal idx-r4">
+        <div class="idx-svc-icon"><i class="fas fa-brain"></i></div>
+        <p class="idx-svc-title">Inteligencias Múltiples</p>
+        <p class="idx-svc-body">Estrategias basadas en la teoría de Howard Gardner para potenciar las fortalezas únicas de cada alumno.</p>
+      </div>
+
+      <div class="idx-svc-card idx-reveal idx-r5">
+        <div class="idx-svc-icon"><i class="fas fa-laptop-code"></i></div>
+        <p class="idx-svc-title">Modalidad Virtual</p>
+        <p class="idx-svc-body">Flexibilidad total con sesiones en línea interactivas, seguimiento continuo y comunicación directa.</p>
+      </div>
+
+      <div class="idx-svc-card idx-reveal idx-r1">
+        <div class="idx-svc-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <p class="idx-svc-title">Talleres y Charlas</p>
+        <p class="idx-svc-body">Programas formativos intensivos para instituciones, empresas y grupos con dinámica participativa.</p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:60px" class="idx-reveal">
+      <a href="servicios.html" class="idx-cta-btn" style="border-color:#e8b84b;color:#f5e8cf">
+        Ver Todos los Servicios
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ──────────────────────────────── -->
+<section class="idx-stats" id="idx-stats">
+  <div class="idx-stats-grid">
+    <div class="idx-stat-item idx-reveal idx-r1">
+      <span class="idx-stat-num" data-target="30">0</span>
+      <span class="idx-stat-label">Años Formando</span>
+      <div class="idx-stat-dot"></div>
+    </div>
+    <div class="idx-stat-item idx-reveal idx-r2">
+      <span class="idx-stat-num" data-target="500">0</span>
+      <span class="idx-stat-label">Estudiantes</span>
+      <div class="idx-stat-dot"></div>
+    </div>
+    <div class="idx-stat-item idx-reveal idx-r3">
+      <span class="idx-stat-num" data-target="6">0</span>
+      <span class="idx-stat-label">Tipos de Tutoría</span>
+      <div class="idx-stat-dot"></div>
+    </div>
+    <div class="idx-stat-item idx-reveal idx-r4">
+      <span class="idx-stat-num" data-target="3">0</span>
+      <span class="idx-stat-label">Modalidades</span>
+      <div class="idx-stat-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────── -->
+<section class="idx-section idx-cta" id="idx-cta">
+  <div class="idx-cta-inner idx-reveal">
+    <div class="idx-section-eyebrow"><h3>Comienza Hoy</h3></div>
+    <h2 class="idx-cta-h2">
+      Tu éxito académico<br>
+      <em>comienza aquí</em>
+    </h2>
+    <p class="idx-cta-body">
+      Cuéntanos tu necesidad y diseñaremos una
+      <strong>propuesta educativa a tu medida.</strong>
+      Ya seas estudiante, padre o institución — en HIMANABI
+      tenemos el servicio que transforma resultados.
+    </p>
+    <div class="idx-cta-buttons">
+      <a href="contacto.html" class="idx-cta-btn idx-cta-btn-filled">
+        Contáctanos
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="servicios.html" class="idx-cta-btn">
+        Ver Servicios
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+    <div id="footer-container"></div>
 
   <!-- Script para cargar banner y footer desde un solo archivo -->
   <script src="../js/banner-footer.js"></script>
 
+<script>
+/* ═══════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('idx-in') });
+}, {threshold:.12});
+document.querySelectorAll('.idx-reveal').forEach(el => obs.observe(el));
 
+/* ═══════════════════════════════
+   ANIMATED COUNTERS
+═══════════════════════════════ */
+function animCount(el, target, duration=1800){
+  let start=null;
+  const step = ts => {
+    if(!start) start=ts;
+    const p = Math.min((ts-start)/duration,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent = target + '+';
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target);
+      if(!isNaN(t)) animCount(e.target,t);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+
+/* ═══════════════════════════════
+   FLOATING PARTICLES
+═══════════════════════════════ */
+(function(){
+  const container = document.getElementById('idx-particles');
+  if(!container) return;
+  function spawnParticle(){
+    const p = document.createElement('div');
+    p.classList.add('idx-particle');
+    const size = Math.random()*6 + 2;
+    const x = Math.random()*100;
+    const drift = (Math.random()-0.5)*120;
+    const dur = Math.random()*8 + 6;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${x}%;bottom:-10px;
+      --drift:${drift}px;
+      animation-duration:${dur}s;
+      animation-delay:0s;
+    `;
+    container.appendChild(p);
+    setTimeout(() => p.remove(), dur*1000);
+  }
+  // Spawn initial batch
+  for(let i=0;i<8;i++) setTimeout(()=>spawnParticle(), i*400);
+  // Then continuous
+  setInterval(spawnParticle, 1200);
+})();
+
+/* ═══════════════════════════════
+   MOUSE PARALLAX ON HERO
+═══════════════════════════════ */
+(function(){
+  const hero = document.querySelector('.idx-hero');
+  if(!hero || window.innerWidth < 900) return;
+  const orb1 = hero.querySelector('.idx-orb-1');
+  const orb2 = hero.querySelector('.idx-orb-2');
+  const bloom = hero.querySelector('.idx-bloom');
+  hero.addEventListener('mousemove', e => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    if(orb1) orb1.style.transform = `translate(${x*25}px, ${y*20}px)`;
+    if(orb2) orb2.style.transform = `translate(${x*-20}px, ${y*-15}px)`;
+    if(bloom) bloom.style.transform = `translate(calc(-50% + ${x*15}px), calc(-58% + ${y*10}px))`;
+  });
+})();
+
+/* ═══════════════════════════════
+   SERVICE CARD TILT
+═══════════════════════════════ */
+(function(){
+  if(window.innerWidth < 900) return;
+  document.querySelectorAll('.idx-svc-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const tiltX = (y - 0.5) * -8;
+      const tiltY = (x - 0.5) * 8;
+      card.style.transform = `translateY(-8px) perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+</script>
 </body>
 </html>

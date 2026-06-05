@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cursos, Talleres y Charlas – HIMANABI</title>
+<link rel="stylesheet" href="../css/banner-footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts eliminado: se usa Arial/Calibri -->
+<link rel="icon" href="../img/favicon.png" type="image/png">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ─── PALETA HIMANABI ───
+   Main brown:  #7b4f1e
+   Mid brown:   #5c3610
+   Deep brown:  #3d2008
+   Gold:        #c8922a
+   Light gold:  #e8b84b
+   Cream:       #f5e8cf
+─────────────────────── */
+
+body{
+  font-family: Arial, Calibri, 'Lato', sans-serif;
+  background:#7b4f1e;
+  color:#f5e8cf;
+  overflow-x:hidden;
+}
+
+/* ═══════════════════════════
+   HERO
+═══════════════════════════ */
+.ct-hero{
+  position:relative;
+  min-height:82vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;background:#3d2008;text-align:center;
+  padding:80px 24px 60px;
+}
+.ct-hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1;opacity:.5;
+}
+.ct-hero-bloom{
+  position:absolute;width:1000px;height:1000px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,.22) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none;z-index:0;
+}
+.ct-hero-bg{
+  position:absolute;bottom:-40px;right:-10px;
+  font-family:Arial,Calibri,sans-serif;
+  font-size:clamp(7rem,16vw,15rem);font-weight:700;
+  color:transparent;-webkit-text-stroke:1px rgba(245,232,207,.04);
+  line-height:1;user-select:none;pointer-events:none;z-index:1;
+}
+.ct-hero-inner{position:relative;z-index:2;max-width:860px;}
+
+.ct-hero-tag{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.72rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;margin-bottom:28px;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  animation:ct-up .8s .1s both;
+}
+.ct-hero-tag::before,.ct-hero-tag::after{content:'';display:block;width:36px;height:1px;background:#e8b84b;}
+
+.ct-hero-h1{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(2.6rem,7vw,5.5rem);
+  font-weight:900;line-height:1.05;letter-spacing:-1px;
+  color:#f5e8cf;margin-bottom:12px;
+  animation:ct-up .9s .25s both;
+}
+.ct-hero-h1 em{
+  font-style:normal;color:#e8b84b;
+}
+.ct-hero-slogan{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:1.05rem;font-weight:700;
+  color:#c8922a;letter-spacing:0.5px;
+  margin-bottom:28px;animation:ct-up .9s .38s both;
+}
+.ct-hero-desc{
+  font-size:1rem;line-height:1.85;
+  color:rgba(245,232,207,.72);font-weight:400;
+  max-width:640px;margin:0 auto 44px;
+  animation:ct-up .9s .5s both;
+}
+.ct-hero-desc strong{color:#fff;font-weight:700;}
+
+/* Hero stats */
+.ct-hero-stats{
+  display:flex;gap:52px;justify-content:center;flex-wrap:wrap;
+  padding-top:36px;border-top:1px solid rgba(200,146,42,.22);
+  animation:ct-up .8s .65s both;
+}
+.ct-stat{text-align:center;}
+.ct-stat-num{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:3rem;font-weight:900;color:#e8b84b;line-height:1;letter-spacing:-1px;
+}
+.ct-stat-lbl{
+  font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(245,232,207,.45);margin-top:4px;font-weight:700;
+}
+
+/* Scroll cue */
+.ct-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:ct-up .8s 1s both;
+}
+.ct-scroll-line{
+  width:1px;height:50px;background:linear-gradient(to bottom,#e8b84b,transparent);
+  animation:ct-scroll-anim 1.8s ease-in-out infinite;
+}
+@keyframes ct-scroll-anim{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.4);opacity:.4}}
+.ct-scroll span{
+  font-size:.52rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(245,232,207,.4);
+}
+
+@keyframes ct-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════
+   TICKER
+═══════════════════════════ */
+.ct-ticker-wrap{
+  overflow:hidden;padding:16px 0;background:#5c3610;
+  border-top:1px solid rgba(200,146,42,.2);border-bottom:1px solid rgba(200,146,42,.2);
+}
+.ct-ticker{display:flex;width:max-content;animation:ct-ticker 28s linear infinite;}
+.ct-ticker-item{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.7rem;letter-spacing:4px;text-transform:uppercase;
+  color:#fff;padding:0 36px;white-space:nowrap;
+  display:flex;align-items:center;gap:18px;font-weight:700;
+}
+.ct-ticker-item::after{content:'◆';font-size:.42rem;color:rgba(232,184,74,.7);}
+@keyframes ct-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════
+   SECCIÓN COMPARTIDA
+═══════════════════════════ */
+.ct-section{position:relative;padding:100px 64px;overflow:hidden;}
+.ct-inner{max-width:1180px;margin:0 auto;}
+.ct-eyebrow{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.65rem;letter-spacing:6px;text-transform:uppercase;
+  color:#e8b84b;display:flex;align-items:center;gap:14px;margin-bottom:18px;font-weight:700;
+}
+.ct-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:#e8b84b;}
+.ct-eyebrow.dark{color:#c8922a;}
+.ct-eyebrow.dark::after{background:#c8922a;}
+
+/* ═══════════════════════════
+   INTRO — blanco
+═══════════════════════════ */
+.ct-intro-section{background:#ffffff;}
+.ct-intro-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+}
+.ct-intro-h2{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(2rem,3.8vw,3.2rem);font-weight:900;line-height:1.15;
+  color:#3d2008;margin-bottom:28px;letter-spacing:-0.5px;
+}
+.ct-intro-h2 em{font-style:normal;color:#c8922a;}
+.ct-intro-body{
+  font-size:.97rem;line-height:2.1;color:#5c3610;font-weight:400;margin-bottom:22px;
+}
+.ct-intro-body strong{color:#3d2008;font-weight:700;}
+
+/* Checklist */
+.ct-check-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.ct-check-list li{
+  display:flex;align-items:flex-start;gap:14px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.92rem;line-height:1.7;color:#3d2008;font-weight:600;
+}
+.ct-check-list li i{color:#c8922a;margin-top:2px;font-size:1rem;flex-shrink:0;}
+
+.ct-deco-frame{
+  position:relative;background:#fff8f0;border:1px solid rgba(92,54,16,.2);padding:44px 38px;
+}
+.ct-deco-frame::before{
+  content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;
+  border:1px solid rgba(92,54,16,.07);pointer-events:none;
+}
+.ct-deco-frame::after{
+  content:'';position:absolute;top:8px;right:8px;width:28px;height:28px;
+  border-top:2px solid #c8922a;border-right:2px solid #c8922a;
+}
+.ct-deco-corner-bl{
+  position:absolute;bottom:8px;left:8px;width:28px;height:28px;
+  border-bottom:2px solid #c8922a;border-left:2px solid #c8922a;
+}
+
+/* ═══════════════════════════
+   PROGRAMAS GRID — oscuro
+═══════════════════════════ */
+.ct-programs-section{background:#3d2008;}
+.ct-programs-h2{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;color:#f5e8cf;
+  margin-bottom:8px;letter-spacing:-0.5px;
+}
+.ct-programs-h2 span{color:#e8b84b;}
+.ct-programs-sub{
+  font-size:.95rem;line-height:1.85;color:rgba(245,232,207,.6);
+  max-width:560px;margin-bottom:52px;
+}
+
+.ct-programs-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(245,232,207,.08);
+}
+.ct-prog-card{
+  background:#3d2008;padding:44px 36px;position:relative;overflow:hidden;
+  transition:background .35s;cursor:default;
+}
+.ct-prog-card:hover{background:#4a2810;}
+.ct-prog-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,#e8b84b 40%,#c8922a 60%,transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
+}
+.ct-prog-card:hover::after{transform:scaleX(1);}
+.ct-prog-num{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:4rem;font-weight:900;
+  color:rgba(200,146,42,.1);position:absolute;top:12px;right:20px;line-height:1;
+}
+.ct-prog-icon{
+  width:48px;height:48px;border-radius:8px;
+  background:rgba(200,146,42,.15);border:1px solid rgba(200,146,42,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#e8b84b;margin-bottom:20px;position:relative;z-index:1;
+}
+.ct-prog-name{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:1rem;font-weight:700;color:#f5e8cf;margin-bottom:10px;line-height:1.3;
+  position:relative;z-index:1;
+}
+.ct-prog-desc{
+  font-size:.87rem;line-height:1.8;color:rgba(245,232,207,.55);
+  position:relative;z-index:1;
+}
+.ct-prog-tag{
+  display:inline-block;margin-top:16px;position:relative;z-index:1;
+  background:rgba(200,146,42,.12);border:1px solid rgba(200,146,42,.3);
+  border-radius:100px;padding:4px 14px;
+  font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#e8b84b;
+}
+.ct-prog-tag.free{
+  background:rgba(50,180,100,.1);border-color:rgba(50,180,100,.3);color:#6fda9a;
+}
+
+/* ═══════════════════════════
+   TALLERES DESTACADOS — blanco
+═══════════════════════════ */
+.ct-featured-section{background:#ffffff;}
+.ct-featured-h2{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;color:#3d2008;
+  margin-bottom:52px;letter-spacing:-0.5px;
+}
+.ct-featured-h2 span{color:#c8922a;}
+
+.ct-feat-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+}
+.ct-feat-card{
+  border:1px solid rgba(92,54,16,.15);border-radius:4px;
+  overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.ct-feat-card:hover{
+  border-color:#c8922a;transform:translateY(-4px);box-shadow:0 12px 40px rgba(92,54,16,.14);
+}
+.ct-feat-header{padding:32px;background:#fff8f0;}
+.ct-feat-label{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:#c8922a;margin-bottom:14px;
+}
+.ct-feat-title{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:1.15rem;font-weight:900;color:#3d2008;margin-bottom:10px;line-height:1.25;
+}
+.ct-feat-desc{
+  font-size:.88rem;color:rgba(61,32,8,.65);line-height:1.75;
+}
+.ct-feat-body{padding:24px 32px;background:#fff;}
+.ct-feat-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ct-feat-list li{
+  font-size:.88rem;color:#5c3610;display:flex;align-items:flex-start;gap:10px;line-height:1.6;font-weight:600;
+}
+.ct-feat-list li::before{content:'▸';color:#c8922a;flex-shrink:0;margin-top:1px;}
+
+/* ═══════════════════════════
+   TALLERES GRATUITOS — oscuro
+═══════════════════════════ */
+.ct-free-section{background:#5c3610;}
+.ct-free-h2{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;color:#f5e8cf;
+  margin-bottom:8px;
+}
+.ct-free-h2 span{color:#e8b84b;}
+.ct-free-sub{
+  font-size:.95rem;color:rgba(245,232,207,.6);margin-bottom:48px;max-width:560px;
+}
+
+.ct-free-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;
+}
+.ct-free-card{
+  background:rgba(61,32,8,.35);border:1px solid rgba(200,146,42,.15);
+  border-radius:6px;padding:22px 18px;
+  display:flex;align-items:flex-start;gap:14px;
+  transition:background .25s,border-color .25s;
+}
+.ct-free-card:hover{background:rgba(61,32,8,.6);border-color:rgba(200,146,42,.4);}
+.ct-free-icon{font-size:1.5rem;flex-shrink:0;color:#e8b84b;}
+.ct-free-info{flex:1;}
+.ct-free-name{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.95rem;font-weight:700;color:#f5e8cf;margin-bottom:3px;
+}
+.ct-free-dur{font-size:.78rem;color:rgba(245,232,207,.45);font-weight:600;}
+.ct-free-badge{
+  flex-shrink:0;
+  background:rgba(50,180,100,.12);border:1px solid rgba(50,180,100,.3);
+  border-radius:100px;padding:3px 10px;
+  font-size:.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:#6fda9a;margin-top:2px;
+}
+
+/* ═══════════════════════════
+   CTA — blanco final
+═══════════════════════════ */
+.ct-cta-section{
+  background:#ffffff;position:relative;overflow:hidden;
+  border-top:1px solid rgba(92,54,16,.1);
+}
+.ct-cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(200,146,42,.06),transparent 65%);
+  pointer-events:none;
+}
+.ct-cta-inner{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.ct-cta-eyebrow{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.65rem;letter-spacing:7px;text-transform:uppercase;
+  color:#c8922a;display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-bottom:24px;font-weight:700;
+}
+.ct-cta-eyebrow::before,.ct-cta-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:#c8922a;}
+.ct-cta-h2{
+  font-family: Arial, Calibri, sans-serif;
+  font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#3d2008;
+  margin-bottom:20px;line-height:1.15;letter-spacing:-0.5px;
+}
+.ct-cta-h2 em{font-style:normal;color:#c8922a;}
+.ct-cta-body{
+  font-size:1rem;line-height:2;color:#5c3610;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto;
+}
+.ct-cta-body strong{color:#3d2008;font-weight:700;}
+.ct-cta-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.ct-cta-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;background:linear-gradient(135deg,#7b4f1e,#5c3610);
+  padding:16px 36px;text-decoration:none;border-radius:2px;
+  transition:transform .3s,box-shadow .3s;
+}
+.ct-cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(92,54,16,.28);}
+.ct-cta-btn-outline{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#5c3610;background:transparent;border:2px solid rgba(92,54,16,.3);
+  padding:16px 36px;text-decoration:none;border-radius:2px;
+  transition:background .3s,border-color .3s;
+}
+.ct-cta-btn-outline:hover{background:#fff8f0;border-color:#c8922a;}
+
+/* ═══════════════════════════
+   REVEAL
+═══════════════════════════ */
+.ct-reveal{
+  opacity:0;transform:translateY(36px);
+  transition:opacity .85s ease,transform .85s cubic-bezier(.23,1,.32,1);
+}
+.ct-reveal.ct-in{opacity:1;transform:translateY(0);}
+.ct-r1{transition-delay:.08s} .ct-r2{transition-delay:.2s}
+.ct-r3{transition-delay:.32s} .ct-r4{transition-delay:.44s}
+.ct-r5{transition-delay:.56s} .ct-r6{transition-delay:.68s}
+
+/* ═══════════════════════════
+   RESPONSIVE
+═══════════════════════════ */
+@media(max-width:900px){
+  .ct-intro-grid{grid-template-columns:1fr;}
+  .ct-programs-grid{grid-template-columns:1fr;}
+  .ct-feat-grid{grid-template-columns:1fr;}
+  .ct-section{padding:72px 24px;}
+  .ct-scroll{display:none;}
+}
+@media(max-width:500px){
+  .ct-hero-stats{gap:28px;}
+  .ct-stat-num{font-size:2.2rem;}
+  .ct-cta-links{flex-direction:column;align-items:center;}
+  .ct-cta-btn,.ct-cta-btn-outline{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+<div id="banner-container"></div>
+
+<!-- ══ HERO ══════════════════════════════ -->
+<section class="ct-hero" id="ct-hero">
+  <div class="ct-hero-grain"></div>
+  <div class="ct-hero-bloom"></div>
+  <div class="ct-hero-bg">TALLERES</div>
+
+  <div class="ct-hero-inner">
+    <div class="ct-hero-tag">Formación Integral · Rep. Dom.</div>
+    <h1 class="ct-hero-h1">
+      Cursos, Talleres<br>
+      <em>y Charlas</em>
+    </h1>
+    <p class="ct-hero-slogan">Educación de calidad, resultados excepcionales.</p>
+    <p class="ct-hero-desc">
+      Programas formativos diseñados para estudiantes, instituciones y
+      organizaciones. Potencia tus habilidades dentro y fuera del aula con
+      <strong>métodos probados y docentes especializados.</strong>
+    </p>
+    <div class="ct-hero-stats">
+      <div class="ct-stat">
+        <div class="ct-stat-num" data-target="12">0</div>
+        <div class="ct-stat-lbl">Programas disponibles</div>
+      </div>
+      <div class="ct-stat">
+        <div class="ct-stat-num" data-target="12">0</div>
+        <div class="ct-stat-lbl">Talleres gratuitos</div>
+      </div>
+      <div class="ct-stat">
+        <div class="ct-stat-num" data-target="30">0</div>
+        <div class="ct-stat-lbl">Años de experiencia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ct-scroll">
+    <div class="ct-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══ TICKER ═════════════════════════════ -->
+<div class="ct-ticker-wrap">
+  <div class="ct-ticker">
+    <div class="ct-ticker-item">Cursos y Talleres</div>
+    <div class="ct-ticker-item">Inteligencia Emocional</div>
+    <div class="ct-ticker-item">Oratoria y Comunicación</div>
+    <div class="ct-ticker-item">Educación Financiera</div>
+    <div class="ct-ticker-item">Motivación Laboral</div>
+    <div class="ct-ticker-item">Talleres Gratuitos</div>
+    <div class="ct-ticker-item">Informática Básica</div>
+    <div class="ct-ticker-item">Diseño Gráfico</div>
+    <div class="ct-ticker-item">Cursos y Talleres</div>
+    <div class="ct-ticker-item">Inteligencia Emocional</div>
+    <div class="ct-ticker-item">Oratoria y Comunicación</div>
+    <div class="ct-ticker-item">Educación Financiera</div>
+    <div class="ct-ticker-item">Motivación Laboral</div>
+    <div class="ct-ticker-item">Talleres Gratuitos</div>
+    <div class="ct-ticker-item">Informática Básica</div>
+    <div class="ct-ticker-item">Diseño Gráfico</div>
+  </div>
+</div>
+
+<!-- ══ INTRO — blanco ═════════════════════ -->
+<section class="ct-section ct-intro-section" id="ct-intro">
+  <div class="ct-inner">
+    <div class="ct-intro-grid">
+      <div class="ct-reveal">
+        <div class="ct-eyebrow dark">Nuestra Oferta</div>
+        <h2 class="ct-intro-h2">
+          Formación<br>
+          <em>a tu medida</em>
+        </h2>
+        <p class="ct-intro-body">
+          En HIMANABI diseñamos cada programa pensando en el participante.
+          Contamos con docentes altamente calificados que combinan metodología
+          comprobada con un enfoque <strong>humano y personalizado</strong>
+          para garantizar resultados reales.
+        </p>
+        <p class="ct-intro-body">
+          Disponibles en modalidad <strong>presencial, semipresencial y virtual</strong>,
+          adaptados a instituciones, empresas y estudiantes individuales.
+        </p>
+      </div>
+      <div class="ct-reveal ct-r2">
+        <div class="ct-deco-frame">
+          <div class="ct-deco-corner-bl"></div>
+          <ul class="ct-check-list">
+            <li><i class="fas fa-check-circle"></i> Cursos especializados por área</li>
+            <li><i class="fas fa-check-circle"></i> Talleres prácticos e intensivos</li>
+            <li><i class="fas fa-check-circle"></i> Charlas motivacionales y conferencias</li>
+            <li><i class="fas fa-check-circle"></i> Programas gratuitos para clientes</li>
+            <li><i class="fas fa-check-circle"></i> Certificación al completar</li>
+            <li><i class="fas fa-check-circle"></i> Diseños a medida para instituciones</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAMAS GRID — oscuro ════════════ -->
+<section class="ct-section ct-programs-section" id="ct-programas">
+  <div class="ct-inner">
+    <div class="ct-reveal">
+      <div class="ct-eyebrow">Catálogo Completo</div>
+      <h2 class="ct-programs-h2">Programas <span>Disponibles</span></h2>
+      <p class="ct-programs-sub">
+        Cada programa responde a necesidades reales — comunicación, mentalidad, finanzas, tecnología y más.
+      </p>
+    </div>
+
+    <div class="ct-programs-grid">
+
+      <div class="ct-prog-card ct-reveal ct-r1">
+        <div class="ct-prog-num">01</div>
+        <div class="ct-prog-icon"><i class="fas fa-comments"></i></div>
+        <p class="ct-prog-name">Comunicación Asertiva</p>
+        <p class="ct-prog-desc">Aprende a expresarte con claridad y seguridad en cualquier contexto profesional o académico.</p>
+        <span class="ct-prog-tag">Comunicación</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r2">
+        <div class="ct-prog-num">02</div>
+        <div class="ct-prog-icon"><i class="fas fa-microphone-alt"></i></div>
+        <p class="ct-prog-name">Oratoria y Media Training</p>
+        <p class="ct-prog-desc">Técnicas para hablar en público con impacto y seguridad. Comunicación ante medios y audiencias.</p>
+        <span class="ct-prog-tag">Comunicación</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r3">
+        <div class="ct-prog-num">03</div>
+        <div class="ct-prog-icon"><i class="fas fa-wallet"></i></div>
+        <p class="ct-prog-name">Educación Financiera Básica</p>
+        <p class="ct-prog-desc">Cómo elaborar un presupuesto y administrar tus ingresos con herramientas prácticas.</p>
+        <span class="ct-prog-tag">Finanzas</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r4">
+        <div class="ct-prog-num">04</div>
+        <div class="ct-prog-icon"><i class="fas fa-chart-pie"></i></div>
+        <p class="ct-prog-name">Finanzas Personales</p>
+        <p class="ct-prog-desc">Bases sólidas para manejar tu dinero, ahorrar e invertir con inteligencia desde hoy.</p>
+        <span class="ct-prog-tag">Finanzas</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r5">
+        <div class="ct-prog-num">05</div>
+        <div class="ct-prog-icon"><i class="fas fa-brain"></i></div>
+        <p class="ct-prog-name">Inteligencia Emocional</p>
+        <p class="ct-prog-desc">Gestiona la presión, la frustración y los retos con herramientas de alto rendimiento personal.</p>
+        <span class="ct-prog-tag">Bienestar</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r6">
+        <div class="ct-prog-num">06</div>
+        <div class="ct-prog-icon"><i class="fas fa-handshake"></i></div>
+        <p class="ct-prog-name">Resolución de Conflictos</p>
+        <p class="ct-prog-desc">Maneja fricciones dentro de equipos y organizaciones con madurez y liderazgo efectivo.</p>
+        <span class="ct-prog-tag">Liderazgo</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r1">
+        <div class="ct-prog-num">07</div>
+        <div class="ct-prog-icon"><i class="fas fa-heart"></i></div>
+        <p class="ct-prog-name">Relaciones Saludables</p>
+        <p class="ct-prog-desc">Fomenta vínculos sanos y reconoce dinámicas nocivas en contextos personales y profesionales.</p>
+        <span class="ct-prog-tag">Bienestar</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r2">
+        <div class="ct-prog-num">08</div>
+        <div class="ct-prog-icon"><i class="fas fa-first-aid"></i></div>
+        <p class="ct-prog-name">Primeros Auxilios y RCP</p>
+        <p class="ct-prog-desc">Conocimiento vital para emergencias en el aula, el trabajo o la vida cotidiana.</p>
+        <span class="ct-prog-tag">Salud</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r3">
+        <div class="ct-prog-num">09</div>
+        <div class="ct-prog-icon"><i class="fas fa-fire"></i></div>
+        <p class="ct-prog-name">Técnicas de Motivación Laboral</p>
+        <p class="ct-prog-desc">Mantén el compromiso y la energía en equipos de trabajo. Liderazgo con propósito.</p>
+        <span class="ct-prog-tag">Liderazgo</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r4">
+        <div class="ct-prog-num">10</div>
+        <div class="ct-prog-icon"><i class="fas fa-laptop"></i></div>
+        <p class="ct-prog-name">Informática Básica</p>
+        <p class="ct-prog-desc">Dominio de herramientas digitales esenciales para el trabajo académico y profesional moderno.</p>
+        <span class="ct-prog-tag">Tecnología</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r5">
+        <div class="ct-prog-num">11</div>
+        <div class="ct-prog-icon"><i class="fas fa-palette"></i></div>
+        <p class="ct-prog-name">Introducción al Diseño Gráfico</p>
+        <p class="ct-prog-desc">Fundamentos del diseño visual y comunicación gráfica para principiantes. Práctica desde el primer día.</p>
+        <span class="ct-prog-tag">Creatividad</span>
+      </div>
+
+      <div class="ct-prog-card ct-reveal ct-r6">
+        <div class="ct-prog-num">12</div>
+        <div class="ct-prog-icon"><i class="fas fa-award"></i></div>
+        <p class="ct-prog-name">Crecimiento Profesional</p>
+        <p class="ct-prog-desc">Construye tu marca personal y desarrolla las habilidades clave para destacar en tu campo.</p>
+        <span class="ct-prog-tag">Carrera</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TALLERES DESTACADOS — blanco ═══════ -->
+<section class="ct-section ct-featured-section" id="ct-destacados">
+  <div class="ct-inner">
+    <div class="ct-reveal">
+      <div class="ct-eyebrow dark">Programas Estrella</div>
+      <h2 class="ct-featured-h2">Talleres <span>Destacados</span></h2>
+    </div>
+
+    <div class="ct-feat-grid">
+
+      <div class="ct-feat-card ct-reveal ct-r1">
+        <div class="ct-feat-header">
+          <div class="ct-feat-label"><i class="fas fa-comments"></i> Comunicación</div>
+          <div class="ct-feat-title">Comunicación Asertiva y Oratoria</div>
+          <div class="ct-feat-desc">Para docentes, estudiantes y profesionales que deseen dominar la expresión verbal y la presencia.</div>
+        </div>
+        <div class="ct-feat-body">
+          <ul class="ct-feat-list">
+            <li>Estructura de mensajes claros y persuasivos</li>
+            <li>Voz, dicción y proyección ante audiencias</li>
+            <li>Lenguaje corporal y presencia en cámara</li>
+            <li>Manejo de preguntas difíciles</li>
+            <li>Práctica en vivo con retroalimentación</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ct-feat-card ct-reveal ct-r2">
+        <div class="ct-feat-header">
+          <div class="ct-feat-label"><i class="fas fa-brain"></i> Bienestar Mental</div>
+          <div class="ct-feat-title">Inteligencia Emocional y Motivación</div>
+          <div class="ct-feat-desc">Desarrolla mentalidad ganadora, inteligencia emocional y enfoque en metas para equipos y personas.</div>
+        </div>
+        <div class="ct-feat-body">
+          <ul class="ct-feat-list">
+            <li>Mentalidad de crecimiento y trabajo en equipo</li>
+            <li>El error como oportunidad de aprendizaje</li>
+            <li>Comunicación empática y asertiva</li>
+            <li>Manejo de emociones y presión</li>
+            <li>Diseño de metas y planes de acción</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ct-feat-card ct-reveal ct-r3">
+        <div class="ct-feat-header">
+          <div class="ct-feat-label"><i class="fas fa-chart-line"></i> Finanzas</div>
+          <div class="ct-feat-title">Educación Financiera Personal</div>
+          <div class="ct-feat-desc">Herramientas prácticas para administrar, ahorrar e invertir con inteligencia desde cualquier nivel.</div>
+        </div>
+        <div class="ct-feat-body">
+          <ul class="ct-feat-list">
+            <li>Ahorro vs. inversión — estrategias clave</li>
+            <li>Cómo elaborar un presupuesto efectivo</li>
+            <li>Nociones de finanzas personales</li>
+            <li>Instrumentos financieros básicos</li>
+            <li>Diversificación y gestión de riesgo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ct-feat-card ct-reveal ct-r4">
+        <div class="ct-feat-header">
+          <div class="ct-feat-label"><i class="fas fa-laptop-code"></i> Tecnología</div>
+          <div class="ct-feat-title">Habilidades Digitales Esenciales</div>
+          <div class="ct-feat-desc">Desde informática básica hasta herramientas de IA: domina las tecnologías que el mundo laboral exige.</div>
+        </div>
+        <div class="ct-feat-body">
+          <ul class="ct-feat-list">
+            <li>Informática básica y paquete Office</li>
+            <li>Introducción al diseño gráfico digital</li>
+            <li>Ciberseguridad para el usuario cotidiano</li>
+            <li>Herramientas de IA aplicadas al trabajo</li>
+            <li>Comunicación y locución básica en medios</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TALLERES GRATUITOS — oscuro ════════ -->
+<section class="ct-section ct-free-section" id="ct-gratuitos">
+  <div class="ct-inner">
+    <div class="ct-reveal">
+      <div class="ct-eyebrow">Sin Costo Adicional</div>
+      <h2 class="ct-free-h2">Talleres <span>Gratuitos</span></h2>
+      <p class="ct-free-sub">
+        Como valor añadido para nuestros clientes, estos talleres están disponibles sin costo adicional.
+      </p>
+    </div>
+
+    <div class="ct-free-grid">
+
+      <div class="ct-free-card ct-reveal ct-r1">
+        <div class="ct-free-icon"><i class="fas fa-robot"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Herramientas de IA</div>
+          <div class="ct-free-dur">A convenir</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r2">
+        <div class="ct-free-icon"><i class="fas fa-microphone-alt"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Oratoria y Media Training</div>
+          <div class="ct-free-dur">A convenir</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r3">
+        <div class="ct-free-icon"><i class="fas fa-camera"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Fotografía Digital e Iluminación</div>
+          <div class="ct-free-dur">A convenir</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r4">
+        <div class="ct-free-icon"><i class="fas fa-heart"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Conductas Sanas</div>
+          <div class="ct-free-dur">2 horas (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r5">
+        <div class="ct-free-icon"><i class="fas fa-broadcast-tower"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Comunicación y Locución Básica</div>
+          <div class="ct-free-dur">2 horas (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r6">
+        <div class="ct-free-icon"><i class="fas fa-fire"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Técnicas de Motivación Laboral</div>
+          <div class="ct-free-dur">2 horas (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r1">
+        <div class="ct-free-icon"><i class="fas fa-newspaper"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Gestión de Notas de Prensa</div>
+          <div class="ct-free-dur">2 horas (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r2">
+        <div class="ct-free-icon"><i class="fas fa-comments"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Comunicación Asertiva</div>
+          <div class="ct-free-dur">1 hora (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r3">
+        <div class="ct-free-icon"><i class="fas fa-palette"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Introducción al Diseño Gráfico</div>
+          <div class="ct-free-dur">4 semanas</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r4">
+        <div class="ct-free-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Introducción a la Ciberseguridad</div>
+          <div class="ct-free-dur">2 horas (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r5">
+        <div class="ct-free-icon"><i class="fas fa-laptop"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Informática Básica</div>
+          <div class="ct-free-dur">1 hora (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+      <div class="ct-free-card ct-reveal ct-r6">
+        <div class="ct-free-icon"><i class="fas fa-music"></i></div>
+        <div class="ct-free-info">
+          <div class="ct-free-name">Introducción a las Artes</div>
+          <div class="ct-free-dur">1 hora (1 día)</div>
+        </div>
+        <div class="ct-free-badge">Gratis</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══════════════════════════ -->
+<section class="ct-section ct-cta-section" id="ct-inscripcion">
+  <div class="ct-cta-inner ct-reveal">
+    <div class="ct-cta-eyebrow">Próximos Pasos</div>
+    <h2 class="ct-cta-h2">
+      Empieza hoy<br>
+      <em>tu formación</em>
+    </h2>
+    <p class="ct-cta-body">
+      Ponte en contacto con nosotros para inscribirte en cualquiera de nuestros
+      talleres y cursos. <strong>Tu formación integral comienza aquí.</strong>
+    </p>
+    <div class="ct-cta-links">
+      <a href="https://wa.me/18098706655" target="_blank" class="ct-cta-btn">
+        <i class="fab fa-whatsapp"></i> Inscríbete por WhatsApp
+      </a>
+      <a href="contacto.html" class="ct-cta-btn-outline">
+        <i class="fas fa-envelope"></i> Más información
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+<script src="../js/banner-footer.js"></script>
+
+<script>
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('ct-in'); });
+}, {threshold:.1});
+document.querySelectorAll('.ct-reveal').forEach(el => obs.observe(el));
+
+/* ANIMATED COUNTERS */
+function animCount(el, target, duration=1800){
+  let start=null;
+  const step = ts => {
+    if(!start) start=ts;
+    const p = Math.min((ts-start)/duration,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent=target+'+';
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target);
+      if(!isNaN(t)) animCount(e.target,t);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+</script>
+</body>
+</html>
