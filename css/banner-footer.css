@@ -13,8 +13,8 @@
   --cream:     #F5E6D3;
   --cream-lt:  #FDF6EE;
   --white:     #ffffff;
-  --font-d:    'Playfair Display', Georgia, serif;
-  --font-b:    'DM Sans', 'Segoe UI', Tahoma, sans-serif;
+  --font-d:    Arial, Calibri, sans-serif;
+  --font-b:    Arial, Calibri, sans-serif;
   --ease:      .35s cubic-bezier(.4,0,.2,1);
 }
 

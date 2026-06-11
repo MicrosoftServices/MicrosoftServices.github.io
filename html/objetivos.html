@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Objetivos – HIMANABI</title>
@@ -9,10 +8,9 @@
 <link rel="stylesheet" href="../css/banner-footer.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-
 </head>
 <body>
-  <div id="banner-container"></div>
+<div id="banner-container"></div>
 <div class="hb-page">
 
 <!-- ── HERO ─────────────────────────────── -->
@@ -25,7 +23,6 @@
 
   <div class="hb-hero-split">
     <div class="hb-hero-content">
-      <div class="hb-tag">Misión Educativa · Rep. Dom.</div>
       <h1 class="hb-hero-h1">
         <span class="hb-line">Nuestro</span>
         <span class="hb-line">Objetivo</span>
@@ -33,7 +30,7 @@
       <p class="hb-hero-desc">
         Diseñamos servicios para entidades y personas que deseen
         <strong>establecer y mejorar programas educativos</strong>
-        en cualquier nivel académico — con el soporte que necesitas.
+        en cualquier nivel académico con el soporte que necesitas.
       </p>
     </div>
 
@@ -65,61 +62,73 @@
 
 <!-- ── QUIÉNES SERVIMOS ──────────────────── -->
 <section class="hb-section hb-serve-section" id="hb-serve">
-  <div class="hb-serve-grid">
+  <div class="hb-serve-inner">
 
-    <div class="hb-reveal">
-      <div class="hb-section-eyebrow"><h3>A Quiénes Servimos</h3></div>
+    <!-- Título centrado arriba -->
+    <div class="hb-serve-heading hb-reveal">
       <h2 class="hb-serve-h2">
-        Para<br>
-        <em>todos los niveles</em><br>
-        académicos
+        Para <em>Todos Los Niveles</em> Académicos
       </h2>
-      <p class="hb-serve-body">
-        Nuestros servicios están diseñados para entidades y personas que deseen
-        establecer y mejorar programas educativos en cualquier nivel académico.
-        Ya sea una escuela, una universidad, una academia o un estudiante individual,
-        estamos aquí para brindarte el soporte que necesitas.
+      <p class="hb-serve-intro">
+        Trabajamos con instituciones y personas en todos los niveles del sistema educativo,
+        ofreciendo soluciones adaptadas a cada contexto y necesidad.
       </p>
     </div>
 
-    <div class="hb-reveal hb-r2">
-      <div class="hb-serve-cards">
+    <!-- Grid: cards izquierda | carrusel derecha -->
+    <div class="hb-serve-grid">
 
-        <div class="hb-serve-card">
-          <div class="hb-serve-icon">
-            <i class="fas fa-school"></i>
+      <div class="hb-serve-cards-col hb-reveal hb-r1">
+        <div class="hb-serve-cards">
+          <div class="hb-serve-card">
+            <div class="hb-serve-icon"><i class="fas fa-school"></i></div>
+            <p class="hb-serve-card-title">Escuelas</p>
+            <p class="hb-serve-card-body">Programas diseñados para fortalecer el nivel académico desde la base.</p>
           </div>
-          <p class="hb-serve-card-title">Escuelas</p>
-          <p class="hb-serve-card-body">Programas diseñados para fortalecer el nivel académico desde la base.</p>
-        </div>
-
-        <div class="hb-serve-card">
-          <div class="hb-serve-icon">
-            <i class="fas fa-university"></i>
+          <div class="hb-serve-card">
+            <div class="hb-serve-icon"><i class="fas fa-university"></i></div>
+            <p class="hb-serve-card-title">Universidades</p>
+            <p class="hb-serve-card-body">Soporte de alto nivel para instituciones de educación superior.</p>
           </div>
-          <p class="hb-serve-card-title">Universidades</p>
-          <p class="hb-serve-card-body">Soporte de alto nivel para instituciones de educación superior.</p>
-        </div>
-
-        <div class="hb-serve-card">
-          <div class="hb-serve-icon">
-            <i class="fas fa-chalkboard-teacher"></i>
+          <div class="hb-serve-card">
+            <div class="hb-serve-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <p class="hb-serve-card-title">Academias</p>
+            <p class="hb-serve-card-body">Colaboramos con academias para optimizar sus programas de formación.</p>
           </div>
-          <p class="hb-serve-card-title">Academias</p>
-          <p class="hb-serve-card-body">Colaboramos con academias para optimizar sus programas de formación.</p>
-        </div>
-
-        <div class="hb-serve-card">
-          <div class="hb-serve-icon">
-            <i class="fas fa-user-graduate"></i>
+          <div class="hb-serve-card">
+            <div class="hb-serve-icon"><i class="fas fa-user-graduate"></i></div>
+            <p class="hb-serve-card-title">Estudios Individuales</p>
+            <p class="hb-serve-card-body">Acompañamiento personalizado con tutorías adaptadas a cada estudiante.</p>
           </div>
-          <p class="hb-serve-card-title">Estudiantes</p>
-          <p class="hb-serve-card-body">Acompañamiento individual con tutorías altamente personalizadas.</p>
         </div>
-
       </div>
-    </div>
 
+      <!-- Carrusel lado derecho (fondo marrón) -->
+      <div class="hb-serve-slider-col hb-reveal hb-r2">
+        <div class="hb-serve-slider-wrap">
+          <div class="hb-serve-slider" id="hbServeSlider">
+            <img src="../img/graduacion-allstar.jpg"
+                 class="hb-serve-slide hb-sslide-active"
+                 alt="Graduación HIMANABI"
+                 onerror="this.style.background='rgba(200,146,42,.25)';this.removeAttribute('src')">
+            <img src="../img/graduacion-congratulations.jpg"
+                 class="hb-serve-slide"
+                 alt="Ceremonia de Graduación"
+                 onerror="this.style.background='rgba(92,54,16,.4)';this.removeAttribute('src')">
+            <img src="../img/clases.jpg"
+                 class="hb-serve-slide"
+                 alt="Clases HIMANABI"
+                 onerror="this.style.background='rgba(61,32,8,.5)';this.removeAttribute('src')">
+          </div>
+          <div class="hb-serve-slider-dots">
+            <button class="hb-ssdot hb-ssdot-active" data-ssidx="0" aria-label="Slide 1"></button>
+            <button class="hb-ssdot" data-ssidx="1" aria-label="Slide 2"></button>
+            <button class="hb-ssdot" data-ssidx="2" aria-label="Slide 3"></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -128,50 +137,101 @@
   <div class="hb-results-inner">
 
     <div class="hb-results-header hb-reveal">
-      <div>
-        <div class="hb-section-eyebrow"><h3>Resultados Excepcionales</h3></div>
-        <h2 class="hb-results-h2">
-          Los números<br>
-          <em>hablan por sí solos</em>
-        </h2>
-      </div>
-      <div class="hb-results-badge">HIMANABI · Excelencia Educativa</div>
+      <h2 class="hb-results-h2">
+        Nuestros<br>
+        <em>Clientes Hablan por Sí Solos</em>
+      </h2>
     </div>
 
     <div class="hb-results-layout">
 
+      <!-- Columna izquierda: stat + texto -->
       <div class="hb-reveal hb-r1">
         <div class="hb-stat-block">
           <div>
-            <div class="hb-stat-big">
-              <span class="hb-stat-num" data-target="100">0</span>
-              <span class="hb-stat-pct">%</span>
-            </div>
             <p class="hb-stat-label">
-              de nuestros estudiantes alcanza <strong>resultados excepcionales</strong>
-              cuando mantiene un enfoque constante en el programa diseñado.
+              En <strong>HIMANABI</strong>, los resultados hablan por sí mismos.
+              Nuestros alumnos confían en la efectividad de nuestros
+              programas educativos. <strong class="hb-highlight"><span class="hb-hl-a">No Solo Lo Decimos ·</span> <span class="hb-hl-b">Nuestros Clientes Satisfechos Lo Confirman.</span></strong>
             </p>
           </div>
           <div class="hb-results-divider"></div>
-          <p class="hb-stat-label">
-            En <strong>HIMANABI</strong>, los resultados hablan por sí mismos.
-            Nuestros alumnos confían en la efectividad de nuestros
-            programas educativos. <strong>No solo lo decimos —
-            nuestros clientes satisfechos lo confirman.</strong>
-          </p>
+          <div class="hb-stat-badges">
+            <div class="hb-stat-badge"><i class="fas fa-star"></i><span>Tutores Calificados</span></div>
+            <div class="hb-stat-badge"><i class="fas fa-clock"></i><span>Horarios Flexibles</span></div>
+            <div class="hb-stat-badge"><i class="fas fa-chart-line"></i><span>Alta Efectividad</span></div>
+          </div>
         </div>
       </div>
 
+      <!-- Columna derecha: carrusel testimonios -->
       <div class="hb-reveal hb-r2">
-        <div class="hb-testimonial">
-          <p class="hb-testimonial-text">
-            HIMANABI ha transformado mi forma de aprender. Gracias a su enfoque
-            personalizado y tutores altamente calificados, he logrado un éxito
-            académico que nunca antes imaginé. ¡Recomiendo sus servicios sin reservas!
-          </p>
-          <div class="hb-testimonial-author">
-            <div class="hb-testimonial-dash"></div>
-            <span class="hb-testimonial-name">Ana S. · Estudiante Satisfecha</span>
+        <div class="hb-tcarousel">
+          <div class="hb-tcarousel-track">
+
+            <div class="hb-testimonial hb-tslide hb-tslide-active">
+              <p class="hb-testimonial-text">
+                HIMANABI ha transformado mi forma de aprender. Gracias a su enfoque
+                personalizado y tutores altamente calificados, he logrado un éxito
+                académico que nunca antes imaginé. ¡Recomiendo sus servicios sin reservas!
+              </p>
+              <div class="hb-testimonial-author">
+                <div class="hb-testimonial-dash"></div>
+                <span class="hb-testimonial-name">Ana S. · Estudiante Satisfecha</span>
+              </div>
+            </div>
+
+            <div class="hb-testimonial hb-tslide">
+              <p class="hb-testimonial-text">
+                El programa de tutoría técnica fue clave para aprobar mis materias de ingeniería.
+                Los tutores explican con paciencia y claridad. Nunca pensé que la física
+                podría ser tan accesible. HIMANABI realmente marca la diferencia.
+              </p>
+              <div class="hb-testimonial-author">
+                <div class="hb-testimonial-dash"></div>
+                <span class="hb-testimonial-name">Carlos M. · Estudiante de Ingeniería</span>
+              </div>
+            </div>
+
+            <div class="hb-testimonial hb-tslide">
+              <p class="hb-testimonial-text">
+                Como institución, decidimos contratar los servicios de HIMANABI para reforzar
+                el desempeño de nuestros alumnos y los resultados fueron inmediatos. Su equipo
+                es profesional, comprometido y siempre disponible.
+              </p>
+              <div class="hb-testimonial-author">
+                <div class="hb-testimonial-dash"></div>
+                <span class="hb-testimonial-name">Lic. María R. · Directora Académica</span>
+              </div>
+            </div>
+
+            <div class="hb-testimonial hb-tslide">
+              <p class="hb-testimonial-text">
+                La modalidad virtual de HIMANABI me permitió seguir estudiando desde casa
+                sin perder calidad educativa. Los materiales, las sesiones en vivo y el
+                seguimiento continuo son de primer nivel.
+              </p>
+              <div class="hb-testimonial-author">
+                <div class="hb-testimonial-dash"></div>
+                <span class="hb-testimonial-name">Javier P. · Estudiante Virtual</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="hb-tcarousel-controls">
+            <button class="hb-tcarousel-prev" id="hbTprev" aria-label="Anterior">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="hb-tcarousel-dots">
+              <button class="hb-tdot hb-tdot-active" data-tidx="0"></button>
+              <button class="hb-tdot" data-tidx="1"></button>
+              <button class="hb-tdot" data-tidx="2"></button>
+              <button class="hb-tdot" data-tidx="3"></button>
+            </div>
+            <button class="hb-tcarousel-next" id="hbTnext" aria-label="Siguiente">
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -206,21 +266,16 @@
     <div class="hb-focus-grid">
 
       <div class="hb-reveal">
-        <div class="hb-section-eyebrow"><h3>Enfoque Personalizado</h3></div>
         <h2 class="hb-focus-h2">
-          Cada estudiante<br>
-          <em>es único</em>
+          Cada Estudiante<br>
+          <em>Es Único</em>
         </h2>
         <p class="hb-focus-body">
           Nuestros programas se mantienen actualizados y se adaptan
           constantemente a las <strong>necesidades cambiantes</strong> de
           nuestros alumnos y clientes. Entendemos que cada individuo
-          es único, y diseñamos estrategias de aprendizaje que se
+          es único, diseñamos estrategias de aprendizaje que se
           ajustan a ti.
-        </p>
-        <p class="hb-focus-body">
-          <strong>Tu éxito es nuestro compromiso.</strong> Cada programa
-          es una hoja de ruta construida desde cero para alcanzar tus metas.
         </p>
       </div>
 
@@ -235,10 +290,6 @@
                  class="hb-slide"
                  alt="Ceremonia de Graduación"
                  onerror="this.style.background='rgba(92,54,16,.3)';this.removeAttribute('src')">
-            <div class="hb-slider-badge">
-              <span class="hb-slider-badge-num">100%</span>
-              <span class="hb-slider-badge-txt">Éxito</span>
-            </div>
           </div>
           <div class="hb-slider-dots">
             <button class="hb-sdot hb-sdot-active" data-idx="0" aria-label="Slide 1"></button>
@@ -256,32 +307,27 @@
   <div class="hb-diff-inner">
 
     <div class="hb-diff-header hb-reveal">
-      <div class="hb-section-eyebrow"><h3>Lo que nos distingue</h3></div>
       <h2 class="hb-diff-h2">
         Nuestros<br>
         <em>Diferenciadores</em>
       </h2>
       <p class="hb-diff-intro">
-        En HIMANABI nos destacamos en el mercado gracias a factores concretos
+        Nos destacamos en el mercado gracias a factores concretos
         que garantizan resultados y nos posicionan por encima de alternativas similares.
       </p>
     </div>
 
     <div class="hb-diff-grid">
-
       <div class="hb-diff-item hb-reveal hb-r1">
-       
         <div class="hb-diff-icon"><i class="fas fa-chart-line"></i></div>
         <p class="hb-diff-title">Alta Efectividad</p>
         <p class="hb-diff-body">
-          Nuestros programas educativos están probados con una tasa
-          de éxito del 100% en estudiantes con enfoque constante.
+          Nuestros programas educativos están probados y han generado
+          resultados reales en estudiantes de todos los niveles.
           La efectividad no es una promesa, es un historial.
         </p>
       </div>
-
       <div class="hb-diff-item hb-reveal hb-r2">
-       
         <div class="hb-diff-icon"><i class="fas fa-laptop-code"></i></div>
         <p class="hb-diff-title">Tutores Preparados</p>
         <p class="hb-diff-body">
@@ -290,9 +336,7 @@
           de tu proceso educativo.
         </p>
       </div>
-
       <div class="hb-diff-item hb-reveal hb-r3">
-       
         <div class="hb-diff-icon"><i class="fas fa-clock"></i></div>
         <p class="hb-diff-title">Flexibilidad de Horarios</p>
         <p class="hb-diff-body">
@@ -301,18 +345,18 @@
           vida de cada estudiante.
         </p>
       </div>
-
     </div>
+
   </div>
 </section>
 
 <!-- ── CTA ────────────────────────────────── -->
 <section class="hb-section hb-cta-section" id="hb-cta">
   <div class="hb-cta-inner hb-reveal">
-    <div class="hb-cta-eyebrow"><h3>Únete a Nosotros</h3></div>
+    <div class="hb-cta-eyebrow"><h2>Únete a Nosotros</h2></div>
     <h2 class="hb-cta-h2">
-      Tu futuro brillante<br>
-      <em>comienza aquí</em>
+      Tu Futuro Brillante<br>
+      <em>Comienza Aquí</em>
     </h2>
     <p class="hb-cta-body">
       Puedes solicitar una <strong>propuesta educativa diseñada
@@ -320,7 +364,7 @@
       Únete a nosotros en tu viaje hacia el éxito educativo.
       En HIMANABI, tu futuro brillante comienza aquí.
     </p>
-    <a href="#" class="hb-cta-btn">
+    <a href="https://api.whatsapp.com/send?phone=18098706655" class="hb-cta-btn">
       Solicitar Propuesta Educativa
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="5" y1="12" x2="19" y2="12"/>
@@ -331,10 +375,7 @@
 </section>
 
 </div>
-
 <div id="footer-container"></div>
-
-<!-- Script para cargar banner y footer desde un solo archivo -->
 <script src="../js/banner-footer.js"></script>
 
 <script>
@@ -348,9 +389,8 @@ document.querySelectorAll('.hb-reveal').forEach(el => obs.observe(el));
 (function(){
   const slides = document.querySelectorAll('.hb-hero-slide');
   const dots   = document.querySelectorAll('.hb-hsdot');
-  let current  = 0;
-  let timer;
-
+  if(!slides.length) return;
+  let current = 0, timer;
   function goTo(idx){
     slides[current].classList.remove('hb-hslide-active');
     dots[current].classList.remove('hb-hsdot-active');
@@ -358,30 +398,37 @@ document.querySelectorAll('.hb-reveal').forEach(el => obs.observe(el));
     slides[current].classList.add('hb-hslide-active');
     dots[current].classList.add('hb-hsdot-active');
   }
-
-  function next(){ goTo((current + 1) % slides.length); }
-
-  function startAuto(){ timer = setInterval(next, 3800); }
+  function startAuto(){ timer = setInterval(() => goTo((current+1)%slides.length), 3800); }
   function stopAuto() { clearInterval(timer); }
-
-  dots.forEach(d => {
-    d.addEventListener('click', () => {
-      stopAuto();
-      goTo(parseInt(d.dataset.hidx));
-      startAuto();
-    });
-  });
-
+  dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(parseInt(d.dataset.hidx)); startAuto(); }));
   startAuto();
 })();
 
-/* SLIDER */
+/* SERVE SLIDER */
+(function(){
+  const slides = document.querySelectorAll('.hb-serve-slide');
+  const dots   = document.querySelectorAll('.hb-ssdot');
+  if(!slides.length) return;
+  let current = 0, timer;
+  function goTo(idx){
+    slides[current].classList.remove('hb-sslide-active');
+    dots[current].classList.remove('hb-ssdot-active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('hb-sslide-active');
+    dots[current].classList.add('hb-ssdot-active');
+  }
+  function startAuto(){ timer = setInterval(() => goTo(current+1), 3800); }
+  function stopAuto() { clearInterval(timer); }
+  dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(parseInt(d.dataset.ssidx)); startAuto(); }));
+  startAuto();
+})();
+
+/* FOCUS SLIDER */
 (function(){
   const slides = document.querySelectorAll('.hb-slide');
   const dots   = document.querySelectorAll('.hb-sdot');
-  let current  = 0;
-  let timer;
-
+  if(!slides.length) return;
+  let current = 0, timer;
   function goTo(idx){
     slides[current].classList.remove('hb-slide-active');
     dots[current].classList.remove('hb-sdot-active');
@@ -389,47 +436,34 @@ document.querySelectorAll('.hb-reveal').forEach(el => obs.observe(el));
     slides[current].classList.add('hb-slide-active');
     dots[current].classList.add('hb-sdot-active');
   }
-
-  function next(){ goTo((current + 1) % slides.length); }
-
-  function startAuto(){ timer = setInterval(next, 3800); }
+  function startAuto(){ timer = setInterval(() => goTo((current+1)%slides.length), 3800); }
   function stopAuto() { clearInterval(timer); }
-
-  dots.forEach(d => {
-    d.addEventListener('click', () => {
-      stopAuto();
-      goTo(parseInt(d.dataset.idx));
-      startAuto();
-    });
-  });
-
+  dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(parseInt(d.dataset.idx)); startAuto(); }));
   startAuto();
 })();
 
-/* COUNTERS */
-function animCount(el, target, duration=1800){
-  let start=null;
-  const step = ts => {
-    if(!start) start=ts;
-    const p = Math.min((ts-start)/duration,1);
-    const ease = 1-Math.pow(1-p,3);
-    el.textContent = Math.floor(ease*target);
-    if(p<1) requestAnimationFrame(step);
-    else el.textContent=target;
-  };
-  requestAnimationFrame(step);
-}
-const cObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      const t = parseInt(e.target.dataset.target);
-      if(!isNaN(t)) animCount(e.target,t);
-      cObs.unobserve(e.target);
-    }
-  });
-},{threshold:.5});
-document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+/* TESTIMONIAL CAROUSEL */
+(function(){
+  const slides = document.querySelectorAll('.hb-tslide');
+  const dots   = document.querySelectorAll('.hb-tdot');
+  const prev   = document.getElementById('hbTprev');
+  const next   = document.getElementById('hbTnext');
+  if(!slides.length) return;
+  let current = 0, timer;
+  function goTo(idx){
+    slides[current].classList.remove('hb-tslide-active');
+    dots[current].classList.remove('hb-tdot-active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('hb-tslide-active');
+    dots[current].classList.add('hb-tdot-active');
+  }
+  function startAuto(){ timer = setInterval(() => goTo(current+1), 5000); }
+  function stopAuto() { clearInterval(timer); }
+  dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(parseInt(d.dataset.tidx)); startAuto(); }));
+  if(prev) prev.addEventListener('click', () => { stopAuto(); goTo(current-1); startAuto(); });
+  if(next) next.addEventListener('click', () => { stopAuto(); goTo(current+1); startAuto(); });
+  startAuto();
+})();
 </script>
-
 </body>
 </html>

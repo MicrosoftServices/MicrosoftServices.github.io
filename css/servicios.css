@@ -28,6 +28,7 @@ html{scroll-behavior:smooth}
   flex-direction:column;
   overflow:hidden;
   background:#5c3610;
+  isolation:isolate;
 }
 
 .hb-grain{
@@ -217,7 +218,7 @@ html{scroll-behavior:smooth}
 .hb-section{
   position:relative;
   padding:72px 64px;
-  overflow:hidden;
+  overflow:visible;
 }
 .hb-section-eyebrow{
   font-family:Arial,Calibri,sans-serif;
@@ -325,26 +326,46 @@ html{scroll-behavior:smooth}
    SERVICE CARDS — dark section
 ═══════════════════════════════ */
 .hb-services-section{background:#3d2008;}
-.hb-services-inner{max-width:1200px;margin:0 auto;}
-.hb-services-header{margin-bottom:64px;}
+.hb-services-inner{max-width:1200px;margin:0 auto;overflow:visible;}
+.hb-services-header{
+  margin-bottom:52px;
+  text-align:center;
+}
+.hb-services-header .hb-section-eyebrow{
+  justify-content:center;
+  color:#e8b84b;
+  margin-bottom:16px;
+}
+.hb-services-header .hb-section-eyebrow::after{display:none;}
+.hb-services-header .hb-section-eyebrow::before{
+  content:'';flex:1;max-width:60px;height:1px;background:#e8b84b;
+}
 .hb-services-h2{
   font-family:Arial,Calibri,sans-serif;
-  font-size:clamp(1.9rem,4vw,3rem);
+  font-size:clamp(1.6rem,3vw,2.4rem);
   font-weight:700;color:#f5e8cf;letter-spacing:1px;
+  margin-bottom:16px;
 }
 .hb-services-h2 em{font-style:normal;color:#e8b84b}
+.hb-services-subtitle{
+  font-size:.9rem;line-height:1.9;
+  color:rgba(245,232,207,.65);font-weight:300;
+  max-width:620px;margin:0 auto;
+}
+.hb-services-subtitle strong{color:#e8b84b;font-weight:700;}
 
 .hb-services-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:1px;
   background:rgba(245,232,207,.08);
+  overflow:visible;
 }
 
 .hb-svc-card{
   background:#3d2008;
-  padding:56px 44px;
-  position:relative;overflow:hidden;
+  padding:36px 30px;
+  position:relative;
   transition:background .4s;
   cursor:default;
 }
@@ -374,12 +395,12 @@ html{scroll-behavior:smooth}
   display:block;
 }
 .hb-svc-icon{
-  width:52px;height:52px;border-radius:50%;
+  width:42px;height:42px;border-radius:50%;
   background:rgba(200,146,42,.1);
   border:1px solid rgba(200,146,42,.25);
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:26px;
-  color:#e8b84b;font-size:1.2rem;
+  margin-bottom:18px;
+  color:#e8b84b;font-size:1rem;
   transition:background .35s,border-color .35s;
   position:relative;z-index:1;
 }
@@ -389,11 +410,11 @@ html{scroll-behavior:smooth}
 }
 .hb-svc-title{
   font-family: Arial, Calibri, sans-serif;
-  font-size:1.1rem;font-weight:900;letter-spacing:0.2px;
-  color:#f5e8cf;margin-bottom:16px;
+  font-size:.95rem;font-weight:900;letter-spacing:0.2px;
+  color:#f5e8cf;margin-bottom:10px;
   position:relative;z-index:1;
 }
-.hb-svc-body{font-size:.9rem;line-height:2;
+.hb-svc-body{font-size:.8rem;line-height:1.85;
   color:rgba(245,232,207,.6);font-weight:400;
   position:relative;z-index:1;
 }
@@ -414,11 +435,17 @@ html{scroll-behavior:smooth}
 .hb-modal-section .hb-section-eyebrow::after{background:#c8922a;}
 
 .hb-modal-inner{max-width:1200px;margin:0 auto;}
-.hb-modal-header{margin-bottom:64px;}
+.hb-modal-header{margin-bottom:64px;text-align:center;}
+.hb-modal-header .hb-section-eyebrow{justify-content:center;}
+.hb-modal-header .hb-section-eyebrow::after{display:none;}
+.hb-modal-header .hb-section-eyebrow::before{
+  content:'';flex:1;max-width:60px;height:1px;background:#c8922a;
+}
 .hb-modal-h2{
   font-family:Arial,Calibri,sans-serif;
-  font-size:clamp(1.9rem,4vw,3rem);
+  font-size:clamp(1.2rem,2.5vw,1.8rem);
   font-weight:700;color:#3d2008;letter-spacing:1px;
+  line-height:1.4;
 }
 .hb-modal-h2 em{font-style:normal;color:#c8922a}
 
