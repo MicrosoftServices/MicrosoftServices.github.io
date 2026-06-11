@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="css/banner-footer.css">
+
 
     <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -99,7 +101,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 @keyframes tgo{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* SECTION BASE */
-.section{padding:120px 0}
+.section{padding:72px 0}
 .section-inner{max-width:1240px;margin:0 auto;padding:0 60px}
 .eyebrow{display:flex;align-items:center;gap:16px;font-size:.6rem;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
 .eyebrow::after{content:'';width:48px;height:1px;background:var(--gold)}
@@ -122,7 +124,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 
 /* SERVICES */
 .services{background:var(--brown-deep)}
-.services-header{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-bottom:80px}
+.services-header{display:grid;grid-template-columns:1fr 1fr;align-items:center;margin-bottom:48px}
 .services-header .eyebrow{color:rgba(232,184,74,.7)}
 .services-header .eyebrow::after{background:rgba(232,184,74,.4)}
 .services-h2{font-family:var(--font-display);font-size:clamp(2.4rem,4vw,4rem);font-weight:300;color:var(--gold-pale);line-height:1.1}
@@ -143,7 +145,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 
 /* PROCESS */
 .process{background:var(--cream-2)}
-.process-h2{font-family:var(--font-display);font-size:clamp(2.2rem,3.5vw,3.5rem);font-weight:300;color:var(--brown-deep);line-height:1.15;margin-bottom:80px;max-width:580px}
+.process-h2{font-family:var(--font-display);font-size:clamp(2.2rem,3.5vw,3.5rem);font-weight:300;color:var(--brown-deep);line-height:1.15;margin-bottom:48px;max-width:580px}
 .process-h2 em{font-style:italic;color:var(--gold)}
 .process-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:0}
 .process-steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,var(--gold),var(--gold),transparent);z-index:0}
@@ -156,10 +158,10 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 .process-step-body{font-size:.82rem;line-height:1.8;color:var(--text-body);font-weight:300;opacity:.75}
 
 /* STATS */
-.stats{background:var(--brown-rich);padding:100px 0;position:relative;overflow:hidden}
+.stats{background:var(--brown-rich);padding:60px 0;position:relative;overflow:hidden}
 .stats::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,146,42,.08),transparent);pointer-events:none}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.stat-item{text-align:center;padding:48px 32px;border-right:1px solid rgba(200,146,42,.1);position:relative;z-index:1;transition:background .3s}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:900px;margin:0 auto}
+.stat-item{text-align:center;padding:36px 32px;border-right:1px solid rgba(200,146,42,.1);position:relative;z-index:1;transition:background .3s}
 .stat-item:last-child{border-right:none}
 .stat-item:hover{background:rgba(200,146,42,.04)}
 .stat-num{font-family:var(--font-display);font-size:clamp(3rem,5vw,5rem);font-weight:300;color:var(--gold-lt);line-height:1;display:block;margin-bottom:12px;transition:text-shadow .3s}
@@ -168,7 +170,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 .stat-plus{font-family:var(--font-body);font-size:2rem;color:var(--gold);vertical-align:super;line-height:0}
 
 /* TESTIMONIAL */
-.testimonial{background:var(--cream);padding:140px 0}
+.testimonial{background:var(--cream);padding:72px 0}
 .testimonial-inner{max-width:900px;margin:0 auto;padding:0 60px;text-align:center}
 .testimonial-mark{font-family:var(--font-display);font-size:8rem;color:var(--gold);line-height:.5;margin-bottom:40px;display:block;opacity:.3}
 .testimonial-quote{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.4rem);font-weight:300;line-height:1.6;color:var(--brown-deep);margin-bottom:40px;font-style:italic}
@@ -176,7 +178,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 .testimonial-author{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600}
 
 /* CTA */
-.cta-section{background:var(--brown-deep);padding:160px 0;position:relative;overflow:hidden;text-align:center}
+.cta-section{background:var(--brown-deep);padding:90px 0;position:relative;overflow:hidden;text-align:center}
 .cta-section::before{content:'';position:absolute;width:600px;height:1px;background:linear-gradient(to right,transparent,rgba(200,146,42,.4),transparent);top:50%;left:50%;transform:translate(-50%,-50%) rotate(-25deg);pointer-events:none}
 .cta-section::after{content:'';position:absolute;width:400px;height:1px;background:linear-gradient(to right,transparent,rgba(200,146,42,.25),transparent);top:50%;left:50%;transform:translate(-50%,-50%) rotate(25deg);pointer-events:none}
 .cta-eyebrow{justify-content:center;margin-bottom:28px}
@@ -221,7 +223,6 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
   .process-step{padding:0;text-align:left;display:flex;align-items:flex-start;gap:24px}
   .process-dot{flex-shrink:0;margin:0}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .stat-item:nth-child(2){border-right:none}
   footer{flex-direction:column;gap:24px;text-align:center;padding:40px 28px}
   .footer-links{justify-content:center}
 }
@@ -233,6 +234,11 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
     </style>
 </head>
 <body>
+  <!-- Contenedor para el banner -->
+ <div id="banner-container"></div>
+
+
+
 
 <!-- PAGE INTRO -->
 <div class="page-intro" id="intro">
@@ -244,7 +250,6 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 <div class="cursor-ring" id="cursor-ring"></div>
 
 <?php include '../includes/banner.php'; ?>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-lines" aria-hidden="true">
@@ -256,17 +261,14 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
   <div class="hero-noise" aria-hidden="true"></div>
 
   <div class="hero-left">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      Soporte Educativo · Rep. Dom.
-    </div>
+    
     <h1 class="hero-h1">
       <span class="hero-h1-line">Formamos</span>
       <span class="hero-h1-line">Líderes.</span>
       <span class="hero-h1-line">Con propósito.</span>
     </h1>
     <p class="hero-desc">
-      Docentes calificados con más de <strong>30 años de experiencia</strong>,
+      Docentes calificados,
       comprometidos con un soporte educativo profesional, práctico y
       profundamente personalizado. <strong>Presencial, semipresencial o virtual.</strong>
     </p>
@@ -279,10 +281,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
     </div>
 
     <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="hero-stat-num" data-target="30">0</span>
-        <span class="hero-stat-lbl">Años de experiencia</span>
-      </div>
+      
       <div class="hero-stat">
         <span class="hero-stat-num" data-target="500">0</span>
         <span class="hero-stat-lbl">Estudiantes formados</span>
@@ -333,11 +332,11 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
   <div class="section-inner">
     <div class="about-grid">
       <div>
-        <div class="eyebrow reveal">Sobre Nosotros</div>
+     
         <h2 class="about-h2 reveal rd1">
-          Educación que<br>
-          <em>transforma</em> vidas<br>
-          desde adentro.
+          Educación Que<br>
+          <em>Transforma</em> Vidas<br>
+          Desde Adentro.
         </h2>
         <p class="about-body reveal rd2">
           Somos un equipo de docentes altamente calificados, dedicados a brindar
@@ -371,9 +370,9 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
   <div class="section-inner">
     <div class="services-header">
       <div>
-        <div class="eyebrow reveal">Nuestros Servicios</div>
+        
         <h2 class="services-h2 reveal rd1">
-          Todo lo que<br><em>necesitas</em><br>aprender.
+          Todo Lo Que<br><em>Necesitas</em><br>Aprender.
         </h2>
       </div>
       <p class="services-sub reveal rd2">
@@ -431,8 +430,8 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 <!-- PROCESS -->
 <section class="section process" id="proceso">
   <div class="section-inner">
-    <div class="eyebrow reveal">Cómo Trabajamos</div>
-    <h2 class="process-h2 reveal rd1">Un método probado,<br><em>resultados reales.</em></h2>
+    
+    <h2 class="process-h2 reveal rd1">Un Método Probado,<br><em>Resultados Reales.</em></h2>
     <div class="process-steps">
       <div class="process-step reveal rd1">
         <div class="process-dot">1</div>
@@ -470,10 +469,7 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 <section class="stats">
   <div class="section-inner">
     <div class="stats-grid">
-      <div class="stat-item reveal rd1">
-        <span class="stat-num" data-target="30">0<span class="stat-plus">+</span></span>
-        <span class="stat-label">Años formando líderes</span>
-      </div>
+      
       <div class="stat-item reveal rd2">
         <span class="stat-num" data-target="500">0<span class="stat-plus">+</span></span>
         <span class="stat-label">Estudiantes formados</span>
@@ -507,11 +503,11 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 <section class="cta-section" id="contacto">
   <div class="section-inner">
     <div class="eyebrow cta-eyebrow reveal">Comienza Hoy</div>
-    <h2 class="cta-h2 reveal rd1">Tu éxito académico<br><em>comienza aquí.</em></h2>
+    <h2 class="cta-h2 reveal rd1">Tu Éxito Académico<br><em>Comienza Aquí.</em></h2>
     <p class="cta-body reveal rd2">
       Cuéntanos tu necesidad y diseñaremos una
       <strong>propuesta educativa a tu medida.</strong>
-      Ya seas estudiante, padre o institución — en HIMANABI
+      Ya seas estudiante, padre o institución, en HIMANABI
       tenemos el servicio que transforma resultados.
     </p>
     <div class="cta-buttons reveal rd3">
@@ -526,8 +522,13 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
     </div>
   </div>
 </section>
+<div id="footer-container"></div>
 
-<?php include '../includes/footer.php'; ?>
+  <!-- Script para cargar banner y footer desde un solo archivo -->
+  <script src="js/banner-footer.js"></script>
+
+
+
 
 <script>
 /* PAGE INTRO */
