@@ -80,20 +80,78 @@
     initActiveLink();
   }
 
-  /* ── 2a. Sombra del header al hacer scroll ──────────────── */
+  /* ── 2a. Sombra + ocultar/mostrar header al hacer scroll ── */
   function initScrollHeader() {
     var header = document.getElementById('bf-header');
     if (!header) return;
 
-    function onScroll() {
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+    /* Inyectar CSS de la transición una sola vez */
+    if (!document.getElementById('bf-smart-header-style')) {
+      var style = document.createElement('style');
+      style.id  = 'bf-smart-header-style';
+      style.textContent = [
+        '.bf-site-header{',
+        '  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),',
+        '             box-shadow 0.3s ease;',
+        '}',
+        '.bf-site-header.bf-header--hidden{',
+        '  transform:translateY(-100%);',
+        '}'
+      ].join('');
+      document.head.appendChild(style);
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    var lastScrollY  = window.pageYOffset;
+    var ticking      = false;
+    var headerHidden = false;
+
+    function updateHeader() {
+      var currentY = window.pageYOffset;
+
+      /* Siempre visible cerca del top */
+      if (currentY <= 10) {
+        if (headerHidden) {
+          headerHidden = false;
+          header.classList.remove('bf-header--hidden');
+        }
+        header.classList.remove('scrolled');
+        lastScrollY = currentY;
+        ticking = false;
+        return;
+      }
+
+      /* Sombra */
+      header.classList.toggle('scrolled', currentY > 40);
+
+      var delta = currentY - lastScrollY;
+
+      if (delta > 8 && !headerHidden) {
+        /* Bajando → ocultar */
+        headerHidden = true;
+        header.classList.add('bf-header--hidden');
+      } else if (delta < -8 && headerHidden) {
+        /* Subiendo → mostrar */
+        headerHidden = false;
+        header.classList.remove('bf-header--hidden');
+      }
+
+      lastScrollY = currentY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateHeader);
+      }
+    }, { passive: true });
+
+    /* Resetear referencia al inicio de cada gesto táctil (fix iOS) */
+    window.addEventListener('touchstart', function () {
+      lastScrollY = window.pageYOffset;
+    }, { passive: true });
+
+    updateHeader();
   }
 
   /* ── 2b. Menú hamburguesa + overlay móvil ───────────────── */
