@@ -26,23 +26,21 @@
   .hb-cta-eyebrow h2,
   .hb-section-eyebrow h4,
   .hb-bg-word {
-    font-family: 'Cinzel', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     letter-spacing: .03em;
   }
 
-  /* Sin cursiva — Cinzel normal en todos los <em> de títulos */
+  /* Sin cursiva — fuente normal en todos los <em> de títulos */
   h1 em, h2 em, h3 em,
   .hb-hero-h1 em,
   .hb-contact-h2 em,
   .hb-cta-h2 em {
     font-style: normal !important;
-    font-family: 'Cinzel', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
   }
 
   /*
-     FUENTE 2 — Lato (sans-serif humanista)
      Uso: cuerpo, párrafos, labels, subtítulos
-     Pesos disponibles: 300 · 400 · 700
   */
   p, span, a, li,
   .hb-hero-desc,
@@ -52,42 +50,39 @@
   .hb-strip-value,
   .hb-cta-body,
   .hb-scroll-cue span {
-    font-family: 'Lato', sans-serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
   }
 
-  /* Labels y valores de canales: Lato explícito */
+  /* Labels y valores de canales */
   .hb-ch-label {
-    font-family: 'Lato', sans-serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 700 !important;
     letter-spacing: normal;
   }
   .hb-ch-value {
-    font-family: 'Lato', sans-serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 400 !important;
     letter-spacing: normal;
   }
 
-  /* Strip values: Lato 300 (igual que servicios.html) */
+  /* Strip values */
   .hb-strip-value {
-    font-family: 'Lato', sans-serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 300 !important;
   }
 
-  /* Tagline especial: Arial/Calibri bold con acento dorado
-     (mismo tratamiento que el tagline del hero en servicios.html) */
+  /* Tagline especial: Arial/Calibri bold con acento dorado */
   .hb-contact-tagline h4,
   .hb-section-eyebrow h4 {
     font-family: Arial, Calibri, sans-serif !important;
     font-weight: 700 !important;
     font-size: .9rem !important;
-    color: #e8b84b !important;
+    color: #e6b34e !important;
     letter-spacing: 0.5px !important;
   }
 
   /*
-     FUENTE 3 — Cinzel Decorative
-     Uso: logotipo / elementos de identidad de marca
-     Solo peso 700
+     Cita Decorativa
   */
   .hb-deco-quote--hero {
     padding: 0 !important;
@@ -99,46 +94,231 @@
     flex: 1;
   }
   .hb-deco-quote--hero .hb-deco-quote-mark {
-    font-family: 'Cinzel Decorative', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 700 !important;
     font-size: clamp(3rem, 6vw, 5rem);
     line-height: 1;
-    color: #e8b84b;
+    color: rgba(230,179,78,.25);
     display: block;
     margin-bottom: .1em;
   }
 
-  /* Texto de cita: Cinzel 600 */
+  /* Texto de cita */
   .hb-deco-quote--hero .hb-deco-quote-text {
-    font-family: 'Cinzel', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-size: clamp(1.15rem, 2.4vw, 1.85rem);
     font-weight: 600;
     line-height: 1.45;
-    color: #fff;
+    color: rgba(245,232,207,.8);
     margin: 0 0 1rem;
+    font-style: italic;
   }
 
-  /* Autor de cita: Lato 400 uppercase con acento dorado */
+  /* Autor de cita */
   .hb-deco-quote--hero .hb-deco-quote-author {
-    font-family: 'Lato', sans-serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 400 !important;
     font-size: .8rem;
     letter-spacing: .12em;
-    color: #e8b84b;
+    color: #e6b34e;
     text-transform: uppercase;
     margin: 0;
   }
 
-  /* "Disponibles Ahora": Cinzel (es un título) */
+  /* "Disponibles Ahora" */
   .hb-deco-live-text h3 {
-    font-family: 'Cinzel', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 600 !important;
   }
 
-  /* Eyebrow CTA: Cinzel 700 */
+  /* Eyebrow CTA */
   .hb-cta-eyebrow h2 {
-    font-family: 'Cinzel', serif !important;
+    font-family: Arial, Calibri, 'Lato', sans-serif !important;
     font-weight: 700 !important;
+  }
+
+  /* ══════════════════════════════════════════
+     NUEVO HERO (Basado en la imagen de referencia)
+     ══════════════════════════════════════════ */
+  .hb-hero-new {
+    position: relative;
+    background: #1d0f04; /* Fondo café muy oscuro */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 70px 0 60px;
+    min-height: 55vh;
+  }
+  
+  /* Gradiente suave de fondo */
+  .hb-hero-new::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 50%, rgba(212,163,75,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hb-hero-new-inner {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    gap: 40px;
+  }
+
+  .hb-hero-new-left {
+    max-width: 480px;
+  }
+
+  .hb-hero-new-h1 {
+    font-family: 'Lato', sans-serif !important;
+    font-size: clamp(3.2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .hb-hero-new-h1 .line1 {
+    display: block;
+    color: #ffffff;
+  }
+  .hb-hero-new-h1 .line2 {
+    display: block;
+    color: #e6b34e; /* Dorado brillante */
+  }
+
+  .hb-hero-new-decor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .hb-hero-new-decor .line {
+    height: 1.5px;
+    width: 110px;
+    background-color: #e6b34e;
+  }
+  .hb-hero-new-decor .dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #e6b34e;
+    margin-left: 8px;
+  }
+
+  .hb-hero-new-desc {
+    font-family: 'Lato', sans-serif !important;
+    color: #d1bfae;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 420px;
+    font-weight: 400;
+  }
+
+  .hb-hero-new-right {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .hb-hero-circle-bg {
+    position: absolute;
+    border: 1px solid rgba(230,179,78,0.06);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+  .hb-hero-circle-bg-2 {
+    position: absolute;
+    border: 1px solid rgba(230,179,78,0.12);
+    border-radius: 50%;
+    width: 75%;
+    height: 75%;
+  }
+
+  /* Aro de puntos conectados */
+  .hb-hero-dashed-ring {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 2px dashed rgba(230,179,78,0.6);
+    border-radius: 50%;
+    z-index: 1;
+    animation: hb-spin-slow 40s linear infinite;
+  }
+
+  @keyframes hb-spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .hb-hero-icon-center {
+    position: absolute;
+    z-index: 2;
+    color: #e6b34e;
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(230,179,78,0.3));
+    margin-top: -10px; /* Ajuste visual por la cola del icono */
+  }
+
+  .hb-hero-icon-node {
+    position: absolute;
+    z-index: 3;
+    width: 76px;
+    height: 76px;
+    border: 2px solid #e6b34e;
+    border-radius: 50%;
+    background: #1d0f04; /* Mismo que el fondo para que no sea transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e6b34e;
+    font-size: 2.2rem;
+    box-shadow: 0 0 20px rgba(230,179,78,0.25);
+  }
+  
+  /* Posicionando en triángulo: Arriba, Abajo-Izquierda, Abajo-Derecha */
+  .hb-node-top { top: 45px; left: 50%; transform: translateX(-50%); }
+  .hb-node-bl { bottom: 65px; left: 45px; }
+  .hb-node-br { bottom: 65px; right: 45px; }
+
+  @media(max-width: 900px) {
+    .hb-hero-new {
+      padding: 60px 0;
+    }
+    .hb-hero-new-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hb-hero-new-decor {
+      justify-content: center;
+    }
+    .hb-hero-new-right {
+      transform: scale(0.85);
+      margin-top: 20px;
+    }
+    .hb-hero-new-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media(max-width: 500px) {
+    .hb-hero-new-h1 {
+      font-size: 2.6rem;
+    }
+    .hb-hero-new-right {
+      transform: scale(0.65);
+      margin-top: 0;
+    }
   }
 </style>
 </head>
@@ -147,30 +327,50 @@
 <div class="hb-page">
 
 <!-- ── HERO ─────────────────────────────── -->
-<section class="hb-hero" id="hb-hero">
+<section class="hb-hero-new" id="hb-hero">
   <div class="hb-grain"></div>
-  <div class="hb-bloom"></div>
-  <div class="hb-orb hb-orb-1"></div>
-  <div class="hb-orb hb-orb-2"></div>
-  <div class="hb-bg-word">CONTACTO</div>
 
-  <div class="hb-hero-inner">
-    <div class="hb-hero-text">
-   
-      <h1 class="hb-hero-h1">
-        <span class="hb-line">Estamos</span>
-        <span class="hb-line">Aquí Para Ti</span>
+  <div class="hb-hero-new-inner">
+    <div class="hb-hero-new-left">
+      <h1 class="hb-hero-new-h1">
+        <span class="line1">Estamos Aquí</span>
+        <span class="line2">Para ti.</span>
       </h1>
-      <p class="hb-hero-desc">
-        Contáctanos por el canal que prefieras. Respondemos
-        rápidamente para darte el soporte educativo que necesitas.
+      
+      <div class="hb-hero-new-decor">
+        <div class="line"></div>
+        <div class="dot"></div>
+      </div>
+
+      <p class="hb-hero-new-desc">
+        Contáctanos por el canal que prefieras. Respondemos rápidamente para darte el soporte educativo que necesitas.
       </p>
     </div>
-  </div>
 
-  <div class="hb-scroll-cue">
-    <div class="hb-scroll-line"></div>
-    <span>Scroll</span>
+    <div class="hb-hero-new-right">
+      <!-- Círculos de fondo concéntricos -->
+      <div class="hb-hero-circle-bg"></div>
+      <div class="hb-hero-circle-bg-2"></div>
+
+      <!-- Anillo punteado conector -->
+      <div class="hb-hero-dashed-ring"></div>
+
+      <!-- Icono Central (Burbuja de chat) -->
+      <div class="hb-hero-icon-center">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+
+      <!-- Nodos de conexión -->
+      <div class="hb-hero-icon-node hb-node-top">
+        <i class="fas fa-envelope"></i>
+      </div>
+      <div class="hb-hero-icon-node hb-node-bl">
+        <i class="fab fa-whatsapp"></i>
+      </div>
+      <div class="hb-hero-icon-node hb-node-br">
+        <i class="fas fa-globe"></i>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -183,7 +383,7 @@
       <div class="hb-reveal">
        
         <h2 class="hb-contact-h2">
-          Hablemos<br>
+          Contáctanos<br>
           <em>Sin Demora</em>
         </h2>
         <p class="hb-contact-subtitle">

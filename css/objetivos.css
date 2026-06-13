@@ -6,7 +6,7 @@ html{scroll-behavior:smooth}
 ═══════════════════════════════ */
 .hb-page{
   font-family:Arial,Calibri,'Lato',sans-serif;
-  background:#7b4f1e;
+  background:#1a0f05;
   color:#f5e8cf;
   overflow-x:hidden;
 }
@@ -20,7 +20,7 @@ html{scroll-behavior:smooth}
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  background:#5c3610;
+  background:#1a0f05;
 }
 .hb-grain{
   position:absolute;inset:0;
@@ -213,7 +213,7 @@ html{scroll-behavior:smooth}
 
 /* Carrusel lado derecho — fondo marrón */
 .hb-serve-slider-col{
-  background:#5c3610;
+  background:#1a0f05;
   padding:32px;
   border-radius:2px;
 }
@@ -387,7 +387,7 @@ html{scroll-behavior:smooth}
   border-top:1px solid rgba(92,54,16,.2);
   border-bottom:1px solid rgba(92,54,16,.2);
   padding:18px 0;margin-bottom:72px;
-  background:#5c3610;
+  background:#1a0f05;
   margin-right:-48px;margin-left:-48px;
 }
 .hb-ticker{display:flex;width:max-content;animation:hb-ticker-move 22s linear infinite;}

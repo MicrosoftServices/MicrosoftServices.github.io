@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIMANABI — Soporte Educativo Rep. Dom.</title>
-    <meta name="description" content="HIMANABI ofrece soporte educativo profesional, práctico y personalizado de manera presencial, semipresencial o virtual en República Dominicana.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/banner-footer.css">
+    <link rel="stylesheet" href="../css/index.css?v=3">
 
 
     <style>
@@ -246,63 +246,57 @@ body.ch .cursor-ring{width:52px;height:52px;opacity:.3}
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
 
-<?php include '../includes/banner.php'; ?>
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-lines" aria-hidden="true">
-    <div class="hero-line"></div><div class="hero-line"></div>
-    <div class="hero-line"></div><div class="hero-line"></div>
-  </div>
-  <div class="hero-ring hero-ring-1" aria-hidden="true"></div>
-  <div class="hero-ring hero-ring-2" aria-hidden="true"></div>
-  <div class="hero-noise" aria-hidden="true"></div>
 
-  <div class="hero-left">
-    
-    <h1 class="hero-h1">
-      <span class="hero-h1-line">Formamos</span>
-      <span class="hero-h1-line">Líderes.</span>
-      <span class="hero-h1-line">Con propósito.</span>
-    </h1>
-    <p class="hero-desc">
-      Docentes calificados,
-      comprometidos con un soporte educativo profesional, práctico y
-      profundamente personalizado. <strong>Presencial, semipresencial o virtual.</strong>
-    </p>
-    <div class="hero-actions">
-      <a href="#servicios" class="btn-primary">
-        <span>Explorar servicios</span>
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a href="#nosotros" class="btn-ghost">Nuestra historia →</a>
-    </div>
+    <!-- ═══════════════════════════════
+         HERO
+    ════════════════════════════════ -->
+    <section class="idx-hero">
+        <div class="idx-hero-split">
 
-    <div class="hero-stats">
-      
-      <div class="hero-stat">
-        <span class="hero-stat-num" data-target="500">0</span>
-        <span class="hero-stat-lbl">Estudiantes formados</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num" data-target="6">0</span>
-        <span class="hero-stat-lbl">Tipos de tutoría</span>
-      </div>
-    </div>
-  </div>
+            <!-- COLUMNA IZQUIERDA: TEXTO -->
+            <div class="idx-hero-content">
+                <h1 class="idx-hero-h1">
+                    <span class="idx-line">HIMANABI</span>
+                    <span class="idx-line idx-line-gold">SOPORTE EDUCATIVO</span>
+                </h1>
+                <p class="idx-hero-tagline">
+                    EDUCACION DE CALIDAD<br>
+                    RESULTADOS EXCEPCIONALES
+                </p>
+                <div class="idx-hero-divider"></div>
+                <div class="idx-hero-stats">
+                    <div class="idx-hero-stat-item">
+                        <span class="idx-hero-stat-num" data-target="1000" data-suffix=" +">1000 +</span>
+                        <span class="idx-hero-stat-lbl">Estudiantes formados</span>
+                    </div>
+                    <div class="idx-hero-stat-item">
+                        <span class="idx-hero-stat-num" data-target="6" data-suffix="">6</span>
+                        <span class="idx-hero-stat-lbl">Modalidades principales</span>
+                    </div>
+                </div>
+                
+                <div class="idx-hero-buttons">
+                    <a href="servicios.html" class="idx-btn idx-btn-gold">
+                        EXPLORAR SERVICIOS
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="nosotros.html" class="idx-btn idx-btn-ghost">
+                        NUESTRA HISTORIA
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                </div>
+            </div>
 
-  <div class="hero-right">
-    <div class="hero-right-bg"></div>
-    <div class="hero-logo-wrap">
-      <img src="../img/logo solo.png" alt="HIMANABI Logo" class="hero-logo-img" onerror="this.style.display='none'">
-      <div class="hero-logo-tagline">Educación · Excelencia · Futuro</div>
-    </div>
-  </div>
+            <!-- COLUMNA DERECHA: LOGO BÚHO -->
+            <div class="idx-hero-visual">
+                <div class="idx-owl-glow-ring"></div>
+                <img src="../img/logo solo.png" alt="HIMANABI Owl" class="idx-owl-hero-img">
+                <p class="idx-hero-footer-text">EDUCACIÓN · EXCELENCIA · FUTURO</p>
+            </div>
 
-  <div class="scroll-cue" aria-hidden="true">
-    <div class="scroll-cue-dot"></div>
-    <span>Scroll</span>
-  </div>
-</section>
+        </div>
+    </section>
+
 
 <!-- TICKER -->
 <div class="ticker-section" aria-hidden="true">
@@ -610,5 +604,31 @@ if(window.innerWidth>960){
   });
 }
 </script>
+
+<script>
+    function animateCounter(el, target, duration, suffix) {
+        let start = 0;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) {
+                el.textContent = target + suffix;
+                clearInterval(timer);
+            } else {
+                el.textContent = Math.floor(start) + suffix;
+            }
+        }, 16);
+    }
+    
+    document.querySelectorAll('.idx-hero-stat-num').forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target') || '0', 10);
+        const suffix = stat.getAttribute('data-suffix') || '';
+        if (target > 0) {
+            animateCounter(stat, target, 2000, suffix);
+        }
+    });
+</script>
+
+
 </body>
 </html>

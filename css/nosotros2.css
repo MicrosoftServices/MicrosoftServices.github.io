@@ -20,7 +20,7 @@ html{scroll-behavior:smooth}
 .n2-hero{
   position:relative;min-height:50vh;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;background:#5c3610;text-align:center;
+  overflow:hidden;background:#1a0f05;text-align:center;
 }
 .n2-hero-grain{
   position:absolute;inset:0;
@@ -112,7 +112,7 @@ html{scroll-behavior:smooth}
    SPOTLIGHT CAROUSEL SECTION
 ═══════════════════════════════ */
 .n2-spotlight{
-  position:relative;padding:64px 0 0;background:#5c3610;overflow:hidden;
+  position:relative;padding:64px 0 0;background:#1a0f05;overflow:hidden;
 }
 .n2-spotlight-grain{
   position:absolute;inset:0;
