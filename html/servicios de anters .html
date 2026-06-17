@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios – HIMANABI</title>
+  <link rel="stylesheet" href="../css/servicios.css" >
+  <link rel="stylesheet" href="../css/banner-footer.css" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+.hb-page {
+  font-family: Arial, Calibri, 'Lato', sans-serif;
+  background: #1a0f05;
+  color: #f5e8cf;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.hb-hero {
+  position: relative;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #1a0f05;
+  isolation: isolate;
+  padding: 40px 40px 50px;
+  width: 100%;
+}
+
+.hb-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1; opacity: .5;
+  animation: hb-grain-shift 8s steps(2) infinite;
+}
+@keyframes hb-grain-shift {
+  0%,100% { transform: translate(0,0); }
+  25%     { transform: translate(-2%,-1%); }
+  50%     { transform: translate(1%,2%); }
+  75%     { transform: translate(-1%,1%); }
+}
+
+.hb-bloom {
+  position: absolute;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,146,42,.15) 0%, transparent 68%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none; z-index: 0;
+}
+
+.hb-bg-word {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232,184,74,.06);
+  line-height: 1; user-select: none; pointer-events: none;
+  z-index: 1; letter-spacing: -2px;
+}
+
+.hb-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+.hb-orb-1 { top: -60px; left: -60px; width: 300px; height: 300px; border: 40px solid rgba(245,232,207,.03); }
+.hb-orb-2 { bottom: -80px; right: -80px; width: 400px; height: 400px; border: 50px solid rgba(245,232,207,.02); }
+
+.hb-hero-split {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.hb-hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-right: 20px;
+}
+
+.hb-hero-h1 {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: 1px;
+  margin-bottom: 14px; overflow: hidden;
+}
+.hb-hero-h1 .hb-line {
+  display: block; transform: translateY(100%);
+  animation: hb-line-up .9s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+.hb-hero-h1 .hb-line:nth-child(1) { animation-delay: .2s; color: #f5e8cf; }
+.hb-hero-h1 .hb-line:nth-child(2) { animation-delay: .4s; color: #e8b84b; }
+@keyframes hb-line-up { to { transform: translateY(0); } }
+
+.hb-hero-line {
+  width: 160px; height: 2px;
+  background: linear-gradient(to right, #e8b84b, transparent);
+  margin-bottom: 18px;
+  position: relative;
+  animation: hb-fade-up .9s .5s both;
+}
+.hb-hero-line::after {
+  content: ''; position: absolute;
+  right: -6px; top: -3px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #e8b84b;
+}
+
+.hb-hero-desc {
+  font-size: 0.92rem; line-height: 1.75;
+  color: rgba(245,232,207,.85); font-weight: 300;
+  max-width: 480px; margin-bottom: 16px;
+  animation: hb-fade-up .9s .7s both;
+}
+.hb-hero-desc strong { color: #fff; font-weight: 700; }
+
+.hb-hero-star {
+  font-size: 0.88rem; color: #e8b84b; font-weight: 500;
+  display: flex; align-items: center; gap: 10px;
+  animation: hb-fade-up .9s .85s both;
+}
+.hb-hero-star i { font-size: 0.82rem; }
+
+.hb-hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  animation: hb-fade-up 1s .5s both;
+  width: 100%;
+  padding: 20px;
+}
+.hb-owl-wrap { 
+  text-align: center; 
+  width: 100%;
+  max-width: 280px;
+}
+.hb-owl-logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(200,146,42,.2));
+  animation: hb-owl-float 4s ease-in-out infinite;
+}
+@keyframes hb-owl-float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-6px); }
+}
+.hb-owl-tagline {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(245,232,207,.55);
+  margin-top: 12px;
+}
+
+.hb-cards-wrap {
+  position: relative; z-index: 2;
+  max-width: 1200px; 
+  margin: 20px auto 0;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  width: 100%;
+}
+
+.hb-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.hb-card {
+  background: #2a1a0a;
+  border: 1px solid rgba(200,146,42,.2);
+  border-radius: 12px;
+  padding: 22px 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+  transition: background .35s, border-color .35s, transform .35s;
+  cursor: default;
+  position: relative; overflow: hidden;
+}
+.hb-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 0;
+  background: linear-gradient(to top, rgba(200,146,42,.08), transparent);
+  transition: height .4s;
+}
+.hb-card:hover {
+  background: #342010;
+  border-color: rgba(232,184,74,.4);
+  transform: translateY(-3px);
+}
+.hb-card:hover::after { height: 100%; }
+
+.hb-card-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(200,146,42,.12);
+  border: 1px solid rgba(200,146,42,.3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: #e8b84b; font-size: 1.05rem;
+  transition: background .35s, border-color .35s;
+  position: relative; z-index: 1;
+}
+.hb-card:hover .hb-card-icon {
+  background: rgba(200,146,42,.22);
+  border-color: rgba(200,146,42,.55);
+}
+
+.hb-card-text { position: relative; z-index: 1; }
+.hb-card-text h3 {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: 0.92rem; font-weight: 700;
+  color: #f5e8cf; margin-bottom: 8px;
+  letter-spacing: .3px;
+}
+.hb-card-text p {
+  font-size: 0.78rem; line-height: 1.6;
+  color: rgba(245,232,207,.65); font-weight: 300;
+}
+
+.hb-cta-gold {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+  color: #1a0f05;
+  background: linear-gradient(135deg, #e8b84b, #c8922a);
+  padding: 14px 34px;
+  text-decoration: none; font-weight: 700;
+  margin-top: 32px;
+  border-radius: 6px;
+  transition: transform .3s, box-shadow .3s;
+}
+.hb-cta-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(200,146,42,.35);
+}
+.hb-cta-gold i { font-size: 0.72rem; transition: transform .3s; }
+.hb-cta-gold:hover i { transform: translateX(4px); }
+
+.hb-ticker-wrap {
+  overflow: hidden;
+  border-top: 1px solid rgba(92,54,16,.2);
+  border-bottom: 1px solid rgba(92,54,16,.2);
+  padding: 16px 0;
+  background: #2a1a0a;
+  width: 100%;
+}
+.hb-ticker {
+  display: flex; width: max-content;
+  animation: hb-ticker-move 26s linear infinite;
+}
+.hb-ticker-item {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .7rem; letter-spacing: 4px; text-transform: uppercase;
+  color: #ffffff;
+  padding: 0 36px; white-space: nowrap;
+  display: flex; align-items: center; gap: 20px;
+}
+.hb-ticker-item::after { content: '◆'; font-size: .45rem; color: rgba(232,184,74,.7); }
+@keyframes hb-ticker-move {
+  from { transform: translateX(0) } to { transform: translateX(-50%) }
+}
+
+.hb-section {
+  position: relative;
+  padding: 60px 50px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.hb-section-eyebrow {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .6rem; letter-spacing: 6px; text-transform: uppercase;
+  color: #e8b84b;
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+.hb-section-eyebrow::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: #e8b84b;
+}
+
+.hb-modal-section { background: #ffffff; }
+.hb-modal-section .hb-section-eyebrow { color: #c8922a; }
+.hb-modal-section .hb-section-eyebrow::after { background: #c8922a; }
+.hb-modal-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+.hb-modal-header { margin-bottom: 50px; text-align: center; }
+.hb-modal-header .hb-section-eyebrow { justify-content: center; }
+.hb-modal-header .hb-section-eyebrow::after { display: none; }
+.hb-modal-header .hb-section-eyebrow::before {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: #c8922a;
+}
+.hb-modal-h2 {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 700; color: #3d2008; letter-spacing: 1px;
+  line-height: 1.4;
+}
+.hb-modal-h2 em { font-style: normal; color: #c8922a }
+.hb-modal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.hb-modal-card {
+  position: relative;
+  padding: 44px 34px; overflow: hidden;
+  background: #fff8f0;
+  border: 1px solid rgba(92,54,16,.12);
+  transition: background .4s, box-shadow .4s;
+  box-shadow: 0 4px 24px rgba(92,54,16,.07);
+}
+.hb-modal-card:hover { background: #fff3e6; box-shadow: 0 8px 36px rgba(92,54,16,.14) }
+.hb-modal-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, transparent, #e8b84b 30%, #c8922a 70%, transparent);
+}
+.hb-modal-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(200,146,42,.1);
+  border: 1px solid rgba(200,146,42,.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+  color: #c8922a; font-size: 1.05rem;
+}
+.hb-modal-title {
+  font-family: Arial, Calibri, sans-serif; font-size: .78rem; letter-spacing: 4px;
+  text-transform: uppercase; color: #3d2008; font-weight: 700; margin-bottom: 12px;
+}
+.hb-modal-body {
+  font-size: .88rem; line-height: 1.9;
+  color: #5c3610; font-weight: 300;
+}
+
+/* ═══════════════════════════════
+   TALLERES — SECCIÓN MODIFICADA
+   ═══════════════════════════════ */
+.hb-workshops-section { background: #1a0f05; }
+.hb-workshops-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+.hb-workshops-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hb-workshops-h2 {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  color: #f5e8cf;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+.hb-workshops-h2 em {
+  font-style: normal;
+  color: #e8b84b;
+}
+
+.hb-workshops-body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(245,232,207,.85);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.hb-workshops-body strong { color: #f5e8cf; font-weight: 700; }
+
+.hb-workshops-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.hb-wtag {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #e8b84b;
+  border: 1px solid rgba(232,184,74,.4);
+  padding: 10px 18px;
+  transition: background .3s, border-color .3s;
+  background: transparent;
+}
+.hb-wtag:hover {
+  background: rgba(232,184,74,.1);
+  border-color: rgba(232,184,74,.7);
+}
+
+/* Botón con flecha a la izquierda */
+.hb-workshops-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #1a0f05;
+  background: linear-gradient(135deg, #e8b84b, #c8922a);
+  padding: 18px 36px;
+  text-decoration: none;
+  margin-top: 32px;
+  font-weight: 700;
+  border-radius: 6px;
+  transition: transform .3s, box-shadow .3s;
+}
+.hb-workshops-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(200,146,42,.35);
+}
+.hb-workshops-cta i {
+  font-size: .85rem;
+  transition: transform .3s;
+}
+.hb-workshops-cta:hover i {
+  transform: translateX(4px);
+}
+
+/* Visual cards - nuevo diseño */
+.hb-workshops-visual {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.hb-wv-card {
+  background: rgba(245,232,207,.04);
+  border: 1px solid rgba(232,184,74,.15);
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: background .35s, border-color .35s, transform .35s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hb-wv-card:hover {
+  background: rgba(232,184,74,.08);
+  border-color: rgba(232,184,74,.3);
+  transform: translateY(-3px);
+}
+.hb-wv-card.hb-wv-wide {
+  grid-column: span 2;
+}
+
+.hb-wv-icon-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(200,146,42,.1);
+  border: 1px solid rgba(232,184,74,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: background .35s, border-color .35s;
+}
+.hb-wv-card:hover .hb-wv-icon-circle {
+  background: rgba(200,146,42,.18);
+  border-color: rgba(232,184,74,.5);
+}
+.hb-wv-icon-circle i {
+  font-size: 1.8rem;
+  color: #e8b84b;
+}
+
+.hb-wv-card strong {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f5e8cf;
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.hb-wv-line {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(to right, #e8b84b, #c8922a);
+  margin-bottom: 14px;
+}
+
+.hb-wv-card span {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,232,207,.65);
+  display: block;
+  line-height: 1.7;
+}
+
+.hb-cta-section {
+  background: #ffffff;
+  position: relative; overflow: hidden;
+  border-top: 1px solid rgba(92,54,16,.1);
+}
+.hb-cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(200,146,42,.07), transparent 65%);
+  pointer-events: none;
+}
+.hb-cta-inner {
+  max-width: 850px; margin: 0 auto;
+  text-align: center;
+  position: relative; z-index: 1;
+  width: 100%;
+}
+.hb-cta-eyebrow {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .6rem; letter-spacing: 7px; text-transform: uppercase;
+  color: #c8922a;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-bottom: 24px;
+}
+.hb-cta-eyebrow::before, .hb-cta-eyebrow::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: #c8922a;
+}
+.hb-cta-h2 {
+  font-family: Arial, Calibri, sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 700; color: #3d2008; letter-spacing: 1px;
+  margin-bottom: 24px; line-height: 1.2;
+}
+.hb-cta-h2 em { font-style: normal; color: #c8922a }
+.hb-cta-body {
+  font-size: .97rem; line-height: 1.95;
+  color: #5c3610; font-weight: 300;
+  margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.hb-cta-body strong { color: #3d2008; font-weight: 700; }
+.hb-cta-btn {
+  display: inline-flex;
+  align-items: center; gap: 14px;
+  font-family: Arial, Calibri, sans-serif;
+  font-size: .7rem; letter-spacing: 5px; text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7b4f1e, #5c3610);
+  padding: 17px 40px;
+  text-decoration: none;
+  transition: transform .3s, box-shadow .3s;
+  font-weight: 700;
+}
+.hb-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(92,54,16,.3);
+}
+.hb-cta-btn svg { width: 18px; height: 18px; stroke: #ffffff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.hb-reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .85s ease, transform .85s cubic-bezier(.23,1,.32,1);
+}
+.hb-reveal.hb-in { opacity: 1; transform: translateY(0) }
+.hb-r1 { transition-delay: .08s }
+.hb-r2 { transition-delay: .2s }
+.hb-r3 { transition-delay: .32s }
+.hb-r4 { transition-delay: .44s }
+.hb-r5 { transition-delay: .56s }
+.hb-r6 { transition-delay: .68s }
+
+@keyframes hb-fade-up {
+  from { opacity: 0; transform: translateY(22px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+@media (max-width: 1024px) {
+  .hb-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .hb-workshops-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hb-workshops-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .hb-hero-split { grid-template-columns: 1fr; text-align: center; }
+  .hb-hero-content { padding-right: 0; align-items: center; }
+  .hb-hero-line { margin-left: auto; margin-right: auto; }
+  .hb-hero-star { justify-content: center; }
+  .hb-hero-desc { max-width: 100%; }
+  .hb-hero-visual { margin-bottom: 20px; padding: 10px; }
+  .hb-modal-cards { grid-template-columns: 1fr; }
+  .hb-section { padding: 45px 24px; }
+}
+
+@media (max-width: 768px) {
+  .hb-hero { padding: 30px 20px 40px; }
+  .hb-cards-grid { grid-template-columns: 1fr; }
+  .hb-card { flex-direction: column; align-items: center; text-align: center; }
+  .hb-bg-word { font-size: 4rem; top: 15px; }
+  .hb-owl-logo { max-width: 200px; }
+  .hb-workshops-visual {
+    grid-template-columns: 1fr;
+  }
+  .hb-wv-card.hb-wv-wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hb-hero-h1 { font-size: 1.8rem; }
+  .hb-hero-desc { font-size: 0.88rem; }
+  .hb-owl-logo { max-width: 160px; }
+}
+</style>
+<body class="hb-page">
+
+  <!-- Contenedor para el banner -->
+  <div id="banner-container"></div>
+
+  <!-- ═══════════════════════════════════════
+       HERO / SERVICIOS
+       ═══════════════════════════════════════ -->
+  <section class="hb-hero">
+    <div class="hb-grain"></div>
+    <div class="hb-bloom"></div>
+    <div class="hb-bg-word">SERVICIOS</div>
+    <div class="hb-orb hb-orb-1"></div>
+    <div class="hb-orb hb-orb-2"></div>
+
+    <div class="hb-hero-split">
+      <div class="hb-hero-content">
+        <h1 class="hb-hero-h1">
+          <span class="hb-line">Nuestros</span>
+          <span class="hb-line">Servicios</span>
+          
+        </h1>
+
+        <div class="hb-hero-line"></div>
+
+        <p class="hb-hero-desc">
+          Diseñamos experiencias de aprendizaje que responden a las necesidades
+          de estudiantes, instituciones y empresas, ofreciendo tutorías, talleres,
+          cursos y programas formativos con resultados reales en modalidades
+          <strong>presencial, semipresencial y virtual.</strong>
+        </p>
+
+        <p class="hb-hero-star">
+          <i class="fas fa-star"></i>
+          Educación de calidad, resultados excepcionales.
+        </p>
+      </div>
+
+      <div class="hb-hero-visual">
+        <div class="hb-owl-wrap">
+          <img src="../img/logo solo.png" alt="HIMANABI" class="hb-owl-logo" />
+          <p class="hb-owl-tagline">EDUCACIÓN · EXCELENCIA · FUTURO</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards de servicios - diseño horizontal -->
+    <div class="hb-cards-wrap">
+      <div class="hb-cards-grid">
+        <div class="hb-card hb-reveal hb-r1">
+          <div class="hb-card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="hb-card-text">
+            <h3>Tutorías Individuales</h3>
+            <p>Sesiones uno a uno con docentes especializados, diseñadas para atender las necesidades específicas de cada estudiante. El ritmo y el contenido se adaptan completamente al alumno.</p>
+          </div>
+        </div>
+
+        <div class="hb-card hb-reveal hb-r2">
+          <div class="hb-card-icon"><i class="fas fa-users"></i></div>
+          <div class="hb-card-text">
+            <h3>Tutorías Grupales</h3>
+            <p>Aprendizaje colaborativo en grupos reducidos que favorecen el intercambio de ideas, la discusión académica y el fortalecimiento de habilidades sociales.</p>
+          </div>
+        </div>
+
+        <div class="hb-card hb-reveal hb-r3">
+          <div class="hb-card-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+          <div class="hb-card-text">
+            <h3>Tutoría Técnica</h3>
+            <p>Soporte especializado en áreas técnicas y científicas: matemáticas, física, química, programación, ingeniería y más.</p>
+          </div>
+        </div>
+
+        <div class="hb-card hb-reveal hb-r4">
+          <div class="hb-card-icon"><i class="fas fa-brain"></i></div>
+          <div class="hb-card-text">
+            <h3>Tutoría de la Diversidad</h3>
+            <p>Basada en la teoría de las inteligencias múltiples de Howard Gardner. Identificamos el perfil de aprendizaje de cada estudiante.</p>
+          </div>
+        </div>
+
+        <div class="hb-card hb-reveal hb-r5">
+          <div class="hb-card-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="hb-card-text">
+            <h3>Tutorías Virtuales & Semipresenciales</h3>
+            <p>Flexibilidad total para aprender desde cualquier lugar. Nuestras sesiones en línea ofrecen la misma calidad que las presenciales.</p>
+          </div>
+        </div>
+
+        <div class="hb-card hb-reveal hb-r6">
+          <div class="hb-card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div class="hb-card-text">
+            <h3>Talleres, Charlas & Cursos</h3>
+            <p>Programas formativos intensivos en formato taller o charla para instituciones, empresas y grupos.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="talleres.html" class="hb-cta-gold">
+        VER TALLERES Y CURSOS <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TICKER
+       ═══════════════════════════════════════ -->
+  <div class="hb-ticker-wrap">
+    <div class="hb-ticker">
+      <div class="hb-ticker-item">Talleres Prácticos</div>
+      <div class="hb-ticker-item">Charlas Motivacionales</div>
+      <div class="hb-ticker-item">Cursos Intensivos</div>
+      <div class="hb-ticker-item">Formación Docente</div>
+      <div class="hb-ticker-item">A Medida</div>
+      <div class="hb-ticker-item">Talleres Prácticos</div>
+      <div class="hb-ticker-item">Charlas Motivacionales</div>
+      <div class="hb-ticker-item">Cursos Intensivos</div>
+      <div class="hb-ticker-item">Formación Docente</div>
+      <div class="hb-ticker-item">A Medida</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MODALIDADES
+       ═══════════════════════════════════════ -->
+  <section class="hb-modal-section hb-section">
+    <div class="hb-modal-inner">
+      <div class="hb-modal-header hb-reveal">
+        
+        <h2 class="hb-modal-h2">
+         ELIGE LA MODALIDAD <em>QUE PREFIERAS</em>
+        </h2>
+      </div>
+
+      <div class="hb-modal-cards">
+        <div class="hb-modal-card hb-reveal hb-r1">
+          <div class="hb-modal-icon"><i class="fas fa-user-friends"></i></div>
+          <h3 class="hb-modal-title">Presencial</h3>
+          <p class="hb-modal-body">
+            Encuentros cara a cara en un entorno de aprendizaje enfocado.
+            El contacto directo entre tutor y alumno facilita la comunicación
+            inmediata, la corrección en tiempo real y la construcción de
+            un vínculo educativo sólido.
+          </p>
+        </div>
+
+        <div class="hb-modal-card hb-reveal hb-r2">
+          <div class="hb-modal-icon"><i class="fas fa-laptop-house"></i></div>
+          <h3 class="hb-modal-title">Semipresencial</h3>
+          <p class="hb-modal-body">
+            Lo mejor de ambos mundos: sesiones presenciales combinadas con
+            actividades y seguimiento en línea. Ideal para quienes necesitan
+            flexibilidad sin renunciar al contacto directo con su tutor.
+          </p>
+        </div>
+
+        <div class="hb-modal-card hb-reveal hb-r3">
+          <div class="hb-modal-icon"><i class="fas fa-cloud"></i></div>
+          <h3 class="hb-modal-title">Virtual</h3>
+          <p class="hb-modal-body">
+            100% en línea con la misma efectividad. Plataformas interactivas,
+            videollamadas en vivo, materiales digitales y comunicación continua
+            con el tutor. Aprende desde donde estés, a tu horario.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TALLERES & CHARLAS
+       ═══════════════════════════════════════ -->
+ <section class="hb-workshops-section hb-section">
+  <div class="hb-workshops-inner">
+    <div class="hb-workshops-grid">
+      <div class="hb-workshops-content">
+        <h2 class="hb-workshops-h2 hb-reveal">
+          Cursos, Talleres <br>& <em>Charlas</em>
+        </h2>
+        <div class="hb-hero-line hb-reveal"></div>
+        
+        <p class="hb-workshops-body hb-reveal">
+          Diseñamos e impartimos programas formativos intensivos para
+          instituciones educativas, empresas y organizaciones que desean
+          capacitar a sus equipos o comunidades en temas específicos.
+        </p>
+        <p class="hb-workshops-body hb-reveal">
+          Cada programa se construye a medida, con objetivos claros,
+          dinámica participativa y materiales de alto impacto. Disponibles en
+          formato presencial, semipresencial o virtual.
+        </p>
+        
+        <div class="hb-workshops-tags hb-reveal">
+          <span class="hb-wtag">Talleres Prácticos</span>
+          <span class="hb-wtag">Charlas Motivacionales</span>
+          <span class="hb-wtag">Cursos Intensivos</span>
+          <span class="hb-wtag">Formación Docente</span>
+          <span class="hb-wtag">A Medida</span>
+        </div>
+        
+        <a href="talleres.html" class="hb-workshops-cta hb-reveal">
+          <i class="fas fa-arrow-right"></i>
+          Explorar Todos los Talleres
+        </a>
+      </div>
+
+      <div class="hb-workshops-visual hb-reveal">
+        <div class="hb-wv-card">
+          <div class="hb-wv-icon-circle">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <strong>TALLERES</strong>
+          <div class="hb-wv-line"></div>
+          <span>Aprendizaje práctico<br>e interactivo</span>
+        </div>
+        
+        <div class="hb-wv-card">
+          <div class="hb-wv-icon-circle">
+            <i class="fas fa-microphone-alt"></i>
+          </div>
+          <strong>CHARLAS</strong>
+          <div class="hb-wv-line"></div>
+          <span>Conferencias y<br>motivación educativa</span>
+        </div>
+        
+        <div class="hb-wv-card hb-wv-wide">
+          <div class="hb-wv-icon-circle">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <strong>CURSOS TALLER</strong>
+          <div class="hb-wv-line"></div>
+          <span>Programas completos con certificación<br>y seguimiento continuo para lograr dominio real</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════
+       CTA FINAL
+       ═══════════════════════════════════════ -->
+  <section class="hb-cta-section hb-section">
+    <div class="hb-cta-inner">
+      <div class="hb-cta-eyebrow hb-reveal"><h2>Comienza Hoy</h2></div>
+      <h2 class="hb-cta-h2 hb-reveal">
+        El Servicio Perfecto <em>Te Está Esperando</em>
+      </h2>
+      <p class="hb-cta-body hb-reveal">
+        En HIMANABI entendemos que cada necesidad educativa es única, por eso diseñamos una
+        <strong>propuesta educativa personalizada</strong> adaptada a tus objetivos y desafíos.
+        Ya seas estudiante, institución o empresa, te acompañamos con soluciones innovadoras
+        y humanas que transforman el aprendizaje en resultados reales y sostenibles.
+      </p>
+      <a href="https://wa.me/18098706655" class="hb-cta-btn hb-reveal">
+        Solicitar Información
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contenedor para el footer -->
+  <div id="footer-container"></div>
+
+  <!-- Script para cargar banner y footer desde un solo archivo -->
+  <script src="../js/banner-footer.js"></script>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { 
+        if (e.isIntersecting) { 
+          e.target.classList.add('hb-in'); 
+          io.unobserve(e.target); 
+        } 
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.hb-reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

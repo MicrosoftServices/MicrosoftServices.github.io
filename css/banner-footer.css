@@ -460,7 +460,7 @@ body[style*="overflow: hidden"] { touch-action: none; }
 
 .bf-overlay-lema {
   font-family: var(--font-d);
-  font-style: italic;
+  font-style: normal;
   font-size: .92rem;
   color: rgba(245,230,211,.52);
   opacity: 0;
@@ -570,7 +570,7 @@ body[style*="overflow: hidden"] { touch-action: none; }
 
 .bf-footer-lema {
   font-family: var(--font-d);
-  font-style: italic;
+  font-style: normal;
   font-size: .9rem;
   color: var(--gold-lt);
   opacity: .85;

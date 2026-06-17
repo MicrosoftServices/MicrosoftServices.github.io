@@ -332,7 +332,7 @@ html{scroll-behavior:smooth}
   font-size:clamp(.88rem,1.5vw,1rem);
   line-height:1.95;color:rgba(245,232,207,.85);
   font-weight:400;letter-spacing:.2px;
-  margin-bottom:24px;font-style:italic;
+  margin-bottom:24px;font-style:normal;
 }
 .hb-testimonial-author{display:flex;align-items:center;gap:16px;}
 .hb-testimonial-dash{width:28px;height:1px;background:#e8b84b;}

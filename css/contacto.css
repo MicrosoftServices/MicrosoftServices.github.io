@@ -203,7 +203,7 @@ html{scroll-behavior:smooth}
 }
 .hb-deco-quote{position:relative;z-index:1;max-width:300px;text-align:center;}
 .hb-deco-quote-mark{font-family:'Cinzel Decorative',serif;font-size:4rem;line-height:.6;color:rgba(230,179,78,.25);display:block;margin-bottom:12px;}
-.hb-deco-quote-text{font-family: Arial, Calibri, 'Lato', sans-serif; font-size:.88rem;line-height:1.9;color:rgba(245,232,207,.8);letter-spacing:.3px;font-style:italic;}
+.hb-deco-quote-text{font-family: Arial, Calibri, 'Lato', sans-serif; font-size:.88rem;line-height:1.9;color:rgba(245,232,207,.8);letter-spacing:.3px;font-style:normal;}
 .hb-deco-quote-author{margin-top:20px;font-family: Arial, Calibri, 'Lato', sans-serif; font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:#e6b34e;opacity:.7;}
 
 /* social pills */

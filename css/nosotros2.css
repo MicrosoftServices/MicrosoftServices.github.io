@@ -233,7 +233,7 @@ html{scroll-behavior:smooth}
 .n2-slide-quote{
   margin-top:24px;padding-left:16px;
   border-left:2px solid rgba(232,184,74,.3);
-  font-family:Arial,Calibri,sans-serif;font-size:.85rem;font-style:italic;
+  font-family:Arial,Calibri,sans-serif;font-size:.85rem;font-style:normal;
   color:rgba(245,232,207,.4);line-height:1.7;
   transform:translateY(14px);opacity:0;
   transition:all .35s .26s cubic-bezier(.23,1,.32,1);
